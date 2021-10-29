@@ -14,6 +14,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1493950710
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476665430671908046}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a3bc93345db2a1f4a9ef4a72c08a51da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1783217315439172761
 GameObject:
   m_ObjectHideFlags: 0
@@ -24,6 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1783217315439172766}
   - component: {fileID: 1783217315439172767}
+  - component: {fileID: 1167496571}
+  - component: {fileID: 1167496574}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -38,7 +59,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783217315439172761}
-  m_LocalRotation: {x: -0, y: -0.3114732, z: -0, w: 0.950255}
+  m_LocalRotation: {x: 0, y: -0.31147262, z: 0, w: 0.95025516}
   m_LocalPosition: {x: 1.97, y: 0.656, z: 8.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -59,7 +80,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gammaExplosionPrefab: {fileID: 0}
-  myAnim: {fileID: 0}
+  myAnim: {fileID: 1493950710}
+--- !u!114 &1167496571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783217315439172761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4e29a5ca7aa2446a9c32dcb2b81a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDetectionRange: 10
+  chaseStopRange: 2
+  animController: {fileID: 1493950710}
+  enemyRunSpeed: 3
+  dead: 0
+  specialInUse: 0
+--- !u!114 &1167496574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783217315439172761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93a178b813f934498a00d1b6fcd34b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMaxHealth: 20
+  enemyCurrentHealth: 0
+  movementSpeed: 1
 --- !u!1001 &1783217315291160991
 PrefabInstance:
   m_ObjectHideFlags: 0
