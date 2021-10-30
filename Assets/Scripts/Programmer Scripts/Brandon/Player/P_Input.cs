@@ -45,12 +45,22 @@ public class P_Input : MonoBehaviour
         
         // ==========Move Forward==========
         if(Input.GetKey(KeyCode.W)) { movement.MoveForward(); }
+
         // ==========Move Backwards==========
         else if (Input.GetKey(KeyCode.S)) { movement.MoveBackwards(); }
+        else
+        {
+            movement.SetMoveForwardFalse();
+            movement.SetMoveBackwardsFalse();
+        }
         // ==========Strafe Right==========
         if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
         // ==========Strafe Left==========
         else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
+        else
+        {
+            movement.SetMoveSidetoSideFalse();
+        }
         // ==========Jump==========
         if(Input.GetKeyDown(KeyCode.Space)) { movement.Jump(); }
         // ==========Ground Dash==========

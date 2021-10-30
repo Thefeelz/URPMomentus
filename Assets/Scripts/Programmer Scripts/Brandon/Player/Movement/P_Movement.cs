@@ -6,8 +6,7 @@ using UnityEngine.Rendering;
 public class P_Movement : MonoBehaviour
 {
     [SerializeField] float playerAcceleration = 10f;
-    [SerializeField] float playerDeceleration = 10f;
-    [SerializeField] float maxPlayerspeed = 10f;
+    [SerializeField] float maxPlayerSpeedRunning = 10f;
     [SerializeField] float playerJumpPower = 10f;
     [SerializeField] float playerStrafeSpeed = 10f;
     [SerializeField] float fallMultiplier = 2.5f;
@@ -18,6 +17,10 @@ public class P_Movement : MonoBehaviour
     Rigidbody rb;
     CharacterStats playerStats;
     Animator anim;
+
+    bool moveForward = false;
+    bool moveBackward = false;
+    bool moveSidetoSide = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +48,14 @@ public class P_Movement : MonoBehaviour
             anim.SetBool("running", false);
         }
 
-        float nonYMagnitude = (Mathf.Abs(rb.velocity.z) + Mathf.Abs(rb.velocity.x));
-        if (nonYMagnitude > maxPlayerspeed)
+        /*float nonYMagnitude = (Mathf.Abs(rb.velocity.z) + Mathf.Abs(rb.velocity.x));
+        if (nonYMagnitude > maxPlayerSpeed)
         {
-            rb.velocity = rb.velocity.normalized * maxPlayerspeed;
+            rb.velocity = rb.velocity.normalized * maxPlayerSpeed;
+        }*/
+        if(rb.velocity.sqrMagnitude > (maxPlayerSpeedRunning * maxPlayerSpeedRunning))
+        {
+            rb.velocity *= 0.99f;
         }
         if(rb.velocity.y < 0)
         {
@@ -94,14 +101,15 @@ public class P_Movement : MonoBehaviour
     }
     public void Jump()
     {
-        if(isGrounded && ((!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))))
+        if (isGrounded)
+        {
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
-        else if (isGrounded)
-            rb.AddForce(Vector3.up * playerJumpPower * 2, ForceMode.VelocityChange);
+        }
     }
 
     private void Decelerate()
     {
+        /*
         //Store the x and z variables for ezpz access
         float currentX = rb.velocity.x;
         float currentZ = rb.velocity.z;
@@ -126,20 +134,37 @@ public class P_Movement : MonoBehaviour
             currentZ += Mathf.Sqrt(-currentZ) * Time.deltaTime * playerDeceleration;
         }
         rb.velocity = new Vector3(currentX, rb.velocity.y, currentZ);
+        */
+        if(!moveForward && !moveBackward && !moveSidetoSide)
+        {
+            //rb.velocity = Vector3.zero;
+            rb.velocity *= 0.9f;
+            if (rb.velocity.sqrMagnitude < 0.25f)
+                rb.velocity = Vector3.zero;
+        }
     }
     //Rotate the rigid body to be more inline with the physics system instead of rotating the transform
     public void StrafeCharacter(int rotationDirection)
     {
         //rb.rotation = rb.rotation * Quaternion.Euler(0, playerRotateSpeed * rotationDirection * Time.deltaTime, 0);
         rb.AddForce(transform.right * rotationDirection * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        moveSidetoSide = true;
     }
 
     public void MoveForward()
     {
         rb.AddForce(transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        moveForward = true;
+        moveBackward = false;
     }
     public void MoveBackwards()
     {
         rb.AddForce(-transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        moveBackward = true;
+        moveForward = false;
     }
+
+    public void SetMoveForwardFalse() { moveForward = false; }
+    public void SetMoveBackwardsFalse() { moveBackward = false; }
+    public void SetMoveSidetoSideFalse() { moveSidetoSide = false; }
 }

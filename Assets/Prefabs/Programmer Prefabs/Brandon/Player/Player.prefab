@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2733746628393997006}
   - component: {fileID: 2733746628393996999}
   - component: {fileID: 2733746628393996996}
-  - component: {fileID: 557602381}
   - component: {fileID: 557602382}
   - component: {fileID: 557602383}
   - component: {fileID: 557602384}
@@ -63,9 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAcceleration: 15
-  playerDeceleration: 10
+  playerDeceleration: 20
   maxPlayerspeed: 10
-  playerJumpPower: 8
+  playerJumpPower: 5
   playerStrafeSpeed: 20
   fallMultiplier: 2.5
   isGrounded: 1
@@ -173,20 +172,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &557602381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733746628393997007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad3053e8e19ab714bb450f23ff3eea4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumHeightForWallRun: 1.2
-  normalizedAngleThreshold: 0.1
 --- !u!114 &557602382
 MonoBehaviour:
   m_ObjectHideFlags: 0
