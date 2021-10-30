@@ -53,9 +53,9 @@ public class P_Movement : MonoBehaviour
         {
             rb.velocity = rb.velocity.normalized * maxPlayerSpeed;
         }*/
-        if(rb.velocity.sqrMagnitude > (maxPlayerSpeedRunning * maxPlayerSpeedRunning))
+        if(rb.velocity.sqrMagnitude > (maxPlayerSpeedRunning * maxPlayerSpeedRunning) && isGrounded)
         {
-            rb.velocity *= 0.99f;
+            rb.velocity *= 0.9f;
         }
         if(rb.velocity.y < 0)
         {

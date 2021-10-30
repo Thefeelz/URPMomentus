@@ -54,9 +54,9 @@ public class P_Input : MonoBehaviour
             movement.SetMoveBackwardsFalse();
         }
         // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
+        if(Input.GetKey(KeyCode.D)) { /*movement.StrafeCharacter(1);*/ }
         // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
+        else if (Input.GetKey(KeyCode.A)) { /*movement.StrafeCharacter(-1);*/ }
         else
         {
             movement.SetMoveSidetoSideFalse();
