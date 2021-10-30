@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2733746628393997002}
   - component: {fileID: 2733746628393997003}
   - component: {fileID: 2733746628393997000}
-  - component: {fileID: 2733746628393997001}
   - component: {fileID: 2733746628393997006}
   - component: {fileID: 2733746628393996999}
   - component: {fileID: 2733746628393996996}
@@ -22,6 +21,7 @@ GameObject:
   - component: {fileID: 557602385}
   - component: {fileID: 557602386}
   - component: {fileID: 557602387}
+  - component: {fileID: 557602380}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -62,10 +62,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAcceleration: 15
-  playerDeceleration: 20
-  maxPlayerspeed: 10
-  playerJumpPower: 5
-  playerStrafeSpeed: 20
+  maxPlayerSpeedRunning: 10
+  maxPlayerSpeedJumping: 20
+  playerDeceleration: 0.911
+  playerJumpPower: 6
+  playerStrafeSpeed: 10
   fallMultiplier: 2.5
   isGrounded: 1
 --- !u!114 &2733746628393997003
@@ -101,24 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSens: 50
---- !u!114 &2733746628393997001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733746628393997007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d283e9826798aea4e9158cff9dc256b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  airDashPower: 10
-  airDashCost: 0
-  superSlashDamage: 10
-  superSlashCost: 0
-  superSlashSpeed: 10
-  superSlashObject: {fileID: 4077571137266673145, guid: 0335a741aa8798e4f9458782a02ac068, type: 3}
 --- !u!114 &2733746628393997006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +257,19 @@ MonoBehaviour:
   OverchargeBar: {fileID: 0}
   healthBarDots: {fileID: 0}
   airDashImage: {fileID: 0}
+--- !u!114 &557602380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733746628393997007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ea05261e731f549b6c0a6134650bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumHeightForWallRun: 1
 --- !u!1 &2733746628611254748
 GameObject:
   m_ObjectHideFlags: 0

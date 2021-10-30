@@ -7,12 +7,16 @@ public class P_Movement : MonoBehaviour
 {
     [SerializeField] float playerAcceleration = 10f;
     [SerializeField] float maxPlayerSpeedRunning = 10f;
+    [SerializeField] float maxPlayerSpeedJumping = 10f;
+    [Range(0f, 1f)][SerializeField] float playerDeceleration = 0.9f;
     [SerializeField] float playerJumpPower = 10f;
     [SerializeField] float playerStrafeSpeed = 10f;
     [SerializeField] float fallMultiplier = 2.5f;
 
     public bool isGrounded = true;
     float distanceToGround;
+    float currentRunSpeed;
+    bool jumping = false;
 
     Rigidbody rb;
     CharacterStats playerStats;
@@ -39,6 +43,7 @@ public class P_Movement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        // This is to toggle on and off running animation based on our velocity
         if(rb.velocity.magnitude > 2f)
         {
             anim.SetBool("running", true);
@@ -47,16 +52,17 @@ public class P_Movement : MonoBehaviour
         {
             anim.SetBool("running", false);
         }
-
-        /*float nonYMagnitude = (Mathf.Abs(rb.velocity.z) + Mathf.Abs(rb.velocity.x));
-        if (nonYMagnitude > maxPlayerSpeed)
-        {
-            rb.velocity = rb.velocity.normalized * maxPlayerSpeed;
-        }*/
-        if(rb.velocity.sqrMagnitude > (maxPlayerSpeedRunning * maxPlayerSpeedRunning) && isGrounded)
+        // If statement to check our speed by its sqrMag (cheaper function) and decrease it by multiplying it by itself and a constant less than 1
+        if(rb.velocity.sqrMagnitude > (currentRunSpeed * currentRunSpeed) && isGrounded)
         {
             rb.velocity *= 0.9f;
         }
+        // If statement that will only be effected if we are in the air (currentRunSpeed is different if we are jumping)
+        else if (rb.velocity.sqrMagnitude > (currentRunSpeed * currentRunSpeed))
+        {
+            rb.velocity *= 0.9f;
+        }
+        // This if statement gives us a more "Mario" Like jump, making gravity do a little more work once we reach the apex of a jump
         if(rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -65,8 +71,14 @@ public class P_Movement : MonoBehaviour
 
     void CheckForGrounded()
     {
-        if (Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.1f))
+        // Shoot a Ray at the ground that is half the length of our body to see if we are touching the ground
+        if (Physics.Raycast(transform.position, -transform.up, distanceToGround))
         {
+            // Since we are limiting our max run speed, this effects our force when we jump, to counter this
+            // I added in a jumping bool that allows our max speed while jumping to be increased so we get a full jump
+            // This bool is turned off by a coroutine 0.5 seconds after a jump
+            if(!jumping)
+                currentRunSpeed = maxPlayerSpeedRunning;
             isGrounded = true;
         }
         else
@@ -103,42 +115,20 @@ public class P_Movement : MonoBehaviour
     {
         if (isGrounded)
         {
+            jumping = true;
+            StartCoroutine(TurnOffJumpDelay());
+            currentRunSpeed = maxPlayerSpeedJumping;
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
         }
     }
 
     private void Decelerate()
     {
-        /*
-        //Store the x and z variables for ezpz access
-        float currentX = rb.velocity.x;
-        float currentZ = rb.velocity.z;
-        //If the x direction is positive, reduce it by substraction
-        if (currentX > 0)
-        {
-            currentX -= Mathf.Sqrt(currentX) * Time.deltaTime * playerDeceleration;
-        }
-        //If the x is negative, reduce it by addition
-        else if (currentX < 0)
-        {
-            currentX += Mathf.Sqrt(-currentX) * Time.deltaTime * playerDeceleration;
-        }
-        //If the z is positive, reduce it by subtraction
-        if (currentZ > 0)
-        {
-            currentZ -= Mathf.Sqrt(currentZ) * Time.deltaTime * playerDeceleration;
-        }
-        //If the z is negative, reduce it by addition
-        else if (currentZ < 0)
-        {
-            currentZ += Mathf.Sqrt(-currentZ) * Time.deltaTime * playerDeceleration;
-        }
-        rb.velocity = new Vector3(currentX, rb.velocity.y, currentZ);
-        */
+        // Check to see if any movement keys are being pressed (Will only pass through if we are not grounded)
         if(!moveForward && !moveBackward && !moveSidetoSide)
         {
-            //rb.velocity = Vector3.zero;
-            rb.velocity *= 0.9f;
+            // Slowly chunk velocity by a constant less than 1
+            rb.velocity *= playerDeceleration;
             if (rb.velocity.sqrMagnitude < 0.25f)
                 rb.velocity = Vector3.zero;
         }
@@ -153,13 +143,19 @@ public class P_Movement : MonoBehaviour
 
     public void MoveForward()
     {
-        rb.AddForce(transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        if (!jumping || !isGrounded)
+            rb.AddForce(transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        else
+            rb.AddForce(transform.forward * (playerAcceleration / 2) * Time.deltaTime, ForceMode.VelocityChange);
         moveForward = true;
         moveBackward = false;
     }
     public void MoveBackwards()
     {
-        rb.AddForce(-transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        if(!jumping || !isGrounded)
+            rb.AddForce(-transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        else
+            rb.AddForce(-transform.forward * (playerAcceleration / 2) * Time.deltaTime, ForceMode.VelocityChange);
         moveBackward = true;
         moveForward = false;
     }
@@ -167,4 +163,10 @@ public class P_Movement : MonoBehaviour
     public void SetMoveForwardFalse() { moveForward = false; }
     public void SetMoveBackwardsFalse() { moveBackward = false; }
     public void SetMoveSidetoSideFalse() { moveSidetoSide = false; }
+
+    IEnumerator TurnOffJumpDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        jumping = false;
+    }
 }
