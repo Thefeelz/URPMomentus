@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class P_Input : MonoBehaviour
 {
+    [SerializeField] Canvas helpScreen;
     P_CoolDownManager coolDownManager;
     P_GroundSlide groundSlide;
     P_Movement movement;
+    PlayerAttack playerAttack;
 
     A_BladeDance bladeDance;
     A_AirDash airDash;
@@ -18,6 +20,7 @@ public class P_Input : MonoBehaviour
         movement = GetComponent<P_Movement>();
         bladeDance = GetComponent<A_BladeDance>();
         airDash = GetComponent<A_AirDash>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -28,7 +31,9 @@ public class P_Input : MonoBehaviour
 
     void GetUserInput()
     {
+        // ========================================
         // ==========OVERCHARGE ABILITIES==========
+        // ========================================
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         { 
             if(bladeDance.Ability_BladeDance()) 
@@ -39,6 +44,13 @@ public class P_Input : MonoBehaviour
             if (airDash.UseAirDash())
                 coolDownManager.AddCooldownToList(airDash);
         }
+        // =================================
+        // ==========PLAYER ATTACK==========
+        // =================================
+        if(Input.GetMouseButtonDown(0)) { playerAttack.BasicAttack(); }
+        if (Input.GetMouseButton(1)) { playerAttack.BasicDefense(); }
+        else { playerAttack.SwordBlockComplete(); }
+
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
@@ -66,7 +78,9 @@ public class P_Input : MonoBehaviour
         // ==========Ground Dash==========
         if (Input.GetKeyDown(KeyCode.LeftShift)) { groundSlide.UseGroundDash(0.5f); }
 
-
+        // ====================================
         // ==========MENU / UI THANGS==========
+        // ====================================
+        if (Input.GetKeyDown(KeyCode.H)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
     }
 }

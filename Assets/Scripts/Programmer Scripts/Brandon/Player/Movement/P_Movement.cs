@@ -72,7 +72,7 @@ public class P_Movement : MonoBehaviour
     void CheckForGrounded()
     {
         // Shoot a Ray at the ground that is half the length of our body to see if we are touching the ground
-        if (Physics.Raycast(transform.position, -transform.up, distanceToGround))
+        if (Physics.Raycast(transform.position, -transform.up, distanceToGround + .05f))
         {
             // Since we are limiting our max run speed, this effects our force when we jump, to counter this
             // I added in a jumping bool that allows our max speed while jumping to be increased so we get a full jump

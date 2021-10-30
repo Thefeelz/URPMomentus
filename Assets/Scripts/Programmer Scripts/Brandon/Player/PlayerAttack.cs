@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        GetPlayerInput();
+        //GetPlayerInput();
         CheckEnemyInRange();
         if (dashing)
             DashToEnemy();
@@ -57,10 +57,38 @@ public class PlayerAttack : MonoBehaviour
                     startingDashPosition = transform.position;
                     dashing = true;
                     DashToEnemy();
-                    // hitTarget.transform.GetComponentInParent<EnemyThang>().TakeDamage(playerStats.GetPlayerStrength());
+                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(20);
                 }
             }
         }
+    }
+
+    public void BasicAttack()
+    {
+        if(!playerAnimator.GetBool("swordSwing"))
+        {
+            StartCoroutine(WeaponSwing());
+
+            if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
+            {
+                if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+                {
+                    endingDashPosition = hitTarget.transform.position;
+                    startingDashPosition = transform.position;
+                    dashing = true;
+                    DashToEnemy();
+                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
+                }
+            }
+        }
+    }
+    public void BasicDefense()
+    {
+        playerAnimator.SetBool("swordBlock", true);
+    }
+    public void SwordBlockComplete()
+    {
+        playerAnimator.SetBool("swordBlock", false);
     }
     void DashToEnemy()
     {

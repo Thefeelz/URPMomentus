@@ -30,10 +30,10 @@ public class EnemyBad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gammaExploding)
-        {
-            ExpandGammaExplosion();
-        }
+        //if (gammaExploding)
+        //{
+        //    ExpandGammaExplosion();
+        //}
     }
     public bool GetBeenAttacked()
     {
@@ -73,31 +73,31 @@ public class EnemyBad : MonoBehaviour
         //GetComponent<MeshRenderer>().material.color = Color.red;
     }
 
-    public void StartGammaExplosion(float delayTime, float sizeOfExplosion, float gammaExplosionSpeed)
-    {
-        GetComponent<Rigidbody>().detectCollisions = false;
-        GetComponent<Rigidbody>().useGravity = false;
-        sizeOfGammaExplosion = sizeOfExplosion;
-        speedOfGammaExplosion = gammaExplosionSpeed;
-        StartCoroutine(StartCountdown(delayTime));
-    }
-    IEnumerator StartCountdown(float countDown)
-    {
-        yield return new WaitForSeconds(countDown);
-        gammaExploding = true;
-        gammaExplosionObject = Instantiate(gammaExplosionPrefab, transform);
-    }
-    void ExpandGammaExplosion()
-    {
-        if (gammaExplosionObject.transform.localScale.x < sizeOfGammaExplosion)
-            gammaExplosionObject.transform.localScale += gammaExplosionObject.transform.localScale * Time.deltaTime * speedOfGammaExplosion;
-        else
-        {
-            gammaExploding = false;
-            Destroy(gammaExplosionObject);
-            GetComponent<Rigidbody>().detectCollisions = true;
-            GetComponent<Rigidbody>().useGravity = true;
-        }
+    //public void StartGammaExplosion(float delayTime, float sizeOfExplosion, float gammaExplosionSpeed)
+    //{
+    //    GetComponent<Rigidbody>().detectCollisions = false;
+    //    GetComponent<Rigidbody>().useGravity = false;
+    //    sizeOfGammaExplosion = sizeOfExplosion;
+    //    speedOfGammaExplosion = gammaExplosionSpeed;
+    //    StartCoroutine(StartCountdown(delayTime));
+    //}
+    //IEnumerator StartCountdown(float countDown)
+    //{
+    //    yield return new WaitForSeconds(countDown);
+    //    gammaExploding = true;
+    //    gammaExplosionObject = Instantiate(gammaExplosionPrefab, transform);
+    //}
+    //void ExpandGammaExplosion()
+    //{
+    //    if (gammaExplosionObject.transform.localScale.x < sizeOfGammaExplosion)
+    //        gammaExplosionObject.transform.localScale += gammaExplosionObject.transform.localScale * Time.deltaTime * speedOfGammaExplosion;
+    //    else
+    //    {
+    //        gammaExploding = false;
+    //        Destroy(gammaExplosionObject);
+    //        GetComponent<Rigidbody>().detectCollisions = true;
+    //        GetComponent<Rigidbody>().useGravity = true;
+    //    }
 
-    }
+    //}
 }
