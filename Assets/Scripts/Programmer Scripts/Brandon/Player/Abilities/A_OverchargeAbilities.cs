@@ -36,6 +36,7 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
 
     public void StartUIImageFlash()
     {
-        abilityCooldownButton.GetComponent<UI_AbilityIcon>().ButtonAbilityReadyStart();
+        if(abilityCooldownButton)
+            abilityCooldownButton.GetComponent<UI_AbilityIcon>().ButtonAbilityReadyStart();
     }
 }

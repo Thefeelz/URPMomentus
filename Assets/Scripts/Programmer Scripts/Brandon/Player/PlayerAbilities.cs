@@ -105,7 +105,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if(hitEnemy.transform.gameObject.layer == 6)
                 {
-                    hitEnemy.transform.GetComponent<EnemyBad>().StartGammaExplosion(gammaExplosionDelayTime, gammaExplosionSize, gammaExplosionSpeed);
+                    //hitEnemy.transform.GetComponent<EnemyBad>().StartGammaExplosion(gammaExplosionDelayTime, gammaExplosionSize, gammaExplosionSpeed);
                 }
             }
         }

@@ -11,9 +11,6 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField] int playerStrength = 10;
     [SerializeField] int playerDefense = 10;
-
-    [SerializeField] Camera firstPersonCam;
-    [SerializeField] Camera thirdPersonCam;
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;
@@ -115,15 +112,5 @@ public class CharacterStats : MonoBehaviour
     public int GetPlayerStrength()
     {
         return playerStrength;
-    }
-    public void SetFirstPersonCam()
-    {
-        firstPersonCam.gameObject.SetActive(true);
-        thirdPersonCam.gameObject.SetActive(false);
-    }
-    public void SetThirdPersonCam()
-    {
-        thirdPersonCam.gameObject.SetActive(true);
-        firstPersonCam.gameObject.SetActive(false);
     }
 }

@@ -9,7 +9,7 @@ public class PlayerProjectile : MonoBehaviour
     {
         if(other.transform.CompareTag("Enemy"))
         {
-            other.transform.GetComponentInParent<EnemyThang>().TakeDamage(damage);
+            other.transform.GetComponentInParent<EnemyStats>().TakeDamage(damage);
         }
         else if (other.transform.GetComponentInParent<ProjectileOne>())
         {
