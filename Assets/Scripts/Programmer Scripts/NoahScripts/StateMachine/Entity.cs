@@ -24,7 +24,8 @@ public class Entity : MonoBehaviour
         stateMachine = new FiniteStateMachine();
         health = entityData.health;
         mMesh = gameObject.GetComponent<MeshRenderer>();
-        mColor = mMesh.material.color;
+        if(mMesh)
+            mColor = mMesh.material.color;
     }
     // update is called once per frame
     public virtual void Update()
@@ -51,7 +52,8 @@ public class Entity : MonoBehaviour
     public virtual void Damage(float amountDamage)
     {
         health -= amountDamage;
-        mMesh.material.color = Color.red;
+        if(mMesh)
+            mMesh.material.color = Color.red;
         Invoke("ResetColor", .5f);
         if (health <= 0)
         {

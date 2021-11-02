@@ -48,8 +48,9 @@ public class PlayerWallRun : MonoBehaviour
             {
                 Vector3 dir = transform.TransformDirection(directions[i]);
                 Physics.Raycast(transform.position, dir, out hits[i], 1);
-                if(hits[i].collider !=null && hits[i].collider.GetComponent<WallRunnable>())
+                if(hits[i].collider !=null && hits[i].transform.GetComponent<WallRunnable>())
                 {
+                    Debug.Log("Hits[" + i + "] has component WallRun is " + hits[i].transform.GetComponent<WallRunnable>());
                     Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
                 }
                 else
@@ -57,7 +58,7 @@ public class PlayerWallRun : MonoBehaviour
                     Debug.DrawRay(transform.position, dir * 1, Color.red);
                 }
             }
-            hits = hits.ToList().Where(h => h.collider != null).OrderBy(h => h.distance).ToArray();
+            hits = hits.ToList().Where(h => h.collider != null && h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
                 if(hits.Length > 0)
                 {
                     OnWall(hits[0]);

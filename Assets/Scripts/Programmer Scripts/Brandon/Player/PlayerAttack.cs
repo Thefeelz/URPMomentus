@@ -77,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
                     startingDashPosition = transform.position;
                     dashing = true;
                     DashToEnemy();
-                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
+                    hitTarget.transform.GetComponentInParent<Entity>().Damage(playerStats.GetPlayerStrength());
                 }
             }
         }
