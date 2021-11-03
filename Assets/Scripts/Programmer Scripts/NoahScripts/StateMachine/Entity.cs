@@ -55,7 +55,8 @@ public class Entity : MonoBehaviour
     public virtual void Damage(float amountDamage)
     {
         health -= amountDamage;
-        mMesh.material.color = Color.red;
+        if(mMesh)
+            mMesh.material.color = Color.red;
         Invoke("ResetColor", .5f);
         if (health <= 0)
         {

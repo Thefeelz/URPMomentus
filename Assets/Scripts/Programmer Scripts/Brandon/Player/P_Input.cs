@@ -12,6 +12,8 @@ public class P_Input : MonoBehaviour
 
     A_BladeDance bladeDance;
     A_AirDash airDash;
+
+    Rigidbody rb;
     // Start is called before the first frame update
     void Awake()
     {
@@ -21,15 +23,21 @@ public class P_Input : MonoBehaviour
         bladeDance = GetComponent<A_BladeDance>();
         airDash = GetComponent<A_AirDash>();
         playerAttack = GetComponent<PlayerAttack>();
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GetUserInput();
+        GetUserInputNonPhysics();
     }
 
-    void GetUserInput()
+    private void FixedUpdate()
+    {
+        GetUserInputPhysics();
+    }
+
+    void GetUserInputNonPhysics()
     {
         // ========================================
         // ==========OVERCHARGE ABILITIES==========
@@ -50,7 +58,7 @@ public class P_Input : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) { playerAttack.BasicAttack(); }
         if (Input.GetMouseButton(1)) { playerAttack.BasicDefense(); }
         else { playerAttack.SwordBlockComplete(); }
-
+/*
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
@@ -73,6 +81,7 @@ public class P_Input : MonoBehaviour
         {
             movement.SetMoveSidetoSideFalse();
         }
+*/
         // ==========Jump==========
         if(Input.GetKeyDown(KeyCode.Space)) { movement.Jump(); }
         // ==========Ground Dash==========
@@ -82,5 +91,33 @@ public class P_Input : MonoBehaviour
         // ==========MENU / UI THANGS==========
         // ====================================
         if (Input.GetKeyDown(KeyCode.H)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
+    }
+
+    void GetUserInputPhysics()
+    {
+        // Check to see if we are going to fast, stops input if we are going to fast
+        if(rb.velocity.sqrMagnitude > (movement.maxPlayerSpeedRunning * movement.maxPlayerSpeedRunning)) { return; }
+        // ======================================
+        // ==========CHARACTER MOVEMENT==========
+        // ======================================
+        
+        // ==========Move Forward==========
+        if(Input.GetKey(KeyCode.W)) { movement.MoveForward(); }
+
+        // ==========Move Backwards==========
+        else if (Input.GetKey(KeyCode.S)) { movement.MoveBackwards(); }
+        else
+        {
+            movement.SetMoveForwardFalse();
+            movement.SetMoveBackwardsFalse();
+        }
+        // ==========Strafe Right==========
+        if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
+        // ==========Strafe Left==========
+        else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
+        else
+        {
+            movement.SetMoveSidetoSideFalse();
+        }
     }
 }
