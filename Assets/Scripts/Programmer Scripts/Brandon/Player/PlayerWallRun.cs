@@ -50,7 +50,6 @@ public class PlayerWallRun : MonoBehaviour
                 Physics.Raycast(transform.position, dir, out hits[i], 1);
                 if(hits[i].collider !=null && hits[i].transform.GetComponent<WallRunnable>())
                 {
-                    Debug.Log("Hits[" + i + "] has component WallRun is " + hits[i].transform.GetComponent<WallRunnable>());
                     Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
                 }
                 else
@@ -59,12 +58,27 @@ public class PlayerWallRun : MonoBehaviour
                 }
             }
             hits = hits.ToList().Where(h => h.collider != null && h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
-                if(hits.Length > 0)
+            if(hits.Length > 0)
+            {
+                OnWall(hits[0]);
+                lastWallPosition = hits[0].point;
+                lastWallNormal = hits[0].normal;
+                Vector3 cross = Vector3.Cross(transform.forward, hits[0].normal);
+                float dir = Vector3.Dot(cross, transform.up);
+                // Debug.Log(dir);
+                if(dir > 0)
                 {
-                    OnWall(hits[0]);
-                    lastWallPosition = hits[0].point;
-                    lastWallNormal = hits[0].normal;
+                    Debug.Log("Left");
+                } 
+                else if (dir < 0)
+                {
+                    Debug.Log("Right");
                 }
+                else
+                {
+                    Debug.Log("Yah Fucked Up I guess");
+                }
+            }
         }
         if(isWallRunning){ playerMovement.isGrounded = true;}
     }

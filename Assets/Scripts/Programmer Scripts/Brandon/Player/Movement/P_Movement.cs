@@ -14,6 +14,8 @@ public class P_Movement : MonoBehaviour
     [SerializeField] float fallMultiplier = 2.5f;
 
     public bool isGrounded = true;
+    P_WallRun wallrunner;
+    public bool wallRunning() => wallrunner.isWallRunning;
     float distanceToGround;
     float currentRunSpeed;
     bool jumping = false;
@@ -21,6 +23,7 @@ public class P_Movement : MonoBehaviour
     Rigidbody rb;
     CharacterStats playerStats;
     Animator anim;
+
 
     bool moveForward = false;
     bool moveBackward = false;
@@ -33,6 +36,7 @@ public class P_Movement : MonoBehaviour
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
         playerStats = GetComponent<CharacterStats>();
         anim = GetComponent<Animator>();
+        wallrunner = GetComponent<P_WallRun>();
     }
 
     // Update is called once per frame
@@ -90,11 +94,19 @@ public class P_Movement : MonoBehaviour
     }
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !wallRunning())
         {
             jumping = true;
             StartCoroutine(TurnOffJumpDelay());
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
+        }
+        else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
+        {
+            rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.VelocityChange);
+        }
+        else if (isGrounded && wallRunning() && wallrunner.wallLeft)
+        {
+            rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
     }
 
