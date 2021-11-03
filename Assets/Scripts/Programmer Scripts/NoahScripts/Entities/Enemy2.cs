@@ -100,14 +100,33 @@ public class Enemy2 : Entity
         stateMachine.ChangeState(attackState);
     }
 
+
+    //calls coroutine with passed parameters
     public override void callCoroutine(string sName, float fTime)
     {
-        
+        StartCoroutine(stateSwitch(sName, fTime));
     }
 
+    //uses a string and a float with a switch statement to change to the state of the passed name, after fTime, if conditions are met
     IEnumerator stateSwitch(string sName, float fTime)
     {
         yield return new WaitForSeconds(fTime);
-        
+        switch(sName)
+        {
+            case "attackState":
+                if(this.stateMachine.currentState == slowState)
+                {
+                    this.stateMachine.ChangeState(attackState);
+                }
+                break;
+
+            case "slowState":
+                this.stateMachine.ChangeState(slowState);
+                break;
+            case "moveState":
+                this.stateMachine.ChangeState(moveState);
+                break;
+
+        }
     }
 }

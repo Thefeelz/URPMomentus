@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class E2_Move : MoveState
 {
@@ -14,6 +15,12 @@ public class E2_Move : MoveState
 
     public override void StateEnter()
     {
+        mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        mEnemy.gameObject.GetComponentInChildren<Animator>().SetBool("chasing", true);
+        mEnemy.gameObject.GetComponent<NavMeshAgent>().speed = stateData.moveSpeed;
+
+        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        
         base.StateEnter();
 
     }

@@ -15,7 +15,7 @@ public class Entity : MonoBehaviour
     [SerializeField]
     protected D_Entity entityData; // data file for entity variables
 
-    private MeshRenderer mMesh; // objects mesh
+    private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
 
     // on awake state machine is created and variables are assigned values
@@ -23,13 +23,17 @@ public class Entity : MonoBehaviour
     {
         stateMachine = new FiniteStateMachine();
         health = entityData.health;
-        mMesh = gameObject.GetComponent<MeshRenderer>();
+        mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         mColor = mMesh.material.color;
     }
     // update is called once per frame
     public virtual void Update()
     {
         stateMachine.currentState.LogicUpdate();
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Damage(1f);
+        }
     }
     // physics update
     public virtual void FixedUpdate()

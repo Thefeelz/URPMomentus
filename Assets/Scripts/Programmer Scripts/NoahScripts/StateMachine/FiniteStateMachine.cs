@@ -16,7 +16,7 @@ public class FiniteStateMachine
     //exits the stand it is currently in, sets currentState to the passed state, enters the new state
     public void ChangeState(State mState)
     {
-        //Debug.Log("Switching from " + currentState + " to" + newState);
+        Debug.Log("Switching from " + currentState + " to" + mState);
         currentState.StateExit();
         currentState = mState;
         currentState.StateEnter();

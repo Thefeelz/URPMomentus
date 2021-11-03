@@ -21,10 +21,32 @@ public class E2_SlowApproach : SlowApproach
 
     public override void StateEnter()
     {
+        
         base.StateEnter();
+        rndTime = Random.Range(6, 10);
         circleStart = false;
-        rndTime = Random.Range(1, 6);
-        theta = 0;
+        float pX = mEnemy.myTarget.transform.position.x;
+        float pZ = mEnemy.myTarget.transform.position.z;
+
+        // sets the theta based on the quadrant that the enemy is in, in relation to the player
+        if(mEnemy.transform.position.x <= pX && mEnemy.transform.position.z <= pZ)
+        {
+            theta = (3 * Mathf.PI) / 2;
+        }
+        else if (mEnemy.transform.position.x <= pX && mEnemy.transform.position.z > pZ)
+        {
+            theta = Mathf.PI;
+        }
+        else if (mEnemy.transform.position.x > pX && mEnemy.transform.position.z <= pZ)
+        {
+            theta = 0;
+        } 
+        else if (mEnemy.transform.position.x > pX && mEnemy.transform.position.z > pZ)
+        {
+            theta = Mathf.PI / 2;
+        }
+
+        
         x = Mathf.Cos(theta) * 5 + mEntity.myTarget.transform.position.x;
         y = mEntity.transform.position.y;
         z = Mathf.Sin(theta) * 5 + mEntity.myTarget.transform.position.z;
