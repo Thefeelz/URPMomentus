@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class P_Movement : MonoBehaviour
 {
     [SerializeField] float playerAcceleration = 10f;
-    [SerializeField] float maxPlayerSpeedRunning = 10f;
+    [SerializeField] public float maxPlayerSpeedRunning = 10f;
     [SerializeField] float maxPlayerSpeedJumping = 10f;
     [Range(0f, 1f)][SerializeField] float playerDeceleration = 0.9f;
     [SerializeField] float playerJumpPower = 10f;
@@ -14,6 +14,8 @@ public class P_Movement : MonoBehaviour
     [SerializeField] float fallMultiplier = 2.5f;
 
     public bool isGrounded = true;
+    P_WallRun wallrunner;
+    public bool wallRunning() => wallrunner.isWallRunning;
     float distanceToGround;
     float currentRunSpeed;
     bool jumping = false;
@@ -21,6 +23,7 @@ public class P_Movement : MonoBehaviour
     Rigidbody rb;
     CharacterStats playerStats;
     Animator anim;
+
 
     bool moveForward = false;
     bool moveBackward = false;
@@ -33,6 +36,7 @@ public class P_Movement : MonoBehaviour
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
         playerStats = GetComponent<CharacterStats>();
         anim = GetComponent<Animator>();
+        wallrunner = GetComponent<P_WallRun>();
     }
 
     // Update is called once per frame
@@ -43,25 +47,6 @@ public class P_Movement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // This is to toggle on and off running animation based on our velocity
-        if(rb.velocity.magnitude > 2f)
-        {
-            anim.SetBool("running", true);
-        }
-        else
-        {
-            anim.SetBool("running", false);
-        }
-        // If statement to check our speed by its sqrMag (cheaper function) and decrease it by multiplying it by itself and a constant less than 1
-        if(rb.velocity.sqrMagnitude > (currentRunSpeed * currentRunSpeed) && isGrounded)
-        {
-            rb.velocity *= 0.9f;
-        }
-        // If statement that will only be effected if we are in the air (currentRunSpeed is different if we are jumping)
-        else if (rb.velocity.sqrMagnitude > (currentRunSpeed * currentRunSpeed))
-        {
-            rb.velocity *= 0.9f;
-        }
         // This if statement gives us a more "Mario" Like jump, making gravity do a little more work once we reach the apex of a jump
         if(rb.velocity.y < 0)
         {
@@ -74,11 +59,7 @@ public class P_Movement : MonoBehaviour
         // Shoot a Ray at the ground that is half the length of our body to see if we are touching the ground
         if (Physics.Raycast(transform.position, -transform.up, distanceToGround + .05f))
         {
-            // Since we are limiting our max run speed, this effects our force when we jump, to counter this
-            // I added in a jumping bool that allows our max speed while jumping to be increased so we get a full jump
-            // This bool is turned off by a coroutine 0.5 seconds after a jump
-            if(!jumping)
-                currentRunSpeed = maxPlayerSpeedRunning;
+            
             isGrounded = true;
         }
         else
@@ -113,12 +94,21 @@ public class P_Movement : MonoBehaviour
     }
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !wallRunning())
         {
             jumping = true;
             StartCoroutine(TurnOffJumpDelay());
-            currentRunSpeed = maxPlayerSpeedJumping;
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
+        }
+        else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
+        {
+            rb.MovePosition(-transform.right + transform.position);
+            rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.VelocityChange);
+        }
+        else if (isGrounded && wallRunning() && wallrunner.wallLeft)
+        {
+            rb.MovePosition(transform.right + transform.position);
+            rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
     }
 
@@ -137,25 +127,26 @@ public class P_Movement : MonoBehaviour
     public void StrafeCharacter(int rotationDirection)
     {
         //rb.rotation = rb.rotation * Quaternion.Euler(0, playerRotateSpeed * rotationDirection * Time.deltaTime, 0);
-        rb.AddForce(transform.right * rotationDirection * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+        rb.AddForce(transform.right * rotationDirection * playerAcceleration, ForceMode.VelocityChange);
         moveSidetoSide = true;
     }
 
     public void MoveForward()
     {
         if (!jumping || !isGrounded)
-            rb.AddForce(transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
-            rb.AddForce(transform.forward * (playerAcceleration / 2) * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(-transform.forward * (playerAcceleration / 3) * Time.deltaTime, ForceMode.VelocityChange);
         moveForward = true;
         moveBackward = false;
     }
+
     public void MoveBackwards()
     {
         if(!jumping || !isGrounded)
-            rb.AddForce(-transform.forward * playerAcceleration * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
-            rb.AddForce(-transform.forward * (playerAcceleration / 2) * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(-transform.forward * (playerAcceleration / 3), ForceMode.VelocityChange);
         moveBackward = true;
         moveForward = false;
     }

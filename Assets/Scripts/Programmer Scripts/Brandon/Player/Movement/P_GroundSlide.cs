@@ -34,6 +34,8 @@ public class P_GroundSlide : MonoBehaviour
     bool returnToNormalScreen = false;
     // Bool to start the actual slide in the 'Update' Function
     bool sliding = false;
+
+    bool useSlide = true;
     // Elapsed time for the slide (Used for the Lerp Function)
     float elapsedTime = 0f;
     // Elapsed time for the removal of the Post Processing Effect (Used in a Lerp Function)
@@ -78,6 +80,7 @@ public class P_GroundSlide : MonoBehaviour
         // Check to make sure the player is grounded
         if(player.isGrounded)
         {
+            useSlide = false;
             // Sliding is set to true to allow the sliding function to be called in the 'Update' function
             sliding = true;
             // This can be removed or not depending on if we are implimenting a seperate cooldown/ability system outside of the specific component
@@ -164,6 +167,9 @@ public class P_GroundSlide : MonoBehaviour
         {
             returnToNormalScreenElapsedTime = 0;
             returnToNormalScreen = false;
+            useSlide = true;
         }
     }
+
+    public bool GetSliding() { return useSlide; }
 }
