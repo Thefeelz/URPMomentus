@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c713cdcd889bd1549be80822da45cb3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAcceleration: 15
+  playerAcceleration: 0.5
   maxPlayerSpeedRunning: 10
   maxPlayerSpeedJumping: 20
   playerDeceleration: 0.911
@@ -364,6 +364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumHeightForWallRun: 1
+  wallRunCamPos: {fileID: 2733746629456035313}
+  isWallRunning: 0
+  wallLeft: 0
+  normalizedAngleThreshold: 0.1
+  camRotated: 0
+  cameraRollAmount: 20
+  cameraTransitionTime: 0.5
 --- !u!1 &2733746628611254748
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +533,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2733746630100622224}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.23, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

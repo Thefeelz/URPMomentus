@@ -58,34 +58,15 @@ public class P_Input : MonoBehaviour
         if(Input.GetMouseButtonDown(0)) { playerAttack.BasicAttack(); }
         if (Input.GetMouseButton(1)) { playerAttack.BasicDefense(); }
         else { playerAttack.SwordBlockComplete(); }
-/*
+
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
         
-        // ==========Move Forward==========
-        if(Input.GetKey(KeyCode.W)) { movement.MoveForward(); }
-
-        // ==========Move Backwards==========
-        else if (Input.GetKey(KeyCode.S)) { movement.MoveBackwards(); }
-        else
-        {
-            movement.SetMoveForwardFalse();
-            movement.SetMoveBackwardsFalse();
-        }
-        // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
-        // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
-        else
-        {
-            movement.SetMoveSidetoSideFalse();
-        }
-*/
         // ==========Jump==========
         if(Input.GetKeyDown(KeyCode.Space)) { movement.Jump(); }
         // ==========Ground Dash==========
-        if (Input.GetKeyDown(KeyCode.LeftShift)) { groundSlide.UseGroundDash(0.5f); }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding()) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========

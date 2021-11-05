@@ -101,8 +101,8 @@ public class P_WallRun : MonoBehaviour
         }
         else
         {
-            //cameraLook.enabled = true;
-            camRotated = false;
+
+            cameraElapsedTime = 0f;
         }
     }
 
@@ -133,20 +133,15 @@ public class P_WallRun : MonoBehaviour
     {
         cameraElapsedTime += Time.deltaTime;
         playerMovement.isGrounded = true;
-        //cameraLook.enabled = false;
         if(!wallLeft)
         {
             Camera.main.transform.position = wallRunCamPos.position;
-            // Camera.main.transform.Rotate(transform.forward, Mathf.Lerp(0, cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
-            Camera.main.transform.Rotate(Vector3.forward, 20f);
-            camRotated = true;
+            Camera.main.transform.Rotate(Vector3.forward, Mathf.Lerp(0, cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
         }
         else if (wallLeft)
         {
             Camera.main.transform.position = wallRunCamPos.position;
-            // Camera.main.transform.Rotate(transform.forward, Mathf.Lerp(0, -cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
-            Camera.main.transform.Rotate(Vector3.forward, -20f);
-            camRotated = true;
+            Camera.main.transform.Rotate(Vector3.forward, Mathf.Lerp(0, -cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
         }
     }
 }
