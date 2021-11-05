@@ -6,6 +6,7 @@ using System.Linq;
 public class P_WallRun : MonoBehaviour
 {
     public float minimumHeightForWallRun;
+    [SerializeField] Transform wallRunCamPos;
     Vector3[] directions;
     RaycastHit[] hits;
 
@@ -17,6 +18,12 @@ public class P_WallRun : MonoBehaviour
     Vector3 lastWallNormal;
     public float normalizedAngleThreshold = 0.1f;
     bool IsPlayerGrounded() => playerMovement.isGrounded;
+    mouseLook cameraLook;
+    public bool camRotated;
+
+    [SerializeField] float cameraRollAmount = 20f;
+    [SerializeField] float cameraTransitionTime = 0.5f;
+    float cameraElapsedTime = 0f;
 
     bool VerticalCheck()
     {
@@ -26,6 +33,7 @@ public class P_WallRun : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody>();
         playerMovement = GetComponent<P_Movement>();
+        cameraLook = GetComponent<mouseLook>();
 
         // Initialize Raycast Directions
         directions = new Vector3[]
@@ -36,6 +44,10 @@ public class P_WallRun : MonoBehaviour
             Vector3.left + Vector3.forward,
             Vector3.left
         };
+        for(int i = 0; i < directions.Length; i++)
+        {
+            directions[i] *= 1.5f;
+        }
     }
 
     // Update is called once per frame
@@ -63,7 +75,6 @@ public class P_WallRun : MonoBehaviour
             if (hits.Length > 0)
             {
                 isWallRunning = true;
-                OnWall(hits[0]);
                 lastWallPosition = hits[0].point;
                 lastWallNormal = hits[0].normal;
                 Vector3 cross = Vector3.Cross(transform.forward, hits[0].normal);
@@ -81,9 +92,18 @@ public class P_WallRun : MonoBehaviour
                 {
                     Debug.Log("Yah Fucked Up I guess");
                 }
+                OnWall(hits[0]);
             }
         }
-        if (isWallRunning) { playerMovement.isGrounded = true; }
+        if (isWallRunning) 
+        {
+            WallRunningCamera();
+        }
+        else
+        {
+            //cameraLook.enabled = true;
+            camRotated = false;
+        }
     }
 
     void OnWall(RaycastHit hit)
@@ -91,15 +111,42 @@ public class P_WallRun : MonoBehaviour
         float d = Vector3.Dot(hit.normal, Vector3.up);
         if (d >= -normalizedAngleThreshold && d <= normalizedAngleThreshold)
         {
-            // Vector3 alongWall = Vector3.Cross(hit.normal, transform.up);
+            Vector3 alongWall = Vector3.Cross(hit.normal, transform.up);
             float vertical = Input.GetAxisRaw("Vertical");
-            Vector3 alongWall = transform.TransformDirection(Vector3.forward);
+            // Vector3 alongWall = transform.TransformDirection(Vector3.forward);
 
             Debug.DrawRay(transform.position, alongWall.normalized * 10, Color.green);
             Debug.DrawRay(transform.position, lastWallNormal * 10, Color.magenta);
 
-            playerBody.velocity = alongWall * vertical * 10f;
+            if (wallLeft)
+            {
+                playerBody.velocity = alongWall * vertical * 10f;
+            }
+            else
+            {
+                playerBody.velocity = -alongWall * vertical * 10f;
+            }
             isWallRunning = true;
+        }
+    }
+    void WallRunningCamera()
+    {
+        cameraElapsedTime += Time.deltaTime;
+        playerMovement.isGrounded = true;
+        //cameraLook.enabled = false;
+        if(!wallLeft)
+        {
+            Camera.main.transform.position = wallRunCamPos.position;
+            // Camera.main.transform.Rotate(transform.forward, Mathf.Lerp(0, cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
+            Camera.main.transform.Rotate(Vector3.forward, 20f);
+            camRotated = true;
+        }
+        else if (wallLeft)
+        {
+            Camera.main.transform.position = wallRunCamPos.position;
+            // Camera.main.transform.Rotate(transform.forward, Mathf.Lerp(0, -cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
+            Camera.main.transform.Rotate(Vector3.forward, -20f);
+            camRotated = true;
         }
     }
 }

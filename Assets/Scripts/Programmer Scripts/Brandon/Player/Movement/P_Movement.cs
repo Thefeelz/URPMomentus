@@ -102,10 +102,12 @@ public class P_Movement : MonoBehaviour
         }
         else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
         {
+            rb.MovePosition(-transform.right + transform.position);
             rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
         else if (isGrounded && wallRunning() && wallrunner.wallLeft)
         {
+            rb.MovePosition(transform.right + transform.position);
             rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
     }
