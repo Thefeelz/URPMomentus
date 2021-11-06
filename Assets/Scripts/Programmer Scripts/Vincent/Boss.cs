@@ -33,7 +33,8 @@ public class Boss : MonoBehaviour
     private void Update()
     {
         attacked = false;
-        if(Input.GetKeyDown("space")){
+        if (Input.GetMouseButtonDown(0))
+        {
             attacked = true;
         }
     }
