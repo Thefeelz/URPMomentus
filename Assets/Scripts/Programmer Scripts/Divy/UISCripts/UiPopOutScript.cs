@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /*
  * Momentus Mission Control UI animation handling
  * 
- * Purpose: To animate the mission control on the screen, display the text, and then close the mission control when finished
+ * Purpose: To animate the mission control on the screen, activate the text, and then close the mission control when finished
  * 
  * created by Divyansh Malik / 10/26/2021
  * 
@@ -20,27 +20,24 @@ public class UiPopOutScript : MonoBehaviour
 {
     [SerializeField]
     private GameObject mControlUIObject;
-    [SerializeField]
-    private Animator mControlUIAnimator;
-
-    void Start()
-    {
-        //sets the UI to be false at the beginning since we don't need it.
-        mControlUIObject.SetActive(false);
-        mControlUIAnimator.enabled = false;
-    }
 
     // Update is called once per frame
     void Update()
     {
 
-
+        MissionControlUIHandler();
     }
 
     void MissionControlUIHandler()
     {
         //turn on the mission control UI with it's animation
 
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+
+            mControlUIObject.SetActive(true);
+
+        }
 
         //stop the animation at the last frame (frame 70)
 
@@ -60,9 +57,12 @@ public class UiPopOutScript : MonoBehaviour
 
         //switch off the mission control
 
-        
+    }
 
+    public void AnimtationStop(Animation missionControl)
+    {
 
+        missionControl.Stop();
 
     }
 

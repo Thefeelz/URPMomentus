@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
+    //Vincent touched this on 11/5/2021
+
     [SerializeField] int maxHealth = 10;
     [SerializeField] int currentHealth;
     [SerializeField] int enemyArmor = 5;
@@ -41,5 +43,19 @@ public class EnemyStats : MonoBehaviour
             animator.SetBool("dead", true);
             chase.dead = true;
         }
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
+    }
+    public int getCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public int setCurrentHealth(int health)
+    {
+        this.currentHealth = health;
+        return currentHealth;
     }
 }

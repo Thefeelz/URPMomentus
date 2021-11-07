@@ -126,13 +126,16 @@ public class P_Movement : MonoBehaviour
     //Rotate the rigid body to be more inline with the physics system instead of rotating the transform
     public void StrafeCharacter(int rotationDirection)
     {
-        //rb.rotation = rb.rotation * Quaternion.Euler(0, playerRotateSpeed * rotationDirection * Time.deltaTime, 0);
         rb.AddForce(transform.right * rotationDirection * playerAcceleration, ForceMode.VelocityChange);
         moveSidetoSide = true;
     }
 
     public void MoveForward()
     {
+        if(transform.InverseTransformDirection(rb.velocity).z < 0)
+        {
+            rb.velocity = Vector3.zero;
+        }
         if (!jumping || !isGrounded)
             rb.AddForce(transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
@@ -143,7 +146,11 @@ public class P_Movement : MonoBehaviour
 
     public void MoveBackwards()
     {
-        if(!jumping || !isGrounded)
+        if (transform.InverseTransformDirection(rb.velocity).z > 0)
+        {
+            rb.velocity = Vector3.zero;
+        }
+        if (!jumping || !isGrounded)
             rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
             rb.AddForce(-transform.forward * (playerAcceleration / 3), ForceMode.VelocityChange);
