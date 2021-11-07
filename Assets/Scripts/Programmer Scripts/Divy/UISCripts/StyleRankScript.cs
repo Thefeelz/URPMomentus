@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 /*
  * Momentus Style Ranking Handler
@@ -40,10 +39,10 @@ public class StyleRankScript : MonoBehaviour
     private Slider styleBar;
 
     [SerializeField]
-    private  TMP_Text rankFirstLetter; // the first letter of the rank the player is at progression of empty -> d-> c-> b-> -> a -> s
+    private  Text rankFirstLetter; // the first letter of the rank the player is at progression of empty -> d-> c-> b-> -> a -> s
 
     [SerializeField]
-    private TMP_Text rankWord; // the rest of the word in the text
+    private Text rankWord; // the rest of the word in the text
 
     /* for testing purposes these are dummy variables */
 
@@ -185,7 +184,7 @@ public class StyleRankScript : MonoBehaviour
         {
             Rank = 2;
         }
-        else if (points >= 3000 && points <= 400)
+        else if (points >= 300 && points <= 400)
         {
             Rank = 3;
         }
