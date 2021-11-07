@@ -12,6 +12,7 @@ public class P_Input : MonoBehaviour
 
     A_BladeDance bladeDance;
     A_AirDash airDash;
+    A_SwordThrow swordThrow;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class P_Input : MonoBehaviour
         movement = GetComponent<P_Movement>();
         bladeDance = GetComponent<A_BladeDance>();
         airDash = GetComponent<A_AirDash>();
+        swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
         rb = GetComponent<Rigidbody>();
     }
@@ -46,6 +48,10 @@ public class P_Input : MonoBehaviour
         { 
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            swordThrow.ThrowSword();
         }
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
