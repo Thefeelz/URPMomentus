@@ -70,7 +70,7 @@ public class P_WallRun : MonoBehaviour
                     Debug.DrawRay(transform.position, dir * 1, Color.red);
                 }
             }
-            hits = hits.ToList().Where(h => h.collider != null && h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
+            hits = hits.ToList().Where(h => h.collider != null && transform.position.y < h.collider.transform.position.y + h.collider.bounds.extents.y * 2 &&  h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
             // If we enter this, we are wall running
             if (hits.Length > 0)
             {
