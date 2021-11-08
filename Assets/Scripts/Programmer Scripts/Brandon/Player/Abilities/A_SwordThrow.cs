@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class A_SwordThrow : MonoBehaviour
+public class A_SwordThrow : A_OverchargeAbilities
 {
     [SerializeField] Transform endingPosition;
     [SerializeField] LayerMask layerMask;
@@ -10,11 +10,16 @@ public class A_SwordThrow : MonoBehaviour
     // In meters per second;
     [SerializeField] float throwSpeed = 20f;
     [SerializeField] float rotationSpeed = 20f;
+    [SerializeField] float minThrowDistance = 5f;
+    [SerializeField] float maxThrowDistance = 20f;
     float travelTime = 0f;
     bool throwing = false;
     bool returning = false;
+    bool travelToSword = false;
+    public bool stuck = false;
     float elapsedTime = 0f;
     Vector3 targetDestination;
+    Vector3 initialPosition;
     float rotationAmount;
     void Start()
     {
@@ -22,37 +27,47 @@ public class A_SwordThrow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         if (throwing)
             Throw();
         if (returning)
             ReturnSword();
+        if (travelToSword)
+            TravelToSword();
     }
 
     public void ThrowSword()
     {
         if (!throwing)
         {
-            Debug.Log("Throw Sword was Called");
             RaycastHit hit;
-            Physics.Raycast(transform.position, transform.forward * 20f, out hit);
-            Debug.DrawRay(transform.position + transform.up, transform.forward * 20f, Color.red, 1f) ;
+            Physics.Raycast(transform.position, transform.forward, out hit);
             if (hit.collider != null)
             {
-                throwing = true;
                 targetDestination = hit.point;
-                Debug.Log(targetDestination + hit.collider.name);
-                weaponToThrow.GetComponentInParent<Animator>().enabled = false;
-                weaponToThrow.transform.parent = null;
                 float distance = Vector3.Distance(transform.position, targetDestination);
-                travelTime = distance / throwSpeed;
-                DetermineRotations();
+                if (distance > minThrowDistance && distance < maxThrowDistance)
+                {
+                    throwing = true;
+                    weaponToThrow.GetComponentInParent<Animator>().enabled = false;
+                    weaponToThrow.transform.parent = null;
+                    travelTime = distance / throwSpeed;
+                    DetermineRotations();
+                }
             }
         }
     }
 
-    public void Throw()
+    public void FlyToSword()
+    {
+        StopAllCoroutines();
+        initialPosition = transform.position;
+        travelToSword = true;
+    }
+
+    void Throw()
     {
         elapsedTime += Time.deltaTime;
         weaponToThrow.transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
@@ -60,6 +75,7 @@ public class A_SwordThrow : MonoBehaviour
         weaponToThrow.transform.position = Vector3.Lerp(endingPosition.position, targetDestination, elapsedTime / travelTime);
         if(elapsedTime >= travelTime)
         {
+            stuck = true;
             throwing = false;
             elapsedTime = 0f;
             StartCoroutine(SwordStickDelay());
@@ -99,10 +115,31 @@ public class A_SwordThrow : MonoBehaviour
             weaponToThrow.GetComponentInParent<Animator>().enabled = true;
         }
     }
+    void TravelToSword()
+    {
+        elapsedTime += Time.deltaTime;
+        transform.position = Vector3.Lerp(initialPosition, targetDestination - transform.forward, elapsedTime / (travelTime * 0.5f));
+        if(elapsedTime >= travelTime)
+        {
+            stuck = false;
+            travelToSword = false;
+            weaponToThrow.transform.parent = transform;
+            weaponToThrow.transform.position = endingPosition.position;
+            weaponToThrow.transform.rotation = endingPosition.rotation;
+            elapsedTime = 0;
+            weaponToThrow.GetComponentInParent<Animator>().enabled = true;
+        }
+    }
 
     IEnumerator SwordStickDelay()
     {
         yield return new WaitForSeconds(0.5f);
+        stuck = false;
         returning = true;
+    }
+
+    public bool SwordThrowComplete()
+    {
+        return (!returning && !throwing);
     }
 }

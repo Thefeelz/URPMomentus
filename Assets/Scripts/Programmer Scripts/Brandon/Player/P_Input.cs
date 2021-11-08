@@ -49,9 +49,13 @@ public class P_Input : MonoBehaviour
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if(Input.GetKeyDown(KeyCode.Alpha2) && !swordThrow.stuck)
         {
             swordThrow.ThrowSword();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && swordThrow.stuck)
+        {
+            swordThrow.FlyToSword();
         }
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {

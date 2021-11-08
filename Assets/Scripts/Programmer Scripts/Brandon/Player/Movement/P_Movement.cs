@@ -115,7 +115,7 @@ public class P_Movement : MonoBehaviour
     private void Decelerate()
     {
         // Check to see if any movement keys are being pressed (Will only pass through if we are not grounded)
-        if(!moveForward && !moveBackward && !moveSidetoSide)
+        if(!moveForward && !moveBackward && !moveSidetoSide && rb.velocity != Vector3.zero)
         {
             // Slowly chunk velocity by a constant less than 1
             rb.velocity *= playerDeceleration;
@@ -132,10 +132,10 @@ public class P_Movement : MonoBehaviour
 
     public void MoveForward()
     {
-        if(transform.InverseTransformDirection(rb.velocity).z < 0)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        //if(transform.InverseTransformDirection(rb.velocity).z < 0 && !jumping && !isGrounded)
+        //{
+        //    rb.velocity = Vector3.zero;
+        //}
         if (!jumping || !isGrounded)
             rb.AddForce(transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
@@ -146,10 +146,10 @@ public class P_Movement : MonoBehaviour
 
     public void MoveBackwards()
     {
-        if (transform.InverseTransformDirection(rb.velocity).z > 0)
-        {
-            rb.velocity = Vector3.zero;
-        }
+        //if (transform.InverseTransformDirection(rb.velocity).z > 0 && !jumping && !isGrounded)
+        //{
+        //    rb.velocity = Vector3.zero;
+        //}
         if (!jumping || !isGrounded)
             rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
