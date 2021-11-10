@@ -7,6 +7,7 @@ public class P_WallRun : MonoBehaviour
 {
     public float minimumHeightForWallRun;
     [SerializeField] Transform wallRunCamPos;
+    [SerializeField] LayerMask wallLayer;
     Vector3[] directions;
     RaycastHit[] hits;
 
@@ -46,7 +47,7 @@ public class P_WallRun : MonoBehaviour
         };
         for(int i = 0; i < directions.Length; i++)
         {
-            directions[i] *= 1.5f;
+            directions[i] *= 2f;
         }
     }
 
@@ -70,7 +71,7 @@ public class P_WallRun : MonoBehaviour
                     Debug.DrawRay(transform.position, dir * 1, Color.red);
                 }
             }
-            hits = hits.ToList().Where(h => h.collider != null && transform.position.y < h.collider.transform.position.y + h.collider.bounds.extents.y * 2 &&  h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
+            hits = hits.ToList().Where(h => h.collider != null && transform.position.y < h.collider.transform.position.y + h.collider.bounds.extents.y * 2 &&  h.collider.gameObject.layer == 7).OrderBy(h => h.distance).ToArray();
             // If we enter this, we are wall running
             if (hits.Length > 0)
             {
