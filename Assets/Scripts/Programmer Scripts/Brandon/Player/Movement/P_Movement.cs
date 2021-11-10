@@ -57,7 +57,8 @@ public class P_Movement : MonoBehaviour
     void CheckForGrounded()
     {
         // Shoot a Ray at the ground that is half the length of our body to see if we are touching the ground
-        if (Physics.Raycast(transform.position, -transform.up, distanceToGround + .05f))
+        Debug.DrawRay(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up * (distanceToGround + .15f), Color.red, .1f);
+        if (Physics.Raycast(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up, distanceToGround + .15f))
         {
             
             isGrounded = true;
@@ -132,10 +133,6 @@ public class P_Movement : MonoBehaviour
 
     public void MoveForward()
     {
-        //if(transform.InverseTransformDirection(rb.velocity).z < 0 && !jumping && !isGrounded)
-        //{
-        //    rb.velocity = Vector3.zero;
-        //}
         if (!jumping || !isGrounded)
             rb.AddForce(transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
@@ -146,10 +143,6 @@ public class P_Movement : MonoBehaviour
 
     public void MoveBackwards()
     {
-        //if (transform.InverseTransformDirection(rb.velocity).z > 0 && !jumping && !isGrounded)
-        //{
-        //    rb.velocity = Vector3.zero;
-        //}
         if (!jumping || !isGrounded)
             rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
