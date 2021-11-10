@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AmmoPool : MonoBehaviour
+{
+    
+    public GameObject bullet; // prefab for bullet
+    public int size; // size of queue
+    public Queue<GameObject> bulletPool; //queue to store bullets
+
+    
+    void Start()
+    {
+        //instantiates size number of bullets and places them in the queue after deactivating them
+        bulletPool = new Queue<GameObject>();
+        for(int i = 0; i < size; i++)
+        {
+            GameObject nBullet = Instantiate(bullet);
+            nBullet.transform.parent = this.gameObject.transform;
+            nBullet.SetActive(false);
+            bulletPool.Enqueue(nBullet);
+
+        }
+    }
+
+    public GameObject dequeBullet()
+    {
+        return bulletPool.Dequeue();
+    }
+
+    public void enqueBullet(GameObject pBullet)
+    {
+        bulletPool.Enqueue(pBullet);
+    }
+
+
+}

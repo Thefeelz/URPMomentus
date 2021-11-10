@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
-    
+    public Pooler myPool;
     public NavMeshAgent agent;// navmesh agent
     public GameObject myTarget; // navMesh target. Normally the player is assigned to this
 
@@ -19,12 +19,20 @@ public class Entity : MonoBehaviour
     private Color mColor; // original color of the mesh
 
     // on awake state machine is created and variables are assigned values
+    public void Start()
+    {
+        
+        
+    }
     public virtual void Awake()
     {
+        myTarget = GameObject.FindWithTag("Player");
         stateMachine = new FiniteStateMachine();
         health = entityData.health;
         mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
         mColor = mMesh.material.color;
+        
+        
     }
     // update is called once per frame
     public virtual void Update()
@@ -34,6 +42,8 @@ public class Entity : MonoBehaviour
         {
             Damage(1f);
         }
+
+        
     }
     // physics update
     public virtual void FixedUpdate()
@@ -58,10 +68,6 @@ public class Entity : MonoBehaviour
         if(mMesh)
             mMesh.material.color = Color.red;
         Invoke("ResetColor", .5f);
-        if (health <= 0)
-        {
-            Die();
-        }
     }
 
     public virtual void callCoroutine(string sName, float fTime)
@@ -75,10 +81,10 @@ public class Entity : MonoBehaviour
         mMesh.material.color = mColor;
     }
     //called when health reaches 0
-    private void Die()
+    public virtual void Die()
     {
-        //TODO: Create object pooling to replace Destroy()
-        Destroy(this.gameObject);
+        
+       
     }
 
 

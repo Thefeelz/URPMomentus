@@ -27,7 +27,7 @@ public class MoveState : State
     }
     public override void StateEnter()
     {
-        Debug.Log("Move enter");
+        
         base.StateEnter();
         mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = true;
 
