@@ -12,6 +12,7 @@ public class P_Input : MonoBehaviour
 
     A_BladeDance bladeDance;
     A_AirDash airDash;
+    A_SwordThrow swordThrow;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class P_Input : MonoBehaviour
         movement = GetComponent<P_Movement>();
         bladeDance = GetComponent<A_BladeDance>();
         airDash = GetComponent<A_AirDash>();
+        swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
         rb = GetComponent<Rigidbody>();
     }
@@ -47,7 +49,15 @@ public class P_Input : MonoBehaviour
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck)
+        {
+            swordThrow.ThrowSword();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && swordThrow.stuck)
+        {
+            swordThrow.FlyToSword();
+        }
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             if (airDash.UseAirDash())
                 coolDownManager.AddCooldownToList(airDash);
@@ -55,42 +65,23 @@ public class P_Input : MonoBehaviour
         // =================================
         // ==========PLAYER ATTACK==========
         // =================================
-        if(Input.GetMouseButtonDown(0)) { playerAttack.BasicAttack(); }
-        if (Input.GetMouseButton(1)) { playerAttack.BasicDefense(); }
+        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5)) { playerAttack.BasicAttack(); }
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4)) { playerAttack.BasicDefense(); }
         else { playerAttack.SwordBlockComplete(); }
-/*
+
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
         
-        // ==========Move Forward==========
-        if(Input.GetKey(KeyCode.W)) { movement.MoveForward(); }
-
-        // ==========Move Backwards==========
-        else if (Input.GetKey(KeyCode.S)) { movement.MoveBackwards(); }
-        else
-        {
-            movement.SetMoveForwardFalse();
-            movement.SetMoveBackwardsFalse();
-        }
-        // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
-        // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
-        else
-        {
-            movement.SetMoveSidetoSideFalse();
-        }
-*/
         // ==========Jump==========
-        if(Input.GetKeyDown(KeyCode.Space)) { movement.Jump(); }
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); }
         // ==========Ground Dash==========
-        if (Input.GetKeyDown(KeyCode.LeftShift)) { groundSlide.UseGroundDash(0.5f); }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding()) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========
         // ====================================
-        if (Input.GetKeyDown(KeyCode.H)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
     }
 
     void GetUserInputPhysics()
@@ -102,19 +93,19 @@ public class P_Input : MonoBehaviour
         // ======================================
         
         // ==========Move Forward==========
-        if(Input.GetKey(KeyCode.W)) { movement.MoveForward(); }
+        if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { movement.MoveForward();}
 
         // ==========Move Backwards==========
-        else if (Input.GetKey(KeyCode.S)) { movement.MoveBackwards(); }
+        else if (Input.GetKey(KeyCode.S) || (Input.GetAxis("controllerDown") > 0)) { movement.MoveBackwards(); }
         else
         {
             movement.SetMoveForwardFalse();
             movement.SetMoveBackwardsFalse();
         }
         // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D)) { movement.StrafeCharacter(1); }
+        if(Input.GetKey(KeyCode.D) || (Input.GetAxis("controllerRight") > 0)) { movement.StrafeCharacter(1); }
         // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A)) { movement.StrafeCharacter(-1); }
+        else if (Input.GetKey(KeyCode.A) || (Input.GetAxis("controllerLeft") < 0)) { movement.StrafeCharacter(-1); }
         else
         {
             movement.SetMoveSidetoSideFalse();

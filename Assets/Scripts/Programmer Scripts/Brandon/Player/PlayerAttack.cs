@@ -24,6 +24,9 @@ public class PlayerAttack : MonoBehaviour
     Vector3 endingDashPosition;
     Vector3 startingDashPosition;
 
+    [SerializeField] Material swordMat;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +39,6 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        //GetPlayerInput();
         CheckEnemyInRange();
         if (dashing)
             DashToEnemy();

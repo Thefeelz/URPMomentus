@@ -57,7 +57,8 @@ public class P_Movement : MonoBehaviour
     void CheckForGrounded()
     {
         // Shoot a Ray at the ground that is half the length of our body to see if we are touching the ground
-        if (Physics.Raycast(transform.position, -transform.up, distanceToGround + .05f))
+        Debug.DrawRay(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up * (distanceToGround + .15f), Color.red, .1f);
+        if (Physics.Raycast(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up, distanceToGround + .15f))
         {
             
             isGrounded = true;
@@ -102,10 +103,12 @@ public class P_Movement : MonoBehaviour
         }
         else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
         {
+            rb.MovePosition(-transform.right + transform.position);
             rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
         else if (isGrounded && wallRunning() && wallrunner.wallLeft)
         {
+            rb.MovePosition(transform.right + transform.position);
             rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.VelocityChange);
         }
     }
@@ -113,7 +116,7 @@ public class P_Movement : MonoBehaviour
     private void Decelerate()
     {
         // Check to see if any movement keys are being pressed (Will only pass through if we are not grounded)
-        if(!moveForward && !moveBackward && !moveSidetoSide)
+        if(!moveForward && !moveBackward && !moveSidetoSide && rb.velocity != Vector3.zero)
         {
             // Slowly chunk velocity by a constant less than 1
             rb.velocity *= playerDeceleration;
@@ -124,7 +127,6 @@ public class P_Movement : MonoBehaviour
     //Rotate the rigid body to be more inline with the physics system instead of rotating the transform
     public void StrafeCharacter(int rotationDirection)
     {
-        //rb.rotation = rb.rotation * Quaternion.Euler(0, playerRotateSpeed * rotationDirection * Time.deltaTime, 0);
         rb.AddForce(transform.right * rotationDirection * playerAcceleration, ForceMode.VelocityChange);
         moveSidetoSide = true;
     }
@@ -141,7 +143,7 @@ public class P_Movement : MonoBehaviour
 
     public void MoveBackwards()
     {
-        if(!jumping || !isGrounded)
+        if (!jumping || !isGrounded)
             rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
         else
             rb.AddForce(-transform.forward * (playerAcceleration / 3), ForceMode.VelocityChange);
