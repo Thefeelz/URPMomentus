@@ -40,7 +40,7 @@ public class A_SwordThrow : A_OverchargeAbilities
 
     public void ThrowSword()
     {
-        if (!throwing)
+        if (!throwing && !stuck && !returning)
         {
             RaycastHit hit;
             Physics.Raycast(transform.position, transform.forward, out hit);

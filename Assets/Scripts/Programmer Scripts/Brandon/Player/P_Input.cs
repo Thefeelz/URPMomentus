@@ -53,8 +53,9 @@ public class P_Input : MonoBehaviour
         {
             swordThrow.ThrowSword();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && swordThrow.stuck)
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck)
         {
+            Debug.Log("Called");
             swordThrow.FlyToSword();
         }
         if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2))
@@ -86,8 +87,6 @@ public class P_Input : MonoBehaviour
 
     void GetUserInputPhysics()
     {
-        // Check to see if we are going to fast, stops input if we are going to fast
-        if(rb.velocity.sqrMagnitude > (movement.maxPlayerSpeedRunning * movement.maxPlayerSpeedRunning)) { return; }
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================

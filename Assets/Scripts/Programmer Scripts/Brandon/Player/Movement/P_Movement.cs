@@ -5,13 +5,14 @@ using UnityEngine.Rendering;
 
 public class P_Movement : MonoBehaviour
 {
-    [SerializeField] float playerAcceleration = 10f;
+    [SerializeField] float playerInAirForce = 10f;
     [SerializeField] public float maxPlayerSpeedRunning = 10f;
     [SerializeField] float maxPlayerSpeedJumping = 10f;
     [Range(0f, 1f)][SerializeField] float playerDeceleration = 0.9f;
     [SerializeField] float playerJumpPower = 10f;
     [SerializeField] float playerStrafeSpeed = 10f;
     [SerializeField] float fallMultiplier = 2.5f;
+    [Range(0f, 1f)][SerializeField] float inAirControlMultiplier = 0.25f;
 
     public bool isGrounded = true;
     P_WallRun wallrunner;
@@ -104,12 +105,12 @@ public class P_Movement : MonoBehaviour
         else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
-            rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.VelocityChange);
+            rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.Impulse);
         }
         else if (isGrounded && wallRunning() && wallrunner.wallLeft)
         {
             rb.MovePosition(transform.right + transform.position);
-            rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.VelocityChange);
+            rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.Impulse);
         }
     }
 
@@ -127,28 +128,76 @@ public class P_Movement : MonoBehaviour
     //Rotate the rigid body to be more inline with the physics system instead of rotating the transform
     public void StrafeCharacter(int rotationDirection)
     {
-        rb.AddForce(transform.right * rotationDirection * playerAcceleration, ForceMode.VelocityChange);
+        float velocity = 0;
+        if (isGrounded)
+        {
+            velocity = maxPlayerSpeedRunning;
+        }
+        else
+        {
+            velocity = maxPlayerSpeedRunning * inAirControlMultiplier;
+        }
+        if(moveForward)
+        {
+            Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * rotationDirection), 0, transform.forward.z + (transform.right.z * rotationDirection)).normalized;
+            newVelocity *= velocity;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0) + newVelocity;
+        }
+        else if (moveBackward)
+        {
+            Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * -rotationDirection), 0, transform.forward.z + (transform.right.z * -rotationDirection)).normalized;
+            newVelocity *= velocity;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0) - newVelocity;
+        }
+        else
+        {
+            Vector3 forwardVelocity = new Vector3(transform.right.x * rotationDirection, 0, transform.right.z * rotationDirection) * velocity;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
+        }
+        
         moveSidetoSide = true;
     }
 
     public void MoveForward()
     {
-        if (!jumping || !isGrounded)
-            rb.AddForce(transform.forward * playerAcceleration, ForceMode.VelocityChange);
+        if (wallRunning()) { return; }
+        float velocity = 0;
+        if (isGrounded)
+        {
+            velocity = maxPlayerSpeedRunning;
+            Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
+        }
         else
-            rb.AddForce(-transform.forward * (playerAcceleration / 3) * Time.deltaTime, ForceMode.VelocityChange);
+        {
+            velocity = playerInAirForce;
+            rb.AddForce(transform.forward * velocity * inAirControlMultiplier, ForceMode.VelocityChange);
+        }
+
+        
+
         moveForward = true;
         moveBackward = false;
     }
 
     public void MoveBackwards()
     {
-        if (!jumping || !isGrounded)
-            rb.AddForce(-transform.forward * playerAcceleration, ForceMode.VelocityChange);
+        if (wallRunning()) { return; }
+        float velocity = 0;
+        if (isGrounded)
+        {
+            velocity = maxPlayerSpeedRunning;
+            Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
+            rb.velocity = new Vector3(0, rb.velocity.y, 0) - forwardVelocity;
+        }
         else
-            rb.AddForce(-transform.forward * (playerAcceleration / 3), ForceMode.VelocityChange);
-        moveBackward = true;
-        moveForward = false;
+        {
+            velocity = playerInAirForce;
+            rb.AddForce(transform.forward * -velocity * inAirControlMultiplier, ForceMode.VelocityChange);
+        }
+
+        moveForward = true;
+        moveBackward = false;
     }
 
     public void SetMoveForwardFalse() { moveForward = false; }
