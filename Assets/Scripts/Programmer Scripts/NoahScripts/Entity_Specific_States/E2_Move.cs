@@ -15,18 +15,21 @@ public class E2_Move : MoveState
 
     public override void StateEnter()
     {
+        Debug.Log("Move enter");
+        base.StateEnter();
         mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-        mEnemy.gameObject.GetComponentInChildren<Animator>().SetBool("chasing", true);
+        //mEnemy.gameObject.GetComponentInChildren<Animator>().SetBool("chasing", true);
         mEnemy.gameObject.GetComponent<NavMeshAgent>().speed = stateData.moveSpeed;
 
         mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
         
-        base.StateEnter();
+        
 
     }
 
     public override void StateExit()
     {
+        Debug.Log("exiting Move");
         base.StateExit();
     }
 
@@ -34,13 +37,16 @@ public class E2_Move : MoveState
     // the enemy is close enough to change states
     public override void LogicUpdate()
     {
+        Debug.Log("FUCK");
         base.LogicUpdate();
-        if (mEntity.DistanceToPlayer() <= entityData.slowDistance)
+        if (mEntity.DistanceToPlayer() <= 5)
         {
+            
             mStateMachine.ChangeState(mEnemy.slowState);
         }
         else
         {
+            Debug.Log(mEntity.DistanceToPlayer());
             Move();
         }
 

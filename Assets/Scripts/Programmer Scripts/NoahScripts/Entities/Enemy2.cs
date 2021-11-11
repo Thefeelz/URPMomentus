@@ -6,13 +6,14 @@ using UnityEngine.AI;
 public class Enemy2 : Entity
 {
     //the states that this enemy variation has
+    public Vector3 targPos;
+
     public E2_Move moveState { get; private set; }
     public E2_SlowApproach slowState { get; private set; }
     public E2_Evade evadeState { get; private set; }
     public E2_Knockback knockbackState { get; private set; }
-
     public E2_Attack attackState { get; private set; }
-    // debug bool to track jumping
+    
     public bool jumpStarted;
  
     // various state datas
@@ -38,6 +39,7 @@ public class Enemy2 : Entity
     {
         Debug.Log("test");
         base.Awake();
+        Physics.IgnoreLayerCollision(9, 8);
         // dfines all the states that this entity has
         moveState = new E2_Move(this, stateMachine, moveData, entityData, this);
         slowState = new E2_SlowApproach(this, stateMachine, slowData, entityData, this);
@@ -51,11 +53,15 @@ public class Enemy2 : Entity
 
     }
 
+    //resets state when enemy is recycled
+    private void OnEnable()
+    {
+        stateMachine.InitializeStateMachine(moveState);
+    }
+
     public override void Update()
     {
         base.Update();
-
-
     }
 
     public override void FixedUpdate()
@@ -79,6 +85,11 @@ public class Enemy2 : Entity
 
         // in .5 seconds the knock back will end
         Invoke("ResetHitBack", .5f);
+
+        if (health <= 0)
+        {
+            Die();
+        }
     }
     public void jumpBack()
     {
@@ -116,7 +127,20 @@ public class Enemy2 : Entity
             case "attackState":
                 if(this.stateMachine.currentState == slowState)
                 {
-                    this.stateMachine.ChangeState(attackState);
+                    RaycastHit hit;
+                    Vector3 point = myTarget.transform.position - transform.position;
+                    // enemy will only jump if it is not currently phasing. Otherwise it will generate a new random time
+                    if (Physics.Raycast(transform.position, point, out hit, Mathf.Infinity) && hit.transform.tag != "Walls")
+                    {
+                        Debug.DrawRay(transform.position, point * hit.distance, Color.red);
+                        Debug.Log("yes jump");
+                        this.stateMachine.ChangeState(attackState);
+                    }
+                    else
+                    {
+                        Debug.Log("no jumping allowed");
+                        slowData.circleStart = false;
+                    }
                 }
                 break;
 
@@ -128,5 +152,11 @@ public class Enemy2 : Entity
                 break;
 
         }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        myPool.queueObject("Melee", this.gameObject);
     }
 }

@@ -13,8 +13,10 @@ public class Enemy1 : Entity
     public E1_Knockback knockbackState { get; private set; }
     // script for functions and  that involve ranged attacking
     public RangedBehavior rangedBehavior { get; private set; }
+
+    public AmmoPool ammo;
     // a bool for keeping track of when enemy can shoot
-    public bool canShoot { get; private set; }
+    public bool canShoot;
     // bullet prefab
     public GameObject bulletObj;
     // object used as canon
@@ -34,17 +36,21 @@ public class Enemy1 : Entity
     //called on Awake
     public override void Awake()
     {
-        base.Awake();
+
         // dfines all the states that this entity has
+        base.Awake();
         moveState = new E1_Move(this, stateMachine, moveData, entityData, this);
         slowState = new E1_SlowApproach(this, stateMachine, slowData, entityData, this);
         aimState = new E1_AimingState(this, stateMachine, aimData, entityData, this);
         evadeState = new E1_Evade(this, stateMachine, evadeData, entityData, this);
         knockbackState = new E1_Knockback(this, stateMachine, knockbackData, entityData, this);
-
+        ammo = this.gameObject.GetComponent<AmmoPool>();
         //makes the move state the entitys initial state
         stateMachine.InitializeStateMachine(moveState);
         canShoot = true;
+        this.gameObject.SetActive(false);
+
+
     }
 
     public override void Update()
@@ -61,14 +67,15 @@ public class Enemy1 : Entity
     {
         return base.DistanceToPlayer();
     }
-    public void StartCool()
+    public void StartCool(GameObject bullet)
     {
-        StartCoroutine(Cooldown());
+        StartCoroutine(Cooldown(bullet));
     }
-    IEnumerator Cooldown()
+    IEnumerator Cooldown(GameObject bullet)
     {
-        canShoot = false;
         yield return new WaitForSeconds(3f);
+        bullet.SetActive(false);
+        ammo.enqueBullet(bullet);
         canShoot = true;
     }
     // calls when damage is taken
