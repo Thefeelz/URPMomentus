@@ -5,9 +5,7 @@ using UnityEngine.Rendering;
 
 public class P_Movement : MonoBehaviour
 {
-    [SerializeField] float playerInAirForce = 10f;
     [SerializeField] public float maxPlayerSpeedRunning = 10f;
-    [SerializeField] float maxPlayerSpeedJumping = 10f;
     [Range(0f, 1f)][SerializeField] float playerDeceleration = 0.9f;
     [SerializeField] float playerJumpPower = 10f;
     [SerializeField] float playerStrafeSpeed = 10f;
@@ -18,8 +16,6 @@ public class P_Movement : MonoBehaviour
     P_WallRun wallrunner;
     public bool wallRunning() => wallrunner.isWallRunning;
     float distanceToGround;
-    float currentRunSpeed;
-    bool jumping = false;
 
     Rigidbody rb;
     CharacterStats playerStats;
@@ -98,19 +94,17 @@ public class P_Movement : MonoBehaviour
     {
         if (isGrounded && !wallRunning())
         {
-            jumping = true;
-            StartCoroutine(TurnOffJumpDelay());
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
         }
         else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
-            rb.AddForce((transform.up - transform.right) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce((transform.up - (transform.right * 0.5f)) * (playerJumpPower * 0.5f), ForceMode.Impulse);
         }
         else if (isGrounded && wallRunning() && wallrunner.wallLeft)
         {
             rb.MovePosition(transform.right + transform.position);
-            rb.AddForce((transform.up + transform.right) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce((transform.up + (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
         }
     }
 
@@ -125,88 +119,98 @@ public class P_Movement : MonoBehaviour
                 rb.velocity = Vector3.zero;
         }
     }
-    //Rotate the rigid body to be more inline with the physics system instead of rotating the transform
-    public void StrafeCharacter(int rotationDirection)
+
+    public void HandleMovement(Vector3 movementVector)
     {
-        float velocity = 0;
+        if(wallRunning()) { return; }
         if (isGrounded)
         {
-            velocity = maxPlayerSpeedRunning;
+            movementVector *= maxPlayerSpeedRunning;
+            rb.velocity = new Vector3(movementVector.x, rb.velocity.y, movementVector.z);
         }
         else
         {
-            velocity = maxPlayerSpeedRunning * inAirControlMultiplier;
+            if((rb.velocity.x + rb.velocity.z) > maxPlayerSpeedRunning) { return; }
+            movementVector *= inAirControlMultiplier;
+            rb.AddForce(movementVector, ForceMode.Impulse);
         }
-        if(moveForward)
-        {
-            Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * rotationDirection), 0, transform.forward.z + (transform.right.z * rotationDirection)).normalized;
-            newVelocity *= velocity;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0) + newVelocity;
-        }
-        else if (moveBackward)
-        {
-            Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * -rotationDirection), 0, transform.forward.z + (transform.right.z * -rotationDirection)).normalized;
-            newVelocity *= velocity;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0) - newVelocity;
-        }
-        else
-        {
-            Vector3 forwardVelocity = new Vector3(transform.right.x * rotationDirection, 0, transform.right.z * rotationDirection) * velocity;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
-        }
-        
-        moveSidetoSide = true;
     }
+    ////Rotate the rigid body to be more inline with the physics system instead of rotating the transform
+    //public void StrafeCharacter(int rotationDirection)
+    //{
+    //    float velocity = 0;
+    //    if (isGrounded)
+    //    {
+    //        velocity = maxPlayerSpeedRunning;
+    //    }
+    //    else
+    //    {
+    //        velocity = maxPlayerSpeedRunning * inAirControlMultiplier;
+    //    }
+    //    if (moveForward)
+    //    {
+    //        Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * rotationDirection), 0, transform.forward.z + (transform.right.z * rotationDirection)).normalized;
+    //        newVelocity *= velocity;
+    //        rb.velocity = new Vector3(0, rb.velocity.y, 0) + newVelocity;
+    //    }
+    //    else if (moveBackward)
+    //    {
+    //        Vector3 newVelocity = new Vector3(transform.forward.x + (transform.right.x * -rotationDirection), 0, transform.forward.z + (transform.right.z * -rotationDirection)).normalized;
+    //        newVelocity *= velocity;
+    //        rb.velocity = new Vector3(0, rb.velocity.y, 0) - newVelocity;
+    //    }
+    //    else
+    //    {
+    //        Vector3 forwardVelocity = new Vector3(transform.right.x * rotationDirection, 0, transform.right.z * rotationDirection) * velocity;
+    //        rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
+    //    }
 
-    public void MoveForward()
-    {
-        if (wallRunning()) { return; }
-        float velocity = 0;
-        if (isGrounded)
-        {
-            velocity = maxPlayerSpeedRunning;
-            Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
-        }
-        else
-        {
-            velocity = playerInAirForce;
-            rb.AddForce(transform.forward * velocity * inAirControlMultiplier, ForceMode.VelocityChange);
-        }
+    //    moveSidetoSide = true;
+    //}
 
-        
+    //public void MoveForward()
+    //{
+    //    if (wallRunning()) { return; }
+    //    float velocity = 0;
+    //    if (isGrounded)
+    //    {
+    //        velocity = maxPlayerSpeedRunning;
+    //        Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
+    //        rb.velocity = new Vector3(0, rb.velocity.y, 0) + forwardVelocity;
+    //    }
+    //    else
+    //    {
+    //        velocity = playerInAirForce;
+    //        rb.AddForce(transform.forward * velocity * inAirControlMultiplier, ForceMode.VelocityChange);
+    //    }
 
-        moveForward = true;
-        moveBackward = false;
-    }
 
-    public void MoveBackwards()
-    {
-        if (wallRunning()) { return; }
-        float velocity = 0;
-        if (isGrounded)
-        {
-            velocity = maxPlayerSpeedRunning;
-            Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
-            rb.velocity = new Vector3(0, rb.velocity.y, 0) - forwardVelocity;
-        }
-        else
-        {
-            velocity = playerInAirForce;
-            rb.AddForce(transform.forward * -velocity * inAirControlMultiplier, ForceMode.VelocityChange);
-        }
 
-        moveForward = true;
-        moveBackward = false;
-    }
+    //    moveForward = true;
+    //    moveBackward = false;
+    //}
+
+    //public void MoveBackwards()
+    //{
+    //    if (wallRunning()) { return; }
+    //    float velocity = 0;
+    //    if (isGrounded)
+    //    {
+    //        velocity = maxPlayerSpeedRunning;
+    //        Vector3 forwardVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * velocity;
+    //        rb.velocity = new Vector3(0, rb.velocity.y, 0) - forwardVelocity;
+    //    }
+    //    else
+    //    {
+    //        velocity = playerInAirForce;
+    //        rb.AddForce(transform.forward * -velocity * inAirControlMultiplier, ForceMode.VelocityChange);
+    //    }
+
+    //    moveForward = true;
+    //    moveBackward = false;
+    //}
 
     public void SetMoveForwardFalse() { moveForward = false; }
     public void SetMoveBackwardsFalse() { moveBackward = false; }
     public void SetMoveSidetoSideFalse() { moveSidetoSide = false; }
-
-    IEnumerator TurnOffJumpDelay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        jumping = false;
-    }
 }

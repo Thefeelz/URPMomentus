@@ -5,17 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] List<EnemyBad> enemiesInLevel = new List<EnemyBad>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void AddEnemyToList(EnemyBad newEnemy)
     {
         enemiesInLevel.Add(newEnemy);

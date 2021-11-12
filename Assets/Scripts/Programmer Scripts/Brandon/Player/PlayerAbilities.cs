@@ -131,64 +131,94 @@ public class PlayerAbilities : MonoBehaviour
     }
     EnemyBad LocateClosestEnemy()
     {
+        // If kill count is greater than the max allowed break the Enumerator
         if(killCount >= killCountMax)
         {
             return null;
         }
         EnemyBad closestEnemy = null;
+
+        // Loop through all the enemies
         foreach (var enemy in gameManager.GetActiveEnemies())
         {
+            // Check if they have been attacked
             if (!enemy.GetBeenAttacked())
             {
+                // If closest enemy has not been set yet, set it to the first enemy
                 if (closestEnemy == null)
                 {
                     closestEnemy = enemy;
                 }
+                // Else we are checking to see if the new enemy in the list is closer than the current enemy
                 else if (Vector3.Distance(transform.position, enemy.transform.position) <= Vector3.Distance(transform.position, closestEnemy.transform.position))
                 {
                     closestEnemy = enemy;
                 }
             }
         }
+        // If closest enemy is null, returm null
         if (closestEnemy == null)
         {
             return null;
         }
         else
         {
+            // Return the closest enemy
             return closestEnemy;
         }
     }
     IEnumerator AttackEnemy()
     {
+        // If camera is going in or out wait for the transition to end
         if (camTransitioning)
             yield return new WaitForSeconds(camTransitionTime);
+        // Do while loop that loops through and attacks the enemies in the list of enemies to attack
         do
         {
             yield return new WaitForSeconds(dashTime);
+            // Current target is the closest target to us
             currentTarget = LocateClosestEnemy();
+
+            // If the current target is null, we will exit the enumerator
             if (currentTarget == null)
             {
+                // Allow the enemies to move again
                 gameManager.SetActiveSpecialAbility(false);
+
+                // Set all enemies attacked to true to allow gameflow to continue
                 allEnemiesAttacked = true;
+
+                // Reset the player position
                 transform.position = startPos;
                 transform.rotation = startRotation;
+
+                // Reset the ability
                 circuitBreakerReady = true;
                 killCount = 0;
+
+                // Turn back on movement and camera controls
                 GetComponent<P_Movement>().enabled = true;
                 GetComponent<mouseLook>().enabled = true;
+
+                // Turn off the using special so you can use other abilities
                 usingSpecial = false;
+
+                // Transition the camera back to the original location
                 camTransitioning = true;
                 yield break;
             }
+            // We have a target
             else
             {
+                // Move behind a target
                 transform.position = currentTarget.transform.position;
                 transform.rotation = currentTarget.transform.rotation;
                 transform.position -= transform.forward;
-                
-                // currentTarget.GetComponent<MeshRenderer>().material.color = Color.black;
+
+                // Attack the target
                 currentTarget.SetBeenAttacked(true);
+
+                // Incriment the kill count
                 killCount++;
             }
         } while (!allEnemiesAttacked);

@@ -114,18 +114,16 @@ public class P_WallRun : MonoBehaviour
         {
             Vector3 alongWall = Vector3.Cross(hit.normal, transform.up);
             float vertical = Input.GetAxisRaw("Vertical");
-            // Vector3 alongWall = transform.TransformDirection(Vector3.forward);
-
-            Debug.DrawRay(transform.position, alongWall.normalized * 10, Color.green);
-            Debug.DrawRay(transform.position, lastWallNormal * 10, Color.magenta);
 
             if (wallLeft)
             {
+                playerBody.AddForce(-transform.right * 2f *Time.deltaTime);
                 playerBody.velocity = alongWall * vertical * 10f;
             }
             else
             {
-                playerBody.velocity = -alongWall * vertical * 10f;
+                playerBody.AddForce(transform.right * Time.deltaTime);
+                playerBody.velocity = -alongWall * 2f * vertical * 10f;
             }
             isWallRunning = true;
         }

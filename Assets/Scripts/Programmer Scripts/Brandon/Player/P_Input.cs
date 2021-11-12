@@ -90,24 +90,26 @@ public class P_Input : MonoBehaviour
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
-        
+
+        Vector3 charMovementVector = Vector3.zero;
         // ==========Move Forward==========
-        if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { movement.MoveForward();}
+        if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { charMovementVector += transform.forward;}
 
         // ==========Move Backwards==========
-        else if (Input.GetKey(KeyCode.S) || (Input.GetAxis("controllerDown") > 0)) { movement.MoveBackwards(); }
+        else if (Input.GetKey(KeyCode.S) || (Input.GetAxis("controllerDown") > 0)) { charMovementVector -= transform.forward * 0.5f; }
         else
         {
             movement.SetMoveForwardFalse();
             movement.SetMoveBackwardsFalse();
         }
         // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D) || (Input.GetAxis("controllerRight") > 0)) { movement.StrafeCharacter(1); }
+        if(Input.GetKey(KeyCode.D) || (Input.GetAxis("controllerRight") > 0)) { charMovementVector += transform.right; }
         // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A) || (Input.GetAxis("controllerLeft") < 0)) { movement.StrafeCharacter(-1); }
+        else if (Input.GetKey(KeyCode.A) || (Input.GetAxis("controllerLeft") < 0)) { charMovementVector -= transform.right; }
         else
         {
             movement.SetMoveSidetoSideFalse();
         }
+        movement.HandleMovement(charMovementVector.normalized);
     }
 }
