@@ -5,60 +5,148 @@ using UnityEngine;
 public class EnemyChaseState : MonoBehaviour
 {
     P_Movement player;
+    [Tooltip("Allows the enemy to be 'broken' so they will never attack the player")]
+    [SerializeField] bool deactive;
+
+    [Header("Detection Ranges")]
+    [Tooltip("The max detection range until an enemy chases a player")]
     [SerializeField] float maxDetectionRange;
-    [SerializeField] float chaseStopRange;
+    [Tooltip("The Range at which an enemy will begin shooting the player")]
+    [SerializeField] float chaseStopRangeAttack;
+    [Tooltip("The Range at which an enemy will continue to chase the player if the enemy has ammo")]
+    [SerializeField] float chaseStartRangeAttack;
+    [Tooltip("The Range at which an enemy will begin to melee the player")]
+    [SerializeField] float chaseStopMeleeAttack;
+    [Tooltip("The Range at which an enemy will continue to chase the player if the enemy has no ammo")]
+    [SerializeField] float chaseStartMeleeAttack;
+    [Tooltip("The Animator attached to this enemy")]
     [SerializeField] Animator animController;
     [SerializeField] float enemyRunSpeed;
+    [Range(0, 100)][SerializeField] int ammoCount;
 
-    bool chasing = false;
-    public bool dead = false;
+    enum State {Chasing, Attacking, Dead, Inactive}
+    [SerializeField ]State currentState;
+    bool dead = false;
 
     public bool specialInUse = false;
+
+    Rigidbody enemyRigidbody;
     // Start is called before the first frame update
     void Start()
     {
+        currentState = State.Inactive;
         player = FindObjectOfType<P_Movement>();
+        enemyRigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(!specialInUse && !dead)
+        if (!deactive)
         {
-            animController.speed = 1;
-            CheckPlayerInRange();
-            if(chasing)
-                ChasePlayer();
+            if (!specialInUse)
+            {
+                if (currentState == State.Inactive)
+                {
+                    CheckPlayerInRange();
+                }
+                else if (currentState == State.Chasing)
+                {
+                    // I dont know what to put heeyah yet
+                }
+                else if (currentState == State.Attacking)
+                {
+                    AttackPlayer();
+                }
+                else if (currentState == State.Dead && !dead)
+                {
+                    Die();
+                }
+            }
+            else
+            {
+                animController.speed = 0;
+            }
         }
         else
+            animController.SetBool("deactive", true);
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if(!specialInUse)
         {
-            animController.speed = 0;
-        }
-        if(!specialInUse && dead)
-        {
-            animController.speed = 1;
+            if(currentState == State.Chasing)
+            {
+                ChasePlayer();
+            }
         }
     }
 
     void CheckPlayerInRange()
     {
-        if(Vector3.Distance(transform.position, player.transform.position) < maxDetectionRange)
+        if(DistanceFromEnemyToPlayer() < maxDetectionRange)
         {
-            chasing = true;
+            currentState = State.Chasing;
+            animController.SetBool("chasing", true);
         }
     }
 
     void ChasePlayer()
     {
+        float distance = DistanceFromEnemyToPlayer();
         transform.LookAt(player.transform);
-        if (Vector3.Distance(transform.position, player.transform.position) > chaseStopRange)
+        if((ammoCount > 0 && distance > chaseStopRangeAttack) || (ammoCount == 0 && distance > chaseStopMeleeAttack))
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, enemyRunSpeed * Time.deltaTime);
-            animController.SetBool("chasing", true);
+            enemyRigidbody.velocity = transform.forward * enemyRunSpeed;
         }
         else
         {
-            animController.SetBool("chasing", false); 
+            currentState = State.Attacking;
+            animController.SetBool("chasing", false);
         }
+    }
+    void AttackPlayer()
+    {
+        transform.LookAt(player.transform);
+        float distance = DistanceFromEnemyToPlayer();
+        bool startChase = false;
+        if (ammoCount > 0)
+        {
+            animController.SetBool("rangeAttack", true);
+            if(distance > chaseStartRangeAttack)
+            {
+                startChase = true;
+            }
+        }
+        else
+        {
+            animController.SetBool("meleeAttack", true);
+            if(distance > chaseStartMeleeAttack)
+            {
+                startChase = true;
+            }
+        }
+        if(startChase)
+        {
+            animController.SetBool("rangeAttack", false);
+            animController.SetBool("meleeAttack", false);
+            animController.SetBool("chasing", true);
+            currentState = State.Chasing;
+        }
+    }
+
+    void Die()
+    {
+        dead = true;
+        animController.SetBool("dead", true);
+    }
+    float DistanceFromEnemyToPlayer() { return Vector3.Distance(transform.position, player.transform.position); }
+
+    public void SetStateDead() { currentState = State.Dead; }
+
+    public void ShootAtPlayer()
+    {
+        Debug.Log("Pew");
+        ammoCount--;
     }
 }

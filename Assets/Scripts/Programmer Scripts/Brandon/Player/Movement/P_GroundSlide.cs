@@ -59,6 +59,7 @@ public class P_GroundSlide : MonoBehaviour
         player = GetComponent<P_Movement>();
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponentInChildren<Collider>();
+
     }
 
     // Update is called once per frame
@@ -108,10 +109,10 @@ public class P_GroundSlide : MonoBehaviour
         Vector3 newpos = (transform.forward + transform.position);
         newpos = new Vector3(newpos.x, playerCollider.bounds.center.y - playerCollider.bounds.extents.y + 0.1f, newpos.z);
         // Physics.Linecast(transform.position, newpos, out hit, 6);
-        Physics.Linecast(transform.position + transform.forward, transform.position + transform.forward * 2, out hit);
+        Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
 
         if (hit.collider)
-            Debug.Log(hit.collider.name);
+            Debug.Log("Ground Slide hit " + hit.collider.name);
         if (elapsedTime >= slideDuration || (hit.collider != null))
         {
             postProcessingEffects.weight = 0;
@@ -143,7 +144,7 @@ public class P_GroundSlide : MonoBehaviour
         // Raycast hit to store our raycast hit information
         RaycastHit hit;
         // A raycast that shoots out from our feet forward relative to where we are facing
-        Physics.Raycast(transform.position, transform.forward, out hit, slideDistance);
+        Physics.Raycast(transform.position, TransformForwardFeet(), out hit, slideDistance);
         
         // If the raycast hits nothing, go the full length of the slide and return
         if (hit.collider == null || hit.collider.GetComponent<Floor>() || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }
@@ -172,4 +173,21 @@ public class P_GroundSlide : MonoBehaviour
     }
 
     public bool GetSliding() { return useSlide; }
+
+    /// <summary>
+    /// Get the local space ForwardVector that has a Y value that will always remain at the transforms Y value
+    /// </summary>
+    /// <returns>transform.forward with a y value equal to transform.position.y</returns>
+    Vector3 TransformForwardFeet()
+    {
+        return new Vector3(transform.forward.x, transform.position.y, transform.forward.z);
+    }
+    /// <summary>
+    /// Get the local space ForwardVector that has a Y value that will always remain at the transforms Y value plus transform.position
+    /// </summary>
+    /// <returns>transform.forward with a y value equal to transform.position.y with an offset in the z direction</returns>
+    Vector3 TransformForwardFeetWithOffset(float offset)
+    {
+        return new Vector3((transform.position.x + transform.forward.x * offset), transform.position.y, (transform.position.z + transform.forward.z * offset));
+    }
 }

@@ -99,7 +99,7 @@ public class P_Movement : MonoBehaviour
         else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
-            rb.AddForce((transform.up - (transform.right * 0.5f)) * (playerJumpPower * 0.5f), ForceMode.Impulse);
+            rb.AddForce((transform.up - (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
         }
         else if (isGrounded && wallRunning() && wallrunner.wallLeft)
         {
@@ -130,7 +130,7 @@ public class P_Movement : MonoBehaviour
         }
         else
         {
-            if((rb.velocity.x + rb.velocity.z) > maxPlayerSpeedRunning) { return; }
+            if((rb.velocity.x + rb.velocity.z) > maxPlayerSpeedRunning * 0.75f) { return; }
             movementVector *= inAirControlMultiplier;
             rb.AddForce(movementVector, ForceMode.Impulse);
         }
@@ -213,4 +213,9 @@ public class P_Movement : MonoBehaviour
     public void SetMoveForwardFalse() { moveForward = false; }
     public void SetMoveBackwardsFalse() { moveBackward = false; }
     public void SetMoveSidetoSideFalse() { moveSidetoSide = false; }
+
+    public void SetPlayerSpeed(float newSpeed) { maxPlayerSpeedRunning = newSpeed; }
+    public void SetPlayerJump(float newJump) { playerJumpPower = newJump; }
+    public void SetPlayerInAirControl(float newControl) { inAirControlMultiplier = Mathf.Clamp01(newControl); }
+    public void SetFallMultiplier(float newMultiplier) { fallMultiplier = newMultiplier; }
 }

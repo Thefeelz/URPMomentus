@@ -44,12 +44,11 @@ public class EnemyBad : MonoBehaviour
         beenAttacked = value;
         if(value)
         {
-            GetComponent<EnemyChaseState>().dead = true;
+            GetComponent<EnemyChaseState>().SetStateDead();
             myAnim.SetBool("dead", true);
         }
         else
         {
-            GetComponent<EnemyChaseState>().dead = false;
             myAnim.SetBool("dead", false);
         }
     }

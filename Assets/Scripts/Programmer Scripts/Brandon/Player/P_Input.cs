@@ -32,6 +32,8 @@ public class P_Input : MonoBehaviour
     void Update()
     {
         GetUserInputNonPhysics();
+        //Physics.Linecast(transform.position + transform.forward, transform.position + transform.forward * 2, out hit);
+        Debug.DrawLine(new Vector3(transform.position.x + transform.forward.x, transform.position.y, transform.position.z + transform.forward.z), new Vector3((transform.position.x + transform.forward.x * 2f) , transform.position.y, (transform.position.z + transform.forward.z * 2f)), Color.cyan, 1f);
     }
 
     private void FixedUpdate()

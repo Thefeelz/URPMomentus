@@ -73,13 +73,13 @@ public class PlayerAttack : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
             {
-                if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+                if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
                 {
                     endingDashPosition = hitTarget.transform.position;
                     startingDashPosition = transform.position;
                     dashing = true;
                     DashToEnemy();
-                    hitTarget.transform.GetComponentInParent<Entity>().Damage(playerStats.GetPlayerStrength());
+                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
                 }
             }
         }
