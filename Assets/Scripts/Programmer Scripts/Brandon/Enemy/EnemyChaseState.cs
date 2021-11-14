@@ -142,7 +142,11 @@ public class EnemyChaseState : MonoBehaviour
     }
     float DistanceFromEnemyToPlayer() { return Vector3.Distance(transform.position, player.transform.position); }
 
-    public void SetStateDead() { currentState = State.Dead; }
+    public void SetStateDead() 
+    {
+        deactive = false;
+        currentState = State.Dead; 
+    }
 
     public void ShootAtPlayer()
     {
