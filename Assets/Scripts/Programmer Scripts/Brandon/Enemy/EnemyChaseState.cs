@@ -23,6 +23,10 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] Animator animController;
     [SerializeField] float enemyRunSpeed;
     [Range(0, 100)][SerializeField] int ammoCount;
+    [SerializeField] bool startInChase;
+
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform bulletLaunch;
 
     enum State {Chasing, Attacking, Dead, Inactive}
     [SerializeField ]State currentState;
@@ -37,6 +41,10 @@ public class EnemyChaseState : MonoBehaviour
         currentState = State.Inactive;
         player = FindObjectOfType<P_Movement>();
         enemyRigidbody = GetComponent<Rigidbody>();
+        if (startInChase)
+            currentState = State.Chasing;
+        else if (deactive)
+            animController.SetBool("deactive", true);
     }
 
     private void Update()
@@ -67,8 +75,6 @@ public class EnemyChaseState : MonoBehaviour
                 animController.speed = 0;
             }
         }
-        else
-            animController.SetBool("deactive", true);
     }
     // Update is called once per frame
     void FixedUpdate()
@@ -142,14 +148,19 @@ public class EnemyChaseState : MonoBehaviour
     }
     float DistanceFromEnemyToPlayer() { return Vector3.Distance(transform.position, player.transform.position); }
 
-    public void SetStateDead() 
+    public void SetStateToDead() 
     {
         deactive = false;
         currentState = State.Dead; 
     }
+    public void SetStateToChase()
+    {
+        currentState = State.Chasing;
+    }
 
     public void ShootAtPlayer()
     {
+        Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.LookRotation(transform.forward));
         Debug.Log("Pew");
         ammoCount--;
     }

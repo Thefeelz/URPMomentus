@@ -8,7 +8,6 @@ public class PlayerAttack : MonoBehaviour
 {
     CharacterStats playerStats;
     Rigidbody myRb;
-    Collider weaponArea;
     [SerializeField] Image targetCrosshair;
     [SerializeField] Transform weaponRaycastTransformPosition;
     [SerializeField] Animator playerAnimator;
@@ -70,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
         if(!playerAnimator.GetBool("swordSwing"))
         {
             StartCoroutine(WeaponSwing());
-
+            return;
             if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
             {
                 if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
@@ -150,5 +149,18 @@ public class PlayerAttack : MonoBehaviour
     public bool GetSuperSlashStatus()
     {
         return playerAnimator.GetBool("superSlash");
+    }
+
+    public void CheckForDamage()
+    {
+        RaycastHit hit;
+        Physics.Raycast(weaponRaycastTransformPosition.position, transform.forward, out hit, 2f);
+        if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>())
+        {
+            Debug.Log(hit.collider.name);
+            hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
+        }
+        if (hit.collider == null)
+            Debug.Log("Null");
     }
 }

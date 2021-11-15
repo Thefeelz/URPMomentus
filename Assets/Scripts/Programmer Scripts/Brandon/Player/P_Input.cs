@@ -46,21 +46,21 @@ public class P_Input : MonoBehaviour
         // ========================================
         // ==========OVERCHARGE ABILITIES==========
         // ========================================
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && bladeDance.enabled) 
         { 
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck)
+        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
         {
             swordThrow.ThrowSword();
         }
-        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck)
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck && swordThrow.enabled)
         {
             Debug.Log("Called");
             swordThrow.FlyToSword();
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
         {
             if (airDash.UseAirDash())
                 coolDownManager.AddCooldownToList(airDash);
@@ -68,8 +68,8 @@ public class P_Input : MonoBehaviour
         // =================================
         // ==========PLAYER ATTACK==========
         // =================================
-        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5)) { playerAttack.BasicAttack(); }
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4)) { playerAttack.BasicDefense(); }
+        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) { playerAttack.BasicAttack(); }
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && playerAttack.enabled) { playerAttack.BasicDefense(); }
         else { playerAttack.SwordBlockComplete(); }
 
         // ======================================
@@ -79,7 +79,7 @@ public class P_Input : MonoBehaviour
         // ==========Jump==========
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); }
         // ==========Ground Dash==========
-        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding()) { groundSlide.UseGroundDash(0.5f); }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========
@@ -92,7 +92,7 @@ public class P_Input : MonoBehaviour
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
-
+        if (!movement.enabled) { return; }
         Vector3 charMovementVector = Vector3.zero;
         // ==========Move Forward==========
         if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { charMovementVector += transform.forward;}

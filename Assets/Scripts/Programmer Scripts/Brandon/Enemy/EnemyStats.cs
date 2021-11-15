@@ -14,6 +14,8 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] Canvas enemyCanvas;
     [SerializeField] Image healthBar;
 
+    [SerializeField] GameObject[] objectsToTurnOnWhenDead;
+
     Animator animator;
     EnemyChaseState chase;
     CharacterStats player;
@@ -43,7 +45,11 @@ public class EnemyStats : MonoBehaviour
         if(currentHealth <= 0)
         {
             player.ReplenishHealth(energyAmount);
-            chase.SetStateDead();
+            chase.SetStateToDead();
+            GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
+            GetComponentInChildren<Collider>().enabled = false;
+            TurnOnObjects();
+            Destroy(gameObject, 10f);
         }
     }
 
@@ -59,5 +65,12 @@ public class EnemyStats : MonoBehaviour
     {
         this.currentHealth = health;
         return currentHealth;
+    }
+    void TurnOnObjects()
+    {
+        for(int i = 0; i < objectsToTurnOnWhenDead.Length; i++)
+        {
+            objectsToTurnOnWhenDead[i].SetActive(true);
+        }
     }
 }
