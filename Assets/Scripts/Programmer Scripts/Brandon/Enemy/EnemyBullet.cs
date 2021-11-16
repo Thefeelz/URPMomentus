@@ -19,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
         timeAlive += Time.deltaTime;
         if(timeAlive >= maxLife)
         {
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
         if(Vector3.Distance(transform.position, player.transform.position) < 0.25f)
         {

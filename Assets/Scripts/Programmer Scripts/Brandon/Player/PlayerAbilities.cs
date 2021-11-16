@@ -6,7 +6,7 @@ public class PlayerAbilities : MonoBehaviour
 {
     [Header ("Circuit Breaker")]
     [SerializeField] float dashTime;
-    [SerializeField] EnemyBad currentTarget;
+    [SerializeField] EnemyStats currentTarget;
     [SerializeField] bool allEnemiesAttacked = false;
     [SerializeField] int killCount;
     [SerializeField] int killCountMax = 7;
@@ -15,7 +15,7 @@ public class PlayerAbilities : MonoBehaviour
     [Header("Planet Shaker")]
     [SerializeField] int maxStrikingDistance;
     [SerializeField] float pullingSpeed;
-    List<EnemyBad> enemiesInRangeOfAbility = new List<EnemyBad>();
+    List<EnemyStats> enemiesInRangeOfAbility = new List<EnemyStats>();
     bool pullingEnemies = false;
     [SerializeField] float pullingTime;
     [SerializeField] float stunTime;
@@ -76,13 +76,13 @@ public class PlayerAbilities : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.BackQuote))
         {
-            gameManager.ResetAllEnemies();
+            
         }
         if(Input.GetKeyDown(KeyCode.Alpha2) && planetShakerReady)
         {
             pullingEnemies = true;
             planetShakerReady = false;
-            enemiesInRangeOfAbility = FindEnemiesWithinRange(gameManager.GetActiveEnemies());
+            //enemiesInRangeOfAbility = FindEnemiesWithinRange(gameManager.GetActiveEnemies());
         }
         if(pullingEnemies && pullingTime > elapsedTime)
         {
@@ -105,7 +105,7 @@ public class PlayerAbilities : MonoBehaviour
             {
                 if(hitEnemy.transform.gameObject.layer == 6)
                 {
-                    //hitEnemy.transform.GetComponent<EnemyBad>().StartGammaExplosion(gammaExplosionDelayTime, gammaExplosionSize, gammaExplosionSpeed);
+                    //hitEnemy.transform.GetComponent<EnemyStats>().StartGammaExplosion(gammaExplosionDelayTime, gammaExplosionSize, gammaExplosionSpeed);
                 }
             }
         }
@@ -129,20 +129,20 @@ public class PlayerAbilities : MonoBehaviour
             camElapsedTime = 0;
         }
     }
-    EnemyBad LocateClosestEnemy()
+    EnemyStats LocateClosestEnemy()
     {
         // If kill count is greater than the max allowed break the Enumerator
         if(killCount >= killCountMax)
         {
             return null;
         }
-        EnemyBad closestEnemy = null;
+        EnemyStats closestEnemy = null;
 
         // Loop through all the enemies
         foreach (var enemy in gameManager.GetActiveEnemies())
         {
             // Check if they have been attacked
-            if (!enemy.GetBeenAttacked())
+            if (enemy.getCurrentHealth() > 0)
             {
                 // If closest enemy has not been set yet, set it to the first enemy
                 if (closestEnemy == null)
@@ -216,16 +216,16 @@ public class PlayerAbilities : MonoBehaviour
                 transform.position -= transform.forward;
 
                 // Attack the target
-                currentTarget.SetBeenAttacked(true);
+                currentTarget.TakeDamage(10);
 
                 // Incriment the kill count
                 killCount++;
             }
         } while (!allEnemiesAttacked);
     }
-    List<EnemyBad> FindEnemiesWithinRange(List<EnemyBad> enemyList)
+    List<EnemyStats> FindEnemiesWithinRange(List<EnemyStats> enemyList)
     {
-        List<EnemyBad> enemiesInRange = new List<EnemyBad>();
+        List<EnemyStats> enemiesInRange = new List<EnemyStats>();
         foreach (var enemy in enemyList)
         {
             if(Vector3.Distance(transform.position, enemy.transform.position) < maxStrikingDistance)
@@ -235,13 +235,13 @@ public class PlayerAbilities : MonoBehaviour
         }
         return enemiesInRange;
     }
-    void PullEnemiesToYou(List<EnemyBad> enemyList)
+    void PullEnemiesToYou(List<EnemyStats> enemyList)
     {
         elapsedTime += Time.deltaTime;
         foreach (var enemy in enemyList)
         {
-            if (!enemy.GetStunned())
-                enemy.SetStunned(true);
+            //if (!enemy.GetStunned())
+              //  enemy.SetStunned(true);
             Vector3 direction = transform.position - enemy.transform.position;
             enemy.transform.rotation = Quaternion.LookRotation(direction);
             enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, transform.position, pullingSpeed * Time.deltaTime);
@@ -268,7 +268,7 @@ public class PlayerAbilities : MonoBehaviour
         yield return new WaitForSeconds(stunTime);
         foreach (var enemy in enemiesInRangeOfAbility)
         {
-            enemy.SetStunned(false);
+            //enemy.SetStunned(false);
             enemy.transform.position = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
         }
         enemiesInRangeOfAbility.Clear();

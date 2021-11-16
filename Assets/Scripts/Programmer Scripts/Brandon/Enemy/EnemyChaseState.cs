@@ -28,8 +28,9 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletLaunch;
 
-    enum State {Chasing, Attacking, Dead, Inactive}
+    enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse}
     [SerializeField ]State currentState;
+    State previousState;
     bool dead = false;
 
     public bool specialInUse = false;
@@ -69,6 +70,10 @@ public class EnemyChaseState : MonoBehaviour
                 {
                     Die();
                 }
+                else if (currentState == State.SpecialInUse)
+                {
+                    // I dont know what to put heeyah yet
+                }
             }
             else
             {
@@ -103,10 +108,11 @@ public class EnemyChaseState : MonoBehaviour
         transform.LookAt(player.transform);
         if((ammoCount > 0 && distance > chaseStopRangeAttack) || (ammoCount == 0 && distance > chaseStopMeleeAttack))
         {
-            enemyRigidbody.velocity = transform.forward * enemyRunSpeed;
+            enemyRigidbody.velocity = new Vector3(transform.forward.x * enemyRunSpeed, enemyRigidbody.velocity.y, transform.forward.z * enemyRunSpeed);
         }
         else
         {
+            enemyRigidbody.velocity = Vector3.zero;
             currentState = State.Attacking;
             animController.SetBool("chasing", false);
         }
@@ -145,6 +151,22 @@ public class EnemyChaseState : MonoBehaviour
     {
         dead = true;
         animController.SetBool("dead", true);
+    }
+
+    public void SpecialInUse(bool value)
+    {
+        if (value)
+        {
+            previousState = currentState;
+            currentState = State.SpecialInUse;
+            animController.speed = 0;
+        }
+        else
+        {
+            if(currentState != State.Dead)
+                currentState = previousState;
+            animController.speed = 1;
+        }
     }
     float DistanceFromEnemyToPlayer() { return Vector3.Distance(transform.position, player.transform.position); }
 

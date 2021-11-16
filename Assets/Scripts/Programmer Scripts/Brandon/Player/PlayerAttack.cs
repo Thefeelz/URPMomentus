@@ -44,26 +44,6 @@ public class PlayerAttack : MonoBehaviour
        
     }
 
-    private void GetPlayerInput()
-    {
-        if (Input.GetMouseButtonDown(0) && !playerAnimator.GetBool("swordSwing"))
-        {
-            StartCoroutine(WeaponSwing());
-
-            if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
-            {
-                if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
-                {
-                    endingDashPosition = hitTarget.transform.position;
-                    startingDashPosition = transform.position;
-                    dashing = true;
-                    DashToEnemy();
-                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(20);
-                }
-            }
-        }
-    }
-
     public void BasicAttack()
     {
         if(!playerAnimator.GetBool("swordSwing"))

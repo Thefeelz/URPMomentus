@@ -16,15 +16,16 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
 
-    Animator animator;
     EnemyChaseState chase;
     CharacterStats player;
+    GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.AddEnemyToList(this);
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
-        animator = GetComponentInChildren<Animator>();
         chase = GetComponent<EnemyChaseState>();
         currentHealth = maxHealth;
         player = FindObjectOfType<CharacterStats>();
@@ -44,12 +45,8 @@ public class EnemyStats : MonoBehaviour
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
         if(currentHealth <= 0)
         {
-            player.ReplenishHealth(energyAmount);
-            chase.SetStateToDead();
-            GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
-            GetComponentInChildren<Collider>().enabled = false;
             TurnOnObjects();
-            Destroy(gameObject, 10f);
+            StartCoroutine(DestroySelf());
         }
     }
 
@@ -72,5 +69,15 @@ public class EnemyStats : MonoBehaviour
         {
             objectsToTurnOnWhenDead[i].SetActive(true);
         }
+    }
+    IEnumerator DestroySelf()
+    {
+        player.ReplenishHealth(energyAmount);
+        chase.SetStateToDead();
+        GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
+        GetComponentInChildren<Collider>().enabled = false;
+        yield return new WaitForSeconds(10f);
+        gameManager.RemoveFromActiveList(this);
+        Destroy(gameObject);
     }
 }

@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] List<EnemyBad> enemiesInLevel = new List<EnemyBad>();
-    public void AddEnemyToList(EnemyBad newEnemy)
+    [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
+    public bool activeInUse = false;
+    public void AddEnemyToList(EnemyStats newEnemy)
     {
         enemiesInLevel.Add(newEnemy);
     }
-    public List<EnemyBad> GetActiveEnemies()
+    public List<EnemyStats> GetActiveEnemies()
     {
         return enemiesInLevel;
     }
-    public void ResetAllEnemies()
+    public void RemoveFromActiveList(EnemyStats enemyToRemove)
     {
-        foreach (var enemy in enemiesInLevel)
-        {
-            enemy.ResetEnemy();
-        }
+        enemiesInLevel.Remove(enemyToRemove);
     }
     public void SetActiveSpecialAbility(bool value)
     {
         foreach (var enemy in enemiesInLevel)
         {
-            enemy.GetComponent<EnemyChaseState>().specialInUse = value;
+            enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
         }
     }
 }

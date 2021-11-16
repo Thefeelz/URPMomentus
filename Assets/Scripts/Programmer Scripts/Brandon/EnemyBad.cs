@@ -20,8 +20,6 @@ public class EnemyBad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        gameManager.AddEnemyToList(this);
         mesh = GetComponent<MeshRenderer>();
         initialPosition = transform.position;
         initialRotation = transform.rotation;
