@@ -5,7 +5,6 @@ using UnityEngine;
 public class P_CoolDownManager : MonoBehaviour
 {
     List<A_OverchargeAbilities> cooldownList = new List<A_OverchargeAbilities>();
-    bool updateTheList = false;
     void Start()
     {
         
@@ -22,7 +21,6 @@ public class P_CoolDownManager : MonoBehaviour
     {
         cooldownList.Add(newAbility);
         newAbility.StartAbilityCooldown();
-        updateTheList = true;
     }
 
     void UpdateCoolDownList()

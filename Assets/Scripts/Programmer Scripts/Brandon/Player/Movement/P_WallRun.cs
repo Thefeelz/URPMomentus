@@ -7,6 +7,10 @@ public class P_WallRun : MonoBehaviour
 {
     public float minimumHeightForWallRun;
     [SerializeField] Transform wallRunCamPos;
+    [SerializeField] float wallHugForce = 2f;
+    [SerializeField] int wallRunLayer = 7;
+    [SerializeField] float wallDetectionDistanceMultiplier = 2f;
+    [SerializeField] float wallRunHeightOffset = 1f;
     Vector3[] directions;
     RaycastHit[] hits;
 
@@ -27,7 +31,8 @@ public class P_WallRun : MonoBehaviour
 
     bool VerticalCheck()
     {
-        return !Physics.Raycast(transform.position, Vector3.down, minimumHeightForWallRun);
+        //return !Physics.Raycast(transform.position, Vector3.down, minimumHeightForWallRun);
+        return true;
     }
     void Start()
     {
@@ -46,7 +51,7 @@ public class P_WallRun : MonoBehaviour
         };
         for(int i = 0; i < directions.Length; i++)
         {
-            directions[i] *= 1.5f;
+            directions[i] *= 1;
         }
     }
 
@@ -60,17 +65,17 @@ public class P_WallRun : MonoBehaviour
             for (int i = 0; i < directions.Length; i++)
             {
                 Vector3 dir = transform.TransformDirection(directions[i]);
-                Physics.Raycast(transform.position, dir, out hits[i], 1);
-                if (hits[i].collider != null && hits[i].transform.GetComponent<WallRunnable>())
+                Physics.Raycast(transform.position + Vector3.up * wallRunHeightOffset, dir, out hits[i], wallDetectionDistanceMultiplier);
+                if (hits[i].collider != null && hits[i].collider.gameObject.layer == wallRunLayer)
                 {
-                    Debug.DrawRay(transform.position, dir * hits[i].distance, Color.green);
+                    Debug.DrawRay(transform.position + Vector3.up * wallRunHeightOffset, dir * hits[i].distance, Color.green);
                 }
                 else
                 {
-                    Debug.DrawRay(transform.position, dir * 1, Color.red);
+                    Debug.DrawRay(transform.position + Vector3.up * wallRunHeightOffset, dir * wallDetectionDistanceMultiplier, Color.red);
                 }
             }
-            hits = hits.ToList().Where(h => h.collider != null && transform.position.y < h.collider.transform.position.y + h.collider.bounds.extents.y * 2 &&  h.transform.GetComponent<WallRunnable>()).OrderBy(h => h.distance).ToArray();
+            hits = hits.ToList().Where(h => h.collider != null &&  h.collider.gameObject.layer == wallRunLayer).OrderBy(h => h.distance).ToArray();
             // If we enter this, we are wall running
             if (hits.Length > 0)
             {
@@ -113,18 +118,16 @@ public class P_WallRun : MonoBehaviour
         {
             Vector3 alongWall = Vector3.Cross(hit.normal, transform.up);
             float vertical = Input.GetAxisRaw("Vertical");
-            // Vector3 alongWall = transform.TransformDirection(Vector3.forward);
-
-            Debug.DrawRay(transform.position, alongWall.normalized * 10, Color.green);
-            Debug.DrawRay(transform.position, lastWallNormal * 10, Color.magenta);
 
             if (wallLeft)
             {
+                playerBody.AddForce(-transform.right * wallHugForce *Time.deltaTime);
                 playerBody.velocity = alongWall * vertical * 10f;
             }
             else
             {
-                playerBody.velocity = -alongWall * vertical * 10f;
+                playerBody.AddForce(transform.right * wallHugForce * Time.deltaTime);
+                playerBody.velocity = -alongWall *  vertical * 10f;
             }
             isWallRunning = true;
         }
