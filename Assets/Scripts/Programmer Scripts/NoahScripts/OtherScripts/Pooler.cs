@@ -10,16 +10,21 @@ public class Pooler : MonoBehaviour
     {
         public int size; // how many of this type exist 
         public int minField; // minimum amount that must exist on the field
+        [Tooltip("1 if bidedap, 2 if quadraped, 3 if ariel")]
+        public int spawnType; // the type of enemy. Used for determining spawn location
         public GameObject prefab; // the prefab for this type
         public string dictionaryTag; // name of this type for dictionary reference
     }
 
     public List<ObjectPool> objectPools;
     public Dictionary<string, Queue<GameObject>> dictionaryPools;
+    public Spawner spawner;
     private int totToSpawn; // how many are left to spawn in total
     private int totOnField; // how many are on the field in total
     private Dictionary<string, int> onField; // a dictionary of how many of an individual type is on the field
     private Dictionary<string, int> minField; // minimum amount to exist on the field at a given time
+    private Dictionary<string, int> spawnType; // type of enemy
+    private List<string> tags; // a list of tags for referencing dictionarys in a cyclic order
 
 
 
@@ -28,11 +33,13 @@ public class Pooler : MonoBehaviour
     void Start()
     {
         // make enemies not colide with each other
-        Physics.IgnoreLayerCollision(9, 9);
+        //Physics.IgnoreLayerCollision(9, 9);
         //makes a dictionary of queues that hold different enemy types
         dictionaryPools = new Dictionary<string, Queue<GameObject>>();
         onField = new Dictionary<string, int>();
         minField = new Dictionary<string, int>();
+        spawnType = new Dictionary<string, int>();
+        tags = new List<string>();
 
         // for every objectPool in our list of object pools a queue of gameobjects is created and added to the dictionary of queues
         // using the variables of each objectPool to define the queue size and object type, and the dictionary tag
@@ -52,6 +59,9 @@ public class Pooler : MonoBehaviour
             dictionaryPools.Add(objectPool.dictionaryTag, poolQueue);
             onField.Add(objectPool.dictionaryTag, 0);
             minField.Add(objectPool.dictionaryTag, objectPool.minField);
+            spawnType.Add(objectPool.dictionaryTag, objectPool.spawnType);
+            tags.Add(objectPool.dictionaryTag);
+            
         }
     }
 
@@ -63,17 +73,27 @@ public class Pooler : MonoBehaviour
         onField[tag] -= 1;
     }
 
-    //dequeues the gameobject from the queue with the matching tag
-    void dequeueObject(string tag)
+    //dequeues the gameobject from the queue with the matching tag. No need to increase the dictionary of amount on field as that is performed
+    // in update
+    public GameObject dequeueObject(string tag)
     {
         GameObject objToSpawn = dictionaryPools[tag].Dequeue();
-        objToSpawn.SetActive(true);
-        onField[tag] += 1;
+        return objToSpawn;
+        
     }
 
     public void Update()
     {
-        
+        //Debug.Log(tags);
+        foreach (string tag in tags)
+        {
+            if(onField[tag] < minField[tag])
+            {
+                onField[tag] += 1;
+                GameObject enemy = dequeueObject(tag);
+                spawner.spawn(enemy, spawnType[tag]);
+            }
+        }
     }
 
     public void spawn()
