@@ -13,6 +13,7 @@ public class P_Input : MonoBehaviour
     A_BladeDance bladeDance;
     A_AirDash airDash;
     A_SwordThrow swordThrow;
+    A_ContainedHeat containedHeat;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -25,7 +26,14 @@ public class P_Input : MonoBehaviour
         airDash = GetComponent<A_AirDash>();
         swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
+        containedHeat = GetComponent<A_ContainedHeat>();
         rb = GetComponent<Rigidbody>();
+        LayerMask mask;
+        for(int i = 0; i < 32; i++)
+        {
+            mask = i;
+            Debug.Log(LayerMask.LayerToName(mask));
+        }
     }
 
     // Update is called once per frame
@@ -57,10 +65,14 @@ public class P_Input : MonoBehaviour
         }
         if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck && swordThrow.enabled)
         {
-            Debug.Log("Called");
             swordThrow.FlyToSword();
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
+        if ((Input.GetKeyDown(KeyCode.Alpha3)) && containedHeat.enabled)
+        {
+            if (containedHeat.Ability_ContainedHeat())
+                coolDownManager.AddCooldownToList(containedHeat);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
         {
             if (airDash.UseAirDash())
                 coolDownManager.AddCooldownToList(airDash);

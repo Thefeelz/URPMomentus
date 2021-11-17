@@ -28,7 +28,7 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletLaunch;
 
-    enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse}
+    enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse, CollideJump}
     [SerializeField ]State currentState;
     State previousState;
     bool dead = false;
@@ -36,6 +36,9 @@ public class EnemyChaseState : MonoBehaviour
     public bool specialInUse = false;
 
     Rigidbody enemyRigidbody;
+    Vector3 startingPosition, targetPosition;
+    float jumpTime;
+    float elapsedTime = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +76,10 @@ public class EnemyChaseState : MonoBehaviour
                 else if (currentState == State.SpecialInUse)
                 {
                     // I dont know what to put heeyah yet
+                }
+                else if (currentState == State.CollideJump)
+                {
+                    JumpToPosition();
                 }
             }
             else
@@ -153,6 +160,24 @@ public class EnemyChaseState : MonoBehaviour
         animController.SetBool("dead", true);
     }
 
+    void JumpToPosition()
+    {
+        elapsedTime += Time.deltaTime;
+        float lerpPos = elapsedTime / jumpTime;
+        float yStep = Time.deltaTime;
+        if (lerpPos > 0.5)
+            yStep *= -1;
+        transform.position = Vector3.Lerp(startingPosition, targetPosition, lerpPos);
+        transform.position = new Vector3(transform.position.x, transform.position.y + yStep, transform.position.z);
+
+        if(lerpPos >= 1)
+        {
+            currentState = previousState;
+            elapsedTime = 0;
+            jumpTime = 0;
+        }
+    }
+
     public void SpecialInUse(bool value)
     {
         if (value)
@@ -178,6 +203,15 @@ public class EnemyChaseState : MonoBehaviour
     public void SetStateToChase()
     {
         currentState = State.Chasing;
+    }
+    public void SetStateToJumpCollider(Vector3 targetPos)
+    {
+        previousState = currentState;
+        startingPosition = transform.position;
+        targetPosition = targetPos;
+        currentState = State.CollideJump;
+        jumpTime = Vector3.Distance(startingPosition, targetPosition) / 5;
+        // animController.SetBool("jumping", true);
     }
 
     public void ShootAtPlayer()

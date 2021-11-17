@@ -23,8 +23,6 @@ public class A_AirDash : A_OverchargeAbilities
 
     // A call to our rigid body to effect it
     Rigidbody rb;
-    // A call to our player to check if we are grounded
-    P_Movement playerMovement;
 
     // ==========Private Variables to be used in the code ==========
 

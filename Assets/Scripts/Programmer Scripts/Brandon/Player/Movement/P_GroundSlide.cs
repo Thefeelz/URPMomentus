@@ -50,7 +50,9 @@ public class P_GroundSlide : MonoBehaviour
     // Variable to store the ending position of the camera attached to the player
     Vector3 cameraPosEnd;
 
-    Collider playerCollider;
+    CapsuleCollider playerCollider;
+
+    LayerMask mask = 11;
 
     // Start is called before the first frame update
     void Awake()
@@ -58,7 +60,7 @@ public class P_GroundSlide : MonoBehaviour
         // Cache our Variables
         player = GetComponent<P_Movement>();
         rb = GetComponent<Rigidbody>();
-        playerCollider = GetComponentInChildren<Collider>();
+        playerCollider = GetComponentInChildren<CapsuleCollider>();
 
     }
 
@@ -81,6 +83,8 @@ public class P_GroundSlide : MonoBehaviour
         // Check to make sure the player is grounded
         if(player.isGrounded)
         {
+            playerCollider.center = new Vector3(0, 0.5f, 0);
+            playerCollider.direction = 2;
             useSlide = false;
             // Sliding is set to true to allow the sliding function to be called in the 'Update' function
             sliding = true;
@@ -106,15 +110,14 @@ public class P_GroundSlide : MonoBehaviour
         // If our slide is finished, set everything back to default values and trigger return to normal screen for our camera position and camera effects
 
         RaycastHit hit;
-        Vector3 newpos = (transform.forward + transform.position);
-        newpos = new Vector3(newpos.x, playerCollider.bounds.center.y - playerCollider.bounds.extents.y + 0.1f, newpos.z);
-        // Physics.Linecast(transform.position, newpos, out hit, 6);
         Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
 
         if (hit.collider)
             Debug.Log("Ground Slide hit " + hit.collider.name);
         if (elapsedTime >= slideDuration || (hit.collider != null))
         {
+            playerCollider.center = new Vector3(0, 1, 0);
+            playerCollider.direction = 1;
             postProcessingEffects.weight = 0;
             sliding = false;
             elapsedTime = 0;
