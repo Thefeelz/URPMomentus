@@ -1968,7 +1968,7 @@ PrefabInstance:
     - target: {fileID: 557602384, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: abilityCooldownButton
       value: 
-      objectReference: {fileID: 923852020}
+      objectReference: {fileID: 1721220916}
     - target: {fileID: 557602386, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1997,6 +1997,26 @@ PrefabInstance:
       propertyPath: healthBarDots
       value: 
       objectReference: {fileID: 267030790}
+    - target: {fileID: 557602387, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: bladeDanceImage
+      value: 
+      objectReference: {fileID: 1721220916}
+    - target: {fileID: 557602387, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: swordSlashImage
+      value: 
+      objectReference: {fileID: 1410554411}
+    - target: {fileID: 557602387, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: containedHeatImage
+      value: 
+      objectReference: {fileID: 529783244}
+    - target: {fileID: 1035522304, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: abilityCooldownButton
+      value: 
+      objectReference: {fileID: 529783244}
+    - target: {fileID: 1035522305, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: abilityCooldownButton
+      value: 
+      objectReference: {fileID: 1410554411}
     - target: {fileID: 97789167273253023, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 5.7881713
@@ -2476,6 +2496,10 @@ PrefabInstance:
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733746628393997000, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: lookRotation
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393997006, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_Enabled
@@ -4181,6 +4205,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523903780}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &529783244 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1054755113, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
+  m_PrefabInstance: {fileID: 1688658391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &531600829
 GameObject:
   m_ObjectHideFlags: 0
@@ -8493,56 +8528,6 @@ Transform:
   m_Father: {fileID: 694972093}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -30, y: 120, z: 0}
---- !u!1 &1035522288 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2733746628393997007, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
-  m_PrefabInstance: {fileID: 304021915}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1035522304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035522288}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9401ac6156dfcda489a97d504d4ce787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overchargeCost: 0
-  abilityCooldownMax: 0
-  abilityCooldownButton: {fileID: 0}
-  abilityCooldownCurrent: 0
-  abilityReady: 1
-  containedHeatPrefab: {fileID: 7768230820019964502, guid: 7667ac6cd7ad82249b482b5af3f2f367, type: 3}
-  containedHeatParticleEffect: {fileID: 3308443588297471571, guid: 7252f0cf7508f8641bc1f02406bbee9e, type: 3}
-  containedHeatDuration: 10
-  containedHeatEndingRadius: 10
-  containedHeatSpeed: 5
---- !u!114 &1035522305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035522288}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0fd40321005fd41a832969eb84ed8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  overchargeCost: 0
-  abilityCooldownMax: 10
-  abilityCooldownButton: {fileID: 0}
-  abilityCooldownCurrent: 0
-  abilityReady: 1
-  swordSlashPrefab: {fileID: 9238433692340011, guid: 757e30bac3b21c343859ca075d856dbb, type: 3}
-  weaponFire: {fileID: 2010949965}
-  emissionMaterial:
-  - {fileID: 2100000, guid: 22824c6c47c50434db3e120471d36af1, type: 2}
-  - {fileID: 2100000, guid: 9746a685576641f42ab620ebf5c6b1c5, type: 2}
-  - {fileID: 2100000, guid: d861a88a68b57454fbbf777ed14f6761, type: 2}
 --- !u!1 &1042762039
 GameObject:
   m_ObjectHideFlags: 0
@@ -10697,6 +10682,17 @@ Transform:
   m_Father: {fileID: 114828901}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410554411 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1997060467, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
+  m_PrefabInstance: {fileID: 1688658391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1437332444
 GameObject:
   m_ObjectHideFlags: 0
@@ -12247,6 +12243,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
+--- !u!114 &1721220916 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1513818453, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
+  m_PrefabInstance: {fileID: 1688658391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1721651335
 GameObject:
   m_ObjectHideFlags: 0
@@ -14334,11 +14341,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b422dbcc9ecdef4e8792c1512708cd8, type: 3}
---- !u!4 &2010949965 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2733746629386670360, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
-  m_PrefabInstance: {fileID: 304021915}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2015836368
 GameObject:
   m_ObjectHideFlags: 0

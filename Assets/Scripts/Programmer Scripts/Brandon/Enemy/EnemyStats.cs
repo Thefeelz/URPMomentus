@@ -45,7 +45,8 @@ public class EnemyStats : MonoBehaviour
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
         if(currentHealth <= 0)
         {
-            TurnOnObjects();
+            if(objectsToTurnOnWhenDead.Length > 0)
+                TurnOnObjects();
             StartCoroutine(DestroySelf());
         }
     }
