@@ -178,8 +178,8 @@ public class vinMovement : MonoBehaviour
             if (!rotAdjusted)
             {
                 //Creates a parallel vector using the cross-product of the player and the normal vector of the wall. Source:https://answers.unity.com/questions/989625/how-to-set-an-objects-rotation-parallel-to-a-wall.html
-                Vector3 temp = Vector3.Cross(transform.up, hitRightWall.normal);
-                transform.rotation = Quaternion.LookRotation(temp);
+                Vector3 parallelVecR = Vector3.Cross(transform.up, hitRightWall.normal);
+                transform.rotation = Quaternion.LookRotation(parallelVecR);
                 rotAdjusted = true;
             }
 
@@ -198,8 +198,8 @@ public class vinMovement : MonoBehaviour
         {
             if (!rotAdjusted)
             {
-                Vector3 temp = Vector3.Cross(transform.up, hitLeftWall.normal);
-                transform.rotation = Quaternion.LookRotation(-temp);
+                Vector3 parallelVecL = -Vector3.Cross(transform.up, hitLeftWall.normal);
+                transform.rotation = Quaternion.LookRotation(parallelVecL);
                 rotAdjusted = true;
             }
 
