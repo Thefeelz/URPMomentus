@@ -8,6 +8,7 @@ public class SwordLightningEffect : MonoBehaviour
     ParticleSystem.EmissionModule thisSystem;
     [SerializeField] Material[] emissionMaterial;
     Color color;
+    bool controlEffect = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +19,18 @@ public class SwordLightningEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        thisSystem.rateOverTime = Mathf.Floor(player.GetPlayerOvercharge() / 10);
-        for (int i = 0; i < emissionMaterial.Length; i++)
+        if (controlEffect)
         {
-            emissionMaterial[i].SetColor("_EmissionColor", Color.white * player.GetPlayerOvercharge() / 10);
+            thisSystem.rateOverTime = Mathf.Floor(player.GetPlayerOvercharge() / 10);
+            for (int i = 0; i < emissionMaterial.Length; i++)
+            {
+                emissionMaterial[i].SetColor("_EmissionColor", Color.white * (player.GetPlayerOvercharge() / 10 + 1));
+            }
         }
     }
+    public void SwordSlashControlsLightningAndGlow(bool value)
+    {
+        controlEffect = !value;
+    }
+    
 }

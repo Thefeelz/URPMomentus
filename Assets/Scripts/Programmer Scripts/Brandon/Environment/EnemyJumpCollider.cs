@@ -9,7 +9,7 @@ public class EnemyJumpCollider : MonoBehaviour
     {
         if(other.GetComponentInParent<EnemyChaseState>())
         {
-            Debug.Log("Triggerd bruh");
+            
             other.GetComponentInParent<EnemyChaseState>().SetStateToJumpCollider(targetPosition.position);
         }
     }

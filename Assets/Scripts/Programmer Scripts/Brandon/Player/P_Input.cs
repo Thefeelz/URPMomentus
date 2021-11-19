@@ -14,6 +14,7 @@ public class P_Input : MonoBehaviour
     A_AirDash airDash;
     A_SwordThrow swordThrow;
     A_ContainedHeat containedHeat;
+    A_SwordSlash swordSlash;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class P_Input : MonoBehaviour
         swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
         containedHeat = GetComponent<A_ContainedHeat>();
+        swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
         LayerMask mask;
         for(int i = 0; i < 32; i++)
@@ -71,6 +73,11 @@ public class P_Input : MonoBehaviour
         {
             if (containedHeat.Ability_ContainedHeat())
                 coolDownManager.AddCooldownToList(containedHeat);
+        }
+        if ((Input.GetKeyDown(KeyCode.Q)) && swordSlash.enabled)
+        {
+            if (swordSlash.Ability_SwordSlash())
+                coolDownManager.AddCooldownToList(swordSlash);
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
         {

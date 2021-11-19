@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class TurnOnAndOffScripts : MonoBehaviour
 {
-    [SerializeField] bool groundSlide, wallRun, movement, input, airDash, bladeDance, mouselook, swordThrow, playerAttack, onEnter, onExit, onStay, turnOn;
+    [SerializeField] bool groundSlide, wallRun, movement, input, airDash, bladeDance, mouselook, swordThrow, swordSlash, containedHeat, playerAttack, onEnter, onExit, onStay, turnOn;
     P_GroundSlide groundSlideAbility;
     P_WallRun wallRunAbility;
     P_Movement movementAbility;
     P_Input inputAbility;
     A_AirDash airDashAbility;
     A_BladeDance bladeDanceAbility;
+    A_SwordSlash swordSlashAbility;
+    A_ContainedHeat containedHeatAbility;
     mouseLook mouseLookAbility;
     A_SwordThrow swordThrowAbility;
     CharacterStats player;
@@ -27,6 +29,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
         bladeDanceAbility = player.GetComponent<A_BladeDance>();
         mouseLookAbility = player.GetComponent<mouseLook>();
         swordThrowAbility = player.GetComponent<A_SwordThrow>();
+        swordSlashAbility = player.GetComponent<A_SwordSlash>();
+        containedHeatAbility = player.GetComponent<A_ContainedHeat>();
         playerAttackAbility = player.GetComponent<PlayerAttack>();
     }
 
@@ -80,6 +84,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (mouselook) { mouseLookAbility.enabled = true; }
         if (swordThrow) { swordThrowAbility.enabled = true; }
         if (playerAttack) { playerAttackAbility.enabled = true; }
+        if (swordSlash) { swordSlashAbility.enabled = true; }
+        if (containedHeat) { containedHeatAbility.enabled = true; }
     }
     public void TurnOffScripts()
     {
@@ -92,5 +98,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (mouselook) { mouseLookAbility.enabled = false; }
         if (swordThrow) { swordThrowAbility.enabled = false; }
         if (playerAttack) { playerAttackAbility.enabled = false; }
+        if (swordSlash) { swordSlashAbility.enabled = false; }
+        if (containedHeat) { containedHeatAbility.enabled = false; }
     }
 }

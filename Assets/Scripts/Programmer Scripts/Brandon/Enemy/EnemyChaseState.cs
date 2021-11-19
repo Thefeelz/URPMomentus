@@ -28,9 +28,10 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletLaunch;
 
-    enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse, CollideJump}
-    [SerializeField ]State currentState;
-    State previousState;
+    public enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse, CollideJump, Falling, Knockback}
+    public State currentState;
+    public State previousState;
+    public bool isGrounded;
     bool dead = false;
 
     public bool specialInUse = false;
@@ -39,6 +40,7 @@ public class EnemyChaseState : MonoBehaviour
     Vector3 startingPosition, targetPosition;
     float jumpTime;
     float elapsedTime = 0f;
+    float distanceToGround;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,7 @@ public class EnemyChaseState : MonoBehaviour
             currentState = State.Chasing;
         else if (deactive)
             animController.SetBool("deactive", true);
+        distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
     }
 
     private void Update()
@@ -81,11 +84,34 @@ public class EnemyChaseState : MonoBehaviour
                 {
                     JumpToPosition();
                 }
+                else if (currentState == State.Knockback)
+                {
+                    // I dont know what to put here yet
+                }
             }
             else
             {
                 animController.speed = 0;
             }
+        }
+        CheckForGrounded();
+        if (!isGrounded && AbleToEnterFallingState())
+        {
+            if (currentState != State.Falling)
+            {
+                
+                previousState = currentState;
+                animController.SetBool("falling", true);
+                currentState = State.Falling;
+            }
+        }
+        else if (currentState == State.Falling)
+        {
+            animController.SetBool("falling", false);
+            if (previousState != State.Falling)
+                currentState = previousState;
+            else
+                currentState = State.Inactive;
         }
     }
     // Update is called once per frame
@@ -112,7 +138,7 @@ public class EnemyChaseState : MonoBehaviour
     void ChasePlayer()
     {
         float distance = DistanceFromEnemyToPlayer();
-        transform.LookAt(player.transform);
+        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
         if((ammoCount > 0 && distance > chaseStopRangeAttack) || (ammoCount == 0 && distance > chaseStopMeleeAttack))
         {
             enemyRigidbody.velocity = new Vector3(transform.forward.x * enemyRunSpeed, enemyRigidbody.velocity.y, transform.forward.z * enemyRunSpeed);
@@ -204,14 +230,22 @@ public class EnemyChaseState : MonoBehaviour
     {
         currentState = State.Chasing;
     }
+    public void SetStateToKnockback()
+    {
+        enemyRigidbody.velocity = Vector3.zero;
+        previousState = currentState;
+        currentState = State.Knockback;
+        StartCoroutine(KnockBackDelayOff());
+    }
     public void SetStateToJumpCollider(Vector3 targetPos)
     {
+        if(currentState == State.CollideJump) { return; }
         previousState = currentState;
         startingPosition = transform.position;
         targetPosition = targetPos;
         currentState = State.CollideJump;
         jumpTime = Vector3.Distance(startingPosition, targetPosition) / 5;
-        // animController.SetBool("jumping", true);
+        animController.SetBool("falling", true);
     }
 
     public void ShootAtPlayer()
@@ -219,5 +253,33 @@ public class EnemyChaseState : MonoBehaviour
         Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.LookRotation(transform.forward));
         Debug.Log("Pew");
         ammoCount--;
+    }
+    
+    public State GetCurrentState() { return currentState; }
+    void CheckForGrounded()
+    {
+        Debug.DrawRay(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up * (distanceToGround + .25f), Color.red, .1f);
+        if (Physics.Raycast(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up, distanceToGround + .25f))
+        {
+            isGrounded = true;
+        }
+        else
+            isGrounded = false;
+    }
+    IEnumerator KnockBackDelayOff()
+    {
+        yield return new WaitForSeconds(0.5f);
+        CheckForGrounded();
+        if (isGrounded)
+            currentState = previousState;
+        else
+            currentState = State.Falling;
+    }
+    bool AbleToEnterFallingState()
+    {
+        if (currentState != State.Knockback && currentState != State.CollideJump)
+            return true;
+        else
+            return false;
     }
 }

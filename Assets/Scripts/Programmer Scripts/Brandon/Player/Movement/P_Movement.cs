@@ -78,16 +78,6 @@ public class P_Movement : MonoBehaviour
             {
                 Decelerate();
             }
-            // ===================================================IMPORTANT=======================================================
-            // Strafe the Character (These can be not used, added to for force, etc...we will play with them and see what is good)
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                rb.AddRelativeForce(Vector3.right * playerStrafeSpeed, ForceMode.Impulse);
-            }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                rb.AddRelativeForce(Vector3.right * -playerStrafeSpeed, ForceMode.Impulse);
-            }
         }
     }
     public void Jump()
@@ -130,7 +120,7 @@ public class P_Movement : MonoBehaviour
         }
         else
         {
-            if((rb.velocity.x + rb.velocity.z) > maxPlayerSpeedRunning * 0.75f) { return; }
+            if((Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.z)) > maxPlayerSpeedRunning) { return; }
             movementVector *= inAirControlMultiplier;
             rb.AddForce(movementVector, ForceMode.Impulse);
         }

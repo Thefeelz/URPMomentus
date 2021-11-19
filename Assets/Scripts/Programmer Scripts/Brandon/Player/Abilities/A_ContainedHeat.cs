@@ -12,11 +12,12 @@ public class A_ContainedHeat : A_OverchargeAbilities
 
     bool expand = false;
     GameObject instantiatedContainedHeat;
+    Material myMat;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        myMat = containedHeatPrefab.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
     // Update is called once per frame
@@ -24,6 +25,8 @@ public class A_ContainedHeat : A_OverchargeAbilities
     {
         if (expand)
             Expand();
+        if (abilityCooldownCurrent > 0)
+            ui.UpdateContainedHeatFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
     }
 
     public bool Ability_ContainedHeat()
@@ -40,12 +43,18 @@ public class A_ContainedHeat : A_OverchargeAbilities
         playerAnimator.SetBool("groundAttack", false);
         expand = true;
         instantiatedContainedHeat = Instantiate(containedHeatPrefab, transform.position, Quaternion.identity);
+        ParticleSystem particleThing = Instantiate(containedHeatParticleEffect, transform.position, transform.rotation);
+        Destroy(particleThing.transform.gameObject, 2f);
         Destroy(instantiatedContainedHeat, containedHeatDuration);
     }
     void Expand()
     {
         if (instantiatedContainedHeat.transform.localScale.x < containedHeatEndingRadius)
+        {
             instantiatedContainedHeat.transform.localScale += instantiatedContainedHeat.transform.localScale * Time.deltaTime * containedHeatSpeed;
+            instantiatedContainedHeat.transform.eulerAngles += new Vector3(1, 1, 1);
+            
+        }
         else
         {
             expand = false;
