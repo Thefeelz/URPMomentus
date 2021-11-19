@@ -41,7 +41,7 @@ public class StatBoss : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("dead", true);
-            chase.dead = true;
+            //chase.dead = true;
         }
     }
 
