@@ -6,11 +6,14 @@ public class A_BladeDance : A_OverchargeAbilities
 {
     [Header("Blade Dance")]
     [SerializeField] float dashTime;
-    EnemyBad currentTarget;
+    [SerializeField] int killCountMax = 7;
+    [SerializeField] GameObject bodyForAnimation;
+    [SerializeField] GameObject currentSword;
+
+    EnemyStats currentTarget;
     bool allEnemiesAttacked = false;
     int killCount;
-    [SerializeField] int killCountMax = 7;
-    bool bladeDanceReady = true;
+    
 
     [Header("General Things")]
     [SerializeField] GameObject myStartingPosition;
@@ -37,6 +40,8 @@ public class A_BladeDance : A_OverchargeAbilities
     {
         if (camTransitioning)
             UpdateCameraPos(usingSpecial);
+        if (abilityCooldownCurrent > 0)
+            ui.UpdateBladeDanceFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
     }
 
     public bool Ability_BladeDance()
@@ -46,12 +51,12 @@ public class A_BladeDance : A_OverchargeAbilities
         startPos = myStartingPosition.transform.position;
         startRotation = myStartingPosition.transform.rotation;
         allEnemiesAttacked = false;
-        bladeDanceReady = false;
         GetComponent<P_Movement>().enabled = false;
         GetComponent<mouseLook>().enabled = false;
         camTransitioning = true;
         usingSpecial = true;
         StartCoroutine(AttackEnemy());
+        gameManager.activeInUse = true;
         return true;
     }
 
@@ -70,18 +75,24 @@ public class A_BladeDance : A_OverchargeAbilities
         {
             camTransitioning = false;
             camElapsedTime = 0;
+         
+            if (!startingSpecial)
+            {
+                bodyForAnimation.SetActive(false);
+                currentSword.SetActive(true);
+            }
         }
     }
-    EnemyBad LocateClosestEnemy()
+    EnemyStats LocateClosestEnemy()
     {
         if (killCount >= killCountMax)
         {
             return null;
         }
-        EnemyBad closestEnemy = null;
+        EnemyStats closestEnemy = null;
         foreach (var enemy in gameManager.GetActiveEnemies())
         {
-            if (!enemy.GetBeenAttacked())
+            if (enemy.getCurrentHealth() > 0)
             {
                 if (closestEnemy == null)
                 {
@@ -104,19 +115,24 @@ public class A_BladeDance : A_OverchargeAbilities
     }
     IEnumerator AttackEnemy()
     {
+        bodyForAnimation.SetActive(true);
+        currentSword.SetActive(false);
         if (camTransitioning)
             yield return new WaitForSeconds(camTransitionTime);
         do
         {
             yield return new WaitForSeconds(dashTime);
+            if(!bodyForAnimation.GetComponent<Animator>().GetBool("swordDance"))
+                bodyForAnimation.GetComponent<Animator>().SetBool("swordDance", true);
             currentTarget = LocateClosestEnemy();
             if (currentTarget == null)
             {
+                bodyForAnimation.GetComponent<Animator>().SetBool("swordDance", false);
                 gameManager.SetActiveSpecialAbility(false);
                 allEnemiesAttacked = true;
+                gameManager.activeInUse = false;
                 transform.position = startPos;
                 transform.rotation = startRotation;
-                bladeDanceReady = true;
                 killCount = 0;
                 GetComponent<P_Movement>().enabled = true;
                 GetComponent<mouseLook>().enabled = true;
@@ -131,7 +147,7 @@ public class A_BladeDance : A_OverchargeAbilities
                 transform.position -= transform.forward;
 
                 // currentTarget.GetComponent<MeshRenderer>().material.color = Color.black;
-                currentTarget.SetBeenAttacked(true);
+                currentTarget.TakeDamage(player.GetPlayerStrength());
                 killCount++;
             }
         } while (!allEnemiesAttacked);

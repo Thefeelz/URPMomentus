@@ -19,6 +19,7 @@ public class E2_SlowApproach : SlowApproach
     //end test
     private int rndTime; // random amount of time
     private Vector3 pos;
+    
     //assign all variables
     public E2_SlowApproach(Entity mEntity, FiniteStateMachine mStateMachine, D_SlowApproach slowData, D_Entity entityData, Enemy2 mEnemy) : base(mEntity, mStateMachine, slowData, entityData)
     {
@@ -71,9 +72,13 @@ public class E2_SlowApproach : SlowApproach
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Vector3.Distance(mEntity.transform.position, pos) <= .5 && Vector3.Distance(mEntity.transform.position, pos) >= -.5)
+        if(Vector3.Distance(mEnemy.transform.position, pos) <= .5 && Vector3.Distance(mEnemy.transform.position, pos) >= -.5)
         {
             setNewSpot();
+        }
+        if(mEnemy.DistanceToPlayer() >= base.entityData.rapidDistance)
+        {
+            mEnemy.stateMachine.ChangeState(mEnemy.moveState);
         }
     }
 
@@ -92,7 +97,7 @@ public class E2_SlowApproach : SlowApproach
         if(slowData.circleStart == false)
         {
             slowData.circleStart = true;
-            mEnemy.callCoroutine("attackState", rndTime);
+            mEnemy.delayHandler.callCoroutine("attackState", rndTime);
         }
         // formula to keep moving in a circle
         // if we started lower than the player than theta must decrease

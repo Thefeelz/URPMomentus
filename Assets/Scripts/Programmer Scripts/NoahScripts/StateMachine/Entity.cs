@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Entity : MonoBehaviour
 {
-    public Pooler myPool;
+    public Pooler myPool; // object pooler object
     public NavMeshAgent agent;// navmesh agent
     public GameObject myTarget; // navMesh target. Normally the player is assigned to this
 
@@ -18,18 +18,13 @@ public class Entity : MonoBehaviour
     private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
 
-    // on awake state machine is created and variables are assigned values
-    public void Start()
-    {
-        
-        
-    }
     public virtual void Awake()
     {
-        myTarget = GameObject.FindWithTag("Player");
-        stateMachine = new FiniteStateMachine();
-        health = entityData.health;
-        mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>();
+        //variables are assigned when object awakes
+        myTarget = GameObject.FindWithTag("Player"); 
+        stateMachine = new FiniteStateMachine(); 
+        health = entityData.health; 
+        mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>(); 
         mColor = mMesh.material.color;
         
         
@@ -37,7 +32,9 @@ public class Entity : MonoBehaviour
     // update is called once per frame
     public virtual void Update()
     {
+        // performs a logic update in the current state
         stateMachine.currentState.LogicUpdate();
+        // a debug command to test damage
         if (Input.GetKeyDown(KeyCode.K))
         {
             Damage(1f);
@@ -48,6 +45,7 @@ public class Entity : MonoBehaviour
     // physics update
     public virtual void FixedUpdate()
     {
+        //performs a fixed update in the current state
         stateMachine.currentState.PhysicsUpdate();
     }
     // gets the distance to the player
@@ -70,17 +68,12 @@ public class Entity : MonoBehaviour
         Invoke("ResetColor", .5f);
     }
 
-    public virtual void callCoroutine(string sName, float fTime)
-    {
-
-    }
-
    //resets mesh color
     private void ResetColor()
     {
         mMesh.material.color = mColor;
     }
-    //called when health reaches 0
+    //called when health reaches 0 all functionality is done within children
     public virtual void Die()
     {
         

@@ -17,18 +17,17 @@ public class AmmoPool : MonoBehaviour
         for(int i = 0; i < size; i++)
         {
             GameObject nBullet = Instantiate(bullet);
-            nBullet.transform.parent = this.gameObject.transform;
+
             nBullet.SetActive(false);
             bulletPool.Enqueue(nBullet);
-
         }
     }
-
+    // when a bullet is needed it is pulled from the front of the queue
     public GameObject dequeBullet()
     {
         return bulletPool.Dequeue();
     }
-
+    //when the bullet is finished it is put into the back of the queue
     public void enqueBullet(GameObject pBullet)
     {
         bulletPool.Enqueue(pBullet);

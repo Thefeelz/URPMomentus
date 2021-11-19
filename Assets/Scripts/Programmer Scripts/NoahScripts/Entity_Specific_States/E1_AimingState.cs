@@ -11,18 +11,21 @@ public class E1_AimingState : AimingState
     public E1_AimingState(Entity mEntity, FiniteStateMachine mStateMachine, D_Aiming aimData, D_Entity entityData, Enemy1 mEnemy) : base(mEntity, mStateMachine, aimData, entityData)
     {
         this.mEnemy = mEnemy;
+
         
     }
 
     public override void Aim()
     {
-        mEnemy.canon.transform.LookAt(mEntity.myTarget.transform);
+        //mEnemy.canon.transform.LookAt(mEnemy.myTarget.transform);
+        //mEnemy.transform.LookAt(mEnemy.myTarget.transform);
         base.Aim();
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
+        mEnemy.agent.speed = 0;
     }
 
     public override void StateExit()
@@ -66,7 +69,7 @@ public class E1_AimingState : AimingState
         bullet.transform.rotation = enemyRotation;
         bullet.SetActive(true);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * 2000);
+        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * dAimData.bulletSpeed);
         mEnemy.StartCool(bullet);
     }
 

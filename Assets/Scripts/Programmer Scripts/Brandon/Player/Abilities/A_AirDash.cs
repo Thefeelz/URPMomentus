@@ -23,8 +23,6 @@ public class A_AirDash : A_OverchargeAbilities
 
     // A call to our rigid body to effect it
     Rigidbody rb;
-    // A call to our player to check if we are grounded
-    P_Movement player;
 
     // ==========Private Variables to be used in the code ==========
 
@@ -47,7 +45,7 @@ public class A_AirDash : A_OverchargeAbilities
     {
         base.Awake();
         // Cache our Variables
-        player = GetComponent<P_Movement>();
+        playerMovement = GetComponent<P_Movement>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -72,7 +70,7 @@ public class A_AirDash : A_OverchargeAbilities
     public bool UseAirDash()
     {
         // Check to make sure the player is grounded
-        if (!player.isGrounded && abilityReady)
+        if (!playerMovement.isGrounded && abilityReady)
         {
             // Sliding is set to true to allow the sliding function to be called in the 'Update' function
             dashing = true;
@@ -93,6 +91,7 @@ public class A_AirDash : A_OverchargeAbilities
         rb.MovePosition(Vector3.Lerp(startingPos, endingPos, lerpPos));
         // Lerp our camera effects as well so they increase to full intensity while we are sliding
         postProcessingEffects.weight = Mathf.Lerp(0, 1, lerpPos);
+        Camera.main.fieldOfView = Mathf.Lerp(60, 100, lerpPos);
         // If our slide is finished, set everything back to default values and trigger return to normal screen for our camera position and camera effects
         if (elapsedTime >= dashDuration)
         {
@@ -135,6 +134,7 @@ public class A_AirDash : A_OverchargeAbilities
         returnToNormalScreenElapsedTime += Time.deltaTime;
         float lerpPos = returnToNormalScreenElapsedTime / returnToNormalScreenTime;
         postProcessingEffects.weight = Mathf.Lerp(1, 0, lerpPos);
+        Camera.main.fieldOfView = Mathf.Lerp(100, 60, lerpPos);
         if (returnToNormalScreenTime <= returnToNormalScreenElapsedTime)
         {
             returnToNormalScreenElapsedTime = 0;

@@ -13,6 +13,8 @@ public class P_Input : MonoBehaviour
     A_BladeDance bladeDance;
     A_AirDash airDash;
     A_SwordThrow swordThrow;
+    A_ContainedHeat containedHeat;
+    A_SwordSlash swordSlash;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -25,13 +27,23 @@ public class P_Input : MonoBehaviour
         airDash = GetComponent<A_AirDash>();
         swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
+        containedHeat = GetComponent<A_ContainedHeat>();
+        swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
+        LayerMask mask;
+        for(int i = 0; i < 32; i++)
+        {
+            mask = i;
+            Debug.Log(LayerMask.LayerToName(mask));
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         GetUserInputNonPhysics();
+        //Physics.Linecast(transform.position + transform.forward, transform.position + transform.forward * 2, out hit);
+        Debug.DrawLine(new Vector3(transform.position.x + transform.forward.x, transform.position.y, transform.position.z + transform.forward.z), new Vector3((transform.position.x + transform.forward.x * 2f) , transform.position.y, (transform.position.z + transform.forward.z * 2f)), Color.cyan, 1f);
     }
 
     private void FixedUpdate()
@@ -44,20 +56,30 @@ public class P_Input : MonoBehaviour
         // ========================================
         // ==========OVERCHARGE ABILITIES==========
         // ========================================
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && bladeDance.enabled) 
         { 
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck)
+        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
         {
             swordThrow.ThrowSword();
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && swordThrow.stuck)
+        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck && swordThrow.enabled)
         {
             swordThrow.FlyToSword();
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        if ((Input.GetKeyDown(KeyCode.Alpha3)) && containedHeat.enabled)
+        {
+            if (containedHeat.Ability_ContainedHeat())
+                coolDownManager.AddCooldownToList(containedHeat);
+        }
+        if ((Input.GetKeyDown(KeyCode.Q)) && swordSlash.enabled)
+        {
+            if (swordSlash.Ability_SwordSlash())
+                coolDownManager.AddCooldownToList(swordSlash);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
         {
             if (airDash.UseAirDash())
                 coolDownManager.AddCooldownToList(airDash);
@@ -65,8 +87,8 @@ public class P_Input : MonoBehaviour
         // =================================
         // ==========PLAYER ATTACK==========
         // =================================
-        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5)) { playerAttack.BasicAttack(); }
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4)) { playerAttack.BasicDefense(); }
+        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) { playerAttack.BasicAttack(); }
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && playerAttack.enabled) { playerAttack.BasicDefense(); }
         else { playerAttack.SwordBlockComplete(); }
 
         // ======================================
@@ -76,7 +98,7 @@ public class P_Input : MonoBehaviour
         // ==========Jump==========
         if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); }
         // ==========Ground Dash==========
-        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding()) { groundSlide.UseGroundDash(0.5f); }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========
@@ -86,29 +108,29 @@ public class P_Input : MonoBehaviour
 
     void GetUserInputPhysics()
     {
-        // Check to see if we are going to fast, stops input if we are going to fast
-        if(rb.velocity.sqrMagnitude > (movement.maxPlayerSpeedRunning * movement.maxPlayerSpeedRunning)) { return; }
         // ======================================
         // ==========CHARACTER MOVEMENT==========
         // ======================================
-        
+        if (!movement.enabled) { return; }
+        Vector3 charMovementVector = Vector3.zero;
         // ==========Move Forward==========
-        if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { movement.MoveForward();}
+        if(Input.GetKey(KeyCode.W) || (Input.GetAxis("controllerUp") < 0)) { charMovementVector += transform.forward;}
 
         // ==========Move Backwards==========
-        else if (Input.GetKey(KeyCode.S) || (Input.GetAxis("controllerDown") > 0)) { movement.MoveBackwards(); }
+        else if (Input.GetKey(KeyCode.S) || (Input.GetAxis("controllerDown") > 0)) { charMovementVector -= transform.forward * 0.5f; }
         else
         {
             movement.SetMoveForwardFalse();
             movement.SetMoveBackwardsFalse();
         }
         // ==========Strafe Right==========
-        if(Input.GetKey(KeyCode.D) || (Input.GetAxis("controllerRight") > 0)) { movement.StrafeCharacter(1); }
+        if(Input.GetKey(KeyCode.D) || (Input.GetAxis("controllerRight") > 0)) { charMovementVector += transform.right; }
         // ==========Strafe Left==========
-        else if (Input.GetKey(KeyCode.A) || (Input.GetAxis("controllerLeft") < 0)) { movement.StrafeCharacter(-1); }
+        else if (Input.GetKey(KeyCode.A) || (Input.GetAxis("controllerLeft") < 0)) { charMovementVector -= transform.right; }
         else
         {
             movement.SetMoveSidetoSideFalse();
         }
+        movement.HandleMovement(charMovementVector.normalized);
     }
 }
