@@ -111,6 +111,7 @@ public class P_GroundSlide : MonoBehaviour
 
         RaycastHit hit;
         Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
+        Debug.DrawLine(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), Color.green, 1f);
 
         if (hit.collider)
             Debug.Log("Ground Slide hit " + hit.collider.name);
@@ -147,7 +148,7 @@ public class P_GroundSlide : MonoBehaviour
         // Raycast hit to store our raycast hit information
         RaycastHit hit;
         // A raycast that shoots out from our feet forward relative to where we are facing
-        Physics.Raycast(transform.position, TransformForwardFeet(), out hit, slideDistance);
+        Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(slideDistance), out hit);
         
         // If the raycast hits nothing, go the full length of the slide and return
         if (hit.collider == null || hit.collider.GetComponent<Floor>() || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }

@@ -66,14 +66,14 @@ public class P_WallRun : MonoBehaviour
             {
                 Vector3 dir = transform.TransformDirection(directions[i]);
                 Physics.Raycast(transform.position + Vector3.up * wallRunHeightOffset, dir, out hits[i], wallDetectionDistanceMultiplier);
-                if (hits[i].collider != null && hits[i].collider.gameObject.layer == wallRunLayer)
+                /*if (hits[i].collider != null && hits[i].collider.gameObject.layer == wallRunLayer)
                 {
                     Debug.DrawRay(transform.position + Vector3.up * wallRunHeightOffset, dir * hits[i].distance, Color.green);
                 }
                 else
                 {
                     Debug.DrawRay(transform.position + Vector3.up * wallRunHeightOffset, dir * wallDetectionDistanceMultiplier, Color.red);
-                }
+                }*/
             }
             hits = hits.ToList().Where(h => h.collider != null &&  h.collider.gameObject.layer == wallRunLayer).OrderBy(h => h.distance).ToArray();
             // If we enter this, we are wall running
@@ -95,7 +95,7 @@ public class P_WallRun : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("Yah Fucked Up I guess");
+                    
                 }
                 OnWall(hits[0]);
             }

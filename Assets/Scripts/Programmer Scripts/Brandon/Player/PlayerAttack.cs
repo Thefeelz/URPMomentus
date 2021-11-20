@@ -137,10 +137,7 @@ public class PlayerAttack : MonoBehaviour
         Physics.Raycast(weaponRaycastTransformPosition.position, transform.forward, out hit, 2f);
         if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>())
         {
-            Debug.Log(hit.collider.name);
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
         }
-        if (hit.collider == null)
-            Debug.Log("Null");
     }
 }

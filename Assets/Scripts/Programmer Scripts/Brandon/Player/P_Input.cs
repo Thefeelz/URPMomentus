@@ -30,12 +30,6 @@ public class P_Input : MonoBehaviour
         containedHeat = GetComponent<A_ContainedHeat>();
         swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
-        LayerMask mask;
-        for(int i = 0; i < 32; i++)
-        {
-            mask = i;
-            Debug.Log(LayerMask.LayerToName(mask));
-        }
     }
 
     // Update is called once per frame
@@ -131,6 +125,7 @@ public class P_Input : MonoBehaviour
         {
             movement.SetMoveSidetoSideFalse();
         }
+        if(charMovementVector == Vector3.zero) { return; }
         movement.HandleMovement(charMovementVector.normalized);
     }
 }
