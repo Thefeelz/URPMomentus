@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerLook : MonoBehaviour
+public class controllerLook : MonoBehaviour
 {
     [SerializeField]
     private float mouseSens = 100f;

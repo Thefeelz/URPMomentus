@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controllerLook : MonoBehaviour
+public class ControllerLook : MonoBehaviour
 {
     [SerializeField]
     private float mouseSens = 1f;
@@ -21,7 +21,7 @@ public class controllerLook : MonoBehaviour
     void Update()
     {
         //get the right thumbstick axis
-        float mouseX = Input.GetAxis("cntrlLookLeft") * mouseSens * mouseMultiplier; // Gets the right stick X axis
+        float mouseX = Input.GetAxis("cntrlLookVert") * mouseSens * mouseMultiplier; // Gets the right stick X axis
         float mouseY = Input.GetAxis("cntrlLookDown") * mouseSens * mouseMultiplier; // Gets the right stick Y axis
 
         //rotate left/right
