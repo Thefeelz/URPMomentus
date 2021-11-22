@@ -7,7 +7,7 @@ public class C_Input : MonoBehaviour
     [SerializeField] Canvas helpScreen;
     P_CoolDownManager coolDownManager;
     P_GroundSlide groundSlide;
-    P_Movement movement;
+    C_Movement movement;
     PlayerAttack playerAttack;
 
     A_BladeDance bladeDance;
@@ -20,7 +20,7 @@ public class C_Input : MonoBehaviour
     {
         coolDownManager = GetComponent<P_CoolDownManager>();
         groundSlide = GetComponent<P_GroundSlide>();
-        movement = GetComponent<P_Movement>();
+        movement = GetComponent<C_Movement>();
         bladeDance = GetComponent<A_BladeDance>();
         airDash = GetComponent<A_AirDash>();
         swordThrow = GetComponent<A_SwordThrow>();
