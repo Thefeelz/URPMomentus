@@ -10,7 +10,7 @@ using UnityEngine.UI;
  * 
  * created by Divyansh Malik / 11/02/2021
  * 
- * Last Modded by: Divyansh Malik / 11/03/2021
+ * Last Modded by: Divyansh Malik / 11/11/2021
  * 
  */
 
@@ -19,12 +19,12 @@ public class DialogueHandlerScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Text dialogueText;
+    private Text dialogueText; //textbox to display the text
 
     [SerializeField]
-    Animator closeAnimation;
+    Animator closeAnimation; // refrence to close the animator
 
-    private Queue<string> sentences; // this variable holds all the sentences within it, you can access them in a FIFO order.
+    private Queue<string> sentences; // this variable holds all the sentences from the dialogue within it, you can access them in a FIFO order.
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,13 @@ public class DialogueHandlerScript : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// This function is supposed to take in a dialogue object which is an arrat of strings and put them within a queue. then after that it starts a coroutine which tells the handler to display the scentences
+    /// to the User at a set period of time
+    /// </summary>
+    /// <param name="dialogue"></param>
+    /// Input: the dialogue object which contains the name of the speaker and their script
+    /// Output: None
     public void StartDialogue(Dialogue dialogue)
     {
         //check if the conversation started
@@ -57,7 +64,7 @@ public class DialogueHandlerScript : MonoBehaviour
 
     }
 
-    public void DisplayNextSentence()
+    private void DisplayNextSentence()
     {
         
         //if there are no sentences left, then end the dialogue and return
@@ -89,7 +96,7 @@ public class DialogueHandlerScript : MonoBehaviour
         for(int i=sentences.Count; i >= 0;--i)
         {
             DisplayNextSentence();
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(3);
         }
         
     }

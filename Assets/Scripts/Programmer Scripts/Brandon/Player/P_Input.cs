@@ -90,14 +90,14 @@ public class P_Input : MonoBehaviour
         // ======================================
         
         // ==========Jump==========
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); }
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); } // @Isaac added an or statement for looking for the a button
         // ==========Ground Dash==========
         if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========
         // ====================================
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
     }
 
     void GetUserInputPhysics()
