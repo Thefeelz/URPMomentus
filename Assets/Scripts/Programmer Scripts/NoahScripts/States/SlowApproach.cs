@@ -10,9 +10,9 @@ public class SlowApproach : State
     
 
     //assigns variables
-    public SlowApproach(Entity mEntity, FiniteStateMachine mStateMachine, D_SlowApproach stateData, D_Entity entityData) : base(mEntity, mStateMachine)
+    public SlowApproach(Entity mEntity, FiniteStateMachine mStateMachine, D_SlowApproach slowData, D_Entity entityData) : base(mEntity, mStateMachine)
     {
-        slowData = stateData;
+        this.slowData = slowData;
         this.entityData = entityData;
     }
     public override void StateEnter()

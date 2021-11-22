@@ -11,10 +11,18 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
     public float abilityCooldownCurrent = 0f;
     public bool abilityReady = true;
     protected PlayerUI ui;
+    protected CharacterStats player;
+    protected Animator playerAnimator;
+    protected mouseLook mouseLook;
+    protected P_Movement playerMovement;
     // Start is called before the first frame update
     protected virtual void Awake()
     {
         ui = GetComponent<PlayerUI>();
+        player = GetComponent<CharacterStats>();
+        playerAnimator = GetComponent<Animator>();
+        mouseLook = GetComponent<mouseLook>();
+        playerMovement = GetComponent<P_Movement>();
     }
 
     // Update is called once per frame

@@ -6,4 +6,5 @@ using UnityEngine;
 public class D_SlowApproach : ScriptableObject
 {
     public float speed;
+    public bool circleStart; // bool to check if the enemy has started to circle
 }

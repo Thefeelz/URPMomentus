@@ -8,17 +8,19 @@ public class AimingState : State
     
     protected bool canShoot = true;
     protected D_Entity entityData;
+    protected D_Aiming dAimData;
 
     public AimingState(Entity mEntity, FiniteStateMachine mStateMachine, D_Aiming aimData, D_Entity entityData) : base(mEntity, mStateMachine)
     {
         this.entityData = entityData;
+        dAimData = aimData;
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
         // disables navmesh to completely cancel movement and allow custom rotation
-        mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        //mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         
     }
 

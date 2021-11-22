@@ -11,6 +11,7 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField] int playerStrength = 10;
     [SerializeField] int playerDefense = 10;
+
     void Start()
     {
         playerCurrentHealth = playerMaxHealth;

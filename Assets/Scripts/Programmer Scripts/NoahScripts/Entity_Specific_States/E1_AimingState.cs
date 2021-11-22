@@ -7,21 +7,25 @@ public class E1_AimingState : AimingState
 {
     Enemy1 mEnemy;
     private Transform shotPoint;
+    public GameObject bullet;
     public E1_AimingState(Entity mEntity, FiniteStateMachine mStateMachine, D_Aiming aimData, D_Entity entityData, Enemy1 mEnemy) : base(mEntity, mStateMachine, aimData, entityData)
     {
         this.mEnemy = mEnemy;
+
         
     }
 
     public override void Aim()
     {
-        mEnemy.canon.transform.LookAt(mEntity.myTarget.transform);
+        //mEnemy.canon.transform.LookAt(mEnemy.myTarget.transform);
+        //mEnemy.transform.LookAt(mEnemy.myTarget.transform);
         base.Aim();
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
+        mEnemy.agent.speed = 0;
     }
 
     public override void StateExit()
@@ -35,9 +39,8 @@ public class E1_AimingState : AimingState
         Aim();
         if(mEnemy.canShoot)
         {
-            
+            mEnemy.canShoot = false;
             Shoot();
-            mEnemy.StartCool();
         }
         // switch states based on player distance if needed
         if (mEntity.DistanceToPlayer() <= entityData.evadeDistance)
@@ -59,10 +62,15 @@ public class E1_AimingState : AimingState
 
     private void Shoot()
     {
-        //creates a bullet at the enemy's location and fires it forward towards the player using force
+        //deques the front bullet in the ammo pool and resets its location to the canon of the enemy, and adds force to fire it
         Quaternion enemyRotation = mEnemy.transform.rotation;
-        GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * 2000);
+        bullet = mEnemy.ammo.dequeBullet();
+        bullet.transform.position = mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f);
+        bullet.transform.rotation = enemyRotation;
+        bullet.SetActive(true);
+        //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
+        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * dAimData.bulletSpeed);
+        mEnemy.StartCool(bullet);
     }
 
     

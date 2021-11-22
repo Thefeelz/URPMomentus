@@ -6,6 +6,7 @@ public class mouseLook : MonoBehaviour
 {
     [SerializeField]
     private float mouseSens = 100f;
+    [SerializeField] float lookRotation = 30f; 
     private float mouseMultiplier = 10f;
     private float horizontalRotation = 0f;
     private float verticalRotation = 0f;
@@ -30,7 +31,7 @@ public class mouseLook : MonoBehaviour
 
         //rotate up/down
         verticalRotation -= mouseY;
-        verticalRotation = Mathf.Clamp(verticalRotation, -30f, 30f);
+        verticalRotation = Mathf.Clamp(verticalRotation, -lookRotation, lookRotation);
         
         
        // transform.localRotation = Quaternion.Euler(, 0f, 0f);
