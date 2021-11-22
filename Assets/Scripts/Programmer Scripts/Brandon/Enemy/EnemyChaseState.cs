@@ -41,6 +41,9 @@ public class EnemyChaseState : MonoBehaviour
     float jumpTime;
     float elapsedTime = 0f;
     float distanceToGround;
+    RaycastHit[] objectAvoidanceHits;
+    Vector3[] directions;
+    bool avoidObstacles = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +55,19 @@ public class EnemyChaseState : MonoBehaviour
         else if (deactive)
             animController.SetBool("deactive", true);
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
+        directions = new Vector3[]
+        {
+            Vector3.right,
+            Vector3.zero,
+            Vector3.left
+        };
     }
 
     private void Update()
     {
+        Debug.DrawRay(transform.position + (Vector3.up * 0.25f), transform.forward, Color.red, 0.1f);
+        Debug.DrawRay(transform.position + ((Vector3.up * 0.25f) + transform.right), transform.forward, Color.red, 0.1f);
+        Debug.DrawRay(transform.position + ((Vector3.up * 0.25f) - transform.right), transform.forward, Color.red, 0.1f);
         if (!deactive)
         {
             if (!specialInUse)
@@ -117,6 +129,7 @@ public class EnemyChaseState : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         if(!specialInUse)
         {
             if(currentState == State.Chasing)
@@ -125,10 +138,21 @@ public class EnemyChaseState : MonoBehaviour
             }
         }
     }
+    bool PlayerInLineOfSight(float detectionRange)
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position + Vector3.up, player.transform.position - transform.position, out hit, detectionRange);
+        Debug.DrawRay(transform.position + Vector3.up, (player.transform.position - transform.position).normalized * detectionRange, Color.yellow, 0.1f);
+        if(hit.collider != null && hit.transform.GetComponentInParent<P_Movement>())
+        {
+            return true;
+        }
+        return false;
+    }
 
     void CheckPlayerInRange()
     {
-        if(DistanceFromEnemyToPlayer() < maxDetectionRange)
+        if(DistanceFromEnemyToPlayer() < maxDetectionRange && PlayerInLineOfSight(maxDetectionRange))
         {
             currentState = State.Chasing;
             animController.SetBool("chasing", true);
@@ -139,6 +163,7 @@ public class EnemyChaseState : MonoBehaviour
     {
         float distance = DistanceFromEnemyToPlayer();
         transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+        // AvoidObstacles();
         if((ammoCount > 0 && distance > chaseStopRangeAttack) || (ammoCount == 0 && distance > chaseStopMeleeAttack))
         {
             enemyRigidbody.velocity = new Vector3(transform.forward.x * enemyRunSpeed, enemyRigidbody.velocity.y, transform.forward.z * enemyRunSpeed);
@@ -149,6 +174,21 @@ public class EnemyChaseState : MonoBehaviour
             currentState = State.Attacking;
             animController.SetBool("chasing", false);
         }
+    }
+    void AvoidObstacles()
+    {
+        objectAvoidanceHits = new RaycastHit[directions.Length];
+        Vector3 directionVector = Vector3.zero;
+        Physics.Raycast(transform.position + (Vector3.up * 0.25f), transform.forward, out objectAvoidanceHits[0], 2f);
+        Physics.Raycast(transform.position + ((Vector3.up * 0.25f) + (transform.right)), transform.forward, out objectAvoidanceHits[1], 2f);
+        Physics.Raycast(transform.position + ((Vector3.up * 0.25f) - (transform.right)), transform.forward, out objectAvoidanceHits[2], 2f);
+        if ((objectAvoidanceHits[0].collider == null || objectAvoidanceHits[0].collider.gameObject.layer == 6) && PlayerInLineOfSight(100))
+        {
+            transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z));
+
+        }
+        else
+            transform.Rotate(0, 5, 0);
     }
     void AttackPlayer()
     {

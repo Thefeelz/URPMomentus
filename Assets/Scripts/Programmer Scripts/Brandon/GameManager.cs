@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var enemy in enemiesInLevel)
         {
+            Debug.Log("Called " + value);
             enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
         }
     }

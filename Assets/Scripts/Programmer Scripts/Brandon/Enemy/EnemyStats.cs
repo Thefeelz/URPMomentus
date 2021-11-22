@@ -77,8 +77,8 @@ public class EnemyStats : MonoBehaviour
         chase.SetStateToDead();
         GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
         GetComponentInChildren<Collider>().enabled = false;
-        gameManager.RemoveFromActiveList(this);
         yield return new WaitForSeconds(10f);
+        gameManager.RemoveFromActiveList(this);
         Destroy(gameObject);
     }
 }
