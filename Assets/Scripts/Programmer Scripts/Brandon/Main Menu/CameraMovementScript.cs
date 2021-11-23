@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class CameraMovementScript : MonoBehaviour
 {
@@ -42,6 +44,10 @@ public class CameraMovementScript : MonoBehaviour
         transform.rotation = Quaternion.Lerp(startingRot, endingRot, currentLerpPos);
         if(currentLerpPos >= 1)
         {
+            foreach (Transform toggle in currentSelelection.transform)
+            {
+                toggle.GetComponent<Toggle>().isOn = false;
+            }
             currentSelelection.SetActive(false);
             nextSelection.SetActive(true);
             transitioning = false;
@@ -99,7 +105,7 @@ public class CameraMovementScript : MonoBehaviour
         nextSelection = mainMenuSelectionObject;
         transitioning = true;
     }
-    public void LevelSelectButtonClicked()
+    public void LevelSelectBackButtonClicked()
     {
         startingPos = transform.position;
         startingRot = transform.rotation;

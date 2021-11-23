@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9026180}
+  - component: {fileID: 9026181}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -159,6 +160,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9026181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9026179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1 &11966162
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 28261187}
+  - component: {fileID: 28261188}
   m_Layer: 5
   m_Name: Main Menu Selection
   m_TagString: Untagged
@@ -299,6 +314,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &28261188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28261186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1 &35309754
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +368,8 @@ GameObject:
   - component: {fileID: 56467605}
   - component: {fileID: 56467609}
   - component: {fileID: 56467608}
-  - component: {fileID: 56467607}
   - component: {fileID: 56467606}
+  - component: {fileID: 56467607}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -397,7 +425,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 56467604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -407,7 +435,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -429,7 +457,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 56467608}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 722658947}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -444,6 +475,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &56467608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,8 +676,8 @@ GameObject:
   - component: {fileID: 264260907}
   - component: {fileID: 264260911}
   - component: {fileID: 264260910}
-  - component: {fileID: 264260909}
   - component: {fileID: 264260908}
+  - component: {fileID: 264260909}
   m_Layer: 5
   m_Name: Red Selection
   m_TagString: Untagged
@@ -701,7 +733,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 264260906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -711,7 +743,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -733,9 +765,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 264260910}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 722658947}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!114 &264260910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,8 +821,8 @@ GameObject:
   - component: {fileID: 279811052}
   - component: {fileID: 279811055}
   - component: {fileID: 279811054}
-  - component: {fileID: 279811053}
   - component: {fileID: 279811056}
+  - component: {fileID: 279811053}
   m_Layer: 5
   m_Name: Level Two Button
   m_TagString: Untagged
@@ -823,7 +859,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 279811051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -855,9 +891,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 279811054}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 812172552}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1164062621}
+        m_TargetAssemblyTypeName: CameraMovementScript, Assembly-CSharp
+        m_MethodName: LevelButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &279811054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1065,8 +1117,8 @@ GameObject:
   - component: {fileID: 339901712}
   - component: {fileID: 339901715}
   - component: {fileID: 339901714}
-  - component: {fileID: 339901713}
   - component: {fileID: 339901716}
+  - component: {fileID: 339901713}
   m_Layer: 5
   m_Name: Level Three Button
   m_TagString: Untagged
@@ -1103,7 +1155,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 339901711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -1135,9 +1187,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 339901714}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 812172552}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1164062621}
+        m_TargetAssemblyTypeName: CameraMovementScript, Assembly-CSharp
+        m_MethodName: LevelButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &339901714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,8 +2048,8 @@ GameObject:
   - component: {fileID: 581650004}
   - component: {fileID: 581650007}
   - component: {fileID: 581650006}
-  - component: {fileID: 581650005}
   - component: {fileID: 581650008}
+  - component: {fileID: 581650005}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -2018,7 +2086,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 581650003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2050,7 +2118,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 581650006}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 28261188}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -2065,6 +2136,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &581650006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,10 +2205,10 @@ GameObject:
   - component: {fileID: 631877792}
   - component: {fileID: 631877796}
   - component: {fileID: 631877795}
-  - component: {fileID: 631877794}
   - component: {fileID: 631877793}
+  - component: {fileID: 631877794}
   m_Layer: 5
-  m_Name: Quit Button
+  m_Name: Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2190,7 +2262,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 631877791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2222,7 +2294,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 631877795}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 9026181}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -2237,6 +2312,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &631877795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2286,8 +2362,8 @@ GameObject:
   - component: {fileID: 666841387}
   - component: {fileID: 666841391}
   - component: {fileID: 666841390}
-  - component: {fileID: 666841389}
   - component: {fileID: 666841388}
+  - component: {fileID: 666841389}
   m_Layer: 5
   m_Name: Blue Selection
   m_TagString: Untagged
@@ -2343,7 +2419,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 666841386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2353,7 +2429,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2375,9 +2451,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 666841390}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 722658947}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!114 &666841390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,6 +2572,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 722658946}
+  - component: {fileID: 722658947}
   m_Layer: 5
   m_Name: Load Out Selection
   m_TagString: Untagged
@@ -2523,6 +2604,19 @@ RectTransform:
   m_AnchoredPosition: {x: 123.4, y: 51.48}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &722658947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722658945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1 &753238448
 GameObject:
   m_ObjectHideFlags: 0
@@ -2667,6 +2761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 812172551}
+  - component: {fileID: 812172552}
   m_Layer: 5
   m_Name: Level Select
   m_TagString: Untagged
@@ -2697,6 +2792,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &812172552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812172550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1001 &826198097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2814,8 +2922,8 @@ GameObject:
   - component: {fileID: 829033494}
   - component: {fileID: 829033498}
   - component: {fileID: 829033497}
-  - component: {fileID: 829033496}
   - component: {fileID: 829033495}
+  - component: {fileID: 829033496}
   m_Layer: 5
   m_Name: Green Selection
   m_TagString: Untagged
@@ -2871,7 +2979,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 829033493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -2881,7 +2989,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2903,9 +3011,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 829033497}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 722658947}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!114 &829033497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2953,6 +3065,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 855225786}
+  - component: {fileID: 855225787}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -2981,6 +3094,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &855225787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855225785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 1
 --- !u!1 &858027902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3472,8 +3598,8 @@ GameObject:
   - component: {fileID: 963522335}
   - component: {fileID: 963522339}
   - component: {fileID: 963522338}
-  - component: {fileID: 963522337}
   - component: {fileID: 963522336}
+  - component: {fileID: 963522337}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -3529,7 +3655,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 963522334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -3561,7 +3687,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 963522338}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 855225787}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -3576,6 +3705,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &963522338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4209,8 +4339,8 @@ GameObject:
   - component: {fileID: 1140708405}
   - component: {fileID: 1140708409}
   - component: {fileID: 1140708408}
-  - component: {fileID: 1140708407}
   - component: {fileID: 1140708406}
+  - component: {fileID: 1140708407}
   m_Layer: 5
   m_Name: Aqua Selection
   m_TagString: Untagged
@@ -4266,7 +4396,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1140708404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4276,7 +4406,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4298,9 +4428,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1140708408}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 722658947}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_IsOn: 0
 --- !u!114 &1140708408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,8 +4905,8 @@ GameObject:
   - component: {fileID: 1352685500}
   - component: {fileID: 1352685503}
   - component: {fileID: 1352685502}
-  - component: {fileID: 1352685501}
   - component: {fileID: 1352685504}
+  - component: {fileID: 1352685501}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -4809,7 +4943,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1352685499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -4841,21 +4975,13 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1352685502}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1164062616}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  m_IsOn: 0
 --- !u!114 &1352685502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5057,8 +5183,8 @@ GameObject:
   - component: {fileID: 1436978024}
   - component: {fileID: 1436978027}
   - component: {fileID: 1436978026}
-  - component: {fileID: 1436978025}
   - component: {fileID: 1436978028}
+  - component: {fileID: 1436978025}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -5095,7 +5221,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1436978023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -5127,7 +5253,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1436978026}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 28261188}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -5142,6 +5271,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &1436978026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5655,8 +5785,8 @@ GameObject:
   - component: {fileID: 1625797461}
   - component: {fileID: 1625797464}
   - component: {fileID: 1625797463}
-  - component: {fileID: 1625797462}
   - component: {fileID: 1625797465}
+  - component: {fileID: 1625797462}
   m_Layer: 5
   m_Name: Credits Button
   m_TagString: Untagged
@@ -5693,7 +5823,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1625797460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -5725,7 +5855,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1625797463}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 28261188}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -5740,6 +5873,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &1625797463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6007,8 +6141,8 @@ GameObject:
   - component: {fileID: 1705244314}
   - component: {fileID: 1705244317}
   - component: {fileID: 1705244316}
-  - component: {fileID: 1705244315}
   - component: {fileID: 1705244318}
+  - component: {fileID: 1705244315}
   m_Layer: 5
   m_Name: Tutorial Button
   m_TagString: Untagged
@@ -6045,7 +6179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1705244313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -6077,9 +6211,25 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1705244316}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 28261188}
+  onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1164062621}
+        m_TargetAssemblyTypeName: CameraMovementScript, Assembly-CSharp
+        m_MethodName: PlayButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &1705244316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6178,8 +6328,8 @@ GameObject:
   - component: {fileID: 1796544751}
   - component: {fileID: 1796544754}
   - component: {fileID: 1796544753}
-  - component: {fileID: 1796544752}
   - component: {fileID: 1796544755}
+  - component: {fileID: 1796544752}
   m_Layer: 5
   m_Name: Back Button
   m_TagString: Untagged
@@ -6216,7 +6366,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1796544750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -6248,12 +6398,15 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1796544753}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 812172552}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
         m_TargetAssemblyTypeName: CameraMovementScript, Assembly-CSharp
-        m_MethodName: LevelSelectButtonClicked
+        m_MethodName: LevelSelectBackButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6263,6 +6416,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &1796544753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6983,8 +7137,8 @@ GameObject:
   - component: {fileID: 1966556195}
   - component: {fileID: 1966556198}
   - component: {fileID: 1966556197}
-  - component: {fileID: 1966556196}
   - component: {fileID: 1966556199}
+  - component: {fileID: 1966556196}
   m_Layer: 5
   m_Name: Level One Button
   m_TagString: Untagged
@@ -7022,7 +7176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966556194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -7054,7 +7208,10 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1966556197}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 812172552}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1164062621}
@@ -7069,6 +7226,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_IsOn: 0
 --- !u!114 &1966556197
 MonoBehaviour:
   m_ObjectHideFlags: 0
