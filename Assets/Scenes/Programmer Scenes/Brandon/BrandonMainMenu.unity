@@ -4121,7 +4121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!220 &1121242209
 LightProbeGroup:
   m_ObjectHideFlags: 0
@@ -5464,21 +5464,45 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6281897819394812728, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281897819394812728, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6281897819394812728, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a936d14bc9ed02b4183080543b88ff1a, type: 2}
+    - target: {fileID: -5826220185289077170, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5826220185289077170, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a936d14bc9ed02b4183080543b88ff1a, type: 2}
     - target: {fileID: -5557397772161099291, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5557397772161099291, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a936d14bc9ed02b4183080543b88ff1a, type: 2}
     - target: {fileID: -3533031576166294711, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3533031576166294711, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a936d14bc9ed02b4183080543b88ff1a, type: 2}
+    - target: {fileID: -694698495248597845, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -694698495248597845, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5488,11 +5512,19 @@ PrefabInstance:
       value: FlyingEnemy01
       objectReference: {fileID: 0}
     - target: {fileID: 1321846336628879686, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321846336628879686, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: a936d14bc9ed02b4183080543b88ff1a, type: 2}
     - target: {fileID: 3511682157987631077, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5776781109360801187, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+      propertyPath: m_ReflectionProbeUsage
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5776781109360801187, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
@@ -8037,3 +8069,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110518784}
   m_CullTransparentMesh: 1
+--- !u!1 &2139166803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 683a1261ddc73534a978b8cf30844d69, type: 3}
+  m_PrefabInstance: {fileID: 1524969797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2139166804
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139166803}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 98866d425af11fc4ba04eea3e15d6128, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
