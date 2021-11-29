@@ -6,6 +6,7 @@ public class sendForce : MonoBehaviour
 {
     public GameObject player;
     public Rigidbody rigid;
+    public int bounce;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class sendForce : MonoBehaviour
 
     void OnCollisionEnter()
     {
-       rigid.AddForce(Vector3.up * 15, ForceMode.Impulse);
+       rigid.AddForce(Vector3.up * bounce, ForceMode.Impulse);
     }
 
 }
