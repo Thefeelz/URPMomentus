@@ -16,6 +16,8 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
 
+    bool triggeredDead = false;
+
     EnemyChaseState chase;
     CharacterStats player;
     GameManager gameManager;
@@ -43,8 +45,9 @@ public class EnemyStats : MonoBehaviour
         Debug.Log("Enemy is taking Damage " + damageToTake);
         currentHealth -= damageToTake;
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
-        if(currentHealth <= 0)
+        if(currentHealth <= 0 && !triggeredDead)
         {
+            triggeredDead = true;
             if(objectsToTurnOnWhenDead.Length > 0)
                 TurnOnObjects();
             StartCoroutine(DestroySelf());
