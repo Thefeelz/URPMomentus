@@ -13,11 +13,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Animator playerAnimator;
     [SerializeField] float dashMaxDistance;
     [SerializeField] float dashMinDistance;
-    Volume ppFX;
+    [SerializeField] float attackDashCooldown;
+    [SerializeField] float dashTime;
+
+    [SerializeField] Volume attackDashVolume;
     RaycastHit hitTarget;
     bool hitCast;
     bool dashing;
-    [SerializeField] float dashTime;
+    bool ableToAttackDash = true;
     float elaspedTime = 0f;
     Color crosshairColor;
     Vector3 endingDashPosition;
@@ -33,7 +36,6 @@ public class PlayerAttack : MonoBehaviour
         playerStats = GetComponentInParent<CharacterStats>();
         myRb = GetComponent<Rigidbody>();
         crosshairColor = targetCrosshair.color;
-        ppFX = FindObjectOfType<Volume>();
     }
 
     private void Update()
@@ -49,14 +51,15 @@ public class PlayerAttack : MonoBehaviour
         if(!playerAnimator.GetBool("swordSwing"))
         {
             StartCoroutine(WeaponSwing());
-            return;
-            if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
+            
+            if (ableToAttackDash && Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
             {
                 if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
                 {
                     endingDashPosition = hitTarget.transform.position;
                     startingDashPosition = transform.position;
                     dashing = true;
+                    StartCoroutine(ResetAttackDash());
                     DashToEnemy();
                     hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
                 }
@@ -77,13 +80,13 @@ public class PlayerAttack : MonoBehaviour
         {
             elaspedTime += Time.deltaTime;
             myRb.MovePosition(Vector3.Lerp(startingDashPosition, endingDashPosition, elaspedTime / dashTime));
-            ppFX.weight = Mathf.Lerp(0, 1f, elaspedTime / dashTime);
+            attackDashVolume.weight = Mathf.Lerp(0, 1f, elaspedTime / dashTime);
         }
         else
         {
             elaspedTime = 0;
             dashing = false;
-            ppFX.weight = 0;
+            attackDashVolume.weight = 0;
         }
     }
 
@@ -114,6 +117,12 @@ public class PlayerAttack : MonoBehaviour
         playerAnimator.SetBool("swordSwing", false);
         StopCoroutine(WeaponSwing());
     }
+    IEnumerator ResetAttackDash()
+    {
+        ableToAttackDash = false;
+        yield return new WaitForSeconds(attackDashCooldown);
+        ableToAttackDash = true;
+    }
     public void SetSwordSwingComplete()
     {
         playerAnimator.SetBool("swordSwing", false);
@@ -137,10 +146,7 @@ public class PlayerAttack : MonoBehaviour
         Physics.Raycast(weaponRaycastTransformPosition.position, transform.forward, out hit, 2f);
         if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>())
         {
-            Debug.Log(hit.collider.name);
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
         }
-        if (hit.collider == null)
-            Debug.Log("Null");
     }
 }

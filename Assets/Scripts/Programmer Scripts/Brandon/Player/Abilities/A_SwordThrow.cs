@@ -21,9 +21,11 @@ public class A_SwordThrow : A_OverchargeAbilities
     Vector3 targetDestination;
     Vector3 initialPosition;
     float rotationAmount;
+    SwordThrow swordThrow;
     void Start()
     {
-        
+        swordThrow = GetComponentInChildren<SwordThrow>();
+        swordThrow.enabled = false;
     }
 
     // Update is called once per frame
@@ -43,13 +45,14 @@ public class A_SwordThrow : A_OverchargeAbilities
         if (!throwing && !stuck && !returning)
         {
             RaycastHit hit;
-            Physics.Raycast(transform.position, transform.forward, out hit);
+            Physics.Raycast(Camera.main.transform.position, transform.forward, out hit);
             if (hit.collider != null)
             {
                 targetDestination = hit.point;
                 float distance = Vector3.Distance(transform.position, targetDestination);
                 if (distance > minThrowDistance && distance < maxThrowDistance)
                 {
+                    swordThrow.enabled = true;
                     throwing = true;
                     weaponToThrow.GetComponentInParent<Animator>().enabled = false;
                     weaponToThrow.transform.parent = null;
@@ -71,7 +74,7 @@ public class A_SwordThrow : A_OverchargeAbilities
     {
         elapsedTime += Time.deltaTime;
         weaponToThrow.transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
-        
+
         weaponToThrow.transform.position = Vector3.Lerp(endingPosition.position, targetDestination, elapsedTime / travelTime);
         if(elapsedTime >= travelTime)
         {
@@ -80,6 +83,14 @@ public class A_SwordThrow : A_OverchargeAbilities
             elapsedTime = 0f;
             StartCoroutine(SwordStickDelay());
         }
+    }
+    public void SwordHitEnemy(EnemyStats enemyHit)
+    {
+        elapsedTime = 0f;
+        weaponToThrow.transform.parent = enemyHit.transform;
+        stuck = true;
+        throwing = false;
+        StartCoroutine(SwordStickDelay());
     }
 
     void DetermineRotations()
@@ -134,6 +145,9 @@ public class A_SwordThrow : A_OverchargeAbilities
     IEnumerator SwordStickDelay()
     {
         yield return new WaitForSeconds(0.5f);
+        weaponToThrow.transform.parent = null;
+        swordThrow.HitEnemyToFalse();
+        swordThrow.enabled = false;
         stuck = false;
         returning = true;
     }

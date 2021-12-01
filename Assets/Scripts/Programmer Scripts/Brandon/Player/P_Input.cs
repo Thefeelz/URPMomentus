@@ -14,6 +14,7 @@ public class P_Input : MonoBehaviour
     A_AirDash airDash;
     A_SwordThrow swordThrow;
     A_ContainedHeat containedHeat;
+    A_SwordSlash swordSlash;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -27,13 +28,8 @@ public class P_Input : MonoBehaviour
         swordThrow = GetComponent<A_SwordThrow>();
         playerAttack = GetComponent<PlayerAttack>();
         containedHeat = GetComponent<A_ContainedHeat>();
+        swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
-        LayerMask mask;
-        for(int i = 0; i < 32; i++)
-        {
-            mask = i;
-            Debug.Log(LayerMask.LayerToName(mask));
-        }
     }
 
     // Update is called once per frame
@@ -72,6 +68,11 @@ public class P_Input : MonoBehaviour
             if (containedHeat.Ability_ContainedHeat())
                 coolDownManager.AddCooldownToList(containedHeat);
         }
+        if ((Input.GetKeyDown(KeyCode.Q)) && swordSlash.enabled)
+        {
+            if (swordSlash.Ability_SwordSlash())
+                coolDownManager.AddCooldownToList(swordSlash);
+        }
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
         {
             if (airDash.UseAirDash())
@@ -89,14 +90,14 @@ public class P_Input : MonoBehaviour
         // ======================================
         
         // ==========Jump==========
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); }
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); } // @Isaac added an or statement for looking for the a button
         // ==========Ground Dash==========
         if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
 
         // ====================================
         // ==========MENU / UI THANGS==========
         // ====================================
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); }
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
     }
 
     void GetUserInputPhysics()
@@ -124,6 +125,7 @@ public class P_Input : MonoBehaviour
         {
             movement.SetMoveSidetoSideFalse();
         }
+        if(charMovementVector == Vector3.zero) { return; }
         movement.HandleMovement(charMovementVector.normalized);
     }
 }

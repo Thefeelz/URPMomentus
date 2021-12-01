@@ -10,6 +10,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image healthBarDots;
 
     [SerializeField] Image airDashImage;
+    [SerializeField] Image bladeDanceImage;
+    [SerializeField] Image containedHeatImage;
+    [SerializeField] Image swordSlashImage;
 
     CharacterStats ourPlayer;
 
@@ -30,5 +33,17 @@ public class PlayerUI : MonoBehaviour
     public void UpdateAirDashFill(float fillAmount)
     {
         airDashImage.fillAmount = fillAmount;
+    }
+    public void UpdateBladeDanceFill(float fillAmount)
+    {
+        bladeDanceImage.fillAmount = fillAmount;
+    }
+    public void UpdateContainedHeatFill(float fillAmount)
+    {
+        containedHeatImage.fillAmount = fillAmount;
+    }
+    public void UpdateSwordSlashFill(float fillAmount)
+    {
+        swordSlashImage.fillAmount = fillAmount;
     }
 }

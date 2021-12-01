@@ -18,7 +18,6 @@ public class AdjustMovementStats : MonoBehaviour
     {
         if(onEnter && other.GetComponentInParent<P_Input>())
         {
-            Debug.Log("Got to on enter");
             ChangeValues();
         }
     }

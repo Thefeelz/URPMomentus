@@ -10,7 +10,7 @@ public class A_BladeDance : A_OverchargeAbilities
     [SerializeField] GameObject bodyForAnimation;
     [SerializeField] GameObject currentSword;
 
-    EnemyStats currentTarget;
+    public EnemyStats currentTarget;
     bool allEnemiesAttacked = false;
     int killCount;
     
@@ -40,6 +40,8 @@ public class A_BladeDance : A_OverchargeAbilities
     {
         if (camTransitioning)
             UpdateCameraPos(usingSpecial);
+        if (abilityCooldownCurrent > 0)
+            ui.UpdateBladeDanceFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
     }
 
     public bool Ability_BladeDance()

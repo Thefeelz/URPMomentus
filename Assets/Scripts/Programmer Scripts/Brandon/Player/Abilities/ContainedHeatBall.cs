@@ -8,9 +8,10 @@ public class ContainedHeatBall : MonoBehaviour
     {
         if(other.GetComponentInParent<EnemyChaseState>())
         {
-            Vector3 knockbackDirection = other.ClosestPoint(transform.position) - transform.position;
+            other.GetComponentInParent<EnemyChaseState>().SetStateToKnockback();
+            Vector3 knockbackDirection = other.transform.position - transform.position;
             knockbackDirection = knockbackDirection.normalized;
-            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 10f, ForceMode.Impulse);
+            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 10f + (Vector3.up * 5), ForceMode.Impulse);
         }
     }
 }

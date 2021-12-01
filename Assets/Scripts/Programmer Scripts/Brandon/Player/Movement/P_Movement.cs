@@ -25,6 +25,7 @@ public class P_Movement : MonoBehaviour
     bool moveForward = false;
     bool moveBackward = false;
     bool moveSidetoSide = false;
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -39,13 +40,13 @@ public class P_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckForGrounded();
         GetUserInput();
     }
     void FixedUpdate()
     {
+        CheckForGrounded();
         // This if statement gives us a more "Mario" Like jump, making gravity do a little more work once we reach the apex of a jump
-        if(rb.velocity.y < 0)
+        if (rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
@@ -77,16 +78,6 @@ public class P_Movement : MonoBehaviour
             if (rb.velocity.z != 0 && ((!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))))
             {
                 Decelerate();
-            }
-            // ===================================================IMPORTANT=======================================================
-            // Strafe the Character (These can be not used, added to for force, etc...we will play with them and see what is good)
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                rb.AddRelativeForce(Vector3.right * playerStrafeSpeed, ForceMode.Impulse);
-            }
-            else if (Input.GetKeyDown(KeyCode.Q))
-            {
-                rb.AddRelativeForce(Vector3.right * -playerStrafeSpeed, ForceMode.Impulse);
             }
         }
     }
@@ -125,12 +116,26 @@ public class P_Movement : MonoBehaviour
         if(wallRunning()) { return; }
         if (isGrounded)
         {
-            movementVector *= maxPlayerSpeedRunning;
+            // A raycast to determine the surface normal of the object below us
+            Physics.Raycast(transform.position, Vector3.down, out hit);
+
+            // The angle between the surface normal of the object below us and a vector straight to the sky
+            float angle = Vector3.Angle(hit.normal, Vector3.up);
+
+            // If its flat, the angle will always be 0, if it is elevated, we will set it to a new velocity vector
+            if (angle != 0)
+            {
+                // Set the movement vectors Y value to the normalized cross product Y (this will make us move fluidly up slopes)
+                movementVector = new Vector3(movementVector.x, Vector3.Cross(-transform.right, hit.normal).normalized.y, movementVector.z);
+                movementVector *= maxPlayerSpeedRunning;
+            }
+            else
+                movementVector *= maxPlayerSpeedRunning;
             rb.velocity = new Vector3(movementVector.x, rb.velocity.y, movementVector.z);
         }
         else
         {
-            if((rb.velocity.x + rb.velocity.z) > maxPlayerSpeedRunning * 0.75f) { return; }
+            if((Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.z)) > maxPlayerSpeedRunning) { return; }
             movementVector *= inAirControlMultiplier;
             rb.AddForce(movementVector, ForceMode.Impulse);
         }
