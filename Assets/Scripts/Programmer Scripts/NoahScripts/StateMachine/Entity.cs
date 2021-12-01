@@ -17,6 +17,7 @@ public class Entity : MonoBehaviour
 
     private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
+    public bool grounded;
 
     public virtual void Awake()
     {
@@ -47,6 +48,7 @@ public class Entity : MonoBehaviour
     {
         //performs a fixed update in the current state
         stateMachine.currentState.PhysicsUpdate();
+        
     }
     // gets the distance to the player
     public virtual float DistanceToPlayer()
@@ -78,6 +80,25 @@ public class Entity : MonoBehaviour
     {
         
        
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        // IMPORTANT! TEST NAME ONLY! WILL NOT ALWAYS BE NAMED FLOOR! USE TAG INSTEAD!!!
+        if(collision.gameObject.name == "Floor" || collision.gameObject.name == "floor")
+        {
+            grounded = true;
+        }
+    }
+
+    // makes the enemy rotate to face the player if it is needed
+    public void facePlayer()
+    {
+        float damping = 3;
+        var lookPos = myTarget.transform.position - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
     }
 
 

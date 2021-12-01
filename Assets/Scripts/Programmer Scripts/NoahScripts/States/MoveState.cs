@@ -22,7 +22,10 @@ public class MoveState : State
     protected virtual void Move()
     {
         // movement code here
-        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        if (Vector3.Distance(mEntity.agent.destination, mEntity.myTarget.transform.position) > 1)
+        {
+            mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        }
 
     }
     public override void StateEnter()
@@ -30,7 +33,8 @@ public class MoveState : State
         
         base.StateEnter();
         mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = true;
-
+        //mEntity.agent.speed = stateData.moveSpeed;
+        mEntity.agent.speed = 3;
         mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
     }
 

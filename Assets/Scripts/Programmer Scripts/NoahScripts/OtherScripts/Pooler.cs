@@ -52,7 +52,7 @@ public class Pooler : MonoBehaviour
                 GameObject obj = Instantiate(objectPool.prefab);
                 obj.SetActive(false);
                 obj.GetComponent<Entity>().myPool = this;
-                obj.transform.parent = this.gameObject.transform;
+                //obj.transform.parent = this.gameObject.transform;
                 poolQueue.Enqueue(obj);
             }
 

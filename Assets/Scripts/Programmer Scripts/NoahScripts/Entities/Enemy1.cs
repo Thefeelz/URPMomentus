@@ -33,6 +33,10 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_Knockback knockbackData;
 
+    public bool linking;
+    public float origSpeed = 3;
+    public float linkSpeed = 1;
+
     //called on Awake
     public override void Awake()
     {
@@ -61,6 +65,17 @@ public class Enemy1 : Entity
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (agent.isOnOffMeshLink && linking == false)
+        {
+            linking = true;
+            agent.speed = agent.speed * linkSpeed;
+        }
+        else if (agent.isOnNavMesh && linking == true)
+        {
+            linking = false;
+            agent.velocity = Vector3.zero;
+            agent.speed = origSpeed;
+        }
     }
     // gets the distance to the player
     public override float DistanceToPlayer()
@@ -88,6 +103,10 @@ public class Enemy1 : Entity
         
         // in .5 seconds the knock back will end
         Invoke("ResetHitBack", .5f);
+        if(health <= 0)
+        {
+            myPool.queueObject("Ranged", this.gameObject);
+        }
         
 
     }

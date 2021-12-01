@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public class EvadeState : State
 {
-    D_Entity entityData;
+    protected D_Entity entityData;
+    protected D_Evade evadeData;
     
     public EvadeState(Entity mEntity, FiniteStateMachine mStateMachine, D_Evade evadeData, D_Entity entityData) : base(mEntity, mStateMachine)
     {
         this.entityData = entityData;
+        this.evadeData = evadeData;
     }
 
     public override void StateEnter()

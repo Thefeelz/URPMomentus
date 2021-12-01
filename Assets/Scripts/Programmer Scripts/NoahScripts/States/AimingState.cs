@@ -20,14 +20,13 @@ public class AimingState : State
     {
         base.StateEnter();
         // disables navmesh to completely cancel movement and allow custom rotation
-        //mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+
         
     }
 
     public override void StateExit()
     {
         base.StateExit();
-        mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     public override void LogicUpdate()
@@ -43,10 +42,7 @@ public class AimingState : State
 
     public virtual void Aim()
     {
-        //the enemy rotates to face the player
-        //Vector3 newDirection = Vector3.RotateTowards(mEntity.transform.forward, entity.myTarget.transform.position, 2 * Time.deltaTime, 0.0f);
-        //mEntity.transform.rotation = Quaternion.LookRotation(newDirection);
-        //mEntity.transform.LookAt(mEntity.myTarget.transform);
+    
     }
 
    

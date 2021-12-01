@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 7664192347234163487}
   - component: {fileID: 7664192347234163456}
   - component: {fileID: 7664192347234163457}
+  - component: {fileID: 5553796297889753950}
   m_Layer: 9
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -195,7 +196,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 300
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -217,7 +218,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 94
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &7664192347234163456
 MonoBehaviour:
@@ -235,6 +236,7 @@ MonoBehaviour:
   agent: {fileID: 7664192347234163486}
   myTarget: {fileID: 0}
   entityData: {fileID: 11400000, guid: 12ed160b2e47ea0468a39a63b4f3d7a3, type: 2}
+  grounded: 0
   ammo: {fileID: 0}
   canShoot: 0
   bulletObj: {fileID: 0}
@@ -242,8 +244,11 @@ MonoBehaviour:
   moveData: {fileID: 11400000, guid: 9a4a9eb7d8bf69943a9146b1e8e9575f, type: 2}
   slowData: {fileID: 11400000, guid: cc87c7a46f10e0c4f99981b7fc983ce0, type: 2}
   aimData: {fileID: 11400000, guid: 085c4eb8d5d38e84eb5c0b0279bba316, type: 2}
-  evadeData: {fileID: 0}
-  knockbackData: {fileID: 0}
+  evadeData: {fileID: 11400000, guid: 21e701f2ca498cc4cadb8097c8c4c036, type: 2}
+  knockbackData: {fileID: 11400000, guid: fa5132a7bc75c3149a5ac67da0dcddf1, type: 2}
+  linking: 0
+  origSpeed: 3
+  linkSpeed: 1
 --- !u!114 &7664192347234163457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +262,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6018015985998582797, guid: 8f3f2a2ce1c266148ba8d7cc2eebb059, type: 3}
-  size: 20
+  size: 5
+--- !u!208 &5553796297889753950
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664192347234163458}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &7664192347800714758
 PrefabInstance:
   m_ObjectHideFlags: 0
