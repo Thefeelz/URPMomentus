@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         // IMPORTANT! TEST NAME ONLY! WILL NOT ALWAYS BE NAMED FLOOR! USE TAG INSTEAD!!!
-        if(collision.gameObject.name == "Floor" || collision.gameObject.name == "floor")
+        if (collision.gameObject.tag == "floor") ;
         {
             grounded = true;
         }
