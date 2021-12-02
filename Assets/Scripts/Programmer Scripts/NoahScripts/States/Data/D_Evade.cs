@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class D_Evade : MonoBehaviour
+[CreateAssetMenu(fileName = "evadeData", menuName = "Data/State Data/Evade Data")]
+public class D_Evade : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float distance;
+    public float height;
+    public float speed;
 }

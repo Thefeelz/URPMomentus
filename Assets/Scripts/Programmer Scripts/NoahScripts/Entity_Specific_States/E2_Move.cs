@@ -37,7 +37,7 @@ public class E2_Move : MoveState
     // the enemy is close enough to change states
     public override void LogicUpdate()
     {
-        Debug.Log("FUCK");
+        
         base.LogicUpdate();
         if (mEntity.DistanceToPlayer() <= 5)
         {
@@ -46,7 +46,6 @@ public class E2_Move : MoveState
         }
         else
         {
-            Debug.Log(mEntity.DistanceToPlayer());
             Move();
         }
 

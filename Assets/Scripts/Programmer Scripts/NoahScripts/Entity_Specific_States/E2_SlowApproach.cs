@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class E2_SlowApproach : SlowApproach
 {
@@ -15,6 +16,7 @@ public class E2_SlowApproach : SlowApproach
     private float tX; // target x
     private float tY; // target y
     private float tZ; // target z
+    private float timer;
     private Vector3 tPos; // target position vec3
     //end test
     private int rndTime; // random amount of time
@@ -25,6 +27,7 @@ public class E2_SlowApproach : SlowApproach
     {
         
         this.mEnemy = mEnemy;
+        this.timer = 7.0f;
     }
 
     public override void StateEnter()
@@ -59,7 +62,10 @@ public class E2_SlowApproach : SlowApproach
         pos.x = x;
         pos.y = y;
         pos.z = z;
-        mEnemy.agent.SetDestination(pos);
+        if (mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled == true)
+        {
+            mEnemy.agent.SetDestination(pos);
+        }
         Debug.Log(pos);
     }
 
@@ -80,6 +86,12 @@ public class E2_SlowApproach : SlowApproach
         {
             mEnemy.stateMachine.ChangeState(mEnemy.moveState);
         }
+
+        if (Time.time > startTime + timer)
+        {
+            Debug.Log("timer is over");
+            mEnemy.stateMachine.ChangeState(mEnemy.attackState);
+        }
     }
 
     public override void PhysicsUpdate()
@@ -94,11 +106,12 @@ public class E2_SlowApproach : SlowApproach
 
     private void setNewSpot()
     {
-        if(slowData.circleStart == false)
-        {
-            slowData.circleStart = true;
-            mEnemy.delayHandler.callCoroutine("attackState", rndTime);
-        }
+        //if(slowData.circleStart == false)
+        //{
+        //    slowData.circleStart = true;
+        //    //mEnemy.delayHandler.callCoroutine("attackState", rndTime);
+            
+        //}
         // formula to keep moving in a circle
         // if we started lower than the player than theta must decrease
         if(startHigher == true)

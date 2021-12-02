@@ -6,6 +6,7 @@ public class State
 {
     protected FiniteStateMachine mStateMachine; // StateMachine accessed by states
     protected Entity mEntity; // the Enitity that is using this state
+    public float startTime { get; protected set; }
     //Constructor for State class
     public State(Entity mEntity, FiniteStateMachine mStateMachine)
     {
@@ -15,7 +16,7 @@ public class State
     //called whenever state is entered
     public virtual void StateEnter()
     {
-      
+        startTime = Time.time;
     }
     //called whenever state is exited
     public virtual void StateExit()

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class E1_AimingState : AimingState
 {
@@ -11,8 +12,6 @@ public class E1_AimingState : AimingState
     public E1_AimingState(Entity mEntity, FiniteStateMachine mStateMachine, D_Aiming aimData, D_Entity entityData, Enemy1 mEnemy) : base(mEntity, mStateMachine, aimData, entityData)
     {
         this.mEnemy = mEnemy;
-
-        
     }
 
     public override void Aim()
@@ -20,17 +19,25 @@ public class E1_AimingState : AimingState
         //mEnemy.canon.transform.LookAt(mEnemy.myTarget.transform);
         //mEnemy.transform.LookAt(mEnemy.myTarget.transform);
         base.Aim();
+        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        //Debug.Log(mEnemy.myTarget.transform.position);
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
-        mEnemy.agent.speed = 0;
+        mEnemy.agent.speed = 3;
+       
+        //mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+        //mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
     }
 
     public override void StateExit()
     {
         base.StateExit();
+        mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = false;
+        mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+        
     }
 
     public override void LogicUpdate()
@@ -57,7 +64,9 @@ public class E1_AimingState : AimingState
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
+        
+        //mEntity.agent.updateRotation = true;
+        //mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
     }
 
     private void Shoot()
