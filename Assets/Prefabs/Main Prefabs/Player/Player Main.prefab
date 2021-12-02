@@ -92,6 +92,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e676eceff21c934aafca796790d27ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &326748407
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189583508335725654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5997733, y: 0.3734954, z: 0.3717083}
+  m_Center: {x: 0.03934142, y: 0.31325173, z: 0.014200703}
+--- !u!114 &326748408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189583508335725654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d08a3ea5b30ee447909fcd46d6d9204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7298079286369749419
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 827407381770029567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,19 +690,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.747627
+      value: 3.6299973
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.197138
+      value: -2.04
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 25.579529
+      value: 4.369995
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6510554
+      value: 0.3777714
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalRotation.x
@@ -685,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7590302
+      value: -0.9258989
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalRotation.z
@@ -697,7 +722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 98.758
+      value: -135.609
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -719,6 +744,10 @@ PrefabInstance:
       propertyPath: targetCrosshair
       value: 
       objectReference: {fileID: 2119489450852081245}
+    - target: {fileID: 2733746628393997006, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: attackDashCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2733746628393997007, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1416,6 +1445,11 @@ PrefabInstance:
 --- !u!4 &1269072419001229519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+  m_PrefabInstance: {fileID: 3777568697272037898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4189583508335725654 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1029348182374973020, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
   m_PrefabInstance: {fileID: 3777568697272037898}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &9172674597086813318 stripped
