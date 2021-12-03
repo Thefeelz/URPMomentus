@@ -2,52 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Touched by Vincent on 11/21/2021
+/// </summary>
 public class PlatformMover : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    /*[SerializeField]
+    private int numberOfPositions; // arraysize*/
     [SerializeField]
-    private int numberOfPositions; // arraysize
+    private GameObject player;
 
     [SerializeField]
-    private Vector3[]  listOfPoints;
+    private Transform[] listOfPoints;
 
-    [SerializeField]
-    private GameObject platform;
+    private Transform start;
 
-    private float midpoint = 0.5f;
+    private Transform targetPosition;
 
-    private Transform startPosition;
+    private float speed = 0.1f;
 
-    private Transform endPosition;
+    private float elapsedTime = 3f;
 
+    private float tripTime = 5f;
+
+
+
+
+    int i = 0;
 
     void Start()
     {
-         listOfPoints = new Vector3[numberOfPositions];
-        
+        start = this.transform;
+
+        targetPosition = listOfPoints[1];
+        //listOfPoints = new Transform[numberOfPositions];
+        //platform = this.gameObject;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        for (int i = 0; i <  listOfPoints.Length; ++i)
+        float gap = Vector3.Distance(this.transform.position, targetPosition.position);
+        if (gap < .001)
         {
-            int firstPosition = 0;
-            startPosition.position = listOfPoints[i];
-
-            if ((i + 1) <  listOfPoints.Length)
+            i++;
+            if (i > listOfPoints.Length)
             {
-                endPosition.position = listOfPoints[firstPosition];
-                transform.position = Vector3.Lerp(startPosition.position, endPosition.position, midpoint);
-
+                i = 0;
             }
-
-            endPosition.position = listOfPoints[i + 1];
-            transform.position = Vector3.Lerp( listOfPoints[i],  listOfPoints[0], midpoint);
+            targetPosition = listOfPoints[i];
 
         }
 
+
+        float speed = 0;
+        speed = speed + elapsedTime * Time.deltaTime;
+        this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition.position, speed);
+      
+
+    }
+    //parents objects when on elevator
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.gameObject==player)
+        {   
+            player.GetComponent<Collider>().transform.SetParent(this.transform);
+            Debug.Log("Parented");
+        }
+    }
+    //de-parents objects when leave elevator
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == player)
+        {
+            player.GetComponent<Collider>().transform.SetParent(null);
+            Debug.Log("Moved out: ");
+        }
     }
 }
