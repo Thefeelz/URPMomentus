@@ -151,7 +151,7 @@ public class P_GroundSlide : MonoBehaviour
         Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(slideDistance), out hit);
         
         // If the raycast hits nothing, go the full length of the slide and return
-        if (hit.collider == null || hit.collider.GetComponent<Floor>() || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }
+        if (hit.collider == null || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }
         // If we are at this point, we HIT something with our raycast, see if the raycast hit point distance is less than our slide distance
         if (Vector3.Distance(transform.position, hit.point) < slideDistance)
         {

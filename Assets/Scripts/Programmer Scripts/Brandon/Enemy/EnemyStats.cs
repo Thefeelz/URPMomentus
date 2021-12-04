@@ -15,7 +15,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] Image healthBar;
 
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
-
+    
     bool triggeredDead = false;
 
     EnemyChaseState chase;
