@@ -43,6 +43,10 @@ public class E1_AimingState : AimingState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // debug
+        Vector3 path = mEnemy.transform.TransformDirection(Vector3.forward * -1) * 10;
+        Debug.DrawRay(mEnemy.transform.position, path, Color.green);
+        // end debug
         Aim();
         if(mEnemy.canShoot)
         {
@@ -50,11 +54,12 @@ public class E1_AimingState : AimingState
             Shoot();
         }
         // switch states based on player distance if needed
-        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance)
+        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvade == true)
         {
+            mEnemy.canEvade = false;
             mStateMachine.ChangeState(mEnemy.evadeState);
         }
-        if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
+        else if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
         {
             mStateMachine.ChangeState(mEnemy.moveState);
         }

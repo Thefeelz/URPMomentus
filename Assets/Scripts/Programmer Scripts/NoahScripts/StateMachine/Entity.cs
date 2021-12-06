@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
     private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
     public bool grounded;
+    public GameObject testFire; // a test fire object to detect collision
 
     public virtual void Awake()
     {
@@ -94,11 +95,11 @@ public class Entity : MonoBehaviour
     // makes the enemy rotate to face the player if it is needed
     public void facePlayer()
     {
-        float damping = 3;
+       
         var lookPos = myTarget.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        transform.rotation = rotation;
     }
 
 
