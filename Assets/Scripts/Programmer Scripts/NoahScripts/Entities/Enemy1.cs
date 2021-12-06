@@ -36,6 +36,8 @@ public class Enemy1 : Entity
     public bool linking;
     public float origSpeed = 3;
     public float linkSpeed = 1;
+    public float cdTime = 8;
+    public bool canEvade;
 
     //called on Awake
     public override void Awake()
@@ -92,6 +94,15 @@ public class Enemy1 : Entity
         bullet.SetActive(false);
         ammo.enqueBullet(bullet);
         canShoot = true;
+    }
+    public void evadeCool()
+    {
+        StartCoroutine(evadeCD());
+    }
+    IEnumerator evadeCD()
+    {
+        yield return new WaitForSeconds(cdTime);
+        canEvade = true;
     }
     // calls when damage is taken
     public override void Damage(float amountDamage)
