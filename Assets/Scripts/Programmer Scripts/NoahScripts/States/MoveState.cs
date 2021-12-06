@@ -30,12 +30,15 @@ public class MoveState : State
     }
     public override void StateEnter()
     {
-        
+
         base.StateEnter();
         mEntity.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         //mEntity.agent.speed = stateData.moveSpeed;
         mEntity.agent.speed = 3;
-        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        if (mEntity.gameObject.GetComponent<NavMeshAgent>().enabled == true)
+        {
+            mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        }
     }
 
     public override void StateExit()
@@ -47,6 +50,10 @@ public class MoveState : State
     {
 
         base.LogicUpdate();
+        if(mEntity.agent.destination == null)
+        {
+            mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        }
         
     }
 

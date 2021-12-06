@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] string bladeColor;
+    [SerializeField] int levelChosen;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     public bool activeInUse = false;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
         enemiesInLevel.Add(newEnemy);
@@ -25,5 +32,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("Called " + value);
             enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
         }
+    }
+    public void SetBladeColor(string newColor)
+    {
+        bladeColor = newColor;
+    }
+    public void SetLevel(int level)
+    {
+        levelChosen = level;
     }
 }
