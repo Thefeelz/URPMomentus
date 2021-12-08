@@ -17,6 +17,7 @@ public class P_Input : MonoBehaviour
     A_SwordSlash swordSlash;
 
     Rigidbody rb;
+    Animator myAnim;
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +31,7 @@ public class P_Input : MonoBehaviour
         containedHeat = GetComponent<A_ContainedHeat>();
         swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
+        myAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -125,7 +127,12 @@ public class P_Input : MonoBehaviour
         {
             movement.SetMoveSidetoSideFalse();
         }
-        if(charMovementVector == Vector3.zero) { return; }
+        if(charMovementVector == Vector3.zero) 
+        {
+            myAnim.SetBool("running", false);
+            return; 
+        }
+        myAnim.SetBool("running", true);
         movement.HandleMovement(charMovementVector.normalized);
     }
 }

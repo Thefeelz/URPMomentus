@@ -28,7 +28,7 @@ public class PlayerUI : MonoBehaviour
     {
         HealthBar.fillAmount = ourPlayer.GetPlayerHealth() / ourPlayer.GetPlayerMaxHealth();
         OverchargeBar.fillAmount = ourPlayer.GetPlayerOvercharge() / ourPlayer.GetPlayerMaxOvercharge();
-        healthBarDots.fillAmount = HealthBar.fillAmount;
+        //healthBarDots.fillAmount = HealthBar.fillAmount;
     }
     public void UpdateAirDashFill(float fillAmount)
     {

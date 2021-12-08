@@ -119,7 +119,7 @@ public class A_SwordThrow : A_OverchargeAbilities
         if(elapsedTime >= travelTime)
         {
             returning = false;
-            weaponToThrow.transform.parent = transform;
+            weaponToThrow.transform.parent = endingPosition.transform.parent;
             weaponToThrow.transform.position = endingPosition.position;
             weaponToThrow.transform.rotation = endingPosition.rotation;
             elapsedTime = 0f;

@@ -19,7 +19,7 @@ public class mouseLook : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //get mouse position
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * mouseMultiplier * Time.deltaTime;
@@ -35,6 +35,7 @@ public class mouseLook : MonoBehaviour
         
         
        // transform.localRotation = Quaternion.Euler(, 0f, 0f);
-        transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        transform.rotation = Quaternion.Euler(0, horizontalRotation, 0f);
+        Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
     }
 }
