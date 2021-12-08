@@ -44,9 +44,11 @@ public class EnemyChaseState : MonoBehaviour
     RaycastHit[] objectAvoidanceHits;
     Vector3[] directions;
     bool avoidObstacles = true;
+    MasterLevel masterLevel;
     // Start is called before the first frame update
     void Start()
     {
+        masterLevel = FindObjectOfType<MasterLevel>();
         currentState = State.Inactive;
         player = FindObjectOfType<P_Movement>();
         enemyRigidbody = GetComponent<Rigidbody>();
@@ -224,6 +226,7 @@ public class EnemyChaseState : MonoBehaviour
     {
         dead = true;
         animController.SetBool("dead", true);
+        masterLevel.AddToKillCount(1);
     }
 
     void JumpToPosition()
