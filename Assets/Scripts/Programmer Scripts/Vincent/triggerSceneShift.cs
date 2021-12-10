@@ -8,6 +8,8 @@ public class triggerSceneShift : MonoBehaviour
     
     [SerializeField]
     private float transitionTime;
+    [SerializeField]
+    private string nextSceneName;
 
     private Animator transition;
 
@@ -26,17 +28,21 @@ public class triggerSceneShift : MonoBehaviour
             nextLevel();
         }*/
     }
-    private void OnTriggerEnter()
+
+    private void startMyLevelTransition() 
     {
-        changingLevel = true;
-        StartCoroutine(nextLevel());
-        
+
+        SceneManager.LoadScene(0);
+        // StartCoroutine(nextLevel());
     }
+
     IEnumerator nextLevel()
     {
-        Debug.LogWarning("next level jump");
-        transition.SetTrigger("startFade");
+        if (transition != null)
+        {
+            transition.SetTrigger("startFade");
+        }
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene("end screen");
+        SceneManager.LoadScene(nextSceneName);
     }
 }
