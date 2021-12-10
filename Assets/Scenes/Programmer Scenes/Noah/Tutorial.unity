@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: fe0e0e7d690841d4d85fc95639a7e5a5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 6440d0516e1cafd48b748b16fda17ef4, type: 2}
 --- !u!1 &3714296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: be38a20fd8a1573448ac6dfcc29faf2a, type: 3}
@@ -1275,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -115.5
+      value: -133.74
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1283,7 +1283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 644.25
+      value: 615.6
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3842,12 +3842,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5155088302587535705, guid: 1f2e95a7d6041b54b9788a082d342981, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: -5155088302587535705, guid: 1f2e95a7d6041b54b9788a082d342981, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -5155088302587535705, guid: 1f2e95a7d6041b54b9788a082d342981, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967263
+      objectReference: {fileID: 0}
+    - target: {fileID: -1712993348960555769, guid: 1f2e95a7d6041b54b9788a082d342981, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     - target: {fileID: -1712993348960555769, guid: 1f2e95a7d6041b54b9788a082d342981, type: 3}
       propertyPath: m_NavMeshLayer
@@ -3946,6 +3954,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
       propertyPath: m_Name
       value: platform02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
@@ -5095,6 +5107,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
       propertyPath: m_Name
       value: platform02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
@@ -6819,6 +6835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: platform02
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
 --- !u!1 &1721651335
@@ -7361,6 +7381,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: platform02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
+      propertyPath: m_TagString
+      value: obstacle
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57d2eb10e988d240b64646dbda5fdc9, type: 3}
 --- !u!1 &1804244815 stripped
@@ -7430,7 +7454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825402644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -128.99, y: 13.73, z: 585.79}
+  m_LocalPosition: {x: -128.99, y: 13.95, z: 585.79}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 1361880061}
@@ -7743,7 +7767,7 @@ MonoBehaviour:
   - size: 6
     minField: 1
     spawnType: 1
-    prefab: {fileID: 7664192347234163458, guid: 3898db4a32f0da5448d6a8018127855e, type: 3}
+    prefab: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
     dictionaryTag: Ranged
   spawner: {fileID: 1873533081}
 --- !u!4 &1873533083
@@ -9079,7 +9103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be38a20fd8a1573448ac6dfcc29faf2a, type: 3}
       propertyPath: m_TagString
-      value: floor
+      value: obstacle
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: be38a20fd8a1573448ac6dfcc29faf2a, type: 3}
       propertyPath: m_StaticEditorFlags

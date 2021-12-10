@@ -21,7 +21,8 @@ public class TestFireTrigger : MonoBehaviour
     {
         if(other.gameObject.tag == "obstacle")
         {
-            parent.canEvade = false;
+            Debug.LogWarning("patricide");
+            parent.stateMachine.ChangeState(parent.moveState);
         }
     }
 }
