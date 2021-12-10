@@ -27,7 +27,7 @@ public class PlatformMover : MonoBehaviour
 
     private float tripTime = 5f;
 
-
+    private Collider playerBody;
 
 
     int i = 0;
@@ -37,49 +37,55 @@ public class PlatformMover : MonoBehaviour
         start = this.transform;
 
         targetPosition = listOfPoints[1];
-        //listOfPoints = new Transform[numberOfPositions];
-        //platform = this.gameObject;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //distance to target
         float gap = Vector3.Distance(this.transform.position, targetPosition.position);
+
+        //if platform reaches target position (could be 0 distance but felt like that could cause issues later)
         if (gap < .001)
         {
+            //increment up one
             i++;
+
+            //if "i" is greater than array set i back to 0
             if (i > listOfPoints.Length)
             {
                 i = 0;
             }
+
+            //set new position as the target position
             targetPosition = listOfPoints[i];
 
         }
 
 
-        float speed = 0;
+        float speed = 0; ///idk why this is needed, just is
         speed = speed + elapsedTime * Time.deltaTime;
-        this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition.position, speed);
-      
+        
+        // move platform towards target position at given speed every frame
+        this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition.position, speed); /// moveTowards seemed gentler than Lerp or Slerp
+
 
     }
-    //parents objects when on elevator
+    //parents player when on elevator
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (other.gameObject==player)
-        {   
-            player.GetComponent<Collider>().transform.SetParent(this.transform);
-            Debug.Log("Parented");
+        if (other.transform.root == player.transform) /// if top level parent of the object colliding with elvator trigger is the given player 
+        {
+            player.transform.SetParent(this.transform); /// set the elvator as the parent of the given player (elvator move, player moves)
         }
     }
-    //de-parents objects when leave elevator
+
+    //de-parents player when leaving elevator
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.transform.parent.parent == player.transform) /// can't use root again since that would be the enviroment now
         {
-            player.GetComponent<Collider>().transform.SetParent(null);
-            Debug.Log("Moved out: ");
+            player.transform.SetParent(null); /// removes the parent so that the player is on its own again
         }
     }
 }
