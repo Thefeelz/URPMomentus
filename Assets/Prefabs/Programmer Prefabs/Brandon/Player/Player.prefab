@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSens: 50
+  lookRotation: 30
 --- !u!114 &2733746628393997006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,7 +121,9 @@ MonoBehaviour:
   playerAnimator: {fileID: 2733746628393996996}
   dashMaxDistance: 20
   dashMinDistance: 5
+  attackDashCooldown: 0
   dashTime: 0.35
+  attackDashVolume: {fileID: 0}
   swordMat: {fileID: 2100000, guid: 22824c6c47c50434db3e120471d36af1, type: 2}
 --- !u!54 &2733746628393996999
 Rigidbody:
@@ -208,6 +211,7 @@ MonoBehaviour:
   killCountMax: 7
   bodyForAnimation: {fileID: 5415433714007223948}
   currentSword: {fileID: 1029348182374973020}
+  currentTarget: {fileID: 0}
   myStartingPosition: {fileID: 2733746628393997007}
   myCam: {fileID: 2733746630100622255}
   firstPersonCamPos: {fileID: 2733746629456035313}

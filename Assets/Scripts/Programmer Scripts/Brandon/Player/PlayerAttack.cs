@@ -25,8 +25,7 @@ public class PlayerAttack : MonoBehaviour
     Color crosshairColor;
     Vector3 endingDashPosition;
     Vector3 startingDashPosition;
-
-    [SerializeField] Material swordMat;
+    EnemyStats currentEnemy;
 
 
 
@@ -61,7 +60,8 @@ public class PlayerAttack : MonoBehaviour
                     dashing = true;
                     StartCoroutine(ResetAttackDash());
                     DashToEnemy();
-                    hitTarget.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
+                    currentEnemy = hitTarget.transform.GetComponentInParent<EnemyStats>();
+                    currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(true);
                 }
             }
         }
@@ -87,6 +87,9 @@ public class PlayerAttack : MonoBehaviour
             elaspedTime = 0;
             dashing = false;
             attackDashVolume.weight = 0;
+            currentEnemy.TakeDamage(playerStats.GetPlayerStrength());
+            currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(false);
+            currentEnemy = null;
         }
     }
 
@@ -113,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator WeaponSwing()
     {
         playerAnimator.SetBool("swordSwing", true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.5f);
         playerAnimator.SetBool("swordSwing", false);
         StopCoroutine(WeaponSwing());
     }
@@ -144,7 +147,7 @@ public class PlayerAttack : MonoBehaviour
     {
         RaycastHit hit;
         Physics.Raycast(weaponRaycastTransformPosition.position, transform.forward, out hit, 2f);
-        if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>())
+        if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
         }

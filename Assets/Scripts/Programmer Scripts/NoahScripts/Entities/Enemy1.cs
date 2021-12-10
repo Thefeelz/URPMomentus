@@ -11,6 +11,8 @@ public class Enemy1 : Entity
     public E1_AimingState aimState { get; private set; }
     public E1_Evade evadeState { get; private set; }
     public E1_Knockback knockbackState { get; private set; }
+
+    public DeathState deathState { get; private set; }
     // script for functions and  that involve ranged attacking
     public RangedBehavior rangedBehavior { get; private set; }
 
@@ -36,6 +38,11 @@ public class Enemy1 : Entity
     public bool linking;
     public float origSpeed = 3;
     public float linkSpeed = 1;
+    public float cdTime = 8;
+    public bool canEvade; // can the enemy evade
+    public bool canEvadeState; // can the enemy enter the evade state
+    public float evadeTime; // time last evade started
+    public float evadeLimit; // how long the evade cooldown is
 
     //called on Awake
     public override void Awake()
@@ -48,11 +55,13 @@ public class Enemy1 : Entity
         aimState = new E1_AimingState(this, stateMachine, aimData, entityData, this);
         evadeState = new E1_Evade(this, stateMachine, evadeData, entityData, this);
         knockbackState = new E1_Knockback(this, stateMachine, knockbackData, entityData, this);
+        deathState = new DeathState(this, stateMachine);
         ammo = this.gameObject.GetComponent<AmmoPool>();
         //makes the move state the entitys initial state
         stateMachine.InitializeStateMachine(moveState);
         canShoot = true;
         this.gameObject.SetActive(false);
+        defaultState = moveState;
 
 
     }
@@ -60,11 +69,17 @@ public class Enemy1 : Entity
     public override void Update()
     {
         base.Update();
+        //timer cooldown for when it can evade again
+        if (Time.time > evadeTime + evadeLimit)
+        {
+            canEvadeState = true;
+        }
     }
 
     public override void FixedUpdate()
     {
         base.FixedUpdate();
+        // controls the enemies speed when jumping between links
         if (agent.isOnOffMeshLink && linking == false)
         {
             linking = true;
@@ -93,19 +108,22 @@ public class Enemy1 : Entity
         ammo.enqueBullet(bullet);
         canShoot = true;
     }
+    
     // calls when damage is taken
     public override void Damage(float amountDamage)
     {
         // Damage() is called in the base class with the amount of damage taken passed
         base.Damage(amountDamage);
         // enemy enters knock back state
-        stateMachine.ChangeState(knockbackState);
+        //stateMachine.ChangeState(knockbackState);
         
-        // in .5 seconds the knock back will end
-        Invoke("ResetHitBack", .5f);
+        
+
+        // if the enemy dropps to zero or below it will die
         if(health <= 0)
         {
-            myPool.queueObject("Ranged", this.gameObject);
+            stateMachine.ChangeState(deathState);
+            StartCoroutine(DeathAnim());
         }
         
 
@@ -123,4 +141,21 @@ public class Enemy1 : Entity
     {
         stateMachine.ChangeState(moveState);
     }
+
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.name== "deathWall")
+        {
+            Debug.LogWarning("I am dead");
+            Die();
+        }
+    }
+
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(3f);
+        myPool.queueObject("Ranged", this.gameObject);
+    }
 }
+

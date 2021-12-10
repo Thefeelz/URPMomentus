@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     public Pooler myPool; // object pooler object
     public NavMeshAgent agent;// navmesh agent
     public GameObject myTarget; // navMesh target. Normally the player is assigned to this
+    public State defaultState;
 
     public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
     public float health { get; private set; } // how much health entity has
@@ -18,6 +19,10 @@ public class Entity : MonoBehaviour
     private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
     public bool grounded;
+    public GameObject testFire; // a test fire object to detect collision
+    public SpecialUseState specialUseState; // special use state
+
+    public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
 
     public virtual void Awake()
     {
@@ -27,6 +32,7 @@ public class Entity : MonoBehaviour
         health = entityData.health; 
         mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>(); 
         mColor = mMesh.material.color;
+        specialUseState = new SpecialUseState(this, this.stateMachine);
         
         
     }
@@ -78,14 +84,14 @@ public class Entity : MonoBehaviour
     //called when health reaches 0 all functionality is done within children
     public virtual void Die()
     {
-        
+        agent.speed = 0;
        
     }
 
     public void OnCollisionEnter(Collision collision)
     {
         // IMPORTANT! TEST NAME ONLY! WILL NOT ALWAYS BE NAMED FLOOR! USE TAG INSTEAD!!!
-        if (collision.gameObject.tag == "floor") ;
+        if (collision.gameObject.tag == "floor")
         {
             grounded = true;
         }
@@ -94,11 +100,11 @@ public class Entity : MonoBehaviour
     // makes the enemy rotate to face the player if it is needed
     public void facePlayer()
     {
-        float damping = 3;
+       
         var lookPos = myTarget.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+        transform.rotation = rotation;
     }
 
 

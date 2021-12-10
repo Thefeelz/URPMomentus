@@ -19,6 +19,7 @@ public class E2_SlowApproach : SlowApproach
     private float timer;
     private Vector3 tPos; // target position vec3
     //end test
+    private float rad;
     private int rndTime; // random amount of time
     private Vector3 pos;
     
@@ -28,6 +29,7 @@ public class E2_SlowApproach : SlowApproach
         
         this.mEnemy = mEnemy;
         this.timer = 7.0f;
+        rad = 1.5f;
     }
 
     public override void StateEnter()
@@ -48,17 +50,17 @@ public class E2_SlowApproach : SlowApproach
         // if the enemy started lower than the player then we need to multiple the cos of theta by negative one
         if (mEnemy.transform.position.x > mEnemy.myTarget.transform.position.x)
         {
-            x = (Mathf.Cos(theta) * 5) * -1 + mEnemy.myTarget.transform.position.x;
+            x = (Mathf.Cos(theta) * rad) * -1 + mEnemy.myTarget.transform.position.x;
             startHigher = true;
         }
         else
         {
-             x = Mathf.Cos(theta) * 5 + mEnemy.myTarget.transform.position.x;
+             x = Mathf.Cos(theta) * rad + mEnemy.myTarget.transform.position.x;
             startHigher = false;
         }
         // assigns the target position to the calculated x y and z
         y = mEnemy.transform.position.y;
-        z = Mathf.Sin(theta) * 5 + mEnemy.myTarget.transform.position.z ;
+        z = Mathf.Sin(theta) * rad + mEnemy.myTarget.transform.position.z ;
         pos.x = x;
         pos.y = y;
         pos.z = z;
@@ -117,23 +119,23 @@ public class E2_SlowApproach : SlowApproach
         if(startHigher == true)
         {
             theta -= .05f;
-            x = (Mathf.Cos(theta) * 5) * -1 + mEntity.myTarget.transform.position.x;
+            x = (Mathf.Cos(theta) * rad) * -1 + mEntity.myTarget.transform.position.x;
             tX = (Mathf.Cos(theta + Mathf.PI) * 10) * -1 + mEntity.myTarget.transform.position.x;
         }
         else
         {
             theta += .05f;
-            x = Mathf.Cos(theta) * 5 + mEntity.myTarget.transform.position.x;
+            x = Mathf.Cos(theta) * rad + mEntity.myTarget.transform.position.x;
             tX = Mathf.Cos(theta + Mathf.PI) * 10 + mEntity.myTarget.transform.position.x;
         }
         y = mEntity.transform.position.y;
-        z = Mathf.Sin(theta) * 5 + mEntity.myTarget.transform.position.z;
+        z = Mathf.Sin(theta) * rad + mEntity.myTarget.transform.position.z;
         pos.x = x;
         pos.y = y;
         pos.z = z;
         // duplicating for target but adding pi. the target is where the enemy will jump towards when it attacks
         tY = mEntity.transform.position.y;
-        tZ = Mathf.Sin(theta + Mathf.PI) * 10 + mEntity.myTarget.transform.position.z;
+        tZ = Mathf.Sin(theta + Mathf.PI) * (rad * 2) + mEntity.myTarget.transform.position.z;
         tPos.x = tX;
         tPos.y = tY;
         tPos.z = tZ;

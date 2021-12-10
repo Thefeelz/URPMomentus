@@ -26,7 +26,7 @@ public class E1_AimingState : AimingState
     public override void StateEnter()
     {
         base.StateEnter();
-        mEnemy.agent.speed = 3;
+        mEnemy.agent.speed = aimData.moveSpeed;
        
         //mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
@@ -43,18 +43,25 @@ public class E1_AimingState : AimingState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // debug
+        Vector3 path = mEnemy.transform.TransformDirection(Vector3.forward * -1) * 10;
+        Debug.DrawRay(mEnemy.transform.position, path, Color.green);
+        // end debug
         Aim();
         if(mEnemy.canShoot)
         {
             mEnemy.canShoot = false;
             Shoot();
         }
-        // switch states based on player distance if needed
-        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance)
+        // switch states based on player distance and cool down when needed
+        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvadeState == true)
         {
+            //starts the evade cooldown in the enemy class if enemy can evade
+            mEnemy.evadeTime = Time.time;
+            mEnemy.canEvadeState = false;
             mStateMachine.ChangeState(mEnemy.evadeState);
         }
-        if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
+        else if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
         {
             mStateMachine.ChangeState(mEnemy.moveState);
         }
@@ -78,7 +85,7 @@ public class E1_AimingState : AimingState
         bullet.transform.rotation = enemyRotation;
         bullet.SetActive(true);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * dAimData.bulletSpeed);
+        bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed);
         mEnemy.StartCool(bullet);
     }
 

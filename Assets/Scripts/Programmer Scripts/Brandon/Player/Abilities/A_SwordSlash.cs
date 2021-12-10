@@ -49,7 +49,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     public void FireSwordSlash()
     {
         GameObject firedThing = Instantiate(swordSlashPrefab, weaponFire.position, Quaternion.Euler(transform.forward));
-        firedThing.GetComponentInChildren<SwordSlashEffect>().SetVelocity(transform.forward, 10f);
+        firedThing.GetComponentInChildren<SwordSlashEffect>().SetVelocity(Camera.main.transform.forward, 10f);
     }
     void RampUpEffects()
     {
