@@ -29,9 +29,9 @@ public class triggerSceneShift : MonoBehaviour
         }*/
     }
 
-    private void startMyLevelTransition() 
+    public void startMyLevelTransition() 
     {
-
+        Debug.Log("WE FUCKING GOT HERE");
         SceneManager.LoadScene(0);
         // StartCoroutine(nextLevel());
     }
