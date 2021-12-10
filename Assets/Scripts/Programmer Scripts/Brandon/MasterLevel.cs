@@ -9,7 +9,8 @@ public class MasterLevel : MonoBehaviour
     [SerializeField] Image progressBar;
     [SerializeField] Text completeText;
     [SerializeField] Door levelContinueDoor;
-    bool levelComplete;
+    [SerializeField] Animator elevatorAnimator;
+    public bool levelComplete;
 
     private void Start()
     {
@@ -30,14 +31,14 @@ public class MasterLevel : MonoBehaviour
         {
             if (currentKillCount >= enemiesToKill)
             {
-                StartCoroutine(ShowWinText());
-                levelContinueDoor.SetOpenDoor();
+                //StartCoroutine(ShowWinText());
+                elevatorAnimator.SetBool("startElevator", true);
                 levelComplete = true;
                 return true;
             }
             else
             {
-                completeText.gameObject.SetActive(false);
+                //completeText.gameObject.SetActive(false);
                 return false;
             }
         }

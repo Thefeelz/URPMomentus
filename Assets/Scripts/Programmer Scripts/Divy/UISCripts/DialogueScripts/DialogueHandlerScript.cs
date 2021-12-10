@@ -10,7 +10,7 @@ using UnityEngine.UI;
  * 
  * created by Divyansh Malik / 11/02/2021
  * 
- * Last Modded by: Divyansh Malik / 11/11/2021
+ * Last Modded by: Divyansh Malik / 12/08/2021
  * 
  */
 
@@ -24,13 +24,25 @@ public class DialogueHandlerScript : MonoBehaviour
     [SerializeField]
     Animator closeAnimation; // refrence to close the animator
 
+    public int arraySize;
+
     private Queue<string> sentences; // this variable holds all the sentences from the dialogue within it, you can access them in a FIFO order.
+
+    //private Queue<string> printQueue;
+
+    public bool isPlaying;
+
+
+    //private string[] sentences2; // replacing the queue
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
-        
+
+       // printQueue = new Queue<string>();
+
+        isPlaying = true;
     }
 
     /// <summary>
@@ -42,16 +54,26 @@ public class DialogueHandlerScript : MonoBehaviour
     /// Output: None
     public void StartDialogue(Dialogue dialogue)
     {
+
+      
+        //sentences2 = new string[arraySize];
+        //Debug.Log(sentences2.Length);
+
+        closeAnimation.SetBool("isOpen", true);
         //check if the conversation started
         Debug.Log("Starting conversation with " + dialogue.name);
 
         //clear all previous dialogues in the queue
-        sentences.Clear();
+        //sentences.Clear();
 
+        //int i = 0;
         //loop, for each sentence in dialogue, queue them up within the handler's queue.
-        foreach (string sentence in dialogue.scentences) 
+        foreach (string sentence in dialogue.scentences)
         {
-            sentences.Enqueue(sentence);
+            sentences.Enqueue(dialogue.name + ": " + sentence);
+            //printQueue.Enqueue(sentence);
+            //sentences2[i] = sentence;
+            // i++;
 
         }
 
@@ -60,26 +82,29 @@ public class DialogueHandlerScript : MonoBehaviour
 
         //start displaying sentences
         StartCoroutine(DelayTextSequence());
-        
 
+        //Debug.Log(printQueue.Count);
     }
 
     private void DisplayNextSentence()
     {
-        
+
         //if there are no sentences left, then end the dialogue and return
         if (sentences.Count == 0)
         {
-            EndDialogue();
+           
             return;
 
         }
 
         //otherwise dequeue the next sentence and display it
+
         string sent = sentences.Dequeue();
         dialogueText.text = sent;
-        
-       
+        Debug.Log(sent);
+
+
+
 
     }
 
@@ -87,17 +112,24 @@ public class DialogueHandlerScript : MonoBehaviour
     {
         dialogueText.text = "";
         closeAnimation.SetBool("isOpen", false);
+        isPlaying = false;
+
 
     }
 
     //delays the sequence of the text and displays them
     IEnumerator DelayTextSequence()
     {
-        for(int i=sentences.Count; i >= 0;--i)
+        for (int i = sentences.Count-1; i >= 0; --i)
         {
+            //Debug.Log("conversation with " + i);
+
             DisplayNextSentence();
             yield return new WaitForSeconds(3);
         }
-        
+        EndDialogue();
     }
+
 }
+
+    
