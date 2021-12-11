@@ -22,6 +22,18 @@ public class GameManager : MonoBehaviour
     {
         return enemiesInLevel;
     }
+    public List<EnemyStats> GetActiveEnemiesInRange(float range, Transform playerPos)
+    {
+        List<EnemyStats> enemiesInRange = new List<EnemyStats>();
+        foreach (EnemyStats enemy in enemiesInLevel)
+        {
+            if(Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+        return enemiesInRange;
+    }
     public void RemoveFromActiveList(EnemyStats enemyToRemove)
     {
         enemiesInLevel.Remove(enemyToRemove);
