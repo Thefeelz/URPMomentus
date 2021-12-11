@@ -87,12 +87,12 @@ public class P_Movement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
         }
-        else if(isGrounded && wallRunning() && !wallrunner.wallLeft)
+        else if(wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
             rb.AddForce((transform.up - (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
         }
-        else if (isGrounded && wallRunning() && wallrunner.wallLeft)
+        else if (wallRunning() && wallrunner.wallLeft)
         {
             rb.MovePosition(transform.right + transform.position);
             rb.AddForce((transform.up + (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
