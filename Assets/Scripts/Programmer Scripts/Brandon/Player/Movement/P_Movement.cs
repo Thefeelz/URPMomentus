@@ -94,6 +94,7 @@ public class P_Movement : MonoBehaviour
         }
         else if (wallRunning() && wallrunner.wallLeft)
         {
+            Debug.Log("Space Pressed");
             rb.MovePosition(transform.right + transform.position);
             rb.AddForce((transform.up + (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
         }

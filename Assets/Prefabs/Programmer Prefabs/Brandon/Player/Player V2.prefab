@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2733746628393996997}
   - component: {fileID: 2733746628393997002}
+  - component: {fileID: 557602380}
   - component: {fileID: 2733746628393997003}
   - component: {fileID: 2733746628393997000}
   - component: {fileID: 2733746628393997006}
@@ -21,7 +22,6 @@ GameObject:
   - component: {fileID: 557602385}
   - component: {fileID: 557602386}
   - component: {fileID: 557602387}
-  - component: {fileID: 557602380}
   - component: {fileID: 450880777}
   - component: {fileID: 1035522304}
   - component: {fileID: 1035522305}
@@ -72,6 +72,30 @@ MonoBehaviour:
   fallMultiplier: 1.5
   inAirControlMultiplier: 0.109
   isGrounded: 1
+--- !u!114 &557602380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733746628393997007}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5ea05261e731f549b6c0a6134650bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimumHeightForWallRun: 0
+  wallRunCamPos: {fileID: 2733746629456035313}
+  wallHugForce: 100
+  wallRunLayer: 7
+  wallDetectionDistanceMultiplier: 1.25
+  wallRunHeightOffset: 0.35
+  isWallRunning: 0
+  wallLeft: 0
+  normalizedAngleThreshold: 0.1
+  camRotated: 0
+  cameraRollAmount: 20
+  cameraTransitionTime: 0.5
 --- !u!114 &2733746628393997003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +114,7 @@ MonoBehaviour:
   playerCurrentOvercharge: 0
   playerStrength: 20
   playerDefense: 10
+  canvasAnimator: {fileID: 0}
 --- !u!114 &2733746628393997000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +149,6 @@ MonoBehaviour:
   attackDashCooldown: 0
   dashTime: 0.35
   attackDashVolume: {fileID: 0}
-  swordMat: {fileID: 2100000, guid: 22824c6c47c50434db3e120471d36af1, type: 2}
 --- !u!54 &2733746628393996999
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -269,30 +293,6 @@ MonoBehaviour:
   bladeDanceImage: {fileID: 0}
   containedHeatImage: {fileID: 0}
   swordSlashImage: {fileID: 0}
---- !u!114 &557602380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733746628393997007}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ea05261e731f549b6c0a6134650bbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumHeightForWallRun: 0
-  wallRunCamPos: {fileID: 2733746629456035313}
-  wallHugForce: 100
-  wallRunLayer: 7
-  wallDetectionDistanceMultiplier: 1.25
-  wallRunHeightOffset: 0.35
-  isWallRunning: 0
-  wallLeft: 0
-  normalizedAngleThreshold: 0.1
-  camRotated: 0
-  cameraRollAmount: 20
-  cameraTransitionTime: 0.5
 --- !u!114 &450880777
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -106,7 +106,7 @@ public class A_AirDash : A_OverchargeAbilities
         // Starting position set to our players current position
         startingPos = transform.position;
         // Ending position set to our position plus the distance forward we determine in the inspector
-        endingPos = transform.position + transform.forward * slideDistance;
+        endingPos = transform.position + Camera.main.transform.forward * slideDistance;
         CalculateDashDistance();
     }
 
