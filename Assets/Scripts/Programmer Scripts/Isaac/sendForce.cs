@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class sendForce : MonoBehaviour
 {
-    public GameObject player;
-    public Rigidbody rigid;
-    public int bounce;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        rigid = player.GetComponent<Rigidbody>();
-    }
+    [SerializeField]
+    private GameObject player;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private int bouncePower;
+
+    private Rigidbody playerBody;
+
+    private void Start()
     {
-    
+        playerBody = player.GetComponentInChildren<Rigidbody>();
     }
 
     void OnCollisionEnter()
     {
-       rigid.AddForce(Vector3.up * bounce, ForceMode.Impulse);
+       playerBody.AddForce(Vector3.up * bouncePower, ForceMode.VelocityChange);
     }
-
 }

@@ -26,7 +26,7 @@ public class E1_AimingState : AimingState
     public override void StateEnter()
     {
         base.StateEnter();
-        mEnemy.agent.speed = 3;
+        mEnemy.agent.speed = aimData.moveSpeed;
        
         //mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
@@ -53,10 +53,12 @@ public class E1_AimingState : AimingState
             mEnemy.canShoot = false;
             Shoot();
         }
-        // switch states based on player distance if needed
-        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvade == true)
+        // switch states based on player distance and cool down when needed
+        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvadeState == true)
         {
-            mEnemy.canEvade = false;
+            //starts the evade cooldown in the enemy class if enemy can evade
+            mEnemy.evadeTime = Time.time;
+            mEnemy.canEvadeState = false;
             mStateMachine.ChangeState(mEnemy.evadeState);
         }
         else if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
@@ -83,7 +85,7 @@ public class E1_AimingState : AimingState
         bullet.transform.rotation = enemyRotation;
         bullet.SetActive(true);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        bullet.GetComponent<Rigidbody>().AddForce(mEnemy.canon.transform.forward * dAimData.bulletSpeed);
+        bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed);
         mEnemy.StartCool(bullet);
     }
 

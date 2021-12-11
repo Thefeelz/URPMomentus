@@ -140,6 +140,16 @@ public class EnemyChaseState : MonoBehaviour
             }
         }
     }
+
+    // INACTIVE STATE
+    void CheckPlayerInRange()
+    {
+        if(DistanceFromEnemyToPlayer() < maxDetectionRange && PlayerInLineOfSight(maxDetectionRange))
+        {
+            currentState = State.Chasing;
+            animController.SetBool("chasing", true);
+        }
+    }
     bool PlayerInLineOfSight(float detectionRange)
     {
         RaycastHit hit;
@@ -152,15 +162,7 @@ public class EnemyChaseState : MonoBehaviour
         return false;
     }
 
-    void CheckPlayerInRange()
-    {
-        if(DistanceFromEnemyToPlayer() < maxDetectionRange && PlayerInLineOfSight(maxDetectionRange))
-        {
-            currentState = State.Chasing;
-            animController.SetBool("chasing", true);
-        }
-    }
-
+    // CHASING STATE
     void ChasePlayer()
     {
         float distance = DistanceFromEnemyToPlayer();
@@ -192,6 +194,8 @@ public class EnemyChaseState : MonoBehaviour
         else
             transform.Rotate(0, 5, 0);
     }
+
+    // ATTACKING STATE
     void AttackPlayer()
     {
         transform.LookAt(player.transform);
@@ -227,6 +231,16 @@ public class EnemyChaseState : MonoBehaviour
         dead = true;
         animController.SetBool("dead", true);
         masterLevel.AddToKillCount(1);
+    }
+
+    public void MeleeAttack()
+    {
+        RaycastHit hit;
+        Physics.Raycast((transform.position + Vector3.up) + (transform.forward * 0.5f), transform.forward, out hit, 1f);
+        if (hit.collider != null && hit.collider.GetComponentInParent<CharacterStats>())
+        {
+            hit.transform.GetComponentInParent<CharacterStats>().RemoveHealth(10f);
+        }
     }
 
     void JumpToPosition()

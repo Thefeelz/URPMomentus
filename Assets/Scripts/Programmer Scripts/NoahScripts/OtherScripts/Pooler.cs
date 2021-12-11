@@ -19,7 +19,7 @@ public class Pooler : MonoBehaviour
     public List<ObjectPool> objectPools;
     public Dictionary<string, Queue<GameObject>> dictionaryPools;
     public Spawner spawner;
-    private int totToSpawn; // how many are left to spawn in total
+    public int totToSpawn; // how many are left to spawn in total
     private int totOnField; // how many are on the field in total
     private Dictionary<string, int> onField; // a dictionary of how many of an individual type is on the field
     private Dictionary<string, int> minField; // minimum amount to exist on the field at a given time

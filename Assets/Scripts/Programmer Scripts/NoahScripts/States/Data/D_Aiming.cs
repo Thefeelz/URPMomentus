@@ -6,4 +6,5 @@ using UnityEngine;
 public class D_Aiming : ScriptableObject
 {
     public float bulletSpeed;
+    public float moveSpeed;
 }

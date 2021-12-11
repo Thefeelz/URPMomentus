@@ -19,7 +19,7 @@ public class E1_Evade : EvadeState
     private Vector3 startPos; // initial position when starting
     private float progress; // how far into jump
     private Vector3 direction; // direction of jump
-    private bool jumping; // bool to check if it is jumping back or dashing forward
+    private bool jumping = false; // bool to check if it is jumping back or dashing forward
     private float prog2; // progress for test fire
     public E1_Evade(Entity mEntity, FiniteStateMachine mStateMachine, D_Evade evadeData, D_Entity entityData, Enemy1 mEnemy) : base(mEntity, mStateMachine, evadeData, entityData)
     {
@@ -28,13 +28,14 @@ public class E1_Evade : EvadeState
         distance = evadeData.distance;
         height = evadeData.height;
         speed = evadeData.speed;
-        speed2 = 20;
-        mEnemy.canEvade = true; // even though it is set to true by default nothing will happen till check is ran
+        speed2 = 10;
+        
     }
 
     public override void StateEnter()
     {
         base.StateEnter();
+        mEnemy.canEvade = true; // even though it is set to true by default nothing will happen till check is ran
         mEnemy.testFire.transform.position = mEnemy.transform.position;
         jumpStarted = true;
         prog2 = 0; // progress of test
@@ -42,12 +43,12 @@ public class E1_Evade : EvadeState
         mEnemy.GetComponent<NavMeshAgent>().enabled = false;
         //resets variables each time
         mEnemy.facePlayer();
-        targetPos = mEnemy.transform.position - (mEnemy.transform.forward * distance);
-        step = speed / mEnemy.DistanceToPosition(targetPos);
-        step2 = speed2 / mEnemy.DistanceToPosition(targetPos);
+        targetPos = mEnemy.transform.position - (mEnemy.transform.forward * distance); // position that arc goes to
+        step = speed / mEnemy.DistanceToPosition(targetPos); // used to calculate rate of arc. complicated bullshit
+        step2 = speed2 / mEnemy.DistanceToPosition(targetPos); // more complicated bullshit
         startPos = mEnemy.transform.position;
         progress = 0;
-        jumping = false;
+        
         //RaycastHit hit;
         //if (Physics.Raycast(mEnemy.transform.position, mEnemy.transform.forward * -1, out hit, 10.0f ))
         //{
@@ -64,33 +65,18 @@ public class E1_Evade : EvadeState
     public override void StateExit()
     {
         base.StateExit();
+        jumping = false;
         prog2 = 0;
-        mEnemy.evadeCool();
+        mEnemy.gameObject.GetComponent<Rigidbody>().useGravity = false;
         mEnemy.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     public override void LogicUpdate()
     {
+        //Debug.Log(jumping);
         Vector3 path = mEnemy.transform.TransformDirection(Vector3.forward * -1) * 10;
         Debug.DrawRay(mEnemy.transform.position, path, Color.green);
-        if (progress < 1 && jumping == true)
-        {
-            progress = Mathf.Min(progress + Time.deltaTime * step, 1.0f);
-            float parabola = 1.0f - 4.0f * (progress - 0.5f) * (progress - 0.5f);
-            Vector3 nextPos = Vector3.Lerp(startPos, targetPos, progress);
-
-            // Then add a vertical arc in excess of this.
-            nextPos.y += parabola * height;
-
-            // Continue as before.
-            //mEnemy.transform.LookAt(nextPos, mEnemy.transform.forward);
-            mEnemy.transform.position = nextPos;
-            // if enemy is in the air then it is not grounded
-            if (progress < 1.0)
-            {
-                mEnemy.grounded = false;
-            }
-        }
+        jumpArc();
         // test
 
         if (progress >= 1.0 && mEnemy.grounded == true)
@@ -98,11 +84,11 @@ public class E1_Evade : EvadeState
 
             mEnemy.stateMachine.ChangeState(mEnemy.moveState);
         }
-        if(mEnemy.canEvade == false)
-        {
-            jumping = false;
-            mEnemy.Die();
-        }
+        //if(mEnemy.canEvade == false)
+        //{
+        //    jumping = false;
+        //    mEnemy.Die();
+        //}
         //if(jumping == false)
         //{
         //    //mEnemy.stateMachine.ChangeState(mEnemy.aimState);
@@ -130,11 +116,41 @@ public class E1_Evade : EvadeState
 
 
         }
-        if(prog2 >= 1 && mEnemy.canEvade == true)
+        if(mEnemy.testFire.transform.localPosition.y <= 0.10 && prog2 >= 1 && mEnemy.canEvade == true)
         {
             jumping = true;
+            mEnemy.testFire.transform.localPosition = new Vector3(0, 0, 0);
         }
 
+    }
+
+    private void jumpArc()
+    {
+        if (progress < 1 && jumping == true)
+        {
+
+            progress = Mathf.Min(progress + Time.deltaTime * step, 1.0f);
+            float parabola = 1.0f - 4.0f * (progress - 0.5f) * (progress - 0.5f);
+            Vector3 nextPos = Vector3.Lerp(startPos, targetPos, progress);
+
+            // Then add a vertical arc in excess of this.
+            nextPos.y += parabola * height;
+
+            // Continue as before.
+            //mEnemy.transform.LookAt(nextPos, mEnemy.transform.forward);
+            mEnemy.transform.position = nextPos;
+
+            // IMPORTANT! I DONT KNOW WHY, AND I DONT WANNA, BUT GRAVITY CAN NOT BE ENABLED AT THE START, ENEMY FALLS THROUGH FLOOR OTHERWISE!!!!!!
+            if(progress > .1)
+            {
+                mEnemy.gameObject.GetComponent<Rigidbody>().useGravity = true;
+            }
+            // if enemy is in the air then it is not grounded
+            if (progress < 1.0)
+            {
+                mEnemy.grounded = false;
+            }
+        }
     }
 
    

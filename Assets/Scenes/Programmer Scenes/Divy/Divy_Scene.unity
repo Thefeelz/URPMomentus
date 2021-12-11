@@ -330,6 +330,10 @@ MonoBehaviour:
     - Hey, you doing fine in there?
     - Can You hear me
     - Respond Soldier!
+  - name: Jennifer
+    scentences:
+    - Hey
+    - bei
 --- !u!1 &381401635
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +709,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1940996829}
   closeAnimation: {fileID: 255559107}
+  arraySize: 0
+  isPlaying: 0
 --- !u!224 &916541220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1082,6 +1088,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370347518}
   m_CullTransparentMesh: 1
+--- !u!1 &1408424426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1408424429}
+  - component: {fileID: 1408424428}
+  - component: {fileID: 1408424427}
+  m_Layer: 0
+  m_Name: DialogueBox1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1408424427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408424426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueArray:
+  - name: siwa
+    scentences:
+    - bye
+    - My name is Siwa
+    - Cry me a river
+  - name: jojo
+    scentences:
+    - hi
+    - My name is Jojo
+    - how do you do?
+--- !u!114 &1408424428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408424426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7521f57980e504ca11aa79a5ec276b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionControlObject: {fileID: 1408424426}
+--- !u!4 &1408424429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408424426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1920, y: 1080, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799350018
 GameObject:
   m_ObjectHideFlags: 0

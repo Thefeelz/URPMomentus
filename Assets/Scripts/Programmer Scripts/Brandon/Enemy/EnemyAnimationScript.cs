@@ -11,6 +11,11 @@ public class EnemyAnimationScript : MonoBehaviour
         enemy = GetComponentInParent<EnemyChaseState>();
     }
 
+    public void MeleeAttack()
+    {
+        enemy.MeleeAttack();
+    }
+
     public void ShootDaHoe()
     {
         enemy.ShootAtPlayer();
