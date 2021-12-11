@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] int levelChosen;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     public bool activeInUse = false;
-    public bool levelComplete = false;
 
     private void Awake()
     {

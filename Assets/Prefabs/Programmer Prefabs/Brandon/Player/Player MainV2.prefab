@@ -322,6 +322,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 557602380, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
+      propertyPath: wallHugForce
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 557602382, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -844,15 +848,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.48
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.775
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.15
+      value: -22.3
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -885,6 +889,14 @@ PrefabInstance:
     - target: {fileID: 2733746628393997002, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: maxPlayerSpeedRunning
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2733746628393997003, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1636144397335144464}
+    - target: {fileID: 2733746628393997003, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
+      propertyPath: playerMaxHealth
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2733746628393997006, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
       propertyPath: m_Enabled
@@ -1682,7 +1694,8 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9d4cb1c64b4baf748b214b03de1c770e, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2472014035823276101, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 12ff7846190317b4e998a28e573715d1, type: 3}
 --- !u!1 &9082202504189526756 stripped
 GameObject:
