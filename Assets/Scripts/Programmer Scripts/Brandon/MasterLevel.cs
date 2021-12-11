@@ -32,8 +32,8 @@ public class MasterLevel : MonoBehaviour
             if (currentKillCount >= enemiesToKill)
             {
                 //StartCoroutine(ShowWinText());
-                elevatorAnimator.SetBool("startElevator", true);
-                levelContinueDoor.SetActive(true);
+                //elevatorAnimator.SetBool("startElevator", true);
+                //levelContinueDoor.SetActive(true);
                 levelComplete = true;
                 return true;
             }
