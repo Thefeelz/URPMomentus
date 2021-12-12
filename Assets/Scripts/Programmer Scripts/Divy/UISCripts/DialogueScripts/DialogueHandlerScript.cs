@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /*
  * Momentus Dialogue Handler
@@ -19,7 +20,7 @@ public class DialogueHandlerScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Text dialogueText; //textbox to display the text
+    private TMP_Text dialogueText; //textbox to display the text
 
     [SerializeField]
     Animator closeAnimation; // refrence to close the animator
@@ -39,9 +40,6 @@ public class DialogueHandlerScript : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-
-       // printQueue = new Queue<string>();
-
         isPlaying = true;
     }
 
@@ -54,8 +52,8 @@ public class DialogueHandlerScript : MonoBehaviour
     /// Output: None
     public void StartDialogue(Dialogue dialogue)
     {
+        
 
-      
         //sentences2 = new string[arraySize];
         //Debug.Log(sentences2.Length);
 

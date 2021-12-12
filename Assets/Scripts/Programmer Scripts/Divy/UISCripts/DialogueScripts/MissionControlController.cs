@@ -13,7 +13,7 @@ public class MissionControlController : MonoBehaviour
     void Start()
     {
 
-        missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
+       // missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
     }
 
     // Update is called once per frame
@@ -23,16 +23,17 @@ public class MissionControlController : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         //gets the current dialogue trigger on the object it's attached to and plays the dialogue.
         missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
     }
 
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider collision)
     {
-
+        missionControlObject.GetComponent<MeshCollider>().enabled = false;
+        missionControlObject.GetComponent<MissionControlController>().enabled = false;
     }
 }
 
