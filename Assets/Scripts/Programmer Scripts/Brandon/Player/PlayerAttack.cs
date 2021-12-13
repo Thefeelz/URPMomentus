@@ -116,7 +116,7 @@ public class PlayerAttack : MonoBehaviour
     IEnumerator WeaponSwing()
     {
         playerAnimator.SetBool("swordSwing", true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.8f);
         playerAnimator.SetBool("swordSwing", false);
         StopCoroutine(WeaponSwing());
     }

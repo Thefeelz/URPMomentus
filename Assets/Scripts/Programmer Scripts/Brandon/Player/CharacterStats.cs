@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField] int playerStrength = 10;
     [SerializeField] int playerDefense = 10;
+    [SerializeField] Animator canvasAnimator;
 
     void Start()
     {
@@ -72,6 +74,10 @@ public class CharacterStats : MonoBehaviour
         else
         {
             playerCurrentHealth -= amountToRemove;
+            if(playerCurrentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
     public void SetPlayerHealth(float newPlayerHealth)
@@ -113,5 +119,19 @@ public class CharacterStats : MonoBehaviour
     public int GetPlayerStrength()
     {
         return playerStrength;
+    }
+
+    private void Die()
+    {
+        GetComponent<P_Input>().enabled = false;
+        canvasAnimator.SetBool("dead", true);
+        StartCoroutine(BackToMainScreen());
+
+    }
+
+    IEnumerator BackToMainScreen()
+    {
+        yield return new WaitForSeconds(6f);
+        SceneManager.LoadScene(0);
     }
 }

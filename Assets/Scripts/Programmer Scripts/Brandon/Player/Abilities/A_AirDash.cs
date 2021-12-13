@@ -106,7 +106,8 @@ public class A_AirDash : A_OverchargeAbilities
         // Starting position set to our players current position
         startingPos = transform.position;
         // Ending position set to our position plus the distance forward we determine in the inspector
-        endingPos = transform.position + transform.forward * slideDistance;
+        endingPos = transform.position + Camera.main.transform.forward * slideDistance;
+        Debug.Log(startingPos + " " + endingPos);
         CalculateDashDistance();
     }
 
@@ -115,7 +116,7 @@ public class A_AirDash : A_OverchargeAbilities
         // Raycast hit to store our raycast hit information
         RaycastHit hit;
         // A raycast that shoots out from our feet forward relative to where we are facing
-        Physics.Raycast(transform.position, transform.forward, out hit, slideDistance);
+        Physics.Raycast(transform.position, Camera.main.transform.forward, out hit, slideDistance);
 
         // If the raycast hits nothing, go the full length of the slide and return
         if (hit.collider == null || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }

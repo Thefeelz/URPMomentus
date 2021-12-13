@@ -8,12 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] int levelChosen;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     public bool activeInUse = false;
-    MasterLevel masterLevel;
 
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        masterLevel = FindObjectOfType<MasterLevel>();
     }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
@@ -23,9 +21,20 @@ public class GameManager : MonoBehaviour
     {
         return enemiesInLevel;
     }
+    public List<EnemyStats> GetActiveEnemiesInRange(float range, Transform playerPos)
+    {
+        List<EnemyStats> enemiesInRange = new List<EnemyStats>();
+        foreach (EnemyStats enemy in enemiesInLevel)
+        {
+            if(Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+        return enemiesInRange;
+    }
     public void RemoveFromActiveList(EnemyStats enemyToRemove)
     {
-        //masterLevel.AddToKillCount(1);
         enemiesInLevel.Remove(enemyToRemove);
     }
     public void SetActiveSpecialAbility(bool value)
