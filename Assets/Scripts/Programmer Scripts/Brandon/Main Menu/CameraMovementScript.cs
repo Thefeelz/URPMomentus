@@ -19,7 +19,7 @@ public class CameraMovementScript : MonoBehaviour
     [SerializeField] GameObject creditsObject;
     Vector3 startingPos, endingPos;
     Quaternion startingRot, endingRot;
-    GameObject currentSelelection, nextSelection;
+    public GameObject currentSelelection, nextSelection;
     float elapsedTime = 0f;
     float currentLerpPos = 0f;
     bool transitioning = false;
@@ -46,7 +46,8 @@ public class CameraMovementScript : MonoBehaviour
         {
             foreach (Transform toggle in currentSelelection.transform)
             {
-                toggle.GetComponent<Toggle>().isOn = false;
+                if(toggle.GetComponent<Toggle>())
+                    toggle.GetComponent<Toggle>().isOn = false;
             }
             currentSelelection.SetActive(false);
             nextSelection.SetActive(true);
