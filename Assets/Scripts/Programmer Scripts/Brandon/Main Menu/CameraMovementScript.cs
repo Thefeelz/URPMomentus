@@ -65,6 +65,16 @@ public class CameraMovementScript : MonoBehaviour
         nextSelection = levelSelectionObject;
         transitioning = true;
     }
+    public void TutorialButtonClicked()
+    {
+        startingPos = transform.position;
+        startingRot = transform.rotation;
+        endingPos = camPosLoadOutSelection.position;
+        endingRot = camPosLoadOutSelection.rotation;
+        currentSelelection = mainMenuSelectionObject;
+        nextSelection = loadOutSelectionObject;
+        transitioning = true;
+    }
     public void LevelButtonClicked()
     {
         startingPos = transform.position;

@@ -78,9 +78,9 @@ public class EnemyChaseState : MonoBehaviour
                 {
                     CheckPlayerInRange();
                 }
-                else if (currentState == State.Chasing)
+                else if (currentState == State.Chasing && !animController.GetBool("chasing"))
                 {
-                    // I dont know what to put heeyah yet
+                    animController.SetBool("chasing", true);
                 }
                 else if (currentState == State.Attacking)
                 {
