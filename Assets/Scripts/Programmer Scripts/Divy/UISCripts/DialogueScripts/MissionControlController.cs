@@ -32,7 +32,7 @@ public class MissionControlController : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        missionControlObject.GetComponent<MeshCollider>().enabled = false;
+        missionControlObject.GetComponent<BoxCollider>().enabled = false;
         missionControlObject.GetComponent<MissionControlController>().enabled = false;
     }
 }

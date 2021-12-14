@@ -55,6 +55,7 @@ public class DialogueTrigger : MonoBehaviour
 
             FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i]);
             yield return new WaitWhile(() => FindObjectOfType<DialogueHandlerScript>().isPlaying);
+            yield return new WaitForSeconds(3);
         }
 
         
