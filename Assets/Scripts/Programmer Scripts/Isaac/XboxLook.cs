@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class controllerLook : MonoBehaviour
+public class XboxLook : MonoBehaviour
 {
     [SerializeField]
     private float mouseSens = 100f;
     private float mouseMultiplier = 10f;
     private float horizontalRotation = 0f;
     private float verticalRotation = 0f;
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,17 +23,17 @@ public class controllerLook : MonoBehaviour
         //get Joystick position
         float mouseX = Input.GetAxis("cntrlLookHorz") * mouseSens * mouseMultiplier * Time.deltaTime;
         float mouseY = Input.GetAxis("cntrlLookVert") * mouseSens * mouseMultiplier * Time.deltaTime;
-        
+
         //rotate left/right
         horizontalRotation += mouseX;
-        
+
 
         //rotate up/down
         verticalRotation -= mouseY;
         verticalRotation = Mathf.Clamp(verticalRotation, -30f, 30f);
-        
-        
-       // transform.localRotation = Quaternion.Euler(, 0f, 0f);
+
+
+        // transform.localRotation = Quaternion.Euler(, 0f, 0f);
         transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
     }
 }
