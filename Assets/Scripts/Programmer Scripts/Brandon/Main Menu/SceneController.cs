@@ -17,4 +17,12 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void ChooseSceneByIndex(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+    public void ChooseSceneByGameManager()
+    {
+        SceneManager.LoadScene(FindObjectOfType<GameManager>().GetLevel());
+    }
 }
