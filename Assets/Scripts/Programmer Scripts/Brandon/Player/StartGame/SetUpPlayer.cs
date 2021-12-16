@@ -5,7 +5,9 @@ using UnityEngine;
 public class SetUpPlayer : MonoBehaviour
 {
     [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger;
-    Material[] materialsToApply;
+    Material[] materialsToApply; 
+    [SerializeField] Material[] defaultMaterialsToApply;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,29 +22,106 @@ public class SetUpPlayer : MonoBehaviour
     }
     void ApplyMaterials()
     {
-        foreach(GameObject mat in blade)
+        if (materialsToApply.Length > 0)
         {
-            mat.GetComponent<MeshRenderer>().material = materialsToApply[0];
+            Debug.Log("Blade Not Null");
+            foreach (GameObject mat in blade)
+            {
+                mat.GetComponent<MeshRenderer>().material = materialsToApply[0];
+            }
+        } 
+        else
+        {
+            Debug.Log("Blade Null");
+            foreach (GameObject mat in blade)
+            {
+                mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[0];
+            }
         }
-        foreach (GameObject mat in cross)
+
+        if (materialsToApply.Length > 1)
         {
-            mat.GetComponent<MeshRenderer>().material = materialsToApply[1];
+            Debug.Log("Cross Not Null");
+            foreach (GameObject mat in cross)
+            {
+                mat.GetComponent<MeshRenderer>().material = materialsToApply[1];
+            }
         }
-        foreach (GameObject mat in hilt)
+        else
         {
-            mat.GetComponent<MeshRenderer>().material = materialsToApply[2];
+            Debug.Log("Cross Null");
+            foreach (GameObject mat in cross)
+            {
+                mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[1];
+            }
         }
-        foreach (GameObject mat in finger)
+
+        if (materialsToApply.Length > 2)
         {
-            mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[3];
+            Debug.Log("Hilt Not Null");
+            foreach (GameObject mat in hilt)
+            {
+                mat.GetComponent<MeshRenderer>().material = materialsToApply[2];
+            }
         }
-        foreach (GameObject mat in forearm)
+        else
         {
-            mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[4];
+            Debug.Log("Hilt Null");
+            foreach (GameObject mat in hilt)
+            {
+                mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[2];
+            }
         }
-        foreach (GameObject mat in hand)
+
+        if (materialsToApply.Length > 3)
         {
-            mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[5];
+            Debug.Log("Finger Not Null");
+            foreach (GameObject mat in finger)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[3];
+            }
+        }
+        else
+        {
+            Debug.Log("Finger Null");
+            foreach (GameObject mat in finger)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[3];
+            }
+        }
+
+        if (materialsToApply.Length > 4)
+        {
+            Debug.Log("Forearm Not Null");
+            foreach (GameObject mat in forearm)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[4];
+            }
+        }
+        else
+        {
+            Debug.Log("Forearm Null");
+            foreach (GameObject mat in forearm)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[4];
+            }
+        }
+
+        if (materialsToApply.Length > 5)
+        {
+            Debug.Log("Hand Not Null");
+            foreach (GameObject mat in hand)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[5];
+            }
+        }
+        else
+        {
+            Debug.Log("Hand Null");
+            foreach (GameObject mat in hand)
+            {
+                mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[5];
+            }
         }
     }
 }
