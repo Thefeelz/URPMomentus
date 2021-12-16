@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.501
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014645601, g: 0.02134073, b: 0.015941266, a: 0.501}
+  m_IndirectSpecularColor: {r: 0.014636132, g: 0.021353051, b: 0.01593772, a: 0.501}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3684,20 +3684,30 @@ MonoBehaviour:
     scentences:
     - Soldier, I'm detecting multiple hostiles coming from that terminal.
     - Keep an eye out for an entance to the core
+    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    HasImage: 1
   - name: K.A.T
     scentences:
     - '[Robot noises]'
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
   - name: THE GENERAL
     scentences:
     - Keep count? who do you think you are soldier ordering me around
+    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    HasImage: 1
   - name: K.A.T
     scentences:
     - '[... Robot noises]'
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
   - name: THE GENERAL
     scentences:
     - A cheeky little bot arent ya.
     - I LIKE IT
     - in fact i'll keep score AND help ya to boot.
+    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    HasImage: 1
 --- !u!114 &325374740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6935,8 +6945,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueText: {fileID: 1374237029}
-  closeAnimation: {fileID: 1799213573}
-  arraySize: 0
+  missionControlAnimator: {fileID: 1799213573}
+  CharacterImg: {fileID: 2054587427}
   isPlaying: 0
 --- !u!1001 &597338591
 PrefabInstance:
@@ -9774,6 +9784,8 @@ MonoBehaviour:
   - name: 
     scentences:
     - Hop onto a wall to initiate wall run!
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!1 &763939836 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4003379412600968288, guid: be38a20fd8a1573448ac6dfcc29faf2a, type: 3}
@@ -10687,7 +10699,9 @@ MonoBehaviour:
   DialogueArray:
   - name: 
     scentences:
-    - Press X to Jump
+    - Press SpaceBar to Jump
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!1 &828468837
 GameObject:
   m_ObjectHideFlags: 0
@@ -18092,7 +18106,9 @@ MonoBehaviour:
   DialogueArray:
   - name: 
     scentences:
-    - press X and Shift for a jumping airdash
+    - press SpaceBar and Shift for a jumping airdash
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!114 &1591423132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18504,7 +18520,6 @@ GameObject:
   - component: {fileID: 1616913185}
   - component: {fileID: 1616913189}
   - component: {fileID: 1616913188}
-  - component: {fileID: 1616913187}
   - component: {fileID: 1616913186}
   m_Layer: 0
   m_Name: EndLevelText
@@ -18546,20 +18561,8 @@ MonoBehaviour:
     - 'huh, the center device is activated '
     - Alright soldier head to the center, that's our best bet of reaching the core
       of this planet!
---- !u!114 &1616913187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616913184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - {fileID: 11400000, guid: 51cc798186195014e9b9e6e77d29c5a8, type: 2}
+    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    HasImage: 1
 --- !u!114 &1616913188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19281,7 +19284,9 @@ MonoBehaviour:
   DialogueArray:
   - name: 
     scentences:
-    - Use the Arrow Keys to move the player character!
+    - Use the WASD to move the player character!
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!114 &1718193510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20193,6 +20198,8 @@ MonoBehaviour:
     - What happened? looks like you couldn't make the jump
     - Don't worry about it, there should be a ramp behind you
     - So go up and try again.
+    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    HasImage: 1
 --- !u!114 &1789843910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21577,6 +21584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player MainV2
       objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -21659,15 +21670,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -184.4
+      value: -160.73
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.37
+      value: 7.3
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 189.4
+      value: 37.3
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21681,7 +21692,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 361.841
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 140007495, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
 --- !u!1 &1912887645
 GameObject:
@@ -23814,6 +23826,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053173423}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2054587427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 431801858139356976, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 1909201772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2058873472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24116,7 +24139,6 @@ GameObject:
   - component: {fileID: 2091929019}
   - component: {fileID: 2091929022}
   - component: {fileID: 2091929021}
-  - component: {fileID: 2091929020}
   - component: {fileID: 2091929023}
   m_Layer: 0
   m_Name: Jump and Wave Dash
@@ -24139,20 +24161,6 @@ Transform:
   m_Father: {fileID: 1275892994}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2091929020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2091929018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messages:
-  - {fileID: 11400000, guid: 51cc798186195014e9b9e6e77d29c5a8, type: 2}
 --- !u!114 &2091929021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24195,7 +24203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogueArray: []
+  DialogueArray:
+  - name: 
+    scentences:
+    - after wallrunning, jump in a direction to get a boost!
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!1 &2110896444 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5453780489858369613, guid: b61b562fbcd5dd849bda194c6b23c057, type: 3}

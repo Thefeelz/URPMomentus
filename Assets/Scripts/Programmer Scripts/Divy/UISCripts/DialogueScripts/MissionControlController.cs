@@ -26,7 +26,7 @@ public class MissionControlController : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         //gets the current dialogue trigger on the object it's attached to and plays the dialogue.
-        missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
+        CallDialogueTrigger();
     }
 
 
@@ -34,6 +34,11 @@ public class MissionControlController : MonoBehaviour
     {
         missionControlObject.GetComponent<BoxCollider>().enabled = false;
         missionControlObject.GetComponent<MissionControlController>().enabled = false;
+    }
+
+    public void CallDialogueTrigger()
+    {
+        missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
     }
 }
 
