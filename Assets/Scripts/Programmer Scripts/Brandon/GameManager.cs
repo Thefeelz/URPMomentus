@@ -13,6 +13,19 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        
+    }
+    private void Start()
+    {
+        if (FindObjectOfType<GameManager>())
+        {
+            GameManager gm = FindObjectOfType<GameManager>();
+            if (gm != this)
+            {
+                Debug.Log("destroyed");
+                Destroy(gm.gameObject);
+            }
+        }
     }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
