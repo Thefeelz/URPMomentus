@@ -149,7 +149,7 @@ public class EnemyChaseState : MonoBehaviour
     // INACTIVE STATE
     void CheckPlayerInRange()
     {
-        if(DistanceFromEnemyToPlayer() < maxDetectionRange && PlayerInLineOfSight(maxDetectionRange))
+        if(DistanceFromEnemyToPlayer() < maxDetectionRange)// && PlayerInLineOfSight(maxDetectionRange))
         {
             currentState = State.Chasing;
             animController.SetBool("chasing", true);
@@ -347,4 +347,5 @@ public class EnemyChaseState : MonoBehaviour
         else
             return false;
     }
+    public void SetAmmoCount(int ammo) { ammoCount = ammo; }
 }

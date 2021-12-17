@@ -23,6 +23,8 @@ public class DialogueTrigger : MonoBehaviour
     //public Dialogue dialogue;
     [SerializeField]
     private Dialogue[] DialogueArray;
+
+ 
     /// <summary>
     /// Purpose: To take a refrence of a dialogue object for the dialogue handler send it to the handler sot hat it then print out the entire dialogue sequence to the user
     /// </summary>
@@ -53,9 +55,9 @@ public class DialogueTrigger : MonoBehaviour
         {
             Debug.Log(DialogueArray[i].name + "before");
 
-            FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i]);
+            FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i],DialogueArray[i].HasImage);
             yield return new WaitWhile(() => FindObjectOfType<DialogueHandlerScript>().isPlaying);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
         }
 
         

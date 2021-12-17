@@ -911,23 +911,23 @@ MonoBehaviour:
       - m_Target: {fileID: 1133773453}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetBladeColor
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: red
+          m_StringArgument: 1
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1048407465}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: StartTheGame
+        m_MethodName: ChooseSceneByGameManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1077,7 +1077,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2645,23 +2645,23 @@ MonoBehaviour:
       - m_Target: {fileID: 1133773453}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetBladeColor
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: blue
+          m_StringArgument: 2
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1048407465}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: StartTheGame
+        m_MethodName: ChooseSceneByGameManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2861,7 +2861,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -480, y: 256}
+  m_AnchoredPosition: {x: -480, y: 370}
   m_SizeDelta: {x: 960, y: 106.3529}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753238450
@@ -3123,23 +3123,23 @@ MonoBehaviour:
       - m_Target: {fileID: 1133773453}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetBladeColor
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
-          m_StringArgument: green
+          m_StringArgument: 3
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1048407465}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: StartTheGame
+        m_MethodName: ChooseSceneByGameManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4813,23 +4813,23 @@ MonoBehaviour:
       - m_Target: {fileID: 1133773453}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: SetBladeColor
-        m_Mode: 5
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: aqua
+          m_StringArgument: 0
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1048407465}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: StartTheGame
+        m_MethodName: ChooseSceneByGameManager
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6979,6 +6979,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1133773453}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!114 &1705244316
 MonoBehaviour:
@@ -9005,6 +9017,146 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f08d8e8dfc5376540b9648ced2dee8ed, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c49ef54149f2b464886de08491d3c710, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 74c3cab460bf0f5469eb3a763658cbe6, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9d4cb1c64b4baf748b214b03de1c770e, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 346d70ef7bba042428443002a27310eb, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: redMaterial.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8d4e9e942c992c4ebabfa9c380f17d1, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ca856ff466c7964c8d59885c208de2a, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c50ae2a5a45aa048b39092fb26ac445, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3ea064f6e55387349aedfd25560d05d1, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: d00867f09cafd2649aac54acefdc44c5, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c99998a2ce6bc44fb1c84429ad5770b, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: aquaMaterial.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3006e554ee13b89469dbc24d4d37eb59, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 289e634687767524d9259e514148bff9, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad1c0e75e52173743aaca65cf4de0772, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a81688ddc7b35a4aa13c5bfa3a43e88, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 793e449f78c3cba449349b3b47ca6686, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: ee3ce3b533e192e459f5a808b1ecb2e0, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: blueMaterial.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: 83952476fa085574db8a576ecd4ac12d, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ff288c88ddb43f45b5f01ee365760ac, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f1ccc5a0bdafb9f4c9c6de62c97de459, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2aca3c5048246342b52283ef9420705, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30fa195c1449c5c4ca0fd9c8951edf0c, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1afdd08cef79627479a8e77dfcd275e7, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: greenMaterial.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb6b012849c80424191974932219b1c4, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 289e634687767524d9259e514148bff9, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad1c0e75e52173743aaca65cf4de0772, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8a81688ddc7b35a4aa13c5bfa3a43e88, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 512acbf4173e64f4e9483611ba98afe2, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: ff51e5fd5cddde646a59e5aa35b730cd, type: 2}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: whiteMaterial.Array.data[5]
+      value: 
+      objectReference: {fileID: 2100000, guid: c99ea08fed7bd2646a773d3e2bd3f76a, type: 2}
     - target: {fileID: 8505584002279285417, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: m_Name
       value: GameManager
