@@ -62,6 +62,7 @@ public class Enemy1 : Entity
         canShoot = true;
         this.gameObject.SetActive(false);
         defaultState = moveState;
+        queueName = "Ranged";
 
 
     }
@@ -123,7 +124,6 @@ public class Enemy1 : Entity
         if(health <= 0)
         {
             stateMachine.ChangeState(deathState);
-            StartCoroutine(DeathAnim());
         }
         
 
@@ -147,15 +147,11 @@ public class Enemy1 : Entity
     {
         if(other.gameObject.name== "deathWall")
         {
-            Debug.LogWarning("I am dead");
+            Debug.LogWarning("Oh I am now dead, thank you forever");
             Die();
         }
     }
 
-    IEnumerator DeathAnim()
-    {
-        yield return new WaitForSeconds(3f);
-        myPool.queueObject("Ranged", this.gameObject);
-    }
+    
 }
 
