@@ -1067,6 +1067,10 @@ PrefabInstance:
       propertyPath: healthBarDots
       value: 
       objectReference: {fileID: 267030790}
+    - target: {fileID: 860698875, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2733746628393996997, guid: 9f0103d7dca3ebc4bac3600fa39770ed, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1686,9 +1690,10 @@ MonoBehaviour:
   - size: 4
     minField: 2
     spawnType: 1
-    prefab: {fileID: 7664192347234163458, guid: 3898db4a32f0da5448d6a8018127855e, type: 3}
+    prefab: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
     dictionaryTag: Ranged
   spawner: {fileID: 423143104}
+  totToSpawn: 0
 --- !u!64 &423143103
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2234,7 +2239,7 @@ GameObject:
   - component: {fileID: 597559168}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4950,7 +4955,7 @@ GameObject:
   - component: {fileID: 1089719333}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -8297,7 +8302,7 @@ GameObject:
   - component: {fileID: 1971161144}
   m_Layer: 0
   m_Name: Cube (17)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 40

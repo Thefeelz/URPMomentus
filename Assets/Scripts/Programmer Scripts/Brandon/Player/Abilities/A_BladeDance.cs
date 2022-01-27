@@ -7,6 +7,7 @@ public class A_BladeDance : A_OverchargeAbilities
     [Header("Blade Dance")]
     [SerializeField] float dashTime;
     [SerializeField] int killCountMax = 7;
+    [SerializeField] float maxRange = 30f;
     [SerializeField] GameObject bodyForAnimation;
     [SerializeField] GameObject currentSword;
 
@@ -90,7 +91,7 @@ public class A_BladeDance : A_OverchargeAbilities
             return null;
         }
         EnemyStats closestEnemy = null;
-        foreach (var enemy in gameManager.GetActiveEnemies())
+        foreach (var enemy in gameManager.GetActiveEnemiesInRange(maxRange, transform))
         {
             if (enemy.getCurrentHealth() > 0)
             {

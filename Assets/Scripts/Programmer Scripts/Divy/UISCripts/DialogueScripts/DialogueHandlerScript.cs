@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /*
  * Momentus Dialogue Handler
@@ -19,12 +20,15 @@ public class DialogueHandlerScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Text dialogueText; //textbox to display the text
+    private TMP_Text dialogueText; //textbox to display the text
 
     [SerializeField]
-    Animator closeAnimation; // refrence to close the animator
+    Animator missionControlAnimator; // refrence to close the animator
 
-    public int arraySize;
+    [SerializeField]
+    private Image CharacterImg;
+
+    
 
     private Queue<string> sentences; // this variable holds all the sentences from the dialogue within it, you can access them in a FIFO order.
 
@@ -39,10 +43,8 @@ public class DialogueHandlerScript : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
-
-       // printQueue = new Queue<string>();
-
         isPlaying = true;
+        
     }
 
     /// <summary>
@@ -52,14 +54,18 @@ public class DialogueHandlerScript : MonoBehaviour
     /// <param name="dialogue"></param>
     /// Input: the dialogue object which contains the name of the speaker and their script
     /// Output: None
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue,bool hasImage)
     {
 
-      
+        if (hasImage == true)
+        {
+            displayImage(dialogue);
+        }
+
         //sentences2 = new string[arraySize];
         //Debug.Log(sentences2.Length);
 
-        closeAnimation.SetBool("isOpen", true);
+        //missionControlAnimator.SetBool("isOpen", true);
         //check if the conversation started
         Debug.Log("Starting conversation with " + dialogue.name);
 
@@ -86,6 +92,13 @@ public class DialogueHandlerScript : MonoBehaviour
         //Debug.Log(printQueue.Count);
     }
 
+    private void displayImage(Dialogue dialogue)
+    {
+        CharacterImg.sprite = dialogue.characterProfilePic;
+        missionControlAnimator.SetBool("dialogue", true);
+
+    }
+
     private void DisplayNextSentence()
     {
 
@@ -110,8 +123,9 @@ public class DialogueHandlerScript : MonoBehaviour
 
     public void EndDialogue()
     {
+        missionControlAnimator.SetBool("dialogue", false);
         dialogueText.text = "";
-        closeAnimation.SetBool("isOpen", false);
+        CharacterImg.sprite = null;
         isPlaying = false;
 
 

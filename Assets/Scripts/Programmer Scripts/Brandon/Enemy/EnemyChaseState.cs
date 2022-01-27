@@ -45,6 +45,8 @@ public class EnemyChaseState : MonoBehaviour
     Vector3[] directions;
     bool avoidObstacles = true;
     MasterLevel masterLevel;
+
+    float knockBackCounter = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,9 +69,7 @@ public class EnemyChaseState : MonoBehaviour
 
     private void Update()
     {
-        Debug.DrawRay(transform.position + (Vector3.up * 0.25f), transform.forward, Color.red, 0.1f);
-        Debug.DrawRay(transform.position + ((Vector3.up * 0.25f) + transform.right), transform.forward, Color.red, 0.1f);
-        Debug.DrawRay(transform.position + ((Vector3.up * 0.25f) - transform.right), transform.forward, Color.red, 0.1f);
+        
         if (!deactive)
         {
             if (!specialInUse)
@@ -78,9 +78,9 @@ public class EnemyChaseState : MonoBehaviour
                 {
                     CheckPlayerInRange();
                 }
-                else if (currentState == State.Chasing)
+                else if (currentState == State.Chasing && !animController.GetBool("chasing"))
                 {
-                    // I dont know what to put heeyah yet
+                    animController.SetBool("chasing", true);
                 }
                 else if (currentState == State.Attacking)
                 {
@@ -100,7 +100,12 @@ public class EnemyChaseState : MonoBehaviour
                 }
                 else if (currentState == State.Knockback)
                 {
-                    // I dont know what to put here yet
+                    knockBackCounter++;
+                    if (knockBackCounter > 1)
+                    {
+                        currentState = State.Chasing;
+                        knockBackCounter = 0;
+                    }
                 }
             }
             else
@@ -144,7 +149,7 @@ public class EnemyChaseState : MonoBehaviour
     // INACTIVE STATE
     void CheckPlayerInRange()
     {
-        if(DistanceFromEnemyToPlayer() < maxDetectionRange && PlayerInLineOfSight(maxDetectionRange))
+        if(DistanceFromEnemyToPlayer() < maxDetectionRange)// && PlayerInLineOfSight(maxDetectionRange))
         {
             currentState = State.Chasing;
             animController.SetBool("chasing", true);
@@ -308,14 +313,12 @@ public class EnemyChaseState : MonoBehaviour
     public void ShootAtPlayer()
     {
         Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.LookRotation(transform.forward));
-        Debug.Log("Pew");
         ammoCount--;
     }
     
     public State GetCurrentState() { return currentState; }
     void CheckForGrounded()
     {
-        Debug.DrawRay(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up * (distanceToGround + .25f), Color.red, .1f);
         if (Physics.Raycast(transform.position + new Vector3(0, distanceToGround, 0), -Vector3.up, distanceToGround + .25f))
         {
             isGrounded = true;
@@ -328,7 +331,12 @@ public class EnemyChaseState : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         CheckForGrounded();
         if (isGrounded)
-            currentState = previousState;
+        {
+            if (previousState != State.Knockback)
+                currentState = previousState;
+            else
+                currentState = State.Chasing;
+        }
         else
             currentState = State.Falling;
     }
@@ -339,4 +347,5 @@ public class EnemyChaseState : MonoBehaviour
         else
             return false;
     }
+    public void SetAmmoCount(int ammo) { ammoCount = ammo; }
 }

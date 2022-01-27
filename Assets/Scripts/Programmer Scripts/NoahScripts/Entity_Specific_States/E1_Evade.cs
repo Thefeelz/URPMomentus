@@ -38,26 +38,17 @@ public class E1_Evade : EvadeState
         mEnemy.canEvade = true; // even though it is set to true by default nothing will happen till check is ran
         mEnemy.testFire.transform.position = mEnemy.transform.position;
         jumpStarted = true;
-        prog2 = 0; // progress of test
+        prog2 = 0; // progress of testfire 
         Debug.Log("evade entered");
-        mEnemy.GetComponent<NavMeshAgent>().enabled = false;
+        mEnemy.GetComponent<NavMeshAgent>().enabled = false; //disables nav mesh
         //resets variables each time
-        mEnemy.facePlayer();
+        mEnemy.facePlayer(); // makes the enemy face the player !!!STILL BUGGY!!!
         targetPos = mEnemy.transform.position - (mEnemy.transform.forward * distance); // position that arc goes to
         step = speed / mEnemy.DistanceToPosition(targetPos); // used to calculate rate of arc. complicated bullshit
         step2 = speed2 / mEnemy.DistanceToPosition(targetPos); // more complicated bullshit
-        startPos = mEnemy.transform.position;
-        progress = 0;
+        startPos = mEnemy.transform.position; // keeps track of the starting position of the evade
+        progress = 0; // progress resets each time
         
-        //RaycastHit hit;
-        //if (Physics.Raycast(mEnemy.transform.position, mEnemy.transform.forward * -1, out hit, 10.0f ))
-        //{
-        //    Debug.Log(hit.collider.gameObject.name);
-            
-        //        Debug.Log("OH FUCK");
-        //        jumping = false;
-            
-        //}
         
 
     }
