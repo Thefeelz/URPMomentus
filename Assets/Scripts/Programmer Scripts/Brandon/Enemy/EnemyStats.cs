@@ -21,9 +21,11 @@ public class EnemyStats : MonoBehaviour
     EnemyChaseState chase;
     CharacterStats player;
     GameManager gameManager;
+    Entity mEntity;
     // Start is called before the first frame update
     void Start()
     {
+        mEntity = gameObject.GetComponent<Entity>();
         gameManager = FindObjectOfType<GameManager>();
         gameManager.AddEnemyToList(this);
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
@@ -36,22 +38,23 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyCanvas)
-            enemyCanvas.transform.LookAt(player.transform);   
+        //if(enemyCanvas)
+        //    enemyCanvas.transform.LookAt(player.transform);   
     }
 
     public void TakeDamage(int damageToTake)
     {
-        Debug.Log("Enemy is taking Damage " + damageToTake);
-        currentHealth -= damageToTake;
-        // healthBar.fillAmount = (float)currentHealth / maxHealth;
-        if(currentHealth <= 0 && !triggeredDead)
-        {
-            triggeredDead = true;
-            if(objectsToTurnOnWhenDead.Length > 0)
-                TurnOnObjects();
-            StartCoroutine(DestroySelf());
-        }
+        //Debug.Log("Enemy is taking Damage " + damageToTake);
+        //currentHealth -= damageToTake;
+        //// healthBar.fillAmount = (float)currentHealth / maxHealth;
+        //if(currentHealth <= 0 && !triggeredDead)
+        //{
+        //    triggeredDead = true;
+        //    if(objectsToTurnOnWhenDead.Length > 0)
+        //        TurnOnObjects();
+        //    StartCoroutine(DestroySelf());
+        //}
+        mEntity.Damage(damageToTake);
     }
 
     public int getMaxHealth()
