@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (var enemy in enemiesInLevel)
         {
-            Debug.Log("Called " + value);
             enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
+            //enemy.GetComponent<Entity>().stateMachine.ChangeState(enemy.GetComponent<Entity>().specialUseState);
         }
     }
     public void SetBladeColor(int newColor)

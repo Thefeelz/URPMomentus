@@ -4250,6 +4250,7 @@ GameObject:
   - component: {fileID: 7664192347234163456}
   - component: {fileID: 7664192347234163457}
   - component: {fileID: 5553796297889753950}
+  - component: {fileID: 3033892420315403251}
   m_Layer: 9
   m_Name: RangedEnemy 2
   m_TagString: Enemy
@@ -4330,7 +4331,6 @@ MonoBehaviour:
   entityData: {fileID: 11400000, guid: 12ed160b2e47ea0468a39a63b4f3d7a3, type: 2}
   grounded: 0
   testFire: {fileID: 7304984142065878924}
-  mEnemyStats: {fileID: 0}
   queueName: 
   ammo: {fileID: 0}
   canShoot: 0
@@ -4379,6 +4379,25 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3033892420315403251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664192347234163458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a299a05024d690347bfe2f8570ae834e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  enemyArmor: 5
+  energyAmount: 10
+  enemyCanvas: {fileID: 0}
+  healthBar: {fileID: 0}
+  objectsToTurnOnWhenDead: []
 --- !u!1 &7690155071662243601
 GameObject:
   m_ObjectHideFlags: 0
