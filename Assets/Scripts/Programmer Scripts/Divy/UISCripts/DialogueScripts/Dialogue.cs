@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 /*
@@ -25,5 +26,8 @@ public class Dialogue
 	[TextArea(3,10)]
 	public string[] scentences; // array of scentences which make up a single piece of dialogue.
 
+	public Sprite characterProfilePic;
+
+	public bool HasImage;
 	
 }
