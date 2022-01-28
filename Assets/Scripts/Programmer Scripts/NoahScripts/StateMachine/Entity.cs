@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
     public GameObject testFire; // a test fire object to detect collision
     public SpecialUseState specialUseState; // special use state
 
-    public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
+    //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
     public string queueName; // the string that is used to enque
 
     public virtual void Awake()
@@ -34,6 +34,7 @@ public class Entity : MonoBehaviour
         mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>(); 
         mColor = mMesh.material.color;
         specialUseState = new SpecialUseState(this, this.stateMachine);
+        //mEnemyStats = this.gameObject.GetComponent<EnemyStats>();
         
         
     }
