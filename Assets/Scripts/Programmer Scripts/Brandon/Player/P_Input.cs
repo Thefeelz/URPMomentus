@@ -53,7 +53,8 @@ public class P_Input : MonoBehaviour
         // ==========OVERCHARGE ABILITIES==========
         // ========================================
         if (Input.GetKeyDown(KeyCode.Alpha1) && bladeDance.enabled) 
-        { 
+        {
+            Debug.Log("Ability 1 Pressed");
             if(bladeDance.Ability_BladeDance()) 
                 coolDownManager.AddCooldownToList(bladeDance); 
         }

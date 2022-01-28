@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
     //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
     public string queueName; // the string that is used to enque
 
+
     public virtual void Awake()
     {
         //variables are assigned when object awakes

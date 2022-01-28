@@ -15,10 +15,12 @@ public class SpecialUseState : State
         base.StateEnter();
         mEntity.GetComponent<NavMeshAgent>().enabled = false;
         mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        mEntity.GetComponentInChildren<Animator>().speed = 0;
     }
 
     public override void StateExit()
     {
+        mEntity.GetComponentInChildren<Animator>().speed = 1;
         base.StateExit();
     }
 
