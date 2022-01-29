@@ -18,6 +18,7 @@ public class P_Input : MonoBehaviour
 
     Rigidbody rb;
     Animator myAnim;
+    PauseMenu pauseMenu;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +32,7 @@ public class P_Input : MonoBehaviour
         containedHeat = GetComponent<A_ContainedHeat>();
         swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
         myAnim = GetComponent<Animator>();
     }
 
@@ -101,6 +103,8 @@ public class P_Input : MonoBehaviour
         // ==========MENU / UI THANGS==========
         // ====================================
         if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
+
+        if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
     }
 
     void GetUserInputPhysics()
