@@ -28,29 +28,30 @@ public class FlyingEnemy : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (other == playerCollider);
+        if (other == playerCollider); // Checks if player
         {
-            Vector3 playerHead = other.transform.position + new Vector3(0, targetOffset, 0);
-            RaycastHit hitObject;
+            Vector3 playerHead = other.transform.position + new Vector3(0, targetOffset, 0); // Offsets target so it doesn't target player's feet
+            RaycastHit hitObject; // Sight raycast 
 
-            transform.LookAt(playerHead);
-            Debug.Log("Player"+this.transform.rotation);
-            Physics.Raycast(this.transform.position, this.transform.forward, out hitObject, RoIRadi);
+            transform.LookAt(playerHead); // Set's rotation to look at the offset of the player
+            ///Debug.Log("Player"+this.transform.rotation);
+            Physics.Raycast(this.transform.position, this.transform.forward, out hitObject, RoIRadi); // sends a raycast forward equal to the radius of it's influence and puts results in "hitObject"
 
-            if (Vector3.Distance(this.transform.position, playerHead) <= distToDestruct||goingBoom)
+            // if player is close, start detonation 
+            if (Vector3.Distance(this.transform.position, playerHead) <= distToDestruct||goingBoom) 
             {
                 Debug.Log("Conditions met");
                 goingBoom = true;
                 StartCoroutine(Explode());
             }
+
+            // if raycast hits player and is not exploding, move towards player
             else if (hitObject.collider==playerCollider&&!goingBoom) 
             {
                 Debug.Log("enemy spotted");
                 Debug.DrawRay(this.transform.position, this.transform.forward * 10, Color.red);
                 this.transform.position=Vector3.MoveTowards(this.transform.position, playerHead, attackPlayerSpeed);
             }
-
-            
         }
     }
     /*
@@ -78,16 +79,18 @@ public class FlyingEnemy : MonoBehaviour
     ROAM 
             idk...roam? 
 
-    BLOW UP
-        delay
-        damage
-        destroy
+    
      */
     IEnumerator Explode()
     {
-        Debug.Log(selfDestructTimer + " seconds till self-destruct");
-        yield return new WaitForSeconds(selfDestructTimer);
-        Destroy(this.gameObject);
+        Debug.Log(selfDestructTimer + " seconds till self-destruct");//outputs countdown start
+        yield return new WaitForSeconds(selfDestructTimer); //starts delay
+        Die(); //calls die
+    }
+
+    void Die()
+    {
+        Destroy(this.gameObject); //wipes the object from existence
     }
 }
 
