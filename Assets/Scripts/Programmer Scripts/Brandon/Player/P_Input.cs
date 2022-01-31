@@ -18,6 +18,7 @@ public class P_Input : MonoBehaviour
 
     Rigidbody rb;
     Animator myAnim;
+    PauseMenu pauseMenu;
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,6 +32,7 @@ public class P_Input : MonoBehaviour
         containedHeat = GetComponent<A_ContainedHeat>();
         swordSlash = GetComponent<A_SwordSlash>();
         rb = GetComponent<Rigidbody>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
         myAnim = GetComponent<Animator>();
     }
 
@@ -39,67 +41,72 @@ public class P_Input : MonoBehaviour
     {
         GetUserInputNonPhysics();
         //Physics.Linecast(transform.position + transform.forward, transform.position + transform.forward * 2, out hit);
-        Debug.DrawLine(new Vector3(transform.position.x + transform.forward.x, transform.position.y, transform.position.z + transform.forward.z), new Vector3((transform.position.x + transform.forward.x * 2f) , transform.position.y, (transform.position.z + transform.forward.z * 2f)), Color.cyan, 1f);
+        //Debug.DrawLine(new Vector3(transform.position.x + transform.forward.x, transform.position.y, transform.position.z + transform.forward.z), new Vector3((transform.position.x + transform.forward.x * 2f) , transform.position.y, (transform.position.z + transform.forward.z * 2f)), Color.cyan, 1f);
     }
 
     private void FixedUpdate()
     {
-        GetUserInputPhysics();
+        if(!PauseMenu.GameIsPaused)
+            GetUserInputPhysics();
     }
 
     void GetUserInputNonPhysics()
     {
-        // ========================================
-        // ==========OVERCHARGE ABILITIES==========
-        // ========================================
-        if (Input.GetKeyDown(KeyCode.Alpha1) && bladeDance.enabled) 
-        { 
-            if(bladeDance.Ability_BladeDance()) 
-                coolDownManager.AddCooldownToList(bladeDance); 
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
+        if (!PauseMenu.GameIsPaused)
         {
-            swordThrow.ThrowSword();
-        }
-        if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck && swordThrow.enabled)
-        {
-            swordThrow.FlyToSword();
-        }
-        if ((Input.GetKeyDown(KeyCode.Alpha3)) && containedHeat.enabled)
-        {
-            if (containedHeat.Ability_ContainedHeat())
-                coolDownManager.AddCooldownToList(containedHeat);
-        }
-        if ((Input.GetKeyDown(KeyCode.Q)) && swordSlash.enabled)
-        {
-            if (swordSlash.Ability_SwordSlash())
-                coolDownManager.AddCooldownToList(swordSlash);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
-        {
-            if (airDash.UseAirDash())
-                coolDownManager.AddCooldownToList(airDash);
-        }
-        // =================================
-        // ==========PLAYER ATTACK==========
-        // =================================
-        if(Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) { playerAttack.BasicAttack(); }
-        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && playerAttack.enabled) { playerAttack.BasicDefense(); }
-        else { playerAttack.SwordBlockComplete(); }
+            // ========================================
+            // ==========OVERCHARGE ABILITIES==========
+            // ========================================
+            if (Input.GetKeyDown(KeyCode.Alpha1) && bladeDance.enabled)
+            {
+                if (bladeDance.Ability_BladeDance())
+                    coolDownManager.AddCooldownToList(bladeDance);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
+            {
+                swordThrow.ThrowSword();
+            }
+            if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && swordThrow.stuck && swordThrow.enabled)
+            {
+                swordThrow.FlyToSword();
+            }
+            if ((Input.GetKeyDown(KeyCode.Alpha3)) && containedHeat.enabled)
+            {
+                if (containedHeat.Ability_ContainedHeat())
+                    coolDownManager.AddCooldownToList(containedHeat);
+            }
+            if ((Input.GetKeyDown(KeyCode.Q)) && swordSlash.enabled)
+            {
+                if (swordSlash.Ability_SwordSlash())
+                    coolDownManager.AddCooldownToList(swordSlash);
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
+            {
+                if (airDash.UseAirDash())
+                    coolDownManager.AddCooldownToList(airDash);
+            }
+            // =================================
+            // ==========PLAYER ATTACK==========
+            // =================================
+            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) { playerAttack.BasicAttack(); }
+            if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && playerAttack.enabled) { playerAttack.BasicDefense(); }
+            else { playerAttack.SwordBlockComplete(); }
 
-        // ======================================
-        // ==========CHARACTER MOVEMENT==========
-        // ======================================
-        
-        // ==========Jump==========
-        if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); } // @Isaac added an or statement for looking for the a button
-        // ==========Ground Dash==========
-        if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
+            // ======================================
+            // ==========CHARACTER MOVEMENT==========
+            // ======================================
 
-        // ====================================
-        // ==========MENU / UI THANGS==========
-        // ====================================
-        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
+            // ==========Jump==========
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.JoystickButton0)) { movement.Jump(); } // @Isaac added an or statement for looking for the a button
+                                                                                                                   // ==========Ground Dash==========
+            if (Input.GetKeyDown(KeyCode.LeftShift) && groundSlide.GetSliding() && groundSlide.enabled) { groundSlide.UseGroundDash(0.5f); }
+
+            // ====================================
+            // ==========MENU / UI THANGS==========
+            // ====================================
+            if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
+        }
+        if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
     }
 
     void GetUserInputPhysics()

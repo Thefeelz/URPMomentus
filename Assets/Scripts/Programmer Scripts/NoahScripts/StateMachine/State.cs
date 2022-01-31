@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State 
+public class State
 {
     protected FiniteStateMachine mStateMachine; // StateMachine accessed by states
     protected Entity mEntity; // the Enitity that is using this state
     public float startTime { get; protected set; }
+
+    
     //Constructor for State class
     public State(Entity mEntity, FiniteStateMachine mStateMachine)
     {

@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     }
     public void MainMenu()
     {
+        UnfreezeTime();
         SceneManager.LoadScene(0);
     }
     public void EndScene()
@@ -24,5 +25,9 @@ public class SceneController : MonoBehaviour
     public void ChooseSceneByGameManager()
     {
         SceneManager.LoadScene(FindObjectOfType<GameManager>().GetLevel());
+    }
+    public void UnfreezeTime()
+    {
+        Time.timeScale = 1f;
     }
 }
