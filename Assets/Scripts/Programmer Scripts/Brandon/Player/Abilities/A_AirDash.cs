@@ -107,7 +107,6 @@ public class A_AirDash : A_OverchargeAbilities
         startingPos = transform.position;
         // Ending position set to our position plus the distance forward we determine in the inspector
         endingPos = transform.position + Camera.main.transform.forward * slideDistance;
-        Debug.Log(startingPos + " " + endingPos);
         CalculateDashDistance();
     }
 

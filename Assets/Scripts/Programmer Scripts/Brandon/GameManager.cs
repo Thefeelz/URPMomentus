@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
     public bool activeInUse = false;
 
+    [SerializeField] float mouseSensitivity = 50f;
+
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
@@ -85,5 +87,15 @@ public class GameManager : MonoBehaviour
             return greenMaterial;
         else
             return aquaMaterial;
+    }
+
+    public float GetMouseSensitivity()
+    {
+        return mouseSensitivity;
+    }
+
+    public void SetMouseSenitivity()
+    {
+        
     }
 }

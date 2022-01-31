@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] public static bool GameIsPaused = false;
+    public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject playerHUD;
     // Start is called before the first frame update
+    private void Start()
+    {
+        if (!GameIsPaused)
+            pauseMenuUI.SetActive(false);
+    }
     public void PauseGame()
     {
         if(GameIsPaused)
@@ -19,17 +25,22 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Resume()
+    public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Debug.Log("Resume");
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
+        playerHUD.SetActive(true);
         Time.timeScale = 1f;
     }
 
     void Pause()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
+        playerHUD.SetActive(false);
         Time.timeScale = 0f;
     }
 }
