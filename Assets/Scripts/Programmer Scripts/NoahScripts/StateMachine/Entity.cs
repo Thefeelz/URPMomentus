@@ -22,7 +22,9 @@ public class Entity : MonoBehaviour
     public GameObject testFire; // a test fire object to detect collision
     public SpecialUseState specialUseState; // special use state
 
-    public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
+    //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
+    public string queueName; // the string that is used to enque
+
 
     public virtual void Awake()
     {
@@ -33,6 +35,7 @@ public class Entity : MonoBehaviour
         mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>(); 
         mColor = mMesh.material.color;
         specialUseState = new SpecialUseState(this, this.stateMachine);
+        //mEnemyStats = this.gameObject.GetComponent<EnemyStats>();
         
         
     }
@@ -74,6 +77,10 @@ public class Entity : MonoBehaviour
         if(mMesh)
             mMesh.material.color = Color.red;
         Invoke("ResetColor", .5f);
+        if(health <= 0)
+        {
+            StartCoroutine(DeathAnim());
+        }
     }
 
    //resets mesh color
@@ -105,6 +112,14 @@ public class Entity : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = rotation;
+    }
+
+
+    // kills the enemy after a delay to allow an animation
+    IEnumerator DeathAnim()
+    {
+        yield return new WaitForSeconds(3f);
+        myPool.queueObject(queueName, this.gameObject);
     }
 
 
