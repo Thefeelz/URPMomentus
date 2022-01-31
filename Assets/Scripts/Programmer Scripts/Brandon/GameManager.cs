@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
+    [SerializeField] Slider mainMenuSlider;
+
 
     private void Awake()
     {
@@ -28,6 +31,8 @@ public class GameManager : MonoBehaviour
                 Destroy(gm.gameObject);
             }
         }
+        if (mainMenuSlider)
+            mainMenuSlider.onValueChanged.AddListener(delegate { SetMouseSenitivity(); });
     }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
@@ -96,6 +101,12 @@ public class GameManager : MonoBehaviour
 
     public void SetMouseSenitivity()
     {
-        
+        mouseSensitivity = mainMenuSlider.value;
+    }
+
+    public void SetMouseSenitivity(float value)
+    {
+        mouseSensitivity = value;
+        FindObjectOfType<mouseLook>().UpdateMouseSensitivity(value);
     }
 }

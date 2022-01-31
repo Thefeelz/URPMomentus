@@ -146,7 +146,7 @@ public class PlayerAttack : MonoBehaviour
     public void CheckForDamage()
     {
         RaycastHit hit;
-        Physics.Raycast(weaponRaycastTransformPosition.position, transform.forward, out hit, 2f);
+        Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, 2f);
         if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
