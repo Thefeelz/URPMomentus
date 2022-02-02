@@ -14,6 +14,7 @@ public class mouseLook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mouseSens = FindObjectOfType<GameManager>().GetMouseSensitivity();
         //stops mouse from showing up
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -37,5 +38,10 @@ public class mouseLook : MonoBehaviour
        // transform.localRotation = Quaternion.Euler(, 0f, 0f);
         transform.rotation = Quaternion.Euler(0, horizontalRotation, 0f);
         Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+    }
+
+    public void UpdateMouseSensitivity(float newSensitivity)
+    {
+        mouseSens = newSensitivity;
     }
 }
