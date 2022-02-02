@@ -24,11 +24,11 @@ public class PauseMenu : MonoBehaviour
     }
     public void PauseGame()
     {
-        if(GameIsPaused)
+        if(GameIsPaused && pauseMenuUI.activeSelf)
         {
             Resume();
         }
-        else
+        else if (!GameIsPaused)
         {
             Pause();
         }
