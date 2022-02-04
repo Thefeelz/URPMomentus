@@ -10,12 +10,19 @@ public class SpecialUseState : State
 
     }
 
-    public override void StateEnter()
+    public void StateEnter(bool test)
     {
         base.StateEnter();
-        mEntity.GetComponent<NavMeshAgent>().enabled = false;
-        mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        mEntity.GetComponentInChildren<Animator>().speed = 0;
+        if (test == true)
+        {
+            mEntity.GetComponent<NavMeshAgent>().enabled = false;
+            mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            mEntity.GetComponentInChildren<Animator>().speed = 0;
+        }
+        else
+        {
+            //
+        }
     }
 
     public override void StateExit()

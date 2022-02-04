@@ -21,6 +21,7 @@ public class Entity : MonoBehaviour
     public bool grounded;
     public GameObject testFire; // a test fire object to detect collision
     public SpecialUseState specialUseState; // special use state
+    public Animator mAnimator;
 
     //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
     public string queueName; // the string that is used to enque
@@ -33,6 +34,7 @@ public class Entity : MonoBehaviour
         stateMachine = new FiniteStateMachine(); 
         health = entityData.health; 
         mMesh = gameObject.GetComponentInChildren<SkinnedMeshRenderer>(); 
+        mAnimator = gameObject.GetComponentInChildren<Animator>(); 
         mColor = mMesh.material.color;
         specialUseState = new SpecialUseState(this, this.stateMachine);
         //mEnemyStats = this.gameObject.GetComponent<EnemyStats>();

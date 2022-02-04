@@ -13,6 +13,7 @@ public class DeathState : State
     {
         base.StateEnter();
         mEntity.agent.speed = 0;
+        mEntity.mAnimator.SetBool("dead", true);
         
     }
 
