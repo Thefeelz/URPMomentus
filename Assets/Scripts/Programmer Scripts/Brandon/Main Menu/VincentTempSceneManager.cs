@@ -8,7 +8,7 @@ public class VincentTempSceneManager : MonoBehaviour
     {
         if(other.GetComponentInParent<CharacterStats>())
         {
-            FindObjectOfType<SceneController>().EndScene();
+            FindObjectOfType<SceneController>().MainMenu();
         }
     }
 }
