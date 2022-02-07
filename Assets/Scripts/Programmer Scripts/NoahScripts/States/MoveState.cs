@@ -46,6 +46,8 @@ public class MoveState : State
         base.StateExit();
     }
 
+
+    // fix this, target position is being called when it shouldnt
     public override void LogicUpdate()
     {
 

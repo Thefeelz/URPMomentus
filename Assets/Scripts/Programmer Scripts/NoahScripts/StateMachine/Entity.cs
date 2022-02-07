@@ -9,19 +9,20 @@ public class Entity : MonoBehaviour
     public NavMeshAgent agent;// navmesh agent
     public GameObject myTarget; // navMesh target. Normally the player is assigned to this
     public State defaultState;
-
-    public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
-    public float health { get; private set; } // how much health entity has
-
-    [SerializeField]
-    protected D_Entity entityData; // data file for entity variables
-
-    private SkinnedMeshRenderer mMesh; // objects mesh
-    private Color mColor; // original color of the mesh
+    public bool specialUseBool;
     public bool grounded;
     public GameObject testFire; // a test fire object to detect collision
     public SpecialUseState specialUseState; // special use state
     public Animator mAnimator;
+
+    public float health { get; private set; } // how much health entity has
+    public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
+
+    [SerializeField]
+    protected D_Entity entityData; // data file for entity variables
+    private SkinnedMeshRenderer mMesh; // objects mesh
+    private Color mColor; // original color of the mesh
+
 
     //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
     public string queueName; // the string that is used to enque

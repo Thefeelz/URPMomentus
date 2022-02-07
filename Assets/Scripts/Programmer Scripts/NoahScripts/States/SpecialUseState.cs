@@ -10,10 +10,10 @@ public class SpecialUseState : State
 
     }
 
-    public void StateEnter(bool test)
+    public override void StateEnter()
     {
         base.StateEnter();
-        if (test == true)
+        if (mEntity.specialUseBool == true)
         {
             mEntity.GetComponent<NavMeshAgent>().enabled = false;
             mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -21,14 +21,19 @@ public class SpecialUseState : State
         }
         else
         {
-            //
+            if(mEntity.gameObject.GetComponent<Enemy1>())
+            {
+                mEntity.stateMachine.ChangeState(mEntity.defaultState);
+            }
         }
     }
 
     public override void StateExit()
     {
-        mEntity.GetComponentInChildren<Animator>().speed = 1;
+        
         base.StateExit();
+        mEntity.specialUseBool = false;
+        mEntity.GetComponentInChildren<Animator>().speed = 1;
     }
 
     public override void LogicUpdate()
