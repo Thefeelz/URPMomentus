@@ -16,6 +16,7 @@ public class E1_Move : MoveState
     {
         base.StateEnter();
         mEntity.mAnimator.SetBool("chasing", true);
+        mEntity.mAnimator.SetBool("stationary", false);
         
     }
 

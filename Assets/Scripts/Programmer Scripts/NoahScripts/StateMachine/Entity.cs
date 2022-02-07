@@ -126,5 +126,10 @@ public class Entity : MonoBehaviour
     }
 
 
+    public void resetAll()
+    {
+        health = entityData.health;
+        stateMachine.ChangeState(defaultState);
+    }
 
 }
