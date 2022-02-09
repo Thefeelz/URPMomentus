@@ -112,6 +112,8 @@ public class E1_AimingState : AimingState
         
         bullet.transform.position = mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f); // places bullet infront of cannon, not perfect yet
         //bullet.transform.LookAt(mEnemy.myTarget.transform);
+        bullet.GetComponent<Bullet>().timeActive = Time.time;
+        bullet.GetComponent<Bullet>().hit = false;
         bullet.SetActive(true); //bullet is set to active
         bullet.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);

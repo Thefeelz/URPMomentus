@@ -17,9 +17,11 @@ public class AmmoPool : MonoBehaviour
         for(int i = 0; i < size; i++)
         {
             GameObject nBullet = Instantiate(bullet);
-
+            nBullet.transform.parent = transform;
             nBullet.SetActive(false);
             bulletPool.Enqueue(nBullet);
+            nBullet.GetComponent<Bullet>().myParent = this.gameObject;
+            nBullet.GetComponent<Bullet>().myPool = this;
         }
     }
     // when a bullet is needed it is pulled from the front of the queue
@@ -31,6 +33,7 @@ public class AmmoPool : MonoBehaviour
     public void enqueBullet(GameObject pBullet)
     {
         bulletPool.Enqueue(pBullet);
+        pBullet.SetActive(false);
     }
 
 
