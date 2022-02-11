@@ -7,7 +7,7 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private float attackPlayerSpeed, distToDestruct, selfDestructTimer, targetOffset=1;
 
-    private GameObject player;
+    private GameObject player, flyerBody;
     private Collider playerCollider;
     private SphereCollider RoI;
     
@@ -20,12 +20,22 @@ public class FlyingEnemy : MonoBehaviour
     void Start()
     {
         player=GameObject.Find("Body");
+        flyerBody = this.transform.GetChild(0).gameObject;
+
         playerCollider = player.GetComponent<Collider>();
         attackPlayerSpeed = attackPlayerSpeed / 10;
         RoI = GetComponentInChildren<SphereCollider>();
     }
 
-    
+    private void FixedUpdate()
+    {
+        if (goingBoom)
+        {
+
+        }
+        flyerBody.transform.LookAt(player.transform);
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other == playerCollider); // Checks if player
