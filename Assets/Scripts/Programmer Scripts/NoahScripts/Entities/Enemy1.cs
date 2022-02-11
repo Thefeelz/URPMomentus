@@ -98,6 +98,8 @@ public class Enemy1 : Entity
     {
         return base.DistanceToPlayer();
     }
+
+    //check if still used
     public void StartCool(GameObject bullet)
     {
         StartCoroutine(Cooldown(bullet));
@@ -105,8 +107,6 @@ public class Enemy1 : Entity
     IEnumerator Cooldown(GameObject bullet)
     {
         yield return new WaitForSeconds(3f);
-        bullet.SetActive(false);
-        ammo.enqueBullet(bullet);
         canShoot = true;
     }
     
@@ -131,18 +131,19 @@ public class Enemy1 : Entity
     // Called when enemy health reaches 0
     
     
+    //currently disabled
     public void jumpBack()
     {
         //changes back to move state in .5 seconds
         Invoke("ResetHitBack", 1f);
     }
-    //resets Enemy state
+    //resets Enemy state: currently disabled
     private void ResetHitBack()
     {
         stateMachine.ChangeState(moveState);
     }
 
-
+    // debug to test collisions. Not used anymore, but may be in future
     public void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name== "deathWall")

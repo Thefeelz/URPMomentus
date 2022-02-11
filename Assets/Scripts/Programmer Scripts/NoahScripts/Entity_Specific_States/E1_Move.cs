@@ -15,6 +15,8 @@ public class E1_Move : MoveState
     public override void StateEnter()
     {
         base.StateEnter();
+        mEntity.mAnimator.SetBool("chasing", true);
+        mEntity.mAnimator.SetBool("stationary", false);
         
     }
 

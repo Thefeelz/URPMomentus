@@ -5,7 +5,6 @@ using UnityEngine;
 public class VincentDoorTestScript : MonoBehaviour
 {
     public bool isOpen = false;
-    public bool isMoving = false;
     [SerializeField] Animator myAnim;
     private void OnTriggerEnter(Collider other)
     {
@@ -16,13 +15,11 @@ public class VincentDoorTestScript : MonoBehaviour
             {
                 isOpen = false;
                 myAnim.SetBool("closeDoor", true);
-                isMoving = true;
             }
             else
             {
                 isOpen = true;
                 myAnim.SetBool("openDoor", true);
-                isMoving = true;
             }
             
         }
@@ -37,13 +34,11 @@ public class VincentDoorTestScript : MonoBehaviour
             {
                 isOpen = false;
                 myAnim.SetBool("closeDoor", true);
-                isMoving = true;
             }
             else
             {
                 isOpen = true;
                 myAnim.SetBool("openDoor", true);
-                isMoving = true;
             }
 
         }

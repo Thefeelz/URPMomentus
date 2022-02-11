@@ -11949,17 +11949,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1785056981 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1947719515288024229, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
-  m_PrefabInstance: {fileID: 2013785457}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24803844eaa4fce40ae733d127980f53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1793880289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12134,6 +12123,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &1832367418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3320097283383273192, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 1951879390}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a1153b6cc26844dbf005315daa8090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1832753542
 GameObject:
   m_ObjectHideFlags: 0
@@ -12996,6 +12996,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 982830813, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 982830813, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3117783459759319468, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_Name
       value: Player MainV2
@@ -13047,7 +13067,15 @@ PrefabInstance:
     - target: {fileID: 6431164510068852053, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1785056981}
+      objectReference: {fileID: 1832367418}
+    - target: {fileID: 6431164510068852053, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431164510068852053, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
 --- !u!4 &1952352107 stripped

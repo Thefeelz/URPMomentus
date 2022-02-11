@@ -65,4 +65,12 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         myManager.SetMouseSenitivity(mouseSensitivitySlider.value);
     }
+
+    public void ReturnToMainMenu()
+    {
+        settingsMenu.SetActive(false);
+        pauseMenuUI.SetActive(false);
+        GameIsPaused = false;
+        FindObjectOfType<SceneController>().MainMenu();
+    }
 }

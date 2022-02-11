@@ -18,20 +18,28 @@ public class EnemyStats : MonoBehaviour
     
     bool triggeredDead = false;
 
-    EnemyChaseState chase;
+    protected EnemyChaseState chase;
     CharacterStats player;
     GameManager gameManager;
     Entity mEntity;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(GetComponent<Entity>())
+        if (GetComponent<Entity>())
+        {
             mEntity = gameObject.GetComponent<Entity>();
+            Debug.Log("entity found");
+        }
         gameManager = FindObjectOfType<GameManager>();
         gameManager.AddEnemyToList(this);
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
-        chase = GetComponent<EnemyChaseState>();
+
+        if (!GetComponent<Entity>())
+        {
+            chase = GetComponent<EnemyChaseState>();
+        }
         currentHealth = maxHealth;
         player = FindObjectOfType<CharacterStats>();
     }
@@ -45,7 +53,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(int damageToTake)
     {
-        //currentHealth -= damageToTake;
+        currentHealth -= damageToTake;
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
         if (currentHealth <= 0 && !triggeredDead && !GetComponent<Entity>())
         {
@@ -54,7 +62,8 @@ public class EnemyStats : MonoBehaviour
                 TurnOnObjects();
             StartCoroutine(DestroySelf());
         }
-        else if (currentHealth <= 0 && !triggeredDead)
+        // all Damage does is subtract health
+        else if (GetComponent<Entity>())
             mEntity.Damage(damageToTake);
     }
 
@@ -81,7 +90,7 @@ public class EnemyStats : MonoBehaviour
     IEnumerator DestroySelf()
     {
         player.ReplenishHealth(energyAmount);
-        //chase.SetStateToDead();
+        chase.SetStateToDead();
         GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
         GetComponentInChildren<Collider>().enabled = false;
         yield return new WaitForSeconds(10f);

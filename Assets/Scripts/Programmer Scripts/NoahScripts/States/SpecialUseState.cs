@@ -13,15 +13,27 @@ public class SpecialUseState : State
     public override void StateEnter()
     {
         base.StateEnter();
-        mEntity.GetComponent<NavMeshAgent>().enabled = false;
-        mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        mEntity.GetComponentInChildren<Animator>().speed = 0;
+        if (mEntity.specialUseBool == true)
+        {
+            mEntity.GetComponent<NavMeshAgent>().enabled = false;
+            mEntity.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            mEntity.GetComponentInChildren<Animator>().speed = 0;
+        }
+        else
+        {
+            if(mEntity.gameObject.GetComponent<Enemy1>())
+            {
+                mEntity.stateMachine.ChangeState(mEntity.defaultState);
+            }
+        }
     }
 
     public override void StateExit()
     {
-        mEntity.GetComponentInChildren<Animator>().speed = 1;
+        
         base.StateExit();
+        mEntity.specialUseBool = false;
+        mEntity.GetComponentInChildren<Animator>().speed = 1;
     }
 
     public override void LogicUpdate()

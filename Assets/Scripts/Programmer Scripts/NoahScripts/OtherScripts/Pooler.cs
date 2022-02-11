@@ -55,7 +55,7 @@ public class Pooler : MonoBehaviour
                 //obj.transform.parent = this.gameObject.transform;
                 poolQueue.Enqueue(obj);
             }
-
+            //adds object pool to all the dictionaries that need it
             dictionaryPools.Add(objectPool.dictionaryTag, poolQueue);
             onField.Add(objectPool.dictionaryTag, 0);
             minField.Add(objectPool.dictionaryTag, objectPool.minField);
@@ -75,16 +75,20 @@ public class Pooler : MonoBehaviour
 
     //dequeues the gameobject from the queue with the matching tag. No need to increase the dictionary of amount on field as that is performed
     // in update
+
     public GameObject dequeueObject(string tag)
     {
         GameObject objToSpawn = dictionaryPools[tag].Dequeue();
         return objToSpawn;
         
     }
-
+    /// <summary>
+    /// checks each pool for if there is enough of that type of enemy on the field. If not it deques until there is
+    /// </summary>
     public void Update()
     {
         //Debug.Log(tags);
+        
         foreach (string tag in tags)
         {
             if(onField[tag] < minField[tag])
