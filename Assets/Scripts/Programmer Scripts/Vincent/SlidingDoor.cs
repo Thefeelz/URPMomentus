@@ -5,7 +5,8 @@ using UnityEngine;
 public class SlidingDoor : MonoBehaviour
 {
     GameObject leftDoor, rightDoor;
-    bool isDoorOpen;
+    Vector3 leftDoorStartPos, rightDoorStartPos;
+    bool isDoorOpen, firstClose=true;
     float currentDoorGap, closeDoorGap, openDoorGap;
     Vector3[] leftPos;
     float temp;
@@ -33,7 +34,9 @@ public class SlidingDoor : MonoBehaviour
     {
         //Gets the doors from the children
         leftDoor = transform.GetChild(0).gameObject;
+        leftDoorStartPos = leftDoor.transform.localPosition;
         rightDoor = transform.GetChild(1).gameObject;
+        rightDoorStartPos = rightDoor.transform.localPosition;
 
         //If player 
         if (target == null)
@@ -43,8 +46,8 @@ public class SlidingDoor : MonoBehaviour
         }
        
 
-        closeDoorGap = Mathf.Abs(leftDoor.transform.position.z - rightDoor.transform.position.z);
-        openDoorGap = Mathf.Abs(leftDoor.transform.position.z - rightDoor.transform.position.z) + doorGap;
+        //closeDoorGap = Mathf.Abs(leftDoor.transform.localPosition.z - rightDoor.transform.localPosition.z);
+        openDoorGap = Mathf.Abs(leftDoor.transform.localPosition.z - rightDoor.transform.localPosition.z) + doorGap;
 
         doorSpeed /= 100;
         if (reverseDoor)
@@ -56,20 +59,30 @@ public class SlidingDoor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        currentDoorGap = Mathf.Abs(leftDoor.transform.position.z - rightDoor.transform.position.z);
+        //finds the current space between the doors
+        currentDoorGap = Mathf.Abs(leftDoor.transform.localPosition.z - rightDoor.transform.localPosition.z);
+
+        //open door motion
+        ///every frame, the door's shutters lerp apart until they reach the set distance  
         if (isDoorOpen && currentDoorGap < openDoorGap)
         {
-            leftDoor.transform.position = Vector3.Lerp(leftDoor.transform.position, leftDoor.transform.position - new Vector3(0, 0, doorGap), doorSpeed);
-            rightDoor.transform.position = Vector3.Lerp(rightDoor.transform.position, rightDoor.transform.position + new Vector3(0, 0, doorGap), doorSpeed);
+            leftDoor.transform.localPosition = Vector3.Lerp(leftDoor.transform.localPosition, leftDoor.transform.localPosition - new Vector3(0, 0, doorGap), doorSpeed);
+            rightDoor.transform.localPosition = Vector3.Lerp(rightDoor.transform.localPosition, rightDoor.transform.localPosition + new Vector3(0, 0, doorGap), doorSpeed);
             Debug.Log(openDoorGap + " = " + currentDoorGap);
         }
-        else if (!isDoorOpen && currentDoorGap > closeDoorGap)
+
+        //close door motion
+        ///if the door should be closed but is open. Every frame the doors will lerp towards each other until they are about .01 apart(which looks closed
+        else if (!isDoorOpen && Vector3.Distance(leftDoor.transform.localPosition, leftDoorStartPos)>.01)
         {
-            leftDoor.transform.position = Vector3.Lerp(leftDoor.transform.position, leftDoor.transform.position + new Vector3(0, 0, doorGap), doorSpeed);
-            rightDoor.transform.position = Vector3.Lerp(rightDoor.transform.position, rightDoor.transform.position - new Vector3(0, 0, doorGap), doorSpeed);
+            leftDoor.transform.localPosition = Vector3.Lerp(leftDoor.transform.localPosition, leftDoor.transform.localPosition + new Vector3(0, 0, doorGap), doorSpeed);
+            rightDoor.transform.localPosition = Vector3.Lerp(rightDoor.transform.localPosition, rightDoor.transform.localPosition - new Vector3(0, 0, doorGap), doorSpeed);
             Debug.Log(closeDoorGap + " = " + currentDoorGap);
         } 
+        
     }
+
+    //when player enters range
     private void OnTriggerEnter(Collider other)
     {
         if (other == target && reverseDoor)
@@ -81,6 +94,8 @@ public class SlidingDoor : MonoBehaviour
             openDoors();
         }
     }
+
+    //when player leaves range
     private void OnTriggerExit(Collider other)
     {
         if (other == target && reverseDoor)
@@ -93,6 +108,7 @@ public class SlidingDoor : MonoBehaviour
         }
     }
 
+    //Changes bool based on if door should open or close
     void openDoors()
     {
         isDoorOpen = true;
