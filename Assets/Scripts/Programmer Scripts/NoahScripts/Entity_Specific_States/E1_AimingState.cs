@@ -23,7 +23,7 @@ public class E1_AimingState : AimingState
         //mEnemy.canon.transform.LookAt(mEnemy.myTarget.transform);
         //mEnemy.transform.LookAt(mEnemy.myTarget.transform);
         base.Aim();
-        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        //mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
         //Debug.Log(mEnemy.myTarget.transform.position);
     }
 

@@ -9,6 +9,7 @@ public class D_Entity : ScriptableObject
     public float rapidDistance;
     public float slowDistance;
     public float aimDistance;
+    public float meleeDistance;
     public float evadeDistance;
     public float health;
 }
