@@ -25,6 +25,7 @@ public class Enemy_Melee : Entity
         meleeState = new Em_Melee(this, stateMachine, entityData, this);
         stateMachine.InitializeStateMachine(moveState);
         defaultState = moveState;
+        queueName = "Melee";
 
     }
     public override void Update()

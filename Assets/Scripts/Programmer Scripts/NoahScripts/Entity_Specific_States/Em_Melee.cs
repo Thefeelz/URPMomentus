@@ -5,8 +5,7 @@ using UnityEngine;
 public class Em_Melee : MeleeState
 {
     Enemy_Melee mEnemy;
-    float strikeStart;
-    bool start;
+    
     public Em_Melee(Entity mEntity, FiniteStateMachine mStateMachine, D_Entity entityData, Enemy_Melee mEnemy) : base(mEntity, mStateMachine, entityData)
     {
         this.mEnemy = mEnemy;
@@ -46,15 +45,5 @@ public class Em_Melee : MeleeState
         
     }
 
-    public void Strike()
-    {
-        strikeStart = Time.time;
-        start = true;
-        RaycastHit send;
-        Physics.Raycast(mEnemy.transform.position + Vector3.up + (mEnemy.transform.forward * 0.5f), mEnemy.transform.forward, out send, 1f);
-        if (send.collider != null && send.collider.GetComponentInParent<CharacterStats>())
-        {
-            send.transform.GetComponentInParent<CharacterStats>().RemoveHealth(10f);
-        }
-    }
+    
 }
