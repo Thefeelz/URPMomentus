@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+
 public class MasterLevel : MonoBehaviour
 {
     [SerializeField] int enemiesToKill;
@@ -21,7 +23,7 @@ public class MasterLevel : MonoBehaviour
     public void AddToKillCount(int numberToAdd)
     {
         currentKillCount += numberToAdd;
-        progressBar.fillAmount = (float)currentKillCount / (float)enemiesToKill;
+        progressBar.fillAmount = (float)currentKillCount / enemiesToKill;
         CheckForLevelComplete();
     }
 

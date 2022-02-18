@@ -87,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
             elaspedTime = 0;
             dashing = false;
             attackDashVolume.weight = 0;
-            currentEnemy.TakeDamage(playerStats.GetPlayerStrength());
+            currentEnemy.TakeDamage(playerStats.GetPlayerAttack());
             currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(false);
             currentEnemy = null;
         }
@@ -149,7 +149,7 @@ public class PlayerAttack : MonoBehaviour
         Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, 2f);
         if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
-            hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerStrength());
+            hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
         }
     }
 }

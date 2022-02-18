@@ -42,6 +42,33 @@ public class GameManager : MonoBehaviour
     {
         return enemiesInLevel;
     }
+
+    public List<EnemyStats> GetActiveEnemiesInLineOfSight(Transform playerPos)
+    {
+        List<EnemyStats> enemiesInLoS = new List<EnemyStats>();
+        foreach (EnemyStats enemy in enemiesInLevel)
+        {
+            if(GetInLOS(playerPos, enemy.transform))
+            {
+                enemiesInLoS.Add(enemy);
+            }
+        }
+        return enemiesInLoS;
+    }
+    public List<EnemyStats> GetActiveEnemiesInLineOfSightAndRange(float range, Transform playerPos)
+    {
+        List<EnemyStats> enemiesInRange = new List<EnemyStats>();
+        List<EnemyStats> enemiesInRangeAndLoS = new List<EnemyStats>();
+        enemiesInRange = GetActiveEnemiesInRange(range, playerPos);
+        foreach (EnemyStats enemy in enemiesInRange)
+        {
+            if(GetInLOS(enemy.transform, playerPos))
+            {
+                enemiesInRangeAndLoS.Add(enemy);
+            }
+        }
+        return enemiesInRangeAndLoS;
+    }
     public List<EnemyStats> GetActiveEnemiesInRange(float range, Transform playerPos)
     {
         List<EnemyStats> enemiesInRange = new List<EnemyStats>();
@@ -113,5 +140,16 @@ public class GameManager : MonoBehaviour
     {
         mouseSensitivity = value;
         FindObjectOfType<mouseLook>().UpdateMouseSensitivity(value);
+    }
+
+    bool GetInLOS(Transform player, Transform enemy)
+    {
+        RaycastHit hit;
+        Physics.Raycast(player.position + new Vector3(0, 1, 0), enemy.transform.position - player.position, out hit);
+        if (hit.collider != null && hit.collider.GetComponentInParent<P_Input>())
+        {
+            return true;
+        }
+        return false;
     }
 }

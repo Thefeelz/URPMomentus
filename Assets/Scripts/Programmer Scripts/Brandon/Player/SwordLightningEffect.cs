@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwordLightningEffect : MonoBehaviour
 {
+    // ==========THIS WHOLE CLASS CONTROLS THE GLOW OF THE SWORD DURING PLAY, IT INCREASES THE EMISSION BASED ON THE CURRENT OVERCHARGE========== NO TOUCHY PLZ <3
     CharacterStats player;
     ParticleSystem.EmissionModule thisSystem;
     [SerializeField] Material[] emissionMaterial;

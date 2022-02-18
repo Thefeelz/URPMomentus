@@ -54,6 +54,7 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         currentHealth -= damageToTake;
+        GetComponent<EnemyCaptionSpawner>().SpawnDamageCaption();
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
         if (currentHealth <= 0 && !triggeredDead && !GetComponent<Entity>())
         {
@@ -90,11 +91,24 @@ public class EnemyStats : MonoBehaviour
     IEnumerator DestroySelf()
     {
         player.ReplenishHealth(energyAmount);
-        chase.SetStateToDead();
-        GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
-        GetComponentInChildren<Collider>().enabled = false;
-        yield return new WaitForSeconds(10f);
-        gameManager.RemoveFromActiveList(this);
-       // Destroy(gameObject);
+        if (GetComponent<EnemyChaseState>())
+        {
+            if (GetComponent<EnemyChaseState>())
+                chase.SetStateToDead();
+            if (GetComponentInChildren<Collider>().attachedRigidbody)
+            {
+                GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
+                GetComponentInChildren<Collider>().enabled = false;
+            }
+            yield return new WaitForSeconds(10f);
+            Debug.Log("Destroyed");
+            gameManager.RemoveFromActiveList(this);
+            Destroy(gameObject);
+        }
+        else if (GetComponent<Turret>())
+        {
+            GetComponent<Turret>().TurnOnTurretFire();
+            gameManager.RemoveFromActiveList(this);
+        }
     }
 }

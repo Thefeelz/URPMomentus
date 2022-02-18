@@ -32,7 +32,7 @@ public class A_ContainedHeat : A_OverchargeAbilities
     public bool Ability_ContainedHeat()
     {
         if (!abilityReady) { return false; }
-        mouseLook.enabled = false;
+        // mouseLook.enabled = false;
         playerMovement.enabled = false;
         playerAnimator.SetBool("groundAttack", true);
         return true;
@@ -58,7 +58,7 @@ public class A_ContainedHeat : A_OverchargeAbilities
         else
         {
             expand = false;
-            mouseLook.enabled = true;
+            // mouseLook.enabled = true;
             playerMovement.enabled = true;
             playerAnimator.SetBool("groundAttack", false);
         }

@@ -28,4 +28,5 @@ public class VincentDoorTestBrain : MonoBehaviour
         doorAnimator.SetBool("openDoor", false);
         
     }
+    
 }
