@@ -29,24 +29,16 @@ public class Boss : MonoBehaviour
         
     }
 
-    //proto sim-attack
-    private void Update()
-    {
-        
-       
-    }
+   
     // Update is called once per frame
     void FixedUpdate()
     {
-        
         if (Vector3.Distance(this.transform.position, nextLocation)<1)
         {
-            
             if (!inDelay)
             {
                 StartCoroutine(bossDelay());
             }
-            
         }
 
         //Bounds

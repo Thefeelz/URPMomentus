@@ -45,7 +45,6 @@ public class SlidingDoor : MonoBehaviour
             Debug.LogWarning("Door was not given target DEFAULT:" + target);
         }
        
-
         //closeDoorGap = Mathf.Abs(leftDoor.transform.localPosition.z - rightDoor.transform.localPosition.z);
         openDoorGap = Mathf.Abs(leftDoor.transform.localPosition.z - rightDoor.transform.localPosition.z) + doorGap;
 
@@ -68,7 +67,6 @@ public class SlidingDoor : MonoBehaviour
         {
             leftDoor.transform.localPosition = Vector3.Lerp(leftDoor.transform.localPosition, leftDoor.transform.localPosition - new Vector3(0, 0, doorGap), doorSpeed);
             rightDoor.transform.localPosition = Vector3.Lerp(rightDoor.transform.localPosition, rightDoor.transform.localPosition + new Vector3(0, 0, doorGap), doorSpeed);
-            Debug.Log(openDoorGap + " = " + currentDoorGap);
         }
 
         //close door motion
@@ -77,9 +75,7 @@ public class SlidingDoor : MonoBehaviour
         {
             leftDoor.transform.localPosition = Vector3.Lerp(leftDoor.transform.localPosition, leftDoor.transform.localPosition + new Vector3(0, 0, doorGap), doorSpeed);
             rightDoor.transform.localPosition = Vector3.Lerp(rightDoor.transform.localPosition, rightDoor.transform.localPosition - new Vector3(0, 0, doorGap), doorSpeed);
-            Debug.Log(closeDoorGap + " = " + currentDoorGap);
         } 
-        
     }
 
     //when player enters range
