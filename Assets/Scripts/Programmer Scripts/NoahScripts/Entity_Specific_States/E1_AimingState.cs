@@ -23,7 +23,7 @@ public class E1_AimingState : AimingState
         //mEnemy.canon.transform.LookAt(mEnemy.myTarget.transform);
         //mEnemy.transform.LookAt(mEnemy.myTarget.transform);
         base.Aim();
-        mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
+        //mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
         //Debug.Log(mEnemy.myTarget.transform.position);
     }
 
@@ -32,9 +32,12 @@ public class E1_AimingState : AimingState
     public override void StateEnter()
     {
         base.StateEnter();
+        mEntity.mAnimator.SetBool("stationary", true);
+        mEntity.mAnimator.SetBool("chasing", false);
         mEnemy.agent.speed = aimData.moveSpeed;
-       
-        
+        mEntity.GetComponent<NavMeshAgent>().enabled = false;
+        mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
+
         //mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = false;
         //mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
     }
@@ -82,7 +85,7 @@ public class E1_AimingState : AimingState
             {
                 shooting = false;
                 mEntity.mAnimator.SetBool("rangeAttack", false);
-                mEntity.mAnimator.SetBool("chasing", true);
+                mEntity.mAnimator.SetBool("stationary", true);
             }
         }
 
@@ -92,7 +95,7 @@ public class E1_AimingState : AimingState
 
     public override void PhysicsUpdate()
     {
-        
+        mEnemy.facePlayer();
         //mEntity.agent.updateRotation = true;
         //mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
     }
@@ -101,16 +104,27 @@ public class E1_AimingState : AimingState
     {
         //deques the front bullet in the ammo pool and resets its location to the canon of the enemy, and adds force to fire it
         mEntity.mAnimator.SetBool("rangeAttack", true);
-        mEntity.mAnimator.SetBool("chasing", false);
+        mEntity.mAnimator.SetBool("stationary", false);
         shooting = true;
         shootStart = Time.time;
-        Quaternion enemyRotation = mEnemy.transform.rotation; // enemy faces player
+        //Quaternion enemyRotation = mEnemy.transform.rotation; // enemy faces player
         bullet = mEnemy.ammo.dequeBullet(); //deques bullet
+        
         bullet.transform.position = mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f); // places bullet infront of cannon, not perfect yet
-        bullet.transform.rotation = enemyRotation; // bullet faces player
+        //bullet.transform.LookAt(mEnemy.myTarget.transform);
+        bullet.GetComponent<Bullet>().timeActive = Time.time;
+        bullet.GetComponent<Bullet>().hit = false;
         bullet.SetActive(true); //bullet is set to active
+        bullet.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed); // bullet force
+        Vector3 newVec = new Vector3(0, mEnemy.myTarget.transform.position.y, 0);
+        bullet.transform.LookAt(mEnemy.myTarget.transform.position);
+        var rotVec = bullet.transform.rotation.eulerAngles;
+        rotVec.z = 0;
+        rotVec.x = 0;
+        bullet.transform.rotation = Quaternion.Euler(rotVec);
+        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * aimData.bulletSpeed); // bullet force
+        //bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed); // bullet force
         mEnemy.StartCool(bullet); // cooldown for when it can shoot
     }
 

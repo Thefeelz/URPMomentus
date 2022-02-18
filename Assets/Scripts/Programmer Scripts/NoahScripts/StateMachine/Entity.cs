@@ -110,11 +110,16 @@ public class Entity : MonoBehaviour
     // makes the enemy rotate to face the player if it is needed
     public void facePlayer()
     {
-       
-        var lookPos = myTarget.transform.position - transform.position;
-        lookPos.y = 0;
-        var rotation = Quaternion.LookRotation(lookPos);
-        transform.rotation = rotation;
+
+        //var lookPos = myTarget.transform.position - transform.position;
+        //lookPos.y = 0;
+        //var rotation = Quaternion.LookRotation(lookPos);
+        //transform.rotation = rotation;
+        transform.LookAt(myTarget.transform.position);
+        var rotVec = transform.rotation.eulerAngles;
+        rotVec.z = 0;
+        rotVec.x = 0;
+        transform.rotation = Quaternion.Euler(rotVec);
     }
 
 
@@ -126,5 +131,10 @@ public class Entity : MonoBehaviour
     }
 
 
+    public void resetAll()
+    {
+        health = entityData.health;
+        stateMachine.ChangeState(defaultState);
+    }
 
 }

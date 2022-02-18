@@ -107,8 +107,6 @@ public class Enemy1 : Entity
     IEnumerator Cooldown(GameObject bullet)
     {
         yield return new WaitForSeconds(3f);
-        bullet.SetActive(false);
-        ammo.enqueBullet(bullet);
         canShoot = true;
     }
     
