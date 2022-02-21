@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Melee : Entity
+public class Enemy_Jumper : Entity
 {
     public bool linking; // linking stuff
     public float origSpeed = 3; // linking stuff
     public float linkSpeed = 1; // linking stuff
-    public int avoid;
-    public bool waitMelee; // bool to represent if 
-    
+
     //states
     public DeathState deathState { get; private set; }
-    public Em_Move moveState { get; private set; }
-    public Em_Melee meleeState { get; private set; }
-    public WaitingState waitState { get; private set; }
+    public Ej_Move moveState { get; private set; }
+    public Ej_Melee meleeState { get; private set; }
 
     //Datas
     [SerializeField]
@@ -24,12 +21,11 @@ public class Enemy_Melee : Entity
     {
         base.Awake();
         deathState = new DeathState(this, stateMachine);
-        moveState = new Em_Move(this, stateMachine, moveData, entityData, this);
-        meleeState = new Em_Melee(this, stateMachine, entityData, this);
-        waitState = new WaitingState(this, stateMachine, entityData, meleeState, moveState);
+        moveState = new Ej_Move(this, stateMachine, moveData, entityData, this);
+        meleeState = new Ej_Melee(this, stateMachine, entityData, this);
         stateMachine.InitializeStateMachine(moveState);
         defaultState = moveState;
-        queueName = "Melee";
+        queueName = "Jumper";
 
     }
     public override void Update()
@@ -54,7 +50,7 @@ public class Enemy_Melee : Entity
         }
     }
 
-   
+
 
     public override void Damage(float amountDamage)
     {
@@ -66,7 +62,7 @@ public class Enemy_Melee : Entity
         }
     }
 
-    
+
 
 
 }

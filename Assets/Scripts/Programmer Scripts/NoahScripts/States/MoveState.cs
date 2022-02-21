@@ -9,6 +9,7 @@ public class MoveState : State
 
     protected D_moveState stateData;
     protected D_Entity entityData;
+    protected int priorityScale;
     // the distance from the entity to the player
     protected float playerDistance;
     
@@ -24,6 +25,7 @@ public class MoveState : State
         // movement code here
         if (Vector3.Distance(mEntity.agent.destination, mEntity.myTarget.transform.position) > 1)
         {
+            
             mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
         }
 

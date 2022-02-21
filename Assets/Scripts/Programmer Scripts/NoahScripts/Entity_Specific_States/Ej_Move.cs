@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Em_Move : MoveState
+public class Ej_Move : MoveState
 {
-    private Enemy_Melee mEnemy;
-
-    public Em_Move(Entity mEntity, FiniteStateMachine mStateMachine, D_moveState stateData, D_Entity entityData, Enemy_Melee mEnemy) : base(mEntity, mStateMachine, stateData, entityData)
+    private Enemy_Jumper mEnemy;
+    public Ej_Move(Entity mEntity, FiniteStateMachine mStateMachine, D_moveState stateData, D_Entity entityData, Enemy_Jumper mEnemy) : base(mEntity, mStateMachine, stateData, entityData)
     {
         this.mEnemy = mEnemy;
     }
@@ -18,7 +17,7 @@ public class Em_Move : MoveState
         base.StateEnter();
         mEntity.mAnimator.SetBool("chasing", true);
         mEntity.mAnimator.SetBool("stationary", false);
-       
+
     }
 
     public override void StateExit()
@@ -28,11 +27,10 @@ public class Em_Move : MoveState
 
     public override void LogicUpdate()
     {
-        mEnemy.agent.avoidancePriority = mEnemy.avoid;
         base.LogicUpdate();
-        if (mEntity.DistanceToPlayer() <= 3)
+        if (mEntity.DistanceToPlayer() <= 2)
         {
-            mStateMachine.ChangeState(mEnemy.waitState);
+            mStateMachine.ChangeState(mEnemy.meleeState);
         }
         else
         {

@@ -14,12 +14,6 @@ public class MeleeState : State
     public override void StateEnter()
     {
         base.StateEnter();
-        mEntity.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        mEntity.facePlayer();
-        mEntity.mAnimator.SetBool("chasing", false);
-        mEntity.mAnimator.SetBool("meleeAttack", true);
-        start = false;
-        Strike();
     }
 
     public override void StateExit()
@@ -37,7 +31,7 @@ public class MeleeState : State
         base.PhysicsUpdate();
     }
 
-    public void Strike()
+    public virtual void Strike()
     {
         strikeStart = Time.time;
         start = true;
