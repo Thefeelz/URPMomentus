@@ -6,12 +6,14 @@ public class Turret : MonoBehaviour
 {
     [SerializeField] GameObject headToRotate;
     [SerializeField] float detectionRange;
+    [SerializeField] int damageToDeal;
     [SerializeField] float rotateSpeed;
     [SerializeField] float sleepTimer;
     [SerializeField] float chargeUpTime;
     [SerializeField] float rateOfFire;
     [SerializeField] float fireBurstTime;
     [SerializeField] Light firingLight;
+    [SerializeField] Transform firePosition;
     [SerializeField] ParticleSystem smokeEffect;
     [SerializeField] GameObject bulletsToFire;
 
@@ -31,6 +33,7 @@ public class Turret : MonoBehaviour
         state = TurretState.Asleep;
         myPlayer = FindObjectOfType<P_Input>();
         anim = GetComponent<Animator>();
+        rateOfFire = 1 / rateOfFire;
     }
 
     // Update is called once per frame
@@ -108,6 +111,8 @@ public class Turret : MonoBehaviour
         {
             elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
+            GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
+            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(30f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
         }
         charged = false;
         firing = false;
@@ -122,7 +127,6 @@ public class Turret : MonoBehaviour
         Debug.DrawRay(transform.position + new Vector3(0, 1, 0), myPlayer.transform.position - transform.position);
         if (hit.collider != null && hit.collider.GetComponentInParent<P_Input>())
         {
-            Debug.Log(hit.collider.name);
             return true;
         }
         return false;

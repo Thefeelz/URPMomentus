@@ -14,12 +14,6 @@ public class MeleeState : State
     public override void StateEnter()
     {
         base.StateEnter();
-        mEntity.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
-        mEntity.facePlayer();
-        mEntity.mAnimator.SetBool("chasing", false);
-        mEntity.mAnimator.SetBool("meleeAttack", true);
-        start = false;
-        Strike();
     }
 
     public override void StateExit()
@@ -37,7 +31,7 @@ public class MeleeState : State
         base.PhysicsUpdate();
     }
 
-    public void Strike()
+    public virtual void Strike()
     {
         strikeStart = Time.time;
         start = true;
@@ -45,7 +39,7 @@ public class MeleeState : State
         Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out send, 1f);
         if (send.collider != null && send.collider.GetComponentInParent<CharacterStats>())
         {
-            send.transform.GetComponentInParent<CharacterStats>().RemoveHealth(10f);
+            send.transform.GetComponentInParent<CharacterStats>().RemoveHealth(0f);
         }
     }
 }
