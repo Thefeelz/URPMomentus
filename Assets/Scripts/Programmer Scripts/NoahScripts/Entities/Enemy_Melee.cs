@@ -11,6 +11,7 @@ public class Enemy_Melee : Entity
     //states
     public DeathState deathState { get; private set; }
     public Em_Move moveState { get; private set; }
+    public Em_Melee meleeState { get; private set; }
 
     //Datas
     [SerializeField]
@@ -20,6 +21,12 @@ public class Enemy_Melee : Entity
     {
         base.Awake();
         deathState = new DeathState(this, stateMachine);
+        moveState = new Em_Move(this, stateMachine, moveData, entityData, this);
+        meleeState = new Em_Melee(this, stateMachine, entityData, this);
+        stateMachine.InitializeStateMachine(moveState);
+        defaultState = moveState;
+        queueName = "Melee";
+
     }
     public override void Update()
     {

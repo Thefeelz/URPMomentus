@@ -33,7 +33,7 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
 
     public void StartAbilityCooldown()
     {
-        player.RemoveHealth(overchargeCost);
+        player.A_RemoveHealth(overchargeCost);
         abilityReady = false;
         abilityCooldownCurrent = abilityCooldownMax;
     }

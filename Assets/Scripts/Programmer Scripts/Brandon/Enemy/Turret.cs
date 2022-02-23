@@ -9,12 +9,14 @@ public class Turret : MonoBehaviour
     [SerializeField] float rotateSpeed;
     [SerializeField] float sleepTimer;
     [SerializeField] float chargeUpTime;
+    [SerializeField] float rateOfFire;
     [SerializeField] float fireBurstTime;
     [SerializeField] Light firingLight;
-    [SerializeField] ParticleSystem bulletsToFire;
+    [SerializeField] ParticleSystem smokeEffect;
+    [SerializeField] GameObject bulletsToFire;
 
-    enum TurretState  {Waiting, Attacking, Asleep};
-    TurretState state;
+    enum TurretState  {Waiting, Attacking, Asleep, Dead};
+    [SerializeField]TurretState state;
 
     P_Input myPlayer;
     Animator anim;
@@ -47,7 +49,7 @@ public class Turret : MonoBehaviour
 
     void CheckPlayerInRange()
     {
-        if(Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange)
+        if(Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange && CheckInLoS())
         {
             StopCoroutine(TurretToSleep(sleepTimer));
             if(state == TurretState.Asleep)
@@ -64,13 +66,11 @@ public class Turret : MonoBehaviour
         headToRotate.transform.rotation = Quaternion.RotateTowards(headToRotate.transform.rotation, 
                                                                    Quaternion.LookRotation(myPlayer.transform.position + myPlayer.transform.up - headToRotate.transform.position),
                                                                    Time.deltaTime * rotateSpeed);
-        //if(Vector3.Angle(headToRotate.transform.forward, myPlayer.transform.position) < 15f || Vector3.Angle(headToRotate.transform.forward, myPlayer.transform.position) > -15f)
-        //{
-            if(charged && !firing)
-                StartCoroutine(StartFiring());
-            else
-                StartCharging();
-        //}
+        if(charged && !firing)
+            StartCoroutine(StartFiring());
+        else
+            StartCharging();
+ 
     }
 
     void StartCharging()
@@ -87,38 +87,51 @@ public class Turret : MonoBehaviour
     IEnumerator WakeUpTurret()
     {
         anim.SetBool("awake", true);
-
         yield return new WaitForSeconds(1f);
-
         state = TurretState.Attacking;
         anim.SetBool("awake", false);
-        anim.enabled = false;
     }
     IEnumerator TurretToSleep(float sleepTime)
     {
-        Debug.Log("Turret to sleep");
         state = TurretState.Waiting;
         yield return new WaitForSeconds(sleepTime);
         state = TurretState.Asleep;
-        anim.enabled = true;
         anim.SetBool("asleep", true);
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(1f);
         anim.SetBool("asleep", false);
         firingLight.intensity = 0;
     }
     IEnumerator StartFiring()
     {
         firing = true;
-        bulletsToFire.Play();
         while(elapsedFireTime <= fireBurstTime)
         {
             elapsedFireTime+=Time.deltaTime;
-            yield return null;
+            yield return  new WaitForSeconds(rateOfFire);
         }
         charged = false;
         firing = false;
-        bulletsToFire.Stop();
         firingLight.intensity = 0;
         elapsedFireTime = 0;
+    }
+
+    bool CheckInLoS()
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position + new Vector3(0, 1, 0), myPlayer.transform.position - transform.position, out hit);
+        Debug.DrawRay(transform.position + new Vector3(0, 1, 0), myPlayer.transform.position - transform.position);
+        if (hit.collider != null && hit.collider.GetComponentInParent<P_Input>())
+        {
+            Debug.Log(hit.collider.name);
+            return true;
+        }
+        return false;
+    }
+
+    public void TurnOnTurretFire()
+    {
+        state = TurretState.Dead;
+        smokeEffect.gameObject.SetActive(true);
+        smokeEffect.Play();
     }
 }

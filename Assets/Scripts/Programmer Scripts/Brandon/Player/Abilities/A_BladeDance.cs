@@ -49,15 +49,22 @@ public class A_BladeDance : A_OverchargeAbilities
     {
         if (!abilityReady) { return false; }
         gameManager.SetActiveSpecialAbility(true);
-        startPos = myStartingPosition.transform.position;
-        startRotation = myStartingPosition.transform.rotation;
+
+        SetCurrentPlayerPosition();
+        TogglePlayerMovement(false);
+
+        // Make sure that all enemies attacked is set to false
         allEnemiesAttacked = false;
-        GetComponent<P_Movement>().enabled = false;
-        GetComponent<mouseLook>().enabled = false;
+
+        // Start camera transition for the Camera Effect
         camTransitioning = true;
+
+        // This bool sets the camera transition direction for if we are zooming in or out
         usingSpecial = true;
-        StartCoroutine(AttackEnemy());
+
+        // Set the global variable to be true so in case any enemies spawn, they are frozen
         gameManager.activeInUse = true;
+        StartCoroutine(AttackEnemy());
         return true;
     }
 
@@ -91,7 +98,7 @@ public class A_BladeDance : A_OverchargeAbilities
             return null;
         }
         EnemyStats closestEnemy = null;
-        foreach (var enemy in gameManager.GetActiveEnemiesInRange(maxRange, transform))
+        foreach (var enemy in gameManager.GetActiveEnemiesInLineOfSightAndRange(maxRange, transform))
         {
             if (enemy.getCurrentHealth() > 0)
             {
@@ -148,9 +155,19 @@ public class A_BladeDance : A_OverchargeAbilities
                 transform.position -= transform.forward;
 
                 // currentTarget.GetComponent<MeshRenderer>().material.color = Color.black;
-                currentTarget.TakeDamage(player.GetPlayerStrength());
+                currentTarget.TakeDamage(player.GetPlayerAttack());
                 killCount++;
             }
         } while (!allEnemiesAttacked);
+    }
+    void SetCurrentPlayerPosition()
+    {
+        startPos = myStartingPosition.transform.position;
+        startRotation = myStartingPosition.transform.rotation;
+    }
+    void TogglePlayerMovement(bool value)
+    {
+        GetComponent<P_Movement>().enabled = value;
+        GetComponent<mouseLook>().enabled = value;
     }
 }

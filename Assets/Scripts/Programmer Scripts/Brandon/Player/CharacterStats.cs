@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] float playerMaxOvercharge = 100;
     [SerializeField] float playerCurrentOvercharge = 0;
 
-    [SerializeField] int playerStrength = 10;
+    [SerializeField] int playerAttack = 10;
     [SerializeField] int playerDefense = 10;
     [SerializeField] Animator canvasAnimator;
 
@@ -24,6 +24,10 @@ public class CharacterStats : MonoBehaviour
     {
         
     }
+    /// <summary>
+    /// Stupid Ass name that I used to "Replenish Health", I am sorry for the name of my function
+    /// </summary>
+    /// <param name="amountToRestore"></param>
     public void ReplenishHealth(float amountToRestore)
     {
         float difference = 0f;
@@ -51,16 +55,32 @@ public class CharacterStats : MonoBehaviour
         {
             playerCurrentHealth += amountToRestore;
         }
-        // Check to see if amountToRestore will exceed full health
-
-        // Add to overcharge
     }
+
+    /// <summary>
+    /// Remove Health, not Overcharge, if you want to remove Overcharge, use 'A_RemoveHealth()'
+    /// </summary>
+    /// <param name="amountToRemove"></param>
     public void RemoveHealth(float amountToRemove)
     {
-        float difference = 0f;
-        if(playerCurrentOvercharge > 0)
+        if(amountToRemove > playerCurrentHealth)
         {
-            if(playerCurrentOvercharge - amountToRemove > 0)
+            Die();
+            return;
+        }
+        playerCurrentHealth -= amountToRemove;
+    }
+
+    /// <summary>
+    /// Remove Health AND Overcharge, if you want to remove Health only, use 'RemoveHealth()'
+    /// </summary>
+    /// <param name="amountToRemove"></param>
+    public void A_RemoveHealth(float amountToRemove)
+    {
+        float difference = 0f;
+        if (playerCurrentOvercharge > 0)
+        {
+            if (playerCurrentOvercharge - amountToRemove > 0)
             {
                 playerCurrentOvercharge -= amountToRemove;
             }
@@ -74,7 +94,7 @@ public class CharacterStats : MonoBehaviour
         else
         {
             playerCurrentHealth -= amountToRemove;
-            if(playerCurrentHealth <= 0)
+            if (playerCurrentHealth <= 0)
             {
                 Die();
             }
@@ -112,13 +132,13 @@ public class CharacterStats : MonoBehaviour
     {
         return playerMaxOvercharge;
     }
-    public void SetPlayerStrength(int newPlayerStrength)
+    public void SetPlayerStrength(int newPlayerAttack)
     {
-        playerStrength = newPlayerStrength;
+        playerAttack = newPlayerAttack;
     }
-    public int GetPlayerStrength()
+    public int GetPlayerAttack()
     {
-        return playerStrength;
+        return playerAttack;
     }
 
     private void Die()
@@ -126,7 +146,6 @@ public class CharacterStats : MonoBehaviour
         GetComponent<P_Input>().enabled = false;
         canvasAnimator.SetBool("dead", true);
         StartCoroutine(BackToMainScreen());
-
     }
 
     IEnumerator BackToMainScreen()

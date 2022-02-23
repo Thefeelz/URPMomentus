@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 1167496571}
   - component: {fileID: 355859707}
   - component: {fileID: 355859708}
+  - component: {fileID: 1113257924}
   m_Layer: 9
   m_Name: EnemyBiped
   m_TagString: Enemy
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4e29a5ca7aa2446a9c32dcb2b81a5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deactive: 0
+  deactive: 1
   maxDetectionRange: 10
   chaseStopRangeAttack: 6
   chaseStartRangeAttack: 8
@@ -143,6 +144,23 @@ MonoBehaviour:
   enemyCanvas: {fileID: 0}
   healthBar: {fileID: 0}
   objectsToTurnOnWhenDead: []
+--- !u!114 &1113257924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783217315439172761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9cc2159d59f494faba1b998ebf558c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeDamageCaption: {fileID: 3661355498518101131, guid: 2745e13508680bc48bc5a0519e26e715, type: 3}
+  spriteRenderers:
+  - {fileID: -6918422498153754665, guid: 271fab79d41916c438351bf523579e14, type: 3}
+  - {fileID: -8826229498821127216, guid: 271fab79d41916c438351bf523579e14, type: 3}
+  - {fileID: 5262631431294657274, guid: 271fab79d41916c438351bf523579e14, type: 3}
 --- !u!1 &7007394035322689558
 GameObject:
   m_ObjectHideFlags: 0
