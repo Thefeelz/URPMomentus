@@ -43,6 +43,7 @@ public class Enemy1 : Entity
     public bool canEvadeState; // can the enemy enter the evade state
     public float evadeTime; // time last evade started
     public float evadeLimit; // how long the evade cooldown is
+    
 
     //called on Awake
     public override void Awake()

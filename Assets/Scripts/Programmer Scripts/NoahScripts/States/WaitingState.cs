@@ -41,8 +41,7 @@ public class WaitingState : State
             mEntity.stateMachine.ChangeState(eMeleeState);
         }
         Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out send, 1f);
-        if (send.collider != null)
-            Debug.DrawLine(send.transform.position, mEntity.transform.position, Color.red);
+        Debug.DrawRay(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, Color.green);
         if (send.collider != null && send.collider.GetComponentInParent<Entity>() && send.collider.GetComponentInParent<NavMeshObstacle>().enabled == true)
         {
             mEntity.GetComponent<NavMeshAgent>().enabled = false;
