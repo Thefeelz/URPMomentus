@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ==== Controller version of Brandon's Code edited by Isaac Schulz =====
+
 public class C_Input : MonoBehaviour
 {
     [SerializeField] Canvas helpScreen;
