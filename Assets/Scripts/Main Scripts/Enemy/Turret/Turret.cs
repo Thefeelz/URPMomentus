@@ -52,16 +52,19 @@ public class Turret : MonoBehaviour
 
     void CheckPlayerInRange()
     {
-        if(Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange && CheckInLoS())
+        if (Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange && CheckInLoS())
         {
-            StopCoroutine(TurretToSleep(sleepTimer));
-            if(state == TurretState.Asleep)
-                StartCoroutine(WakeUpTurret());
+            if (state == TurretState.Asleep)
+            {
+                anim.SetBool("awake", true);
+                state = TurretState.Attacking;
+                StartCoroutine(StartFiring());
+            }
+
         }
-        else if (state == TurretState.Attacking)
-        {
-            StartCoroutine(TurretToSleep(sleepTimer));
-        }
+        else
+            anim.SetBool("awake", false);
+        
     }
 
     void RotateTowardsPlayer()
@@ -69,41 +72,37 @@ public class Turret : MonoBehaviour
         headToRotate.transform.rotation = Quaternion.RotateTowards(headToRotate.transform.rotation, 
                                                                    Quaternion.LookRotation(myPlayer.transform.position + myPlayer.transform.up - headToRotate.transform.position),
                                                                    Time.deltaTime * rotateSpeed);
-        if(charged && !firing)
-            StartCoroutine(StartFiring());
-        else
-            StartCharging();
- 
     }
 
-    void StartCharging()
-    {
-        elapsedChargeTime += Time.deltaTime;
-        firingLight.intensity = Mathf.Lerp(0, 2, elapsedChargeTime / chargeUpTime);
-        if(elapsedChargeTime >= chargeUpTime)
-        {
-            elapsedChargeTime = 0;
-            charged = true;
-        }
-    }
+    //void StartCharging()
+    //{
+    //    elapsedChargeTime += Time.deltaTime;
+    //    firingLight.intensity = Mathf.Lerp(0, 2, elapsedChargeTime / chargeUpTime);
+    //    if(elapsedChargeTime >= chargeUpTime)
+    //    {
+    //        elapsedChargeTime = 0;
+    //        charged = true;
+    //    }
+    //}
 
-    IEnumerator WakeUpTurret()
-    {
-        anim.SetBool("awake", true);
-        yield return new WaitForSeconds(1f);
-        state = TurretState.Attacking;
-        anim.SetBool("awake", false);
-    }
-    IEnumerator TurretToSleep(float sleepTime)
-    {
-        state = TurretState.Waiting;
-        yield return new WaitForSeconds(sleepTime);
-        state = TurretState.Asleep;
-        anim.SetBool("asleep", true);
-        yield return new WaitForSeconds(1f);
-        anim.SetBool("asleep", false);
-        firingLight.intensity = 0;
-    }
+    //IEnumerator WakeUpTurret()
+    //{
+    //    anim.SetBool("awake", true);
+    //    yield return new WaitForSeconds(1f);
+    //    state = TurretState.Attacking;
+    //    anim.SetBool("awake", false);
+    //}
+    //IEnumerator TurretToSleep(float sleepTime)
+    //{
+    //    state = TurretState.Waiting;
+    //    yield return new WaitForSeconds(sleepTime);
+    //    state = TurretState.Asleep;
+    //    anim.SetBool("asleep", true);
+    //    yield return new WaitForSeconds(1f);
+    //    anim.SetBool("asleep", false);
+    //    firingLight.intensity = 0;
+    //}
+
     IEnumerator StartFiring()
     {
         firing = true;
@@ -116,7 +115,7 @@ public class Turret : MonoBehaviour
         }
         charged = false;
         firing = false;
-        firingLight.intensity = 0;
+        //firingLight.intensity = 0;
         elapsedFireTime = 0;
     }
 

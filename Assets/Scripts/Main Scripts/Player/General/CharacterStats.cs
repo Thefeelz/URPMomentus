@@ -14,8 +14,11 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] int playerDefense = 10;
     [SerializeField] Animator canvasAnimator;
 
+    Animator playerAnim;
+
     void Start()
     {
+        playerAnim = GetComponent<Animator>();
         playerCurrentHealth = playerMaxHealth;
     }
 
@@ -63,7 +66,8 @@ public class CharacterStats : MonoBehaviour
     /// <param name="amountToRemove"></param>
     public void RemoveHealth(float amountToRemove)
     {
-        if(amountToRemove > playerCurrentHealth)
+        if (playerAnim.GetBool("swordBlock")) { return; }
+        if(amountToRemove > playerCurrentHealth )
         {
             Die();
             return;
@@ -150,7 +154,7 @@ public class CharacterStats : MonoBehaviour
 
     IEnumerator BackToMainScreen()
     {
-        yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene(0);
+        yield return new WaitForSeconds(16f);
+        FindObjectOfType<SceneController>().MainMenu();
     }
 }
