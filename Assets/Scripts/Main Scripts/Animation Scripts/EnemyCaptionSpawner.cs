@@ -9,8 +9,11 @@ public class EnemyCaptionSpawner : MonoBehaviour
     // Start is called before the first frame update
     public void SpawnDamageCaption()
     {
-        GameObject newObject = Instantiate(takeDamageCaption, transform.position, Quaternion.identity);
-        newObject.GetComponentInChildren<SpriteRenderer>().sprite = spriteRenderers[Random.Range(0, spriteRenderers.Length - 1)];
-        newObject.transform.LookAt(Camera.main.transform.position);
+        if (takeDamageCaption)
+        {
+            GameObject newObject = Instantiate(takeDamageCaption, transform.position, Quaternion.identity);
+            newObject.GetComponentInChildren<SpriteRenderer>().sprite = spriteRenderers[Random.Range(0, spriteRenderers.Length - 1)];
+            newObject.transform.LookAt(Camera.main.transform.position);
+        }
     }
 }
