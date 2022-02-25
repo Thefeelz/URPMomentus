@@ -16,6 +16,8 @@ public class Enemy_Melee : Entity
     public Em_Melee meleeState { get; private set; }
     public WaitingState waitState { get; private set; }
 
+    public Locations mLocations;
+
     //Datas
     [SerializeField]
     private D_moveState moveData;
