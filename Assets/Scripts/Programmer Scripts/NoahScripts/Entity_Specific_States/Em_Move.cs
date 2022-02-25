@@ -28,16 +28,8 @@ public class Em_Move : MoveState
 
     public override void LogicUpdate()
     {
-        mEnemy.agent.avoidancePriority = mEnemy.avoid;
-        base.LogicUpdate();
-        if (mEntity.DistanceToPlayer() <= 3)
-        {
-            mStateMachine.ChangeState(mEnemy.waitState);
-        }
-        else
-        {
-            Move();
-        }
+        //mEnemy.agent.avoidancePriority = mEnemy.avoid;
+        Move();
     }
 
     public override void PhysicsUpdate()
@@ -47,6 +39,15 @@ public class Em_Move : MoveState
 
     protected override void Move()
     {
-        base.Move();
+        //base.Move();
+        Locations l = mEnemy.mLocations;
+        float minDist = Mathf.Infinity;
+        for(int i = 0; i < 8; i++)
+        {
+            if(l.lSpotsValid[i] && l.lSpotsTaken[i] != true)
+            {
+
+            }
+        }
     }
 }
