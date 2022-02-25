@@ -133,7 +133,7 @@ public class C_Movement : MonoBehaviour
 
     public void MoveForward()
     {
-        /* @ Isaac impement code
+        /* @ Isaac impemented code
          *  
          */
         if (!jumping || !isGrounded)
