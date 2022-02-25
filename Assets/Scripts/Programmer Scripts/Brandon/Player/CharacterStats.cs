@@ -150,7 +150,7 @@ public class CharacterStats : MonoBehaviour
 
     IEnumerator BackToMainScreen()
     {
-        yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene(0);
+        yield return new WaitForSeconds(16f);
+        FindObjectOfType<SceneController>().MainMenu();
     }
 }

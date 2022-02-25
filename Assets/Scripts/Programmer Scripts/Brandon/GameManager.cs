@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager _instance;
+    public static GameManager Instance { get { return _instance; } }
     [SerializeField] int bladeColor;
     [SerializeField] int levelChosen;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
@@ -13,11 +15,22 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] float mouseSensitivity = 50f;
     [SerializeField] Slider mainMenuSlider;
+    Transform positionToRespawn;
+    bool[] levelsCompleted = { false, false, false};
+
 
 
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        if(_instance !=null && _instance !=this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
         
     }
     private void Start()
@@ -151,5 +164,12 @@ public class GameManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+    public Vector3 GetRespawnPointPosition() { return positionToRespawn.position; }
+    public Vector3 GetRespawnPointRotation() { return positionToRespawn.rotation.eulerAngles; }
+    public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawn = newRespawnPosition; }
+    public void SetLevelComplete(int levelCompleted)
+    {
+        levelsCompleted[levelCompleted - 1] = true;  
     }
 }
