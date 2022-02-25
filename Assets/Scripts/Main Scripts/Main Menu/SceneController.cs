@@ -12,6 +12,7 @@ public class SceneController : MonoBehaviour
     public void MainMenu()
     {
         UnfreezeTime();
+        Cursor.lockState = CursorLockMode.Confined;
         SceneManager.LoadScene(0);
     }
     public void EndScene()

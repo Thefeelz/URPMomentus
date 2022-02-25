@@ -54,7 +54,10 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int damageToTake)
     {
         currentHealth -= damageToTake;
-        GetComponent<EnemyCaptionSpawner>().SpawnDamageCaption();
+        if(GetComponent<EnemyCaptionSpawner>())
+        {
+            GetComponent<EnemyCaptionSpawner>().SpawnDamageCaption();
+        }
         // healthBar.fillAmount = (float)currentHealth / maxHealth;
         if (currentHealth <= 0 && !triggeredDead && !GetComponent<Entity>())
         {
