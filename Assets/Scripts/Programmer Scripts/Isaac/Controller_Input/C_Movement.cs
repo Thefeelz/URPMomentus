@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+// ==== Controller version of Brandon's Code edited by Isaac Schulz =====
+
 public class C_Movement : MonoBehaviour
 {
     [SerializeField] float playerAcceleration = 10f;
