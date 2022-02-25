@@ -15,6 +15,7 @@ public class Em_Melee : MeleeState
     {
         base.StateEnter();
         mEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+        mEnemy.GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = true;
         mEntity.facePlayer();
         mEntity.mAnimator.SetBool("chasing", false);
         mEntity.mAnimator.SetBool("meleeAttack", true);
@@ -25,9 +26,10 @@ public class Em_Melee : MeleeState
     public override void StateExit()
     {
         base.StateExit();
+        mEnemy.GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = false ;
         mEnemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
         mEntity.mAnimator.SetBool("meleeAttack", false);
-        mEntity.mAnimator.SetBool("chasing", false);
+        mEntity.mAnimator.SetBool("chasing", true);
     }
 
     public override void LogicUpdate()
@@ -42,7 +44,6 @@ public class Em_Melee : MeleeState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        
     }
 
     
