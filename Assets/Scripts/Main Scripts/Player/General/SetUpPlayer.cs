@@ -24,7 +24,7 @@ public class SetUpPlayer : MonoBehaviour
     {
         if (materialsToApply.Length > 0)
         {
-            Debug.Log("Blade Not Null");
+            //Debug.Log("Blade Not Null");
             foreach (GameObject mat in blade)
             {
                 mat.GetComponent<MeshRenderer>().material = materialsToApply[0];
@@ -32,7 +32,7 @@ public class SetUpPlayer : MonoBehaviour
         } 
         else
         {
-            Debug.Log("Blade Null");
+            //Debug.Log("Blade Null");
             foreach (GameObject mat in blade)
             {
                 mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[0];
@@ -41,7 +41,7 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 1)
         {
-            Debug.Log("Cross Not Null");
+            //Debug.Log("Cross Not Null");
             foreach (GameObject mat in cross)
             {
                 mat.GetComponent<MeshRenderer>().material = materialsToApply[1];
@@ -49,7 +49,7 @@ public class SetUpPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Cross Null");
+            //Debug.Log("Cross Null");
             foreach (GameObject mat in cross)
             {
                 mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[1];
@@ -58,7 +58,7 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 2)
         {
-            Debug.Log("Hilt Not Null");
+            //Debug.Log("Hilt Not Null");
             foreach (GameObject mat in hilt)
             {
                 mat.GetComponent<MeshRenderer>().material = materialsToApply[2];
@@ -66,7 +66,7 @@ public class SetUpPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hilt Null");
+            //Debug.Log("Hilt Null");
             foreach (GameObject mat in hilt)
             {
                 mat.GetComponent<MeshRenderer>().material = defaultMaterialsToApply[2];
@@ -75,7 +75,7 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 3)
         {
-            Debug.Log("Finger Not Null");
+            //Debug.Log("Finger Not Null");
             foreach (GameObject mat in finger)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[3];
@@ -83,7 +83,7 @@ public class SetUpPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Finger Null");
+            //Debug.Log("Finger Null");
             foreach (GameObject mat in finger)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[3];
@@ -92,7 +92,7 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 4)
         {
-            Debug.Log("Forearm Not Null");
+            //Debug.Log("Forearm Not Null");
             foreach (GameObject mat in forearm)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[4];
@@ -100,7 +100,7 @@ public class SetUpPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Forearm Null");
+            //Debug.Log("Forearm Null");
             foreach (GameObject mat in forearm)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[4];
@@ -109,7 +109,7 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 5)
         {
-            Debug.Log("Hand Not Null");
+            //Debug.Log("Hand Not Null");
             foreach (GameObject mat in hand)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = materialsToApply[5];
@@ -117,7 +117,7 @@ public class SetUpPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hand Null");
+            //Debug.Log("Hand Null");
             foreach (GameObject mat in hand)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[5];
