@@ -9,12 +9,17 @@ public class Enemy_Melee : Entity
     public float linkSpeed = 1; // linking stuff
     public int avoid;
     public bool waitMelee; // bool to represent if 
+    public int spot;
     
     //states
     public DeathState deathState { get; private set; }
     public Em_Move moveState { get; private set; }
     public Em_Melee meleeState { get; private set; }
     public WaitingState waitState { get; private set; }
+
+    public Locations mLocations;
+
+    public bool hasTarget;
 
     //Datas
     [SerializeField]
