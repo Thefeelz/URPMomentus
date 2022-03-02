@@ -142,8 +142,7 @@ public class A_BladeDance : A_OverchargeAbilities
                 transform.position = startPos;
                 transform.rotation = startRotation;
                 killCount = 0;
-                GetComponent<P_Movement>().enabled = true;
-                GetComponent<mouseLook>().enabled = true;
+                TogglePlayerMovement(true);
                 usingSpecial = false;
                 camTransitioning = true;
                 yield break;
@@ -167,7 +166,16 @@ public class A_BladeDance : A_OverchargeAbilities
     }
     void TogglePlayerMovement(bool value)
     {
-        GetComponent<P_Movement>().enabled = value;
-        GetComponent<mouseLook>().enabled = value;
+        if (GetComponent<P_Movement>())
+        {
+            GetComponent<P_Movement>().enabled = value;
+            GetComponent<mouseLook>().enabled = value;
+        }
+        else if (cMovement)
+        {
+            GetComponent<C_Movement>().enabled = value;
+            GetComponent<XboxLook>().enabled = value;
+        }
+
     }
 }
