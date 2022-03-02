@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class A_SwordThrow : A_OverchargeAbilities
 {
-    [SerializeField] Transform endingPosition;
+    [SerializeField] Transform endingPosition, rightHandEndPos;
     [SerializeField] LayerMask layerMask;
     [SerializeField] GameObject weaponToThrow;
     // In meters per second;
@@ -22,6 +22,7 @@ public class A_SwordThrow : A_OverchargeAbilities
     Vector3 initialPosition;
     float rotationAmount;
     SwordThrow swordThrow;
+    
     void Start()
     {
         swordThrow = GetComponentInChildren<SwordThrow>();
@@ -68,6 +69,8 @@ public class A_SwordThrow : A_OverchargeAbilities
         StopAllCoroutines();
         initialPosition = transform.position;
         travelToSword = true;
+        playerMovement.enabled = false;
+        mouseLook.enabled = false;
     }
 
     void Throw()
@@ -129,15 +132,17 @@ public class A_SwordThrow : A_OverchargeAbilities
     void TravelToSword()
     {
         elapsedTime += Time.deltaTime;
-        transform.position = Vector3.Lerp(initialPosition, targetDestination - transform.forward, elapsedTime / (travelTime * 0.5f));
+        transform.position = Vector3.Lerp(initialPosition, targetDestination - (transform.forward * 2f), elapsedTime / (travelTime * 0.5f));
         if(elapsedTime >= travelTime)
         {
             stuck = false;
             travelToSword = false;
-            weaponToThrow.transform.parent = transform;
+            weaponToThrow.transform.parent = rightHandEndPos;
             weaponToThrow.transform.position = endingPosition.position;
             weaponToThrow.transform.rotation = endingPosition.rotation;
             elapsedTime = 0;
+            playerMovement.enabled = true;
+            mouseLook.enabled = true;
             weaponToThrow.GetComponentInParent<Animator>().enabled = true;
         }
     }
