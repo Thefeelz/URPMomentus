@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class LightingManager : MonoBehaviour
 {
-    [SerializeField] List<Animation> listOfRandomlyChosenAnimations = new List<Animation>();
     [SerializeField] float minimumTimeTillNewAnimation, maximumTimeTillNewAnimation;
 
     Animator attachedAnimator;
+    AnimationClip[] clipInfo;
     // Start is called before the first frame update
     void Start()
     {
-        attachedAnimator = GetComponent<Animator>();   
+        attachedAnimator = GetComponent<Animator>();
+        clipInfo = attachedAnimator.runtimeAnimatorController.animationClips;
+        ChooseAnimationFromTheList();
     }
 
     // Update is called once per frame
@@ -21,16 +23,16 @@ public class LightingManager : MonoBehaviour
     }
     void ChooseAnimationFromTheList()
     {
-        int randomAnimationNumber = Random.Range(0, listOfRandomlyChosenAnimations.Count - 1);
+        int randomAnimationNumber = Random.Range(0, clipInfo.Length - 1);
         int timeDelayTillNextAnimation = Mathf.CeilToInt(Random.Range(minimumTimeTillNewAnimation, maximumTimeTillNewAnimation));
-        StartCoroutine(PlayAnimation(listOfRandomlyChosenAnimations[randomAnimationNumber], timeDelayTillNextAnimation));
+        Debug.Log("Playing " + clipInfo[randomAnimationNumber].name + " and will have a " + timeDelayTillNextAnimation + " delay after it plays.");
+        StartCoroutine(PlayAnimation(clipInfo[randomAnimationNumber], timeDelayTillNextAnimation));
     }
 
-    IEnumerator PlayAnimation(Animation animationToPlayNext, float timeToWaitUntilTheNextAnimationStarts)
+    IEnumerator PlayAnimation(AnimationClip animationToPlayNext, float timeToWaitUntilTheNextAnimationStarts)
     {
-        animationToPlayNext.Play();
+        attachedAnimator.Play(animationToPlayNext.name);
         yield return new WaitForSeconds(timeToWaitUntilTheNextAnimationStarts);
-        animationToPlayNext.Stop();
         ChooseAnimationFromTheList();
     }
 }
