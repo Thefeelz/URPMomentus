@@ -69,14 +69,29 @@ public class A_AirDash : A_OverchargeAbilities
     // =================================================================
     public bool UseAirDash()
     {
-        // Check to make sure the player is grounded
-        if (!playerMovement.isGrounded && abilityReady)
+        if (playerMovement)
         {
-            // Sliding is set to true to allow the sliding function to be called in the 'Update' function
-            dashing = true;
-            // A helper function that will do some checks to make sure we dont bug out in the game
-            SetUpDash();
-            return true;
+            // Check to make sure the player is grounded
+            if (!playerMovement.isGrounded && abilityReady)
+            {
+                // Sliding is set to true to allow the sliding function to be called in the 'Update' function
+                dashing = true;
+                // A helper function that will do some checks to make sure we dont bug out in the game
+                SetUpDash();
+                return true;
+            }
+        }
+        else if (cMovement)
+        {
+            // Check to make sure the player is grounded
+            if (!cMovement.isGrounded && abilityReady)
+            {
+                // Sliding is set to true to allow the sliding function to be called in the 'Update' function
+                dashing = true;
+                // A helper function that will do some checks to make sure we dont bug out in the game
+                SetUpDash();
+                return true;
+            }
         }
         return false;
     }

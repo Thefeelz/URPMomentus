@@ -27,6 +27,7 @@ public class P_GroundSlide : MonoBehaviour
     Rigidbody rb;
     // A call to our player to check if we are grounded
     P_Movement player;
+    C_Movement cPlayer;
 
     // ==========Private Variables to be used in the code ==========
     
@@ -59,6 +60,7 @@ public class P_GroundSlide : MonoBehaviour
     {
         // Cache our Variables
         player = GetComponent<P_Movement>();
+        cPlayer = GetComponent<C_Movement>();
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponentInChildren<CapsuleCollider>();
 
@@ -80,18 +82,37 @@ public class P_GroundSlide : MonoBehaviour
     // =================================================================
     public void UseGroundDash(float _slideDuration)
     {
+        Debug.Log("Used Ground Dash");
         // Check to make sure the player is grounded
-        if(player.isGrounded)
+        if (player)
         {
-            playerCollider.center = new Vector3(0, 0.5f, 0);
-            playerCollider.direction = 2;
-            useSlide = false;
-            // Sliding is set to true to allow the sliding function to be called in the 'Update' function
-            sliding = true;
-            // This can be removed or not depending on if we are implimenting a seperate cooldown/ability system outside of the specific component
-            slideDuration = _slideDuration;
-            // A helper function that will do some checks to make sure we dont bug out in the game
-            SetUpSlide();
+            if (player.isGrounded)
+            {
+                playerCollider.center = new Vector3(0, 0.5f, 0);
+                playerCollider.direction = 2;
+                useSlide = false;
+                // Sliding is set to true to allow the sliding function to be called in the 'Update' function
+                sliding = true;
+                // This can be removed or not depending on if we are implimenting a seperate cooldown/ability system outside of the specific component
+                slideDuration = _slideDuration;
+                // A helper function that will do some checks to make sure we dont bug out in the game
+                SetUpSlide();
+            }
+        }
+        else if (cPlayer)
+        {
+            if (cPlayer.isGrounded)
+            {
+                playerCollider.center = new Vector3(0, 0.5f, 0);
+                playerCollider.direction = 2;
+                useSlide = false;
+                // Sliding is set to true to allow the sliding function to be called in the 'Update' function
+                sliding = true;
+                // This can be removed or not depending on if we are implimenting a seperate cooldown/ability system outside of the specific component
+                slideDuration = _slideDuration;
+                // A helper function that will do some checks to make sure we dont bug out in the game
+                SetUpSlide();
+            }
         }
     }
 
