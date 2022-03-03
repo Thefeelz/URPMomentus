@@ -110,11 +110,12 @@ public class P_GroundSlide : MonoBehaviour
         // If our slide is finished, set everything back to default values and trigger return to normal screen for our camera position and camera effects
 
         RaycastHit hit;
-        Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
+        //Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
+        Physics.Raycast(TransformForwardFeetWithOffset(1f), transform.forward, out hit, 1f);
         Debug.DrawLine(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), Color.green, 1f);
 
-        if (hit.collider)
-            Debug.Log("Ground Slide hit " + hit.collider.name);
+        //if (hit.collider)
+        //    Debug.Log("Ground Slide hit " + hit.collider.name);
         if (elapsedTime >= slideDuration || (hit.collider != null))
         {
             playerCollider.center = new Vector3(0, 1, 0);

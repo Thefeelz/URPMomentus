@@ -25,7 +25,6 @@ public class LightingManager : MonoBehaviour
     {
         int randomAnimationNumber = Random.Range(0, clipInfo.Length - 1);
         int timeDelayTillNextAnimation = Mathf.CeilToInt(Random.Range(minimumTimeTillNewAnimation, maximumTimeTillNewAnimation));
-        Debug.Log("Playing " + clipInfo[randomAnimationNumber].name + " and will have a " + timeDelayTillNextAnimation + " delay after it plays.");
         StartCoroutine(PlayAnimation(clipInfo[randomAnimationNumber], timeDelayTillNextAnimation));
     }
 

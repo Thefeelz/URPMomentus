@@ -64,7 +64,6 @@ public class Turret : MonoBehaviour
         }
         else
             anim.SetBool("awake", false);
-        
     }
 
     void RotateTowardsPlayer()
