@@ -20,6 +20,7 @@ public class P_GroundSlide : MonoBehaviour
     [SerializeField] float slideDuration = 0.5f;
     // The amount the camera will drop during the slide (It will raise automatically on its own)
     [SerializeField] float cameraDipAmount = 1.0f;
+    [SerializeField] Transform startingCamPos, endingCamPos;
 
     // ==========Variables to Cache in the Awake Function==========
 
@@ -54,6 +55,8 @@ public class P_GroundSlide : MonoBehaviour
     CapsuleCollider playerCollider;
 
     LayerMask mask = 11;
+    mouseLook mouseLook;
+    Animator anim;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,11 +66,13 @@ public class P_GroundSlide : MonoBehaviour
         cPlayer = GetComponent<C_Movement>();
         rb = GetComponent<Rigidbody>();
         playerCollider = GetComponentInChildren<CapsuleCollider>();
+        mouseLook = GetComponent<mouseLook>();
+        anim = GetComponent<Animator>();
 
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         // This will be true if we are sliding, false if we are not
         if (sliding)
@@ -82,7 +87,6 @@ public class P_GroundSlide : MonoBehaviour
     // =================================================================
     public void UseGroundDash(float _slideDuration)
     {
-        Debug.Log("Used Ground Dash");
         // Check to make sure the player is grounded
         if (player)
         {
@@ -127,7 +131,8 @@ public class P_GroundSlide : MonoBehaviour
         // Lerp our camera effects as well so they increase to full intensity while we are sliding
         postProcessingEffects.weight = Mathf.Lerp(0, 1, lerpPos);
         // Lerp our cameras position so it raises and lower during the slide
-        Camera.main.transform.localPosition = Vector3.Lerp(cameraPosStart, cameraPosEnd, lerpPos);
+        Camera.main.transform.localPosition = Vector3.Lerp(startingCamPos.localPosition, endingCamPos.localPosition, lerpPos);
+        Camera.main.transform.localRotation = Quaternion.Lerp(startingCamPos.localRotation, endingCamPos.localRotation, lerpPos);
         // If our slide is finished, set everything back to default values and trigger return to normal screen for our camera position and camera effects
 
         RaycastHit hit;
@@ -163,6 +168,8 @@ public class P_GroundSlide : MonoBehaviour
         endingPos.y = startingPos.y;
         // Function to determine if the player has a clear path or not
         CalculateSlideDistance();
+        mouseLook.enabled = false;
+        anim.SetBool("groundSlide", true);
     }
 
     void CalculateSlideDistance()
@@ -189,12 +196,15 @@ public class P_GroundSlide : MonoBehaviour
         returnToNormalScreenElapsedTime += Time.deltaTime;
         float lerpPos = returnToNormalScreenElapsedTime / returnToNormalScreenTime;
         postProcessingEffects.weight = Mathf.Lerp(1, 0, lerpPos);
-        Camera.main.transform.localPosition = Vector3.Lerp(cameraPosEnd, cameraPosStart, lerpPos);
+        Camera.main.transform.localPosition = Vector3.Lerp(endingCamPos.localPosition, startingCamPos.localPosition, lerpPos);
+        Camera.main.transform.localRotation = Quaternion.Lerp(endingCamPos.localRotation, startingCamPos.localRotation, lerpPos);
         if (returnToNormalScreenTime <= returnToNormalScreenElapsedTime)
         {
             returnToNormalScreenElapsedTime = 0;
             returnToNormalScreen = false;
             useSlide = true;
+            mouseLook.enabled = true;
+            anim.SetBool("groundSlide", false);
         }
     }
 
