@@ -19,6 +19,9 @@ public class Enemy_Melee : Entity
 
     public Locations mLocations;
 
+    [SerializeField]
+    public State currentState;
+
     public bool hasTarget;
 
     //Datas
@@ -40,6 +43,7 @@ public class Enemy_Melee : Entity
     public override void Update()
     {
         base.Update();
+        currentState = stateMachine.currentState;
     }
 
     public override void FixedUpdate()

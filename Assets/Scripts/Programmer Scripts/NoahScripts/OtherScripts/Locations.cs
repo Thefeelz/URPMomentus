@@ -17,6 +17,7 @@ public class Locations : MonoBehaviour
     public NavMeshAgent agent;
     public NavMeshPath navMeshPath;
     public Entity[] enemies;
+    private int count = 0;
 
     void Start()
     {
@@ -24,13 +25,13 @@ public class Locations : MonoBehaviour
         navMeshPath = new NavMeshPath();
         agent = GetComponent<NavMeshAgent>();
         int l = 0;
-        for(int i = -1; i<2; i++)
+        for (int i = -1; i < 2; i++)
         {
-            for(int j = -1; j<2; j++)
+            for (int j = -1; j < 2; j++)
             {
-                if(!(j ==0 && i == 0))
+                if (!(j == 0 && i == 0))
                 {
-                    
+
                     lSpots[l] = new Vector3(lPlayer.transform.position.x + i, lPlayer.transform.position.y, lPlayer.transform.position.z + j);
                     GameObject testy = Instantiate(prefab, this.transform);
                     testy.transform.position = lSpots[l];
@@ -45,6 +46,12 @@ public class Locations : MonoBehaviour
     void Update()
     {
         transform.position = lPlayer.transform.position;
+        spotUpdate();
+        enemiesCalc();
+    }
+
+    void spotUpdate()
+    {
         int l = 0;
         for (int i = -1; i < 2; i++)
         {
@@ -52,10 +59,10 @@ public class Locations : MonoBehaviour
             {
                 if (!(j == 0 && i == 0))
                 {
-                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i * 2, lPlayer.transform.position.y, lPlayer.transform.position.z + j * 2);
+                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i * 2, lPlayer.transform.position.y, lPlayer.transform.position.z + j * 2); // moves the spot locatiosn aroudn player
                     objects[l].transform.position = lSpots[l];
                     NavMeshHit hit;
-                    if (NavMesh.SamplePosition(lSpots[l], out hit, 0.1f, NavMesh.AllAreas))
+                    if (NavMesh.SamplePosition(lSpots[l], out hit, 0.1f, NavMesh.AllAreas)) // checks if each spot is on navmesh
                     {
                         lSpotsValid[l] = true;
                     }
@@ -63,15 +70,15 @@ public class Locations : MonoBehaviour
                     {
                         lSpotsValid[l] = false;
                     }
-                    if(lSpotsValid[l] && lSpotsTaken[l] == null)
+                    if (lSpotsValid[l] && lSpotsTaken[l] == null)
                     {
                         Enemy_Melee closest = null;
                         float minDist = Mathf.Infinity;
-                        foreach(Enemy_Melee em in enemies)
+                        foreach (Enemy_Melee em in enemies)
                         {
                             if (em.hasTarget == false && lSpotsTaken[l] == null) // only run if the enemy has no assigned spot
                             {
-                                float dist = Vector3.Distance(lSpots[l], em.transform.position);
+                                float dist = Vector3.Distance(lSpots[l], em.transform.position); //for finds which enemy is closest provided the enemy is not assigned a spot
                                 if (dist < minDist)
                                 {
                                     minDist = dist;
@@ -90,6 +97,18 @@ public class Locations : MonoBehaviour
                     l += 1;
                 }
             }
+        }
+    }
+
+    void enemiesCalc()
+    {
+        foreach (Enemy_Melee em in enemies)
+        {
+            em.GetComponent<NavMeshObstacle>().enabled = false;
+            em.GetComponent<NavMeshAgent>().enabled = true;
+            em.moveState.Move();
+            em.GetComponent<NavMeshAgent>().enabled = false;
+            em.GetComponent<NavMeshObstacle>().enabled = true;
         }
     }
 }

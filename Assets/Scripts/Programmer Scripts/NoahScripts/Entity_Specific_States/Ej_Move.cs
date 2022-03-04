@@ -43,7 +43,7 @@ public class Ej_Move : MoveState
         base.PhysicsUpdate();
     }
 
-    protected override void Move()
+    public override void Move()
     {
         base.Move();
     }
