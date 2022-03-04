@@ -20,7 +20,7 @@ public class MoveState : State
         this.stateData = stateData;
         this.entityData = entityData;
     }
-    protected virtual void Move()
+    public virtual void Move()
     {
         // movement code here
         if (Vector3.Distance(mEntity.agent.destination, mEntity.myTarget.transform.position) > 1)
