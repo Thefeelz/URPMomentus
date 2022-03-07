@@ -10,6 +10,7 @@ public class Enemy_Melee : Entity
     public int avoid;
     public bool waitMelee; // bool to represent if 
     public int spot;
+    public LineRenderer line;
     
     //states
     public DeathState deathState { get; private set; }
@@ -19,8 +20,7 @@ public class Enemy_Melee : Entity
 
     public Locations mLocations;
 
-    [SerializeField]
-    public State currentState;
+    
 
     public bool hasTarget;
 
@@ -43,7 +43,7 @@ public class Enemy_Melee : Entity
     public override void Update()
     {
         base.Update();
-        currentState = stateMachine.currentState;
+        
     }
 
     public override void FixedUpdate()

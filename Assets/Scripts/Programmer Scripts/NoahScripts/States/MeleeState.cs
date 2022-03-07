@@ -36,10 +36,10 @@ public class MeleeState : State
         strikeStart = Time.time;
         start = true;
         RaycastHit send;
-        Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out send, 1f);
+        Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out send, 1.5f);
         if (send.collider != null && send.collider.GetComponentInParent<CharacterStats>())
         {
-            send.transform.GetComponentInParent<CharacterStats>().RemoveHealth(0f);
+            send.transform.GetComponentInParent<CharacterStats>().RemoveHealth(1f);
         }
     }
 }
