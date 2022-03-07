@@ -52,6 +52,7 @@ public class Turret : MonoBehaviour
 
     void CheckPlayerInRange()
     {
+        if (!myPlayer) { return; }
         if (Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange && CheckInLoS())
         {
             if (state == TurretState.Asleep)

@@ -106,7 +106,7 @@ public class P_Input : MonoBehaviour
             // ====================================
             if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
         }
-        if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
+        //if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
     }
 
     void GetUserInputPhysics()

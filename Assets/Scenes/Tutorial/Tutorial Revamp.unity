@@ -3913,7 +3913,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &246128657
 MonoBehaviour:
@@ -3940,7 +3940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -5450,7 +5450,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
 --- !u!114 &294550803
 MonoBehaviour:
@@ -5477,7 +5477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -7062,7 +7062,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &398070504
 MonoBehaviour:
@@ -7089,7 +7089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -9206,7 +9206,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
 --- !u!114 &509863955
 MonoBehaviour:
@@ -9233,7 +9233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -10835,7 +10835,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &590435900
 MonoBehaviour:
@@ -10868,7 +10868,8 @@ MonoBehaviour:
     scentences:
     - Looks like that opening is too small, you are going to need to groundslide
       to get under that. Press "Shift" to ground slide. If you are in the air, if
-      are able to dash.
+      are able to air dash.
+    - 
     characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     HasImage: 1
 --- !u!114 &590435902
@@ -11103,6 +11104,14 @@ PrefabInstance:
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6010787718253157274, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526756, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526756, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_TagString
@@ -15780,71 +15789,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4361751668521504324, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
   m_PrefabInstance: {fileID: 793183564}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &797055326
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 797055327}
-  - component: {fileID: 797055329}
-  - component: {fileID: 797055328}
-  m_Layer: 0
-  m_Name: Ground slide
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &797055327
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797055326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.206, y: 1.82, z: -12.422}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1054676510}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &797055328
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797055326}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 7, y: 2, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &797055329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 797055326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DisplayTime: 2
-  DialogueArray:
-  - name: 
-    scentences:
-    - Lookes like the gap is too small,you are going to need to ground slide to get
-      passed it, try pressing "Shift" to slide under the door
-    characterProfilePic: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    HasImage: 1
 --- !u!1001 &799271774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16527,7 +16471,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &815642123
 MonoBehaviour:
@@ -16554,7 +16498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -21374,7 +21318,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 797055327}
   - {fileID: 1571647567}
   - {fileID: 590435899}
   - {fileID: 815642122}
@@ -23767,7 +23710,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1200342255
 MonoBehaviour:
@@ -23794,7 +23737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -32164,7 +32107,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1571647568
 MonoBehaviour:
@@ -32191,7 +32134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
@@ -32518,7 +32461,7 @@ Transform:
   m_LocalScale: {x: 3.1299999, y: 2.5355, z: 10.2996}
   m_Children: []
   m_Father: {fileID: 1054676510}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 150, z: 0}
 --- !u!114 &1584080222
 MonoBehaviour:
@@ -32545,7 +32488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayTime: 2
+  DisplayTime: 4
   DialogueArray:
   - name: 
     scentences:
