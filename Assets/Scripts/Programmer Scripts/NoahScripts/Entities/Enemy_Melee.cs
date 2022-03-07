@@ -31,6 +31,7 @@ public class Enemy_Melee : Entity
     public override void Awake()
     {
         base.Awake();
+        mLocations = GameObject.Find("Cube").GetComponent<Locations>();
         deathState = new DeathState(this, stateMachine);
         moveState = new Em_Move(this, stateMachine, moveData, entityData, this);
         meleeState = new Em_Melee(this, stateMachine, entityData, this);

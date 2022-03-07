@@ -23,27 +23,7 @@ public class Locations : MonoBehaviour
 
     void Start()
     {
-        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
-        navMeshPath = new NavMeshPath();
-        agent = GetComponent<NavMeshAgent>();
-        int l = 0;
-        for (int i = -1; i < 2; i++)
-        {
-            for (int j = -1; j < 2; j++)
-            {
-                if (j != i && j != i && j != -i)
-                {
-
-                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i, lPlayer.transform.position.y, lPlayer.transform.position.z + j);
-                    GameObject testy = Instantiate(prefab, this.transform);
-                    testy.transform.position = lSpots[l];
-                    objects[l] = testy;
-                    l += 1;
-                }
-            }
-        }
-        enemiesCalc();
-        InvokeRepeating("calculate", 2.0f, 1f);
+        StartCoroutine(setStuff());
     }
 
     // Update is called once per frame
@@ -79,7 +59,7 @@ public class Locations : MonoBehaviour
                     {
                         lSpotsValid[l] = false;
                     }
-                    if (lSpotsValid[l] && lSpotsTaken[l] == null)
+                    if ( lSpotsTaken[l] == null) // MAKE SURE THAT SPOTS VALID IS CHECKED IN FUTURE!!!
                     {
                         Enemy_Melee closest = null;
                         float minDist = Mathf.Infinity;
@@ -159,5 +139,31 @@ public class Locations : MonoBehaviour
     void corners(NavMeshPath p)
     {
 
+    }
+
+    IEnumerator setStuff()
+    {
+        yield return new WaitForSeconds(2);
+        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
+        navMeshPath = new NavMeshPath();
+        agent = GetComponent<NavMeshAgent>();
+        int l = 0;
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                if (j != i && j != i && j != -i)
+                {
+
+                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i, lPlayer.transform.position.y, lPlayer.transform.position.z + j);
+                    GameObject testy = Instantiate(prefab, this.transform);
+                    testy.transform.position = lSpots[l];
+                    objects[l] = testy;
+                    l += 1;
+                }
+            }
+        }
+        enemiesCalc();
+        InvokeRepeating("calculate", 2.0f, 1f);
     }
 }
