@@ -95,9 +95,8 @@ public class PlayerAttack : MonoBehaviour
 
     void CheckEnemyInRange()
     {
-        // Debug.DrawRay(Camera.main.transform.position, transform.forward * 10, Color.red, 2f);
-        hitCast = Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget); //Physics.BoxCast(weaponRaycastTransformPosition.position, new Vector3(0.5f, 0.5f, 0.5f), weaponRaycastTransformPosition.rotation * Vector3.forward, out hitTarget, Quaternion.identity, 2f);
-        if (hitCast)
+        //hitCast =  
+        if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
             if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
             {

@@ -20,7 +20,8 @@ public class WallRunToggle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CheckRange();
+        if(player)
+            CheckRange();
     }
     void CheckRange()
     {

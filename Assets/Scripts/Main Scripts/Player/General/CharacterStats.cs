@@ -149,7 +149,6 @@ public class CharacterStats : MonoBehaviour
     {
         GetComponent<P_Input>().enabled = false;
         canvasAnimator.SetBool("dead", true);
-        StartCoroutine(BackToMainScreen());
     }
 
     IEnumerator BackToMainScreen()

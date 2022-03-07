@@ -365,6 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6384377041639426919}
+  - component: {fileID: 489585402}
   m_Layer: 7
   m_Name: BrandonWallRunTest
   m_TagString: Untagged
@@ -389,6 +390,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &489585402
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6039905149040955869}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2eb5b49296c1314ba7ed636fc505089, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6253628468239747551
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +422,7 @@ GameObject:
   - component: {fileID: 8421276666467296749}
   - component: {fileID: 5754875280548588180}
   - component: {fileID: 5754875280548588181}
+  - component: {fileID: 556803784}
   m_Layer: 7
   m_Name: pCube1
   m_TagString: Untagged
@@ -499,6 +520,21 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4068373912626513877, guid: d17f4a2a2de8da8499ee65ed178f40ec, type: 3}
+--- !u!114 &556803784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253628468239747551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48219d1e0d7d4e44c8e41b548fa5e9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inRangeMaterial: {fileID: 2100000, guid: 55e8a64b0d337074ab9e12e64ebb7012, type: 2}
+  outOfRangeMaterial: {fileID: 2100000, guid: a70d1ba786f0d8c41a8c84f876401466, type: 2}
+  maxRangeForTurningOn: 15
 --- !u!1 &7786065153100153046
 GameObject:
   m_ObjectHideFlags: 0
