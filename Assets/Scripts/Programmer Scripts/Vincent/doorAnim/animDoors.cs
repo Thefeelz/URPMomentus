@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class animDoors : MonoBehaviour
+{
+    GameObject leftDoor, rightDoor;
+    Vector3 leftDoorStartPos, rightDoorStartPos;
+    bool isDoorOpen, firstClose = true;
+    float currentDoorGap, closeDoorGap, openDoorGap;
+    Vector3[] leftPos;
+    Animator anim;
+
+
+    //Who the door opens for
+    [SerializeField]
+    Collider target = null;
+
+    //Can make the door close when player gets close
+    [SerializeField]
+    private bool reverseDoor = false;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+
+        //Get player as default
+        if (target == null)
+        {
+            target = GameObject.Find("Body").GetComponent<Collider>();
+            Debug.LogWarning("Door was not given target DEFAULT:" + target);
+        }
+
+        if (reverseDoor)
+        {
+            openDoors();
+        }
+    }
+
+    //when player enters range
+    private void OnTriggerStay(Collider other)
+    {
+        if (other == target && reverseDoor)
+        {
+            closeDoors();
+        }
+        else if (other == target)
+        {
+            openDoors();
+        }
+    }
+
+    //when player leaves range
+    private void OnTriggerExit(Collider other)
+    {
+        if (other == target && reverseDoor)
+        {
+            openDoors();
+        }
+        else if (other == target)
+        {
+            closeDoors();
+        }
+    }
+
+    //Changes bool based on if door should open or close
+    void openDoors()
+    {
+        anim.SetBool("isDoorOpen", true);
+        Debug.Log("A door is open");
+    }
+    void closeDoors()
+    {
+        anim.SetBool("isDoorOpen", false);
+        Debug.Log("A door is closed");
+    }
+}

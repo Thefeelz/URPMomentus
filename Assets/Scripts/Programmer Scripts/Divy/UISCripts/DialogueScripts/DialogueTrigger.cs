@@ -15,14 +15,24 @@ using UnityEngine;
  * created by Divyansh Malik / 11/02/2021
  * 
  * Modded by: Divyansh Malik / 12/07/2021
+ * Edited by: Peter Bostwick / 3/4/2022
+ * Edits made for adding in serialized field for duration of text boxes
  * 
  */
 
 public class DialogueTrigger : MonoBehaviour
 {
+    //set duration of text box on screen.
+    [SerializeField]
+    public int DisplayTime;
+
+
     //public Dialogue dialogue;
     [SerializeField]
     private Dialogue[] DialogueArray;
+
+
+
 
  
     /// <summary>
@@ -57,7 +67,7 @@ public class DialogueTrigger : MonoBehaviour
 
             FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i],DialogueArray[i].HasImage);
             yield return new WaitWhile(() => FindObjectOfType<DialogueHandlerScript>().isPlaying);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(DisplayTime);
         }
 
         
