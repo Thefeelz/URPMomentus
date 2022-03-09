@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.name == "Body")
         {
             hit = true;
-            other.gameObject.GetComponentInParent<CharacterStats>().RemoveHealth(damage);
+            other.gameObject.GetComponentInParent<CharacterStats>().RemoveHealthMelee(damage);
             dequeue();
         }
     }

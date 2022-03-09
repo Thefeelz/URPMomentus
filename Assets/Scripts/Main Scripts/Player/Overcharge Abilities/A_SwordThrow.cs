@@ -46,7 +46,7 @@ public class A_SwordThrow : A_OverchargeAbilities
         if (!throwing && !stuck && !returning)
         {
             RaycastHit hit;
-            Physics.Raycast(Camera.main.transform.position, transform.forward, out hit);
+            Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit);
             if (hit.collider != null)
             {
                 targetDestination = hit.point;
@@ -57,6 +57,8 @@ public class A_SwordThrow : A_OverchargeAbilities
                     throwing = true;
                     weaponToThrow.GetComponentInParent<Animator>().enabled = false;
                     weaponToThrow.transform.parent = null;
+                    weaponToThrow.transform.LookAt(targetDestination);
+                    weaponToThrow.transform.Rotate(transform.up, 90f);
                     travelTime = distance / throwSpeed;
                     DetermineRotations();
                 }
@@ -76,7 +78,7 @@ public class A_SwordThrow : A_OverchargeAbilities
     void Throw()
     {
         elapsedTime += Time.deltaTime;
-        weaponToThrow.transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
+        weaponToThrow.transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
 
         weaponToThrow.transform.position = Vector3.Lerp(endingPosition.position, targetDestination, elapsedTime / travelTime);
         if(elapsedTime >= travelTime)
@@ -100,15 +102,23 @@ public class A_SwordThrow : A_OverchargeAbilities
     {
         if(travelTime < 1)
         {
-            rotationAmount = 460;
+            rotationAmount = 520;
+        }
+        else if (travelTime < 1.5)
+        {
+            rotationAmount = 880;
         }
         else if (travelTime < 2)
         {
-            rotationAmount = 820;
+            rotationAmount = 1240;
+        }
+        else if (travelTime < 2.5)
+        {
+            rotationAmount = 1600;
         }
         else
         {
-            rotationAmount = 1180;
+            rotationAmount = 1960;
         }
         rotationSpeed = rotationAmount / travelTime;
     }
@@ -116,7 +126,7 @@ public class A_SwordThrow : A_OverchargeAbilities
     {
         elapsedTime += Time.deltaTime;
 
-        weaponToThrow.transform.Rotate(new Vector3(0, 0, rotationSpeed * Time.deltaTime));
+        weaponToThrow.transform.Rotate(new Vector3(0, 0, -rotationSpeed * Time.deltaTime));
 
         weaponToThrow.transform.position = Vector3.Lerp(targetDestination, endingPosition.position, elapsedTime / travelTime);
         if(elapsedTime >= travelTime)

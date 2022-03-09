@@ -21,7 +21,7 @@ public class Hazard : MonoBehaviour
         if (other.GetComponentInParent<CharacterStats>())
         {
             Debug.Log("collision detected fucking hell");
-            other.GetComponentInParent<CharacterStats>().RemoveHealth(other.GetComponentInParent<CharacterStats>().GetPlayerMaxHealth());
+            other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(other.GetComponentInParent<CharacterStats>().GetPlayerMaxHealth());
         }
     }
 }

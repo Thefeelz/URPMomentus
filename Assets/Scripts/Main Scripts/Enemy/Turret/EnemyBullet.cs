@@ -23,18 +23,12 @@ public class EnemyBullet : MonoBehaviour
         {
             Destroy(transform.root.gameObject);
         }
-        if(Vector3.Distance(transform.position, player.transform.position) < 1f)
-        {
-            player.RemoveHealth(10);
-            Debug.Log("ouch boi");
-            Destroy(gameObject);
-        }
-        //ShootAtPlayer();
+        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponentInParent<CharacterStats>())
-            other.GetComponentInParent<CharacterStats>().RemoveHealth(damage);
+            other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(damage);
     }
     public void SetVelocityToPlayer(float _velocity, CharacterStats _player, Transform headToRotate, float _damage)
     {

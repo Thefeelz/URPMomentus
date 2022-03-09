@@ -15,6 +15,7 @@ public class P_Input : MonoBehaviour
     A_SwordThrow swordThrow;
     A_ContainedHeat containedHeat;
     A_SwordSlash swordSlash;
+    A_Shield shield;
 
     Rigidbody rb;
     Animator myAnim;
@@ -31,6 +32,7 @@ public class P_Input : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         containedHeat = GetComponent<A_ContainedHeat>();
         swordSlash = GetComponent<A_SwordSlash>();
+        shield = GetComponent<A_Shield>();
         rb = GetComponent<Rigidbody>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         myAnim = GetComponent<Animator>();
@@ -88,9 +90,18 @@ public class P_Input : MonoBehaviour
             // =================================
             // ==========PLAYER ATTACK==========
             // =================================
-            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) { playerAttack.BasicAttack(); }
-            if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && playerAttack.enabled) { playerAttack.BasicDefense(); }
-            else { playerAttack.SwordBlockComplete(); }
+            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) 
+            { 
+                playerAttack.BasicAttack(); 
+            }
+            else if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && shield.enabled) 
+            {
+                shield.ActivateShield(); 
+            }
+            else 
+            {
+                shield.DeactivateShield();
+            }
 
             // ======================================
             // ==========CHARACTER MOVEMENT==========

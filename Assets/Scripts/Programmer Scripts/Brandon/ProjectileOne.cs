@@ -25,7 +25,7 @@ public class ProjectileOne : MonoBehaviour
     {
         if(collision.transform.CompareTag("Player"))
         {
-            ourPlayer.RemoveHealth(damage);
+            ourPlayer.RemoveHealthMelee(damage);
             Destroy(gameObject);
         }
     }
