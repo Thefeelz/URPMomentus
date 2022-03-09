@@ -28,7 +28,9 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponentInParent<CharacterStats>())
+        {
             other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(damage);
+        }
     }
     public void SetVelocityToPlayer(float _velocity, CharacterStats _player, Transform headToRotate, float _damage)
     {
