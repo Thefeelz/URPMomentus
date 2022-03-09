@@ -8,6 +8,7 @@ public class P_Movement : MonoBehaviour
     [SerializeField] public float maxPlayerSpeedRunning = 10f;
     [Range(0f, 1f)][SerializeField] float playerDeceleration = 0.9f;
     [SerializeField] float playerJumpPower = 10f;
+    [SerializeField] float wallRunJumpExtraOomf;
     [SerializeField] float playerStrafeSpeed = 10f;
     [SerializeField] float fallMultiplier = 2.5f;
     [Range(0f, 1f)][SerializeField] float inAirControlMultiplier = 0.25f;
@@ -90,13 +91,12 @@ public class P_Movement : MonoBehaviour
         else if(wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
-            rb.AddForce((transform.up - (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce((transform.up - (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
         }
         else if (wallRunning() && wallrunner.wallLeft)
         {
-            Debug.Log("Space Pressed");
             rb.MovePosition(transform.right + transform.position);
-            rb.AddForce((transform.up + (transform.right * 0.5f)) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce((transform.up + (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
         }
     }
 
