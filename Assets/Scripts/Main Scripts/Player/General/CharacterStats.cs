@@ -61,13 +61,30 @@ public class CharacterStats : MonoBehaviour
     }
 
     /// <summary>
-    /// Remove Health, not Overcharge, if you want to remove Overcharge, use 'A_RemoveHealth()'
+    /// Remove Health from player, damage is from an enemy that is melee or using melee attacks at the time, no Overcharge, if you want to remove Overcharge, use 'A_RemoveHealth()'
+    /// Melee attacks CANNOT be deflected by the shield
     /// </summary>
     /// <param name="amountToRemove"></param>
-    public void RemoveHealth(float amountToRemove)
+    public void RemoveHealthMelee(float amountToRemove)
     {
         if (playerAnim.GetBool("swordBlock")) { return; }
-        if(amountToRemove > playerCurrentHealth )
+        if(amountToRemove >= playerCurrentHealth)
+        {
+            Die();
+            return;
+        }
+        playerCurrentHealth -= amountToRemove;
+    }
+
+    /// <summary>
+    /// Remove Health from player, damage is from an enemy that is ranged, no Overcharge, if you want to remove Overcharge, use 'A_RemoveHealth()'
+    /// Ranged Attacks CAN be deflected by the shield
+    /// </summary>
+    /// <param name="amountToRemove"></param>
+    public void RemoveHealthRanged(float amountToRemove)
+    {
+        if (playerAnim.GetBool("swordBlock")) { return; }
+        if (amountToRemove >= playerCurrentHealth)
         {
             Die();
             return;
@@ -148,6 +165,7 @@ public class CharacterStats : MonoBehaviour
     private void Die()
     {
         GetComponent<P_Input>().enabled = false;
+        playerCurrentHealth = 0;
         canvasAnimator.SetBool("dead", true);
     }
 

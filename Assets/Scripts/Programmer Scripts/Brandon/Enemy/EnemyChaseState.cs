@@ -244,7 +244,7 @@ public class EnemyChaseState : MonoBehaviour
         Physics.Raycast((transform.position + Vector3.up) + (transform.forward * 0.5f), transform.forward, out hit, 1f);
         if (hit.collider != null && hit.collider.GetComponentInParent<CharacterStats>())
         {
-            hit.transform.GetComponentInParent<CharacterStats>().RemoveHealth(10f);
+            hit.transform.GetComponentInParent<CharacterStats>().RemoveHealthMelee(10f);
         }
     }
 

@@ -94,7 +94,7 @@ public class FlyingEnemy : MonoBehaviour
         Debug.Log(selfDestructTimer + " seconds till self-destruct");//outputs countdown start
         yield return new WaitForSeconds(selfDestructTimer); //starts delay
         Debug.Log("damaging");
-        playerStats.RemoveHealth(damage);
+        playerStats.RemoveHealthMelee(damage);
         Debug.Log("should be damaged");
         Destroy(this.gameObject); //wipes the object from existence
     }
