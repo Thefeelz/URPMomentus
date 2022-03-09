@@ -20,6 +20,7 @@ public class P_GroundSlide : MonoBehaviour
     [SerializeField] float slideDuration = 0.5f;
     // The amount the camera will drop during the slide (It will raise automatically on its own)
     [SerializeField] float cameraDipAmount = 1.0f;
+    [SerializeField] Camera groundSlideCamera, mainCamera;
     [SerializeField] Transform startingCamPos, endingCamPos;
 
     // ==========Variables to Cache in the Awake Function==========
@@ -137,8 +138,8 @@ public class P_GroundSlide : MonoBehaviour
 
         RaycastHit hit;
         //Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
-        Physics.Raycast(TransformForwardFeetWithOffset(1f), transform.forward, out hit, 1f);
-        Debug.DrawLine(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), Color.green, 1f);
+        Physics.Raycast(TransformForwardFeetWithOffset(0f, 0.25f, 1f), transform.forward, out hit, 1f);
+        Debug.DrawRay(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), Color.green, 1f);
 
         //if (hit.collider)
         //    Debug.Log("Ground Slide hit " + hit.collider.name);
@@ -159,13 +160,19 @@ public class P_GroundSlide : MonoBehaviour
         startingPos = transform.position;
         // Ending position set to our position plus the distance forward we determine in the inspector
         endingPos = transform.position + transform.forward * slideDistance;
-        // Camera starting position RELATIVE to our player (not the world)
-        cameraPosStart = Camera.main.transform.localPosition;
-        // Camera end position RELATIVE to our player (not the world) - the camera dip amount determined in the inspector
-        cameraPosEnd = Camera.main.transform.localPosition;
-        cameraPosEnd.y = cameraPosStart.y - cameraDipAmount;
+        //// Camera starting position RELATIVE to our player (not the world)
+        //cameraPosStart = Camera.main.transform.localPosition;
+        //// Camera end position RELATIVE to our player (not the world) - the camera dip amount determined in the inspector
+        //cameraPosEnd = Camera.main.transform.localPosition;
+        //cameraPosEnd.y = cameraPosStart.y - cameraDipAmount;
         // Just in case the raycast raises in the 'Y' direction, set it so the player cannot go higher while using a ground slide
         endingPos.y = startingPos.y;
+
+        // Camera Logic
+        
+
+
+
         // Function to determine if the player has a clear path or not
         CalculateSlideDistance();
         mouseLook.enabled = false;
@@ -177,7 +184,8 @@ public class P_GroundSlide : MonoBehaviour
         // Raycast hit to store our raycast hit information
         RaycastHit hit;
         // A raycast that shoots out from our feet forward relative to where we are facing
-        Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(slideDistance), out hit);
+        //Physics.Raycast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(slideDistance), out hit);
+        Physics.Raycast(TransformForwardFeetWithOffset(0f, 0.2f, .5f), transform.forward, out hit, slideDistance);
         
         // If the raycast hits nothing, go the full length of the slide and return
         if (hit.collider == null || hit.collider.GetComponentInParent<P_CoolDownManager>()) { return; }
@@ -225,5 +233,14 @@ public class P_GroundSlide : MonoBehaviour
     Vector3 TransformForwardFeetWithOffset(float offset)
     {
         return new Vector3((transform.position.x + transform.forward.x * offset), transform.position.y, (transform.position.z + transform.forward.z * offset));
+    }
+
+    /// <summary>
+    /// Get the local space ForwardVector that has a Y value that will always remain at the transforms Y value plus transform.position
+    /// </summary>
+    /// <returns>transform.forward with a y value equal to transform.position.y with an offset in the z direction</returns>
+    Vector3 TransformForwardFeetWithOffset(float offsetX, float offsetY, float offsetZ)
+    {
+        return new Vector3((transform.position.x + transform.forward.x * offsetX), (transform.position.y + transform.up.y * offsetY), (transform.position.z + transform.forward.z * offsetZ));
     }
 }
