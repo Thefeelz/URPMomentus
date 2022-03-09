@@ -103,11 +103,11 @@ public class P_WallRun : MonoBehaviour
         if (isWallRunning) 
         {
             WallRunningCamera();
-            GetComponent<Animator>().enabled = false;
+            //GetComponent<Animator>().enabled = false;
         }
         else
         {
-            GetComponent<Animator>().enabled = true;
+            //GetComponent<Animator>().enabled = true;
             cameraElapsedTime = 0f;
         }
     }
@@ -139,12 +139,12 @@ public class P_WallRun : MonoBehaviour
         playerMovement.isGrounded = true;
         if(!wallLeft)
         {
-            Camera.main.transform.position = wallRunCamPos.position;
+            // Camera.main.transform.position = wallRunCamPos.position;
             Camera.main.transform.Rotate(Vector3.forward, Mathf.Lerp(0, cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
         }
         else if (wallLeft)
         {
-            Camera.main.transform.position = wallRunCamPos.position;
+            // Camera.main.transform.position = wallRunCamPos.position;
             Camera.main.transform.Rotate(Vector3.forward, Mathf.Lerp(0, -cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
         }
     }

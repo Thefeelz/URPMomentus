@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2733746628393996997}
   - component: {fileID: 2733746628393997002}
-  - component: {fileID: 557602380}
   - component: {fileID: 2733746628393997003}
   - component: {fileID: 2733746628393997000}
+  - component: {fileID: 557602380}
   - component: {fileID: 2733746628393997006}
   - component: {fileID: 2733746628393996999}
   - component: {fileID: 2733746628393996996}
@@ -68,10 +68,44 @@ MonoBehaviour:
   maxPlayerSpeedRunning: 3
   playerDeceleration: 0.911
   playerJumpPower: 6
+  wallRunJumpExtraOomf: 0
   playerStrafeSpeed: 10
   fallMultiplier: 1.5
   inAirControlMultiplier: 0.109
   isGrounded: 1
+--- !u!114 &2733746628393997003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733746628393997007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf7bca1e82653b46a407db78fa6ae3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMaxHealth: 100
+  playerCurrentHealth: 0
+  playerMaxOvercharge: 100
+  playerCurrentOvercharge: 0
+  playerAttack: 10
+  playerDefense: 10
+  canvasAnimator: {fileID: 0}
+--- !u!114 &2733746628393997000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733746628393997007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8206bfba580634e45be4df74d7f3dd1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSens: 50
+  lookRotation: 30
 --- !u!114 &557602380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,39 +130,6 @@ MonoBehaviour:
   camRotated: 0
   cameraRollAmount: 20
   cameraTransitionTime: 0.5
---- !u!114 &2733746628393997003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733746628393997007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf7bca1e82653b46a407db78fa6ae3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMaxHealth: 100
-  playerCurrentHealth: 0
-  playerMaxOvercharge: 100
-  playerCurrentOvercharge: 0
-  playerStrength: 20
-  playerDefense: 10
-  canvasAnimator: {fileID: 0}
---- !u!114 &2733746628393997000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733746628393997007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8206bfba580634e45be4df74d7f3dd1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSens: 50
-  lookRotation: 30
 --- !u!114 &2733746628393997006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +202,10 @@ MonoBehaviour:
   returnToNormalScreenTime: 0.2
   slideDuration: 0.5
   cameraDipAmount: 1
+  groundSlideCamera: {fileID: 0}
+  mainCamera: {fileID: 0}
+  startingCamPos: {fileID: 0}
+  endingCamPos: {fileID: 0}
 --- !u!114 &557602383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +238,7 @@ MonoBehaviour:
   abilityReady: 1
   dashTime: 0.73
   killCountMax: 7
+  maxRange: 30
   bodyForAnimation: {fileID: 5415433714007223948}
   currentSword: {fileID: 1029348182374973020}
   currentTarget: {fileID: 0}
@@ -311,6 +317,7 @@ MonoBehaviour:
   abilityCooldownCurrent: 0
   abilityReady: 1
   endingPosition: {fileID: 2733746629386670360}
+  rightHandEndPos: {fileID: 0}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -365,6 +372,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 22824c6c47c50434db3e120471d36af1, type: 2}
   - {fileID: 2100000, guid: 9746a685576641f42ab620ebf5c6b1c5, type: 2}
   - {fileID: 2100000, guid: d861a88a68b57454fbbf777ed14f6761, type: 2}
+  enemiesAbleToHit: 0
 --- !u!1 &2733746628611254748
 GameObject:
   m_ObjectHideFlags: 0
