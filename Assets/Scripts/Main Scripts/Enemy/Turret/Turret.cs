@@ -111,7 +111,7 @@ public class Turret : MonoBehaviour
             elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
             GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
-            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(30f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
         }
         charged = false;
         firing = false;

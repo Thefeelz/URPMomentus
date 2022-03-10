@@ -144,11 +144,29 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckForDamage()
     {
-        RaycastHit hit;
-        Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, 2f);
-        if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        Vector3 pos = Camera.main.transform.position;
+        Vector3 pos1 = Camera.main.transform.position + (Camera.main.transform.right * 0.25f);
+        Vector3 pos2 = Camera.main.transform.position + (Camera.main.transform.right * -0.25f);
+        RaycastHit hit, hit1, hit2;
+        Physics.Raycast(pos, transform.forward, out hit, 2f);
+        Physics.Raycast(pos1, transform.forward, out hit1, 2f);
+        Physics.Raycast(pos2, transform.forward, out hit2, 2f);
+
+        Debug.DrawRay(pos, transform.forward * 2, Color.red, 2f);
+        Debug.DrawRay(pos1, transform.forward * 2, Color.red, 2f);
+        Debug.DrawRay(pos2, transform.forward * 2, Color.red, 2f);
+
+        if (hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+        else if(hit1.collider != null && hit1.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        {
+            hit1.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+        else if (hit2.collider != null && hit2.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        {
+            hit2.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
         }
     }
 }

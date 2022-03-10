@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     CharacterStats player;
-    float maxLife = 1f;
+    float maxLife = 5f;
     float timeAlive = 0f;
     float velocity = 0;
     float damage = 10f;
