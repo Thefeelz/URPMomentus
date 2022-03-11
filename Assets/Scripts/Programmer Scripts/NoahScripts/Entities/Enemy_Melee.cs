@@ -11,7 +11,7 @@ public class Enemy_Melee : Entity
     public bool waitMelee; // bool to represent if 
     public int spot;
     public LineRenderer line;
-    
+
     //states
     public DeathState deathState { get; private set; }
     public Em_Move moveState { get; private set; }
@@ -20,7 +20,7 @@ public class Enemy_Melee : Entity
 
     public Locations mLocations;
 
-    
+
 
     public bool hasTarget;
 
@@ -44,7 +44,7 @@ public class Enemy_Melee : Entity
     public override void Update()
     {
         base.Update();
-        
+
     }
 
     public override void FixedUpdate()
@@ -64,7 +64,7 @@ public class Enemy_Melee : Entity
         }
     }
 
-   
+
 
     public override void Damage(float amountDamage)
     {
@@ -76,7 +76,7 @@ public class Enemy_Melee : Entity
         }
     }
 
-    
+
 
 
 }
