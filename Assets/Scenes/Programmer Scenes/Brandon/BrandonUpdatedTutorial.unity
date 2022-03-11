@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1830179, g: 0.22640051, b: 0.29338944, a: 1}
+  m_IndirectSpecularColor: {r: 0.18301801, g: 0.22640094, b: 0.29339013, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9978,6 +9978,10 @@ PrefabInstance:
       propertyPath: rateOfFire
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: mask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 6357724986821811586, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_Name
       value: Enemy Turret V1
@@ -10370,6 +10374,9 @@ MonoBehaviour:
   firePosition: {fileID: 0}
   smokeEffect: {fileID: 0}
   bulletsToFire: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   state: 0
 --- !u!1 &511172053 stripped
 GameObject:
@@ -23810,6 +23817,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945881929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945881930}
+  m_Layer: 5
+  m_Name: Damage Overlay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &945881930
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945881929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1136273723}
+  m_Father: {fileID: 1167230967}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &946221068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32907,6 +32950,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27791be394205bf4d91fb5ec7954540c, type: 3}
+--- !u!1 &1136273720
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136273723}
+  - component: {fileID: 1136273722}
+  - component: {fileID: 1136273721}
+  m_Layer: 5
+  m_Name: Damage Overlay Hex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1136273721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136273720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.21226418, g: 0.95514345, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 08a04d05beec46644b3ef3fc08d4454b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1136273722
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136273720}
+  m_CullTransparentMesh: 1
+--- !u!224 &1136273723
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136273720}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 945881930}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2400, y: 1300}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1136828164 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8035359122772161388, guid: b61b562fbcd5dd849bda194c6b23c057, type: 3}
@@ -33620,6 +33738,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2735664075414832582, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
   m_PrefabInstance: {fileID: 1845197932}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1167230967 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6010787718253157278, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 2106721756}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1167963571 stripped
 GameObject:
@@ -57530,6 +57653,18 @@ PrefabInstance:
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627696791527982712, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: hexDamageOverlayImage
+      value: 
+      objectReference: {fileID: 1136273721}
+    - target: {fileID: 6627696791527982712, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: opacityIncreaseOnDamage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627696791527982712, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: opacityDecreaseRateOverTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7612188118485846244, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalScale.x

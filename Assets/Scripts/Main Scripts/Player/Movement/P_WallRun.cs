@@ -103,11 +103,11 @@ public class P_WallRun : MonoBehaviour
         if (isWallRunning) 
         {
             WallRunningCamera();
-            //GetComponent<Animator>().enabled = false;
+            GetComponent<Animator>().enabled = false;
         }
         else
         {
-            //GetComponent<Animator>().enabled = true;
+            GetComponent<Animator>().enabled = true;
             cameraElapsedTime = 0f;
         }
     }

@@ -29,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.GetComponentInParent<CharacterStats>())
         {
-            other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(damage);
+            other.GetComponentInParent<CharacterStats>().RemoveHealthRanged(damage);
         }
     }
     public void SetVelocityToPlayer(float _velocity, CharacterStats _player, Transform headToRotate, float _damage)
