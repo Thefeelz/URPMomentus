@@ -111,6 +111,15 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public void PlayerDead()
+    {
+        foreach (EnemyStats enemy in enemiesInLevel)
+        {
+            enemy.SetStateToPlayerDead();
+        }
+    }
+
     public void SetBladeColor(int newColor)
     {
         bladeColor = newColor;

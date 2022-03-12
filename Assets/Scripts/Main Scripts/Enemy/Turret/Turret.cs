@@ -18,7 +18,7 @@ public class Turret : MonoBehaviour
     [SerializeField] GameObject bulletsToFire;
     [SerializeField] LayerMask mask;
 
-    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging};
+    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead};
     [SerializeField]TurretState state;
 
     P_Input myPlayer;
@@ -53,6 +53,10 @@ public class Turret : MonoBehaviour
         else if (state == TurretState.Charging)
         {
             StartCharging();
+        }
+        else if (state == TurretState.PlayerDead)
+        {
+
         }
     }
 
@@ -143,4 +147,6 @@ public class Turret : MonoBehaviour
         firingLight.intensity = 0;
         elapsedFireTime = 0;
     }
+
+    public void SetStateToPlayerDead() { state = TurretState.PlayerDead; }
 }

@@ -9687,6 +9687,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2735664075414832582, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
   m_PrefabInstance: {fileID: 974600602}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &470252756 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+  m_PrefabInstance: {fileID: 1690093154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &477911610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22740,6 +22745,7 @@ Transform:
   - {fileID: 296738121}
   - {fileID: 628133743}
   - {fileID: 40518841}
+  - {fileID: 470252756}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32988,7 +32994,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 08a04d05beec46644b3ef3fc08d4454b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e73fdcc1cda958449ed65061a1fc3e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -49170,6 +49176,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
+--- !u!1001 &1690093154
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 872878444}
+    m_Modifications:
+    - target: {fileID: 1947719515288024228, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_Name
+      value: SceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.119633
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.655034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.3185701
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947719515288024230, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
 --- !u!1001 &1692047663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57660,11 +57723,11 @@ PrefabInstance:
       objectReference: {fileID: 1136273721}
     - target: {fileID: 6627696791527982712, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: opacityIncreaseOnDamage
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6627696791527982712, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: opacityDecreaseRateOverTime
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7612188118485846244, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalScale.x

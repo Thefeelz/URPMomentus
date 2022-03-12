@@ -114,4 +114,22 @@ public class EnemyStats : MonoBehaviour
             gameManager.RemoveFromActiveList(this);
         }
     }
+
+    public void SetStateToPlayerDead()
+    {
+        if(GetComponent<Turret>())
+        {
+            GetComponent<Turret>().SetStateToPlayerDead();
+        }
+        else if (GetComponent<Entity>())
+        {
+            // TODO Noah Add your State here for when the player is dead
+        }
+        else
+        {
+            // TODO Vincent add the if component of the else if to whatever your flying enemy script name is that is attached to the body
+            // and add a State to your flyer that just stops it from doing anything so when the player is dead it doesnt continue to
+            // attack the player, it will just stand there and do nada.
+        }
+    }
 }
