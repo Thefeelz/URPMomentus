@@ -40,11 +40,11 @@ public class Em_Move : MoveState
 
     public override void LogicUpdate()
     {
-        if(Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
+        if (Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
         {
             Calculate();
         }
-        if(Vector3.Distance(mEnemy.transform.position, targetPos) < 1) // switch to melee if close enough
+        if (Vector3.Distance(mEnemy.transform.position, targetPos) < 1) // switch to melee if close enough
         {
             mEnemy.stateMachine.ChangeState(mEnemy.meleeState);
         }

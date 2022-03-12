@@ -14,16 +14,17 @@ public class Locations : MonoBehaviour
     public bool[] lSpotsValid = new bool[4];
     public GameObject prefab;
     public GameObject[] objects = new GameObject[4];
-    public NavMeshAgent agent;
-    public NavMeshPath navMeshPath;
-    public Entity[] enemies;
+    public Enemy_Melee[] enemies;
     public Vector3 direction;
     private int count = 0;
+    public List<Enemy_Melee> currentEnemies = new List<Enemy_Melee>();
+    public bool spawnStart = false;
 
 
     void Start()
     {
         StartCoroutine(setStuff());
+
     }
 
     // Update is called once per frame
@@ -59,7 +60,7 @@ public class Locations : MonoBehaviour
                     {
                         lSpotsValid[l] = false;
                     }
-                    if ( lSpotsTaken[l] == null) // MAKE SURE THAT SPOTS VALID IS CHECKED IN FUTURE!!!
+                    if (lSpotsTaken[l] == null) // MAKE SURE THAT SPOTS VALID IS CHECKED IN FUTURE!!!
                     {
                         Enemy_Melee closest = null;
                         float minDist = Mathf.Infinity;
@@ -87,6 +88,7 @@ public class Locations : MonoBehaviour
                 }
             }
         }
+
     }
 
 
@@ -145,8 +147,41 @@ public class Locations : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
-        navMeshPath = new NavMeshPath();
-        agent = GetComponent<NavMeshAgent>();
+        for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+        {
+            currentEnemies.Add(enemies[i]);
+        }
+        currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position))); // sorting algorithm
+        Enemy_Melee[] closeEnemies = new Enemy_Melee[4]; // the 4 closest
+        currentEnemies.CopyTo(0, closeEnemies, 0, 3); // copies the the closet for the array
+        foreach (Enemy_Melee en in enemies)
+        {
+            if (en == closeEnemies[0])
+            {
+                en.hasTarget = true;
+                en.spot = 0;
+            }
+            else if (en == closeEnemies[1])
+            {
+                en.hasTarget = true;
+                en.spot = 1;
+            }
+            else if (en == closeEnemies[2])
+            {
+                en.hasTarget = true;
+                en.spot = 2;
+            }
+            else if (en == closeEnemies[3])
+            {
+                en.hasTarget = true;
+                en.spot = 3;
+            }
+            else
+            {
+                en.hasTarget = false;
+                en.spot = 9;
+            }
+        }
         int l = 0;
         for (int i = -1; i < 2; i++)
         {
@@ -163,7 +198,32 @@ public class Locations : MonoBehaviour
                 }
             }
         }
-        enemiesCalc();
-        InvokeRepeating("calculate", 2.0f, 1f);
+        yield return new WaitForSeconds(2);
+        spawnStart = true;
+    }
+
+    public void DeathRelocate(int spot)
+    {
+
+        if (spot != 9)
+        {
+            currentEnemies.Clear();
+            enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
+            for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+            {
+                if ((enemies[i].spot == 9 || enemies[i].spot == 0))
+                {
+                    currentEnemies.Add(enemies[i]);
+                }
+            }
+            currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position)));
+            if (currentEnemies[0]) 
+            {
+                Enemy_Melee tempE = currentEnemies[0];
+                tempE.hasTarget = true;
+                tempE.spot = spot;
+            }
+            
+        }
     }
 }
