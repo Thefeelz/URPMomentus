@@ -61,7 +61,6 @@ public class PlayerUI : MonoBehaviour
     }
     public void UpdatedamageOverlayOverTime()
     {
-        Debug.Log("In the update over time function");
         Color c = hexDamageOverlayImage.color;
         hexDamageOverlayImage.color = new Color(c.r, c.g, c.b, c.a - (opacityDecreaseRateOverTime * Time.deltaTime));
     }

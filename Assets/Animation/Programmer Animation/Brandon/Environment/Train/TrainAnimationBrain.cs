@@ -11,7 +11,8 @@ public class TrainAnimationBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TurnOnParticles());
+        if(particleStartDelay > 0)
+            StartCoroutine(TurnOnParticles());
     }
 
     // Update is called once per frame
@@ -24,6 +25,14 @@ public class TrainAnimationBrain : MonoBehaviour
         foreach (ParticleSystem ps in rockFalling)
         {
             ps.Stop();
+        }
+    }
+
+    public void TurnOnRockFall()
+    {
+        foreach (ParticleSystem ps in rockFalling)
+        {
+            ps.Play();
         }
     }
     public void SetTrainCarsToFull()

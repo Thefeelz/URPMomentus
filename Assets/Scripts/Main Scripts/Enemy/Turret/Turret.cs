@@ -18,8 +18,9 @@ public class Turret : MonoBehaviour
     [SerializeField] GameObject bulletsToFire;
     [SerializeField] LayerMask mask;
 
-    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead};
-    [SerializeField]TurretState state;
+    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse};
+    [SerializeField]TurretState currentState;
+    TurretState previousState;
 
     P_Input myPlayer;
     Animator anim;
@@ -31,30 +32,41 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        state = TurretState.Asleep;
+        currentState = TurretState.Asleep;
         myPlayer = FindObjectOfType<P_Input>();
         anim = GetComponent<Animator>();
-        anim.SetBool("awake", false);
+        if (myPlayer)
+            anim.SetBool("awake", false);
+        else
+            anim.SetBool("awake", true);
         rateOfFire = 1 / rateOfFire;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(state == TurretState.Asleep)
+        if(currentState == TurretState.Asleep)
         {
             CheckPlayerInRange();
         }
-        else if (state == TurretState.Attacking)
+        else if (currentState == TurretState.Attacking)
         {
             CheckPlayerInRangeAttacking();
             RotateTowardsPlayer();
         }
-        else if (state == TurretState.Charging)
+        else if (currentState == TurretState.Charging)
         {
             StartCharging();
         }
-        else if (state == TurretState.PlayerDead)
+        else if (currentState == TurretState.PlayerDead)
+        {
+
+        }
+        else if (currentState==TurretState.Dead)
+        {
+
+        }
+        else if (currentState == TurretState.SpecialInUse)
         {
 
         }
@@ -65,11 +77,11 @@ public class Turret : MonoBehaviour
         if (!myPlayer) { return; }
         if (Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange && CheckInLoS())
         {
-                state = TurretState.Charging;
+                currentState = TurretState.Charging;
         }
-        else if (state == TurretState.Attacking)
+        else if (currentState == TurretState.Attacking)
         {
-            state = TurretState.Asleep;
+            currentState = TurretState.Asleep;
             ResetLife();
             anim.SetBool("awake", false);
         }
@@ -80,7 +92,7 @@ public class Turret : MonoBehaviour
         if (!myPlayer) { return; }
         if (!(Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange))
         {
-            state = TurretState.Asleep;
+            currentState = TurretState.Asleep;
             ResetLife();
             anim.SetBool("awake", false);
         }
@@ -101,7 +113,7 @@ public class Turret : MonoBehaviour
         {
             elapsedChargeTime = 0;
             charged = true;
-            state = TurretState.Attacking;
+            currentState = TurretState.Attacking;
             anim.SetBool("awake", true);
             StartCoroutine(StartFiring());
         }
@@ -110,14 +122,14 @@ public class Turret : MonoBehaviour
     IEnumerator StartFiring()
     {
         firing = true;
-        while(state == TurretState.Attacking)
+        while(currentState == TurretState.Attacking)
         {
             elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
             GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
             newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
         }
-        state = TurretState.Asleep;
+        currentState = TurretState.Asleep;
         ResetLife();
     }
 
@@ -135,9 +147,10 @@ public class Turret : MonoBehaviour
 
     public void TurnOnTurretFire()
     {
-        state = TurretState.Dead;
+        currentState = TurretState.Dead;
         smokeEffect.gameObject.SetActive(true);
         smokeEffect.Play();
+        StopAllCoroutines();
     }
 
     void ResetLife()
@@ -148,5 +161,21 @@ public class Turret : MonoBehaviour
         elapsedFireTime = 0;
     }
 
-    public void SetStateToPlayerDead() { state = TurretState.PlayerDead; }
+    public void SetStateToPlayerDead() { currentState = TurretState.PlayerDead; }
+
+    public void SetStateToSpecialInUse(bool value)
+    {
+        if (value)
+        {
+            previousState = currentState;
+            currentState = TurretState.SpecialInUse;
+            anim.speed = 0;
+        }
+        else
+        {
+            if (currentState != TurretState.Dead)
+                currentState = previousState;
+            anim.speed = 1;
+        }
+    }
 }

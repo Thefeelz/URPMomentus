@@ -13,6 +13,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] int energyAmount = 10;
     [SerializeField] Canvas enemyCanvas;
     [SerializeField] Image healthBar;
+    [SerializeField] ParticleSystem deathEffect;
 
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
     
@@ -67,10 +68,21 @@ public class EnemyStats : MonoBehaviour
             StartCoroutine(DestroySelf());
         }
         // all Damage does is subtract health
-        else if (GetComponent<Entity>())
+        else if (GetComponent<Entity>() && !triggeredDead)
+        {
+            currentHealth = 0;
+            triggeredDead = true;
             mEntity.Damage(damageToTake);
+            StartCoroutine(DestroySelf());
+        }
     }
 
+    public void NoahAIAddToActiveList()
+    {
+        gameManager.RemoveFromActiveList(this);
+        currentHealth = maxHealth;
+        triggeredDead = false;
+    }
     public int getMaxHealth()
     {
         return maxHealth;
@@ -93,6 +105,15 @@ public class EnemyStats : MonoBehaviour
     }
     IEnumerator DestroySelf()
     {
+        if (deathEffect)
+        {
+            ParticleSystem newObject = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            newObject.Play();
+            Destroy(newObject, 2f);
+        }
+        else
+            Debug.LogError("There is no death effect linked to this prefab, make sure you link some sort of death VFX from the 'Visual Effects Folder'");
+        
         player.ReplenishHealth(energyAmount);
         if (GetComponent<EnemyChaseState>())
         {
@@ -111,7 +132,18 @@ public class EnemyStats : MonoBehaviour
         else if (GetComponent<Turret>())
         {
             GetComponent<Turret>().TurnOnTurretFire();
+            yield return new WaitForSeconds(10f);
             gameManager.RemoveFromActiveList(this);
+        }
+        else if (GetComponent<Entity>())
+        {
+            yield return new WaitForSeconds(10f);
+            gameManager.RemoveFromActiveList(this);
+        }
+        else
+        {
+            // TODO, VINCENT, yah can put your stuff for you AI here, you can follow the WaitForSeconds which just allows enemies to be visible for "x" amount of seconds
+            // after they die.
         }
     }
 

@@ -61,7 +61,7 @@ public class PlayerAttack : MonoBehaviour
                     StartCoroutine(ResetAttackDash());
                     DashToEnemy();
                     currentEnemy = hitTarget.transform.GetComponentInParent<EnemyStats>();
-                    currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(true);
+                    SetSpecialInUse(true);
                 }
             }
         }
@@ -88,17 +88,17 @@ public class PlayerAttack : MonoBehaviour
             dashing = false;
             attackDashVolume.weight = 0;
             currentEnemy.TakeDamage(playerStats.GetPlayerAttack());
-            currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(false);
+            SetSpecialInUse(false);
             currentEnemy = null;
         }
     }
 
     void CheckEnemyInRange()
     {
-        //hitCast =  
+        
         if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
-            if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+            if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
             {
                 targetCrosshair.color = Color.red;
             }
@@ -167,6 +167,21 @@ public class PlayerAttack : MonoBehaviour
         else if (hit2.collider != null && hit2.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
             hit2.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+    }
+
+    void SetSpecialInUse(bool value)
+    {
+        if (GetComponentInParent<EnemyChaseState>())
+            currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(value);
+        else if (GetComponentInParent<Entity>())
+        {
+            currentEnemy.GetComponent<Entity>().specialUseBool = value;
+            currentEnemy.GetComponent<Entity>().stateMachine.ChangeState(currentEnemy.GetComponent<Entity>().specialUseState);
+        }
+        else if (GetComponentInParent<Turret>())
+        {
+            currentEnemy.GetComponentInParent<Turret>().SetStateToSpecialInUse(value);
         }
     }
 }

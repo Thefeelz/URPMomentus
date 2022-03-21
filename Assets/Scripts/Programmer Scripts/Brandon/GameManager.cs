@@ -102,12 +102,16 @@ public class GameManager : MonoBehaviour
     {
         foreach (var enemy in enemiesInLevel)
         {
-            if (!enemy.GetComponent<Entity>())
+            if (enemy.GetComponent<EnemyChaseState>())
                 enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
-            else
+            else if (enemy.GetComponent<Entity>())
             {
                 enemy.GetComponent<Entity>().specialUseBool = value;
                 enemy.GetComponent<Entity>().stateMachine.ChangeState(enemy.GetComponent<Entity>().specialUseState);
+            }
+            else if (enemy.GetComponent<Turret>())
+            {
+                enemy.GetComponent<Turret>().SetStateToSpecialInUse(value);
             }
         }
     }
