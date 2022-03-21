@@ -179,6 +179,7 @@ public class A_BladeDance : A_OverchargeAbilities
             GetComponent<C_Movement>().enabled = value;
             GetComponent<XboxLook>().enabled = value;
         }
-
+        if (!value)
+            playerMovement.SetPlayerCurrentSpeed(0);
     }
 }
