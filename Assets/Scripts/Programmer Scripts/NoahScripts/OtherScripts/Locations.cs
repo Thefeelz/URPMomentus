@@ -242,8 +242,8 @@ public class Locations : MonoBehaviour
 
     public void restartSpots()
     {
-        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[];
-        currentEnemies.Clear();
+        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; //gets all enemies in scene that are melee type
+        currentEnemies.Clear(); // clears current enemy list
         for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
         {
             if (enemies[i].hasTarget == false) // only add if enemy does not have a target
@@ -251,7 +251,7 @@ public class Locations : MonoBehaviour
                 currentEnemies.Add(enemies[i]);
             }
         }
-        int freeSpot = 0;
+        int freeSpot = 0; // free spot code should be able to be deleted
         for(int i = 0; i < 4; i++) // this will get us a number of how many spots are currently free
         {
             if(!lSpotsTaken[i])

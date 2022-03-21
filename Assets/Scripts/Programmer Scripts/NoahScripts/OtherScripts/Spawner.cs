@@ -25,6 +25,7 @@ public class Spawner : MonoBehaviour
         int spawnPoint = Random.Range(0, spawners1.Length);
         enemy.transform.position = spawners1[spawnPoint].transform.position;
         enemy.SetActive(true);
+        enemy.GetComponent<EnemyStats>().NoahAIAddToActiveList();
         if (locations.spawnStart == true)
         {
             locations.restartSpots();

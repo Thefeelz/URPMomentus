@@ -72,6 +72,7 @@ public class Enemy_Melee : Entity
 
         if (health <= 0)
         {
+            
             mLocations.lSpotsTaken[spot] = null;
             stateMachine.ChangeState(deathState);
         }
