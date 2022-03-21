@@ -50,4 +50,53 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
         if(abilityCooldownButton)
             abilityCooldownButton.GetComponent<UI_AbilityIcon>().ButtonAbilityReadyStart();
     }
+
+    protected void TogglePlayerMovementAndAnimator(bool value)
+    {
+
+        if (GetComponent<P_Movement>())
+        {
+            playerAnimator.enabled = value;
+            GetComponent<P_Movement>().enabled = value;
+            GetComponent<mouseLook>().enabled = value;
+        }
+        else if (cMovement)
+        {
+            playerAnimator.enabled = value;
+            GetComponent<C_Movement>().enabled = value;
+            GetComponent<XboxLook>().enabled = value;
+        }
+        if (!value)
+            playerMovement.SetPlayerCurrentSpeed(0);
+    }
+
+    protected void TogglePlayerMovement(bool value)
+    {
+        if (GetComponent<P_Movement>())
+        {
+            GetComponent<P_Movement>().enabled = value;
+        }
+        else if (cMovement)
+        {
+            GetComponent<C_Movement>().enabled = value;
+        }
+        if (!value)
+            playerMovement.SetPlayerCurrentSpeed(0);
+    }
+
+    protected void TogglePlayerMovmentAndMouseLook(bool value)
+    {
+        if (GetComponent<P_Movement>())
+        {
+            GetComponent<P_Movement>().enabled = value;
+            GetComponent<mouseLook>().enabled = value;
+        }
+        else if (cMovement)
+        {
+            GetComponent<C_Movement>().enabled = value;
+            GetComponent<XboxLook>().enabled = value;
+        }
+        if (!value)
+            playerMovement.SetPlayerCurrentSpeed(0);
+    }
 }
