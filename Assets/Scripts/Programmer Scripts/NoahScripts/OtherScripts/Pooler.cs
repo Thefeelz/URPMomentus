@@ -73,12 +73,6 @@ public class Pooler : MonoBehaviour
     public void queueObject(string tag, GameObject obj)
     {
         dictionaryPools[tag].Enqueue(obj);
-        if(tag == "Melee")
-        {
-            spot = obj.GetComponent<Enemy_Melee>().spot;
-            obj.GetComponent<Enemy_Melee>().spot = 9;
-            obj.GetComponent<Enemy_Melee>().hasTarget = false;
-        }
         obj.SetActive(false);
         onField[tag] -= 1;
     }
@@ -111,13 +105,8 @@ public class Pooler : MonoBehaviour
                 onField[tag] += 1;
                 GameObject enemy = dequeueObject(tag);
                 spawner.spawn(enemy, spawnType[tag]);
-                if(tag == "Melee")
-                {
-                    if (locations.spawnStart == true)
-                    {
-                        locations.DeathRelocate(spot);
-                    }
-                }
+                
+                
             }
         }
     }
