@@ -37,7 +37,7 @@ public class A_BladeDance : A_OverchargeAbilities
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (camTransitioning)
             UpdateCameraPos(usingSpecial);
@@ -51,7 +51,7 @@ public class A_BladeDance : A_OverchargeAbilities
         gameManager.SetActiveSpecialAbility(true);
 
         SetCurrentPlayerPosition();
-        TogglePlayerMovement(false);
+        TogglePlayerMovementAndAnimator(false);
 
         // Make sure that all enemies attacked is set to false
         allEnemiesAttacked = false;
@@ -88,6 +88,7 @@ public class A_BladeDance : A_OverchargeAbilities
             {
                 bodyForAnimation.SetActive(false);
                 currentSword.SetActive(true);
+                TogglePlayerMovementAndAnimator(true);
             }
         }
     }
@@ -142,7 +143,6 @@ public class A_BladeDance : A_OverchargeAbilities
                 transform.position = startPos;
                 transform.rotation = startRotation;
                 killCount = 0;
-                TogglePlayerMovement(true);
                 usingSpecial = false;
                 camTransitioning = true;
                 yield break;
@@ -163,19 +163,5 @@ public class A_BladeDance : A_OverchargeAbilities
     {
         startPos = myStartingPosition.transform.position;
         startRotation = myStartingPosition.transform.rotation;
-    }
-    void TogglePlayerMovement(bool value)
-    {
-        if (GetComponent<P_Movement>())
-        {
-            GetComponent<P_Movement>().enabled = value;
-            GetComponent<mouseLook>().enabled = value;
-        }
-        else if (cMovement)
-        {
-            GetComponent<C_Movement>().enabled = value;
-            GetComponent<XboxLook>().enabled = value;
-        }
-
     }
 }

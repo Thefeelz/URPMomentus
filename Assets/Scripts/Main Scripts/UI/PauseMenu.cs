@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject playerHUD;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject keybindsMenu;
     [SerializeField] Slider mouseSensitivitySlider;
     GameManager myManager;
     // Start is called before the first frame update
@@ -72,5 +73,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         GameIsPaused = false;
         FindObjectOfType<SceneController>().MainMenu();
+    }
+    public void OpenKeybindsMenu()
+    {
+        keybindsMenu.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
+    public void CloseKeybindsMenu()
+    {
+        keybindsMenu.SetActive(false);
+        pauseMenuUI.SetActive(true);
     }
 }

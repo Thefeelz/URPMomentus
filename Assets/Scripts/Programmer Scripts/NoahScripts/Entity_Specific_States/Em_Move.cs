@@ -12,7 +12,7 @@ public class Em_Move : MoveState
     public Vector3 direction;
     public Vector3 targetPos;
     public bool hasPath;
-
+    private bool wait; // wait if no spot and close enough
     private float currentDistance;
     private float updateTime = 1f;
     private float lastUpdate;
@@ -40,13 +40,32 @@ public class Em_Move : MoveState
 
     public override void LogicUpdate()
     {
-        if(Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
+        if (mEnemy.hasTarget)
         {
-            Calculate();
+            wait = false;
+            if (Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
+            {
+                Calculate();
+            }
+            if (Vector3.Distance(mEnemy.transform.position, targetPos) < 1) // switch to melee if close enough
+            {
+                mEnemy.stateMachine.ChangeState(mEnemy.meleeState);
+            }
         }
-        if(Vector3.Distance(mEnemy.transform.position, targetPos) < 1) // switch to melee if close enough
+        else
         {
-            mEnemy.stateMachine.ChangeState(mEnemy.meleeState);
+            if (Vector3.Distance(targetPos, mEnemy.myTarget.transform.position) > 2)
+            {
+                Calculate();
+            }
+            if(Vector3.Distance(mEnemy.transform.position, mEnemy.myTarget.transform.position) < 6 )
+            {
+                wait = true;
+            }
+            else
+            {
+                wait = false;
+            }
         }
         //mEnemy.agent.avoidancePriority = mEnemy.avoid;
         //Move();
@@ -72,14 +91,16 @@ public class Em_Move : MoveState
         base.PhysicsUpdate();
         RaycastHit hit;
         Debug.DrawRay(mEnemy.transform.position + Vector3.up + (mEnemy.transform.forward), mEnemy.transform.forward * 2, Color.green); //debug line to show raycast
-        Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out hit, 2f); // ray cast to see if it will collide with enemy
+        Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out hit, 1f); // ray cast to see if it will collide with enemy
         if (hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>()) // if enemy is about to collide with another it will wait until the path is clear
         {
             Debug.LogWarning("Get out of the way!");
+            mEnemy.transform.rotation = Quaternion.LookRotation(new Vector3(-direction.x, 0, -direction.z));
             Calculate();
         }
         else // if not it moves
         {
+            if (wait == false)
             Move();
         }
         Debug.Log(currentDestination);
@@ -97,6 +118,27 @@ public class Em_Move : MoveState
             NavMeshPath p = new NavMeshPath(); //make new path
             mEnemy.agent.CalculatePath(mEnemy.mLocations.lSpots[mEnemy.spot], p); // calculate how to get to target
             targetPos = mEnemy.mLocations.lSpots[mEnemy.spot]; // set overall target pos to the set location around player
+            if (mEnemy.GetComponent<NavMeshAgent>().enabled == true)
+            {
+                mEnemy.line.positionCount = mEnemy.agent.path.corners.Length;
+                mEnemy.line.SetPositions(mEnemy.agent.path.corners);
+            }
+            cornerQueue = new Queue<Vector3>(); // make a queue to hold corners
+            foreach (var corner in p.corners) // for each corner in our path we will put it in the queue
+            {
+                cornerQueue.Enqueue(corner);
+            }
+            NextCorner();
+            mEnemy.GetComponent<NavMeshAgent>().enabled = false;
+            mEnemy.GetComponent<NavMeshObstacle>().enabled = true;
+        }
+        else
+        {
+            mEnemy.GetComponent<NavMeshObstacle>().enabled = false; // disable obstacle
+            mEnemy.GetComponent<NavMeshAgent>().enabled = true; //enable agent
+            NavMeshPath p = new NavMeshPath(); //make new path
+            mEnemy.agent.CalculatePath(mEnemy.myTarget.transform.position, p); // calculate how to get to target
+            targetPos = mEnemy.myTarget.transform.position; // set overall target pos to the set location around player
             if (mEnemy.GetComponent<NavMeshAgent>().enabled == true)
             {
                 mEnemy.line.positionCount = mEnemy.agent.path.corners.Length;

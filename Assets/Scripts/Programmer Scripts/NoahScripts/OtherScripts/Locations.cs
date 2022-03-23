@@ -14,16 +14,17 @@ public class Locations : MonoBehaviour
     public bool[] lSpotsValid = new bool[4];
     public GameObject prefab;
     public GameObject[] objects = new GameObject[4];
-    public NavMeshAgent agent;
-    public NavMeshPath navMeshPath;
-    public Entity[] enemies;
+    public Enemy_Melee[] enemies;
     public Vector3 direction;
     private int count = 0;
+    public List<Enemy_Melee> currentEnemies = new List<Enemy_Melee>();
+    public bool spawnStart = false;
 
 
     void Start()
     {
         StartCoroutine(setStuff());
+
     }
 
     // Update is called once per frame
@@ -31,11 +32,18 @@ public class Locations : MonoBehaviour
     {
         transform.position = lPlayer.transform.position;
         spotUpdate();
-        if (Input.GetKeyDown(KeyCode.U))
+        for (int i = 0; i < enemies.Length; i++)
         {
-            foreach (Enemy_Melee em in enemies)
+            for (int j = 0; j < enemies.Length; j++)
             {
-                em.moveState.Calculate();
+                if (i != j)
+                {
+                    if (enemies[i].spot == enemies[j].spot)
+                    {
+                        currentEnemies.Clear();
+                        restartSpots();
+                    }
+                }
             }
         }
     }
@@ -59,7 +67,7 @@ public class Locations : MonoBehaviour
                     {
                         lSpotsValid[l] = false;
                     }
-                    if ( lSpotsTaken[l] == null) // MAKE SURE THAT SPOTS VALID IS CHECKED IN FUTURE!!!
+                    if (lSpotsTaken[l] == null) // MAKE SURE THAT SPOTS VALID IS CHECKED IN FUTURE!!!
                     {
                         Enemy_Melee closest = null;
                         float minDist = Mathf.Infinity;
@@ -87,54 +95,12 @@ public class Locations : MonoBehaviour
                 }
             }
         }
+
     }
 
 
 
 
-    // DEAD CODE THAT MAY HAVE USE
-
-    void enemiesCalc()
-    {
-
-        foreach (Enemy_Melee em in enemies)
-        {
-            //em.GetComponent<NavMeshObstacle>().enabled = false;
-            //em.GetComponent<NavMeshAgent>().enabled = true;
-            ////if ((Vector3.Distance(em.mLocations.lSpots[em.spot], em.targetPos) > 2.5))
-            ////    em.moveState.calculate();
-            ////else
-            ////    em.moveState.Move();
-            ////if (em.GetComponent<NavMeshAgent>().enabled == true)
-            ////{
-            ////    em.line.positionCount = agent.path.corners.Length;
-            ////    em.line.SetPositions(agent.path.corners);
-            ////}
-            //NavMeshPath p = new NavMeshPath();
-            //em.agent.CalculatePath(em.mLocations.lSpots[em.spot], p);
-            //LineRenderer line = em.GetComponent<LineRenderer>();
-            //line.positionCount = p.corners.Length;
-            //line.SetPositions(p.corners);
-            //em.targetPos = new Vector3(p.corners[0].x, em.transform.position.y, p.corners[0].z);
-
-            //em.GetComponent<NavMeshAgent>().enabled = false;
-            //em.GetComponent<NavMeshObstacle>().enabled = true;
-        }
-    }
-
-    void calculate()
-    {
-        //    Debug.Log("ayo");
-        //    Debug.LogWarning("CALCULATING");
-        //    foreach (Enemy_Melee em in enemies)
-        //    {
-        //        em.GetComponent<NavMeshObstacle>().enabled = false;
-        //        em.GetComponent<NavMeshAgent>().enabled = true;
-        //        em.moveState.calculate();
-        //        em.GetComponent<NavMeshAgent>().enabled = false;
-        //        em.GetComponent<NavMeshObstacle>().enabled = true;
-        //    }
-    }
 
     void corners(NavMeshPath p)
     {
@@ -145,8 +111,45 @@ public class Locations : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
-        navMeshPath = new NavMeshPath();
-        agent = GetComponent<NavMeshAgent>();
+        for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+        {
+            currentEnemies.Add(enemies[i]);
+        }
+        currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position))); // sorting algorithm
+        Enemy_Melee[] closeEnemies = new Enemy_Melee[4]; // the 4 closest
+        currentEnemies.CopyTo(0, closeEnemies, 0, 4); // copies the the closet for the array
+        foreach (Enemy_Melee en in enemies)
+        {
+            if (en == closeEnemies[0])
+            {
+                en.hasTarget = true;
+                en.spot = 0;
+                lSpotsTaken[0] = en;
+            }
+            else if (en == closeEnemies[1])
+            {
+                en.hasTarget = true;
+                en.spot = 1;
+                lSpotsTaken[1] = en;
+            }
+            else if (en == closeEnemies[2])
+            {
+                en.hasTarget = true;
+                en.spot = 2;
+                lSpotsTaken[2] = en;
+            }
+            else if (en == closeEnemies[3])
+            {
+                en.hasTarget = true;
+                en.spot = 3;
+                lSpotsTaken[3] = en;
+            }
+            else
+            {
+                en.hasTarget = false;
+                en.spot = 9;
+            }
+        }
         int l = 0;
         for (int i = -1; i < 2; i++)
         {
@@ -163,7 +166,90 @@ public class Locations : MonoBehaviour
                 }
             }
         }
-        enemiesCalc();
-        InvokeRepeating("calculate", 2.0f, 1f);
+        yield return new WaitForSeconds(2);
+        spawnStart = true;
+    }
+
+    public void DeathRelocate(int spot)
+    {
+
+        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
+        if (spot != 9)
+        {
+            currentEnemies.Clear();
+
+            for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+            {
+                if (enemies[i].spot == 9)
+                {
+                    currentEnemies.Add(enemies[i]);
+                }
+            }
+            currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position)));
+            if (currentEnemies[0])
+            {
+                Enemy_Melee tempE = currentEnemies[0];
+                tempE.hasTarget = true;
+                tempE.spot = spot;
+            }
+
+        }
+        
+    }
+
+    public void restartSpots()
+    {
+        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; //gets all enemies in scene that are melee type
+        currentEnemies.Clear(); // clears current enemy list
+        for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+        {
+            if (enemies[i].hasTarget == false) // only add if enemy does not have a target
+            {
+                currentEnemies.Add(enemies[i]);
+            }
+        }
+        int freeSpot = 0; // free spot code should be able to be deleted
+        for(int i = 0; i < 4; i++) // this will get us a number of how many spots are currently free
+        {
+            if(!lSpotsTaken[i])
+            {
+                freeSpot += 1;
+            }
+        }
+        currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position))); // sorting algorithm
+        //Enemy_Melee[] closeEnemies = new Enemy_Melee[freeSpot]; // the x closest enemies, x being the amount of free spots
+        //currentEnemies.CopyTo(0, closeEnemies, 0, freeSpot); // copies the the closest to the array
+        foreach (Enemy_Melee en in currentEnemies) // assigns enemies by how close they are to available spots
+        {
+            if (lSpotsTaken[0] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 0;
+                lSpotsTaken[0] = en;
+            }
+            else if (lSpotsTaken[1] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 1;
+                lSpotsTaken[1] = en;
+            }
+            else if (lSpotsTaken[2] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 2;
+                lSpotsTaken[2] = en;
+            }
+            else if (lSpotsTaken[3] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 3;
+                lSpotsTaken[3] = en;
+            }
+            else
+            {
+                en.hasTarget = false;
+                en.spot = 9;
+            }
+        }
     }
 }

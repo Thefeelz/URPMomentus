@@ -224,4 +224,10 @@ public class P_Movement : MonoBehaviour
     public void SetPlayerJump(float newJump) { playerJumpPower = newJump; }
     public void SetPlayerInAirControl(float newControl) { inAirControlMultiplier = Mathf.Clamp01(newControl); }
     public void SetFallMultiplier(float newMultiplier) { fallMultiplier = newMultiplier; }
+
+    public void SetPlayerCurrentSpeed(float newCurrentSpeed)
+    {
+        if (newCurrentSpeed == 0)
+            rb.velocity = Vector3.zero;
+    }
 }

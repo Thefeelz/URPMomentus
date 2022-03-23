@@ -10,6 +10,12 @@ public class mouseLook : MonoBehaviour
     private float mouseMultiplier = 10f;
     private float horizontalRotation = 0f;
     private float verticalRotation = 0f;
+
+    float cameraRollAmount;
+    float cameraTransitionTime;
+    float cameraElapsedTime;
+
+    P_WallRun wallrun;
    
     // Start is called before the first frame update
     void Start()
@@ -17,12 +23,14 @@ public class mouseLook : MonoBehaviour
         mouseSens = FindObjectOfType<GameManager>().GetMouseSensitivity();
         //stops mouse from showing up
         Cursor.lockState = CursorLockMode.Locked;
+        wallrun = GetComponent<P_WallRun>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        //get mouse position
+        //if (wallrun.isWallRunning) { return; }
+            //get mouse position
         float mouseX = Input.GetAxis("Mouse X") * mouseSens * mouseMultiplier * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * mouseMultiplier * Time.deltaTime;
         
@@ -37,11 +45,24 @@ public class mouseLook : MonoBehaviour
         
        // transform.localRotation = Quaternion.Euler(, 0f, 0f);
         transform.rotation = Quaternion.Euler(0, horizontalRotation, 0f);
-        Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        if(!wallrun.isWallRunning)
+            Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, 0f);
+        else
+        {
+            Camera.main.transform.rotation = Quaternion.Euler(verticalRotation, horizontalRotation, Camera.main.transform.rotation.z);
+            Camera.main.transform.Rotate(Vector3.forward, Mathf.Lerp(0, cameraRollAmount, cameraElapsedTime / cameraTransitionTime));
+        }
     }
 
     public void UpdateMouseSensitivity(float newSensitivity)
     {
         mouseSens = newSensitivity;
+    }
+
+    public void SetCameraWallRunRotate(float _cameraRollAmount, float _cameraElapsedTime, float _cameraTransitionTime)
+    {
+        cameraRollAmount = _cameraRollAmount;
+        cameraElapsedTime = _cameraElapsedTime;
+        cameraTransitionTime = _cameraTransitionTime;
     }
 }

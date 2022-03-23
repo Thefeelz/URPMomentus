@@ -20,9 +20,20 @@ public class Shield : MonoBehaviour
     {
         if(other.GetComponent<EnemyBullet>())
         {
-            other.GetComponent<Rigidbody>().velocity = -other.GetComponent<Rigidbody>().velocity;
+            //other.GetComponent<Rigidbody>().velocity = -other.GetComponent<Rigidbody>().velocity;
+            other.GetComponent<Rigidbody>().velocity = returnRandomVectorReverse(other.GetComponent<Rigidbody>().velocity);
         }
     }
     public void ActivateCollider() { colliderz.enabled = true; }
     public void DeactivateCollider() { colliderz.enabled = false; }
+
+    private Vector3 returnRandomVectorReverse(Vector3 initialVelocity)
+    {
+        Vector3 vel = -initialVelocity;
+        vel.x += Random.Range(-2, 2);
+        vel.y += Random.Range(-2, 2);
+        vel.z += Random.Range(-2, 2);
+        return vel;
+
+    }
 }
