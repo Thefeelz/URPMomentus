@@ -12,7 +12,7 @@ public class Em_Move : MoveState
     public Vector3 direction;
     public Vector3 targetPos;
     public bool hasPath;
-
+    private bool wait; // wait if no spot and close enough
     private float currentDistance;
     private float updateTime = 1f;
     private float lastUpdate;
@@ -42,6 +42,7 @@ public class Em_Move : MoveState
     {
         if (mEnemy.hasTarget)
         {
+            wait = false;
             if (Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
             {
                 Calculate();
@@ -53,8 +54,18 @@ public class Em_Move : MoveState
         }
         else
         {
-            if(Vector3.Distance(targetPos, mEnemy.myTarget.transform.position) > 1)
-            Calculate();
+            if (Vector3.Distance(targetPos, mEnemy.myTarget.transform.position) > 2)
+            {
+                Calculate();
+            }
+            if(Vector3.Distance(mEnemy.transform.position, mEnemy.myTarget.transform.position) < 6 )
+            {
+                wait = true;
+            }
+            else
+            {
+                wait = false;
+            }
         }
         //mEnemy.agent.avoidancePriority = mEnemy.avoid;
         //Move();
@@ -89,6 +100,7 @@ public class Em_Move : MoveState
         }
         else // if not it moves
         {
+            if (wait == false)
             Move();
         }
         Debug.Log(currentDestination);
