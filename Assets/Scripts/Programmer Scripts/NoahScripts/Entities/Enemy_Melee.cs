@@ -21,8 +21,10 @@ public class Enemy_Melee : Entity
     public Locations mLocations;
 
 
-
+    public bool hasFollower;
+    public bool following;
     public bool hasTarget;
+    
 
     //Datas
     [SerializeField]
@@ -31,6 +33,8 @@ public class Enemy_Melee : Entity
     public override void Awake()
     {
         base.Awake();
+        hasFollower = false;
+        following = false;
         mLocations = GameObject.Find("Cube").GetComponent<Locations>();
         deathState = new DeathState(this, stateMachine);
         moveState = new Em_Move(this, stateMachine, moveData, entityData, this);

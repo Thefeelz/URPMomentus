@@ -101,49 +101,6 @@ public class Locations : MonoBehaviour
 
 
 
-    // DEAD CODE THAT MAY HAVE USE
-
-    void enemiesCalc()
-    {
-
-        foreach (Enemy_Melee em in enemies)
-        {
-            //em.GetComponent<NavMeshObstacle>().enabled = false;
-            //em.GetComponent<NavMeshAgent>().enabled = true;
-            ////if ((Vector3.Distance(em.mLocations.lSpots[em.spot], em.targetPos) > 2.5))
-            ////    em.moveState.calculate();
-            ////else
-            ////    em.moveState.Move();
-            ////if (em.GetComponent<NavMeshAgent>().enabled == true)
-            ////{
-            ////    em.line.positionCount = agent.path.corners.Length;
-            ////    em.line.SetPositions(agent.path.corners);
-            ////}
-            //NavMeshPath p = new NavMeshPath();
-            //em.agent.CalculatePath(em.mLocations.lSpots[em.spot], p);
-            //LineRenderer line = em.GetComponent<LineRenderer>();
-            //line.positionCount = p.corners.Length;
-            //line.SetPositions(p.corners);
-            //em.targetPos = new Vector3(p.corners[0].x, em.transform.position.y, p.corners[0].z);
-
-            //em.GetComponent<NavMeshAgent>().enabled = false;
-            //em.GetComponent<NavMeshObstacle>().enabled = true;
-        }
-    }
-
-    void calculate()
-    {
-        //    Debug.Log("ayo");
-        //    Debug.LogWarning("CALCULATING");
-        //    foreach (Enemy_Melee em in enemies)
-        //    {
-        //        em.GetComponent<NavMeshObstacle>().enabled = false;
-        //        em.GetComponent<NavMeshAgent>().enabled = true;
-        //        em.moveState.calculate();
-        //        em.GetComponent<NavMeshAgent>().enabled = false;
-        //        em.GetComponent<NavMeshObstacle>().enabled = true;
-        //    }
-    }
 
     void corners(NavMeshPath p)
     {
