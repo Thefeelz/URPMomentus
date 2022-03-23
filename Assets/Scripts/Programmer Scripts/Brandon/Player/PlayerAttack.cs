@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     CharacterStats playerStats;
     Rigidbody myRb;
     [SerializeField] Image targetCrosshair;
+    [SerializeField] Image targetCrosshairDashReticle;
     [SerializeField] Transform weaponRaycastTransformPosition;
     [SerializeField] Animator playerAnimator;
     [SerializeField] float dashMaxDistance;
@@ -20,8 +21,9 @@ public class PlayerAttack : MonoBehaviour
     RaycastHit hitTarget;
     bool hitCast;
     bool dashing;
-    bool ableToAttackDash = true;
+    public bool ableToAttackDash = true;
     float elaspedTime = 0f;
+    float elapsedTimeUI = 0f;
     Color crosshairColor;
     Vector3 endingDashPosition;
     Vector3 startingDashPosition;
@@ -35,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
         playerStats = GetComponentInParent<CharacterStats>();
         myRb = GetComponent<Rigidbody>();
         crosshairColor = targetCrosshair.color;
+        
     }
 
     private void Update()
@@ -42,9 +45,18 @@ public class PlayerAttack : MonoBehaviour
         CheckEnemyInRange();
         if (dashing)
             DashToEnemy();
+        if (!ableToAttackDash)
+            UpdateDashUIReticle();
        
     }
 
+    void UpdateDashUIReticle()
+    {
+        elapsedTimeUI += Time.deltaTime;
+        float currentFill = elapsedTimeUI / attackDashCooldown;
+        targetCrosshairDashReticle.fillAmount = currentFill;
+        targetCrosshairDashReticle.color = Color.Lerp(Color.red, Color.cyan, currentFill);
+    }
     public void BasicAttack()
     {
         if(!playerAnimator.GetBool("swordSwing"))
@@ -55,7 +67,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
                 {
-                    endingDashPosition = hitTarget.transform.position;
+                    endingDashPosition = hitTarget.transform.position - (transform.forward * 1.5f);
                     startingDashPosition = transform.position;
                     dashing = true;
                     StartCoroutine(ResetAttackDash());
@@ -121,9 +133,12 @@ public class PlayerAttack : MonoBehaviour
     }
     IEnumerator ResetAttackDash()
     {
+        targetCrosshairDashReticle.gameObject.SetActive(true);
         ableToAttackDash = false;
         yield return new WaitForSeconds(attackDashCooldown);
         ableToAttackDash = true;
+        elapsedTimeUI = 0f;
+        targetCrosshairDashReticle.gameObject.SetActive(false);
     }
     public void SetSwordSwingComplete()
     {
