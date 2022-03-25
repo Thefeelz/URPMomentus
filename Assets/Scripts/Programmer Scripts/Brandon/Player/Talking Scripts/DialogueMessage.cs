@@ -9,4 +9,5 @@ public class DialogueMessage : ScriptableObject
     public Sprite imageToDisplay;
     public string message;
     public float timeToDisplay;
+    public bool overrideCurrentMessage;
 }

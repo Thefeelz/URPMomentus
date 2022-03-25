@@ -7,7 +7,7 @@ using System;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] DialogueMessage[] messagesToDisplay;
+    [SerializeField] List<DialogueMessage> messagesToDisplay = new List<DialogueMessage>();
     [SerializeField] TMP_Text textDisplay;
     [SerializeField] Image canvasImageForDialoge;
     [SerializeField] Animator dialogueAnimator;
@@ -15,7 +15,7 @@ public class DialogueSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (messagesToDisplay.Length > 0)
+        if (messagesToDisplay.Count > 0)
             StartDisplayMessage();
     }
 
@@ -25,13 +25,15 @@ public class DialogueSystem : MonoBehaviour
         
     }
 
-    public void AddMessageToDisplay(DialogueMessage[] messages)
+    public void AddMessageToDisplay(List<DialogueMessage> messages)
     {
-        i = 0;
-        Array.Clear(messagesToDisplay, 0, messagesToDisplay.Length);
-        StopAllCoroutines();
+        if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
+        {
+            messagesToDisplay.Clear();
+            StopAllCoroutines();
+        }
         messagesToDisplay = messages;
-        if (messages.Length > 0 && dialogueAnimator.GetBool("dialogue"))
+        if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
         {
             canvasImageForDialoge.sprite = messages[i].imageToDisplay;
             StartDisplayMessage();
@@ -50,7 +52,7 @@ public class DialogueSystem : MonoBehaviour
             canvasImageForDialoge.sprite = messagesToDisplay[i].imageToDisplay;
             dialogueAnimator.SetBool("dialogue", true);
         }
-        if (i < messagesToDisplay.Length)
+        if (i < messagesToDisplay.Count)
         {
             StartCoroutine(DisplayMessage(messagesToDisplay[i].timeToDisplay, messagesToDisplay[i].message));
             i++;
