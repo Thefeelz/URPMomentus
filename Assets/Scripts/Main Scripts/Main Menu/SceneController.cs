@@ -35,4 +35,8 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    public void QuitTheFuckingGame()
+    {
+        Application.Quit();
+    }
 }
