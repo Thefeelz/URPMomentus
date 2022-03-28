@@ -14,6 +14,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] Animator dialogueAnimator;
     int i = 0;
     GameObject callingObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -124,7 +125,6 @@ public class DialogueSystem : MonoBehaviour
 
     void HandleAbilityToggles(List<AbilityToManipulateObjectInteractive> daList)
     {
-        Debug.LogError("Should not reach here");
         foreach (AbilityToManipulateObjectInteractive thang in daList)
         {
             if (thang.turnOnAbility)
@@ -177,7 +177,6 @@ public class DialogueSystem : MonoBehaviour
         }
         if (i < interactiveMessagesToDisplay.Count)
         {
-            // Debug.Log("Ability Count: " + interactiveMessagesToDisplay[i].abilities.Count + " Object Count: " + interactiveMessagesToDisplay[i].objectsToTurnOn.Length);
             if (interactiveMessagesToDisplay[i].abilities.Count > 0)
                 HandleAbilityToggles(interactiveMessagesToDisplay[i].abilities);
             if (interactiveMessagesToDisplay[i].objectsToTurnOn.Length > 0)

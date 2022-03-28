@@ -21,7 +21,6 @@ public class StartingDoorAnimBrain : MonoBehaviour
 
     public void SendFirstMessage()
     {
-        Debug.Log(messageInteractive.Count + "dabnjodnabdl");
         dialogueSystem.AddMessageToDisplay(messageInteractive, this.gameObject);
     }
 }
