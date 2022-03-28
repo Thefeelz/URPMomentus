@@ -135,7 +135,6 @@ public class DialogueSystem : MonoBehaviour
     }
     void HandleGameObjectToggle(DialogueToggleGameObject[] daList)
     {
-        Debug.LogError("Should not reach here");
         foreach (DialogueToggleGameObject peter in daList)
         {
             if (peter.turnOnObject)
@@ -178,12 +177,12 @@ public class DialogueSystem : MonoBehaviour
         }
         if (i < interactiveMessagesToDisplay.Count)
         {
-            Debug.Log("Ability Count: " + interactiveMessagesToDisplay[i].abilities.Count + " Object Count: " + interactiveMessagesToDisplay[i].objectsToTurnOn.Length);
+            // Debug.Log("Ability Count: " + interactiveMessagesToDisplay[i].abilities.Count + " Object Count: " + interactiveMessagesToDisplay[i].objectsToTurnOn.Length);
             if (interactiveMessagesToDisplay[i].abilities.Count > 0)
                 HandleAbilityToggles(interactiveMessagesToDisplay[i].abilities);
             if (interactiveMessagesToDisplay[i].objectsToTurnOn.Length > 0)
                 HandleGameObjectToggle(interactiveMessagesToDisplay[i].objectsToTurnOn);
-            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i].timeToDisplay, messagesToDisplay[i].message));
+            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i].timeToDisplay, interactiveMessagesToDisplay[i].message));
             i++;
         }
         else
