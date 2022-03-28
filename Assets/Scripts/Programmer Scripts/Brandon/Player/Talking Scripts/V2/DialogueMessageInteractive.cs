@@ -1,19 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "Message", menuName = "MessageCreator/CreateMessage", order = 1)]
-public class DialogueMessage : ScriptableObject
+[System.Serializable]
+public class DialogueMessageInteractive
 {
     public Sprite imageToDisplay;
     [TextArea(3, 10)]
     public string message;
     public float timeToDisplay;
     public bool overrideCurrentMessage;
-    public List<AbilityToManipulateObject> abilities = new List<AbilityToManipulateObject>();
+    public List<AbilityToManipulateObjectInteractive> abilities = new List<AbilityToManipulateObjectInteractive>();
     public DialogueToggleGameObject[] objectsToTurnOn;
-    
 }
-
-

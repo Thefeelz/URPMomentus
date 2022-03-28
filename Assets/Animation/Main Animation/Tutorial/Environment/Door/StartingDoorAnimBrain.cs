@@ -6,6 +6,7 @@ public class StartingDoorAnimBrain : MonoBehaviour
 {
     [SerializeField] DialogueSystem dialogueSystem;
     [SerializeField] List<DialogueMessage> messageList = new List<DialogueMessage>();
+    [SerializeField] List<DialogueMessageInteractive> messageInteractive = new List<DialogueMessageInteractive>();
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class StartingDoorAnimBrain : MonoBehaviour
 
     public void SendFirstMessage()
     {
-        dialogueSystem.AddMessageToDisplay(messageList);
+        Debug.Log(messageInteractive.Count + "dabnjodnabdl");
+        dialogueSystem.AddMessageToDisplay(messageInteractive, this.gameObject);
     }
 }

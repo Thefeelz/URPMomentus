@@ -27,13 +27,14 @@ public class EnemyStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         if (GetComponent<Entity>())
         {
             mEntity = gameObject.GetComponent<Entity>();
-            Debug.Log("entity found");
         }
-        gameManager = FindObjectOfType<GameManager>();
-        gameManager.AddEnemyToList(this);
+        else
+            gameManager.AddEnemyToList(this);
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
 
@@ -79,7 +80,8 @@ public class EnemyStats : MonoBehaviour
 
     public void NoahAIAddToActiveList()
     {
-        gameManager.RemoveFromActiveList(this);
+        if(gameManager)
+            gameManager.AddEnemyToList(this);
         currentHealth = maxHealth;
         triggeredDead = false;
     }
