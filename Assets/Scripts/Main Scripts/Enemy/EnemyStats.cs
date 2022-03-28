@@ -142,11 +142,15 @@ public class EnemyStats : MonoBehaviour
             yield return new WaitForSeconds(10f);
             gameManager.RemoveFromActiveList(this);
         }
-        else
+        else if (GetComponent<BomberEnemy>())
         {
             // TODO, VINCENT, yah can put your stuff for you AI here, you can follow the WaitForSeconds which just allows enemies to be visible for "x" amount of seconds
             // after they die.
+            GetComponent<BomberEnemy>();
+            yield return new WaitForSeconds(0.5f);
+            gameManager.RemoveFromActiveList(this);
         }
+
     }
 
     public void SetStateToPlayerDead()
@@ -159,6 +163,11 @@ public class EnemyStats : MonoBehaviour
         {
             // TODO Noah Add your State here for when the player is dead
         }
+        else if (GetComponent<BomberEnemy>())
+        {
+            GetComponent<BomberEnemy>().SetStateToAsleep();
+        }
+
         else
         {
             // TODO Vincent add the if component of the else if to whatever your flying enemy script name is that is attached to the body
