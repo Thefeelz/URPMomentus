@@ -65,7 +65,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             Debug.Log(DialogueArray[i].name + "before");
 
-            FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i],DialogueArray[i].HasImage);
+            FindObjectOfType<DialogueHandlerScript>().StartDialogue(DialogueArray[i],DialogueArray[i].HasImage,DisplayTime);
             yield return new WaitWhile(() => FindObjectOfType<DialogueHandlerScript>().isPlaying);
             yield return new WaitForSeconds(DisplayTime);
         }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -324,16 +324,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayTime: 4
   DialogueArray:
   - name: AdmiralCracket
     scentences:
     - Hey, you doing fine in there?
     - Can You hear me
     - Respond Soldier!
-  - name: Jennifer
-    scentences:
-    - Hey
-    - bei
+    characterProfilePic: {fileID: 0}
+    HasImage: 0
 --- !u!1 &381401635
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,9 +706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d1ee9684d001645bb34f3521d0487a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: {fileID: 1940996829}
-  closeAnimation: {fileID: 255559107}
-  arraySize: 0
+  dialogueText: {fileID: 0}
+  missionControlAnimator: {fileID: 255559107}
+  CharacterImg: {fileID: 255559108}
   isPlaying: 0
 --- !u!224 &916541220
 RectTransform:
@@ -1118,17 +1117,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b042cef52b02d4e844520eaa9a11b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DisplayTime: 4
   DialogueArray:
-  - name: siwa
-    scentences:
-    - bye
-    - My name is Siwa
-    - Cry me a river
   - name: jojo
     scentences:
-    - hi
-    - My name is Jojo
-    - how do you do?
+    - thiss is johnson  from the johnson report do you copy my initial shenanigans
+      you blandrs blanderere. what do you think you need from me you bumblning bony.
+    - th
+    characterProfilePic: {fileID: 21300000, guid: 608c5aefc31b8844b9db145bc3d57821, type: 3}
+    HasImage: 1
 --- !u!114 &1408424428
 MonoBehaviour:
   m_ObjectHideFlags: 0
