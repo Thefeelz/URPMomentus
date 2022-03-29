@@ -108,7 +108,7 @@ public class PlayerAttack : MonoBehaviour
     void CheckEnemyInRange()
     {
         
-        if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
+        if (Camera.main && Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
             if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
             {

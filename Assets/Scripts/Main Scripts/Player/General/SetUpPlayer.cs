@@ -11,7 +11,9 @@ public class SetUpPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        materialsToApply = FindObjectOfType<GameManager>().GetMaterials();
+        materialsToApply = GameManager.Instance.GetMaterials();
+        if (materialsToApply.Length == 0)
+            Debug.Log("Set up is failing");
         ApplyMaterials();
     }
 

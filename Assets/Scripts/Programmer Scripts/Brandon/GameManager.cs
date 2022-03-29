@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     [SerializeField] int bladeColor;
-    [SerializeField] int levelChosen;
+    [SerializeField] int levelChosen, currentLevelBuildIndex;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
     public bool activeInUse = false;
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        if(_instance !=null && _instance !=this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        
     }
     private void Start()
     {
@@ -43,6 +42,12 @@ public class GameManager : MonoBehaviour
                 Debug.Log("destroyed");
                 Destroy(gm.gameObject);
             }
+        }
+        if (!FindObjectOfType<CharacterStats>())
+        {
+            Debug.Log("Unlocking Cursor");
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
         if (mainMenuSlider)
             mainMenuSlider.onValueChanged.AddListener(delegate { SetMouseSenitivity(); });
@@ -130,14 +135,25 @@ public class GameManager : MonoBehaviour
     }
     public void SetLevel(int level)
     {
+        Debug.Log("Set Current Level to " + level);
         levelChosen = level;
     }
     public int GetLevel()
     {
         return levelChosen;
     }
+    public int GetCurrentLevelBuildIndex()
+    {
+        return currentLevelBuildIndex;
+    }
+    public void SetCurrentLevel(int level)
+    {
+        Debug.Log("Set Current Level to " + level);
+        currentLevelBuildIndex = level;
+    }
     public Material[] GetMaterials()
     {
+        Debug.Log("Get Materials Called, Blade color number is " + bladeColor);
         if (bladeColor == 0)
         {
             return aquaMaterial;

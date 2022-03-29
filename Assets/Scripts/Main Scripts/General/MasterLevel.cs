@@ -12,11 +12,17 @@ public class MasterLevel : MonoBehaviour
     [SerializeField] Text completeText;
     [SerializeField] GameObject levelContinueDoor;
     [SerializeField] Animator elevatorAnimator;
+    [SerializeField] int currentLevelBuildIndex;
     public bool levelComplete;
 
     private void Start()
     {
-        CheckForLevelComplete();
+        // CheckForLevelComplete();
+        if (GameManager.Instance)
+        {
+            Debug.Log("Game Manager fucking found");
+            GameManager.Instance.SetLevel(currentLevelBuildIndex);
+        }
         currentKillCount = 0;
     }
 

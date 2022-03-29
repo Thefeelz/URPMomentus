@@ -21,8 +21,8 @@ public class CanvasAnimatorBrain : MonoBehaviour
         playerAnimator.Play("playerDeathV3");
         FindObjectOfType<mouseLook>().enabled = false;
     }
-    public void GoToMainMenu()
+    public void GoToDeathScene()
     {
-        FindObjectOfType<SceneController>().MainMenu();
+        FindObjectOfType<SceneController>().GoToDeathScene();
     }
 }

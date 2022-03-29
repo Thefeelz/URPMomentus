@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class P_Input : MonoBehaviour
 {
-    [SerializeField] Canvas helpScreen;
     P_CoolDownManager coolDownManager;
     P_GroundSlide groundSlide;
     P_Movement movement;
@@ -115,9 +114,10 @@ public class P_Input : MonoBehaviour
             // ====================================
             // ==========MENU / UI THANGS==========
             // ====================================
-            if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
+            
         }
         if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
+        if (Input.GetKeyDown(KeyCode.M)) { GetComponent<CharacterStats>().RemoveHealthMelee(GetComponent<CharacterStats>().GetPlayerMaxHealth()); }
     }
 
     void GetUserInputPhysics()

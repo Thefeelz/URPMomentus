@@ -39,4 +39,13 @@ public class SceneController : MonoBehaviour
     {
         Application.Quit();
     }
+    public void GoToDeathScene()
+    {
+        Debug.Log(SceneManager.sceneCount);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
+    }
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(FindObjectOfType<GameManager>().GetLevel());
+    }
 }
