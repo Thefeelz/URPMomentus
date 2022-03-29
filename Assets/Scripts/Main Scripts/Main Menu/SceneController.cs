@@ -31,4 +31,12 @@ public class SceneController : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
+    public void GoToNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void QuitTheFuckingGame()
+    {
+        Application.Quit();
+    }
 }

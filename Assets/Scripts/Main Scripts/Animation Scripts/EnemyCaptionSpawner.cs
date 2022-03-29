@@ -7,12 +7,18 @@ public class EnemyCaptionSpawner : MonoBehaviour
     [SerializeField] GameObject takeDamageCaption;
     [SerializeField] Sprite[] spriteRenderers;
     [SerializeField] float timeCaptionIsActive;
+    GameObject newObject;
 
+    private void Update()
+    {
+        if (newObject)
+            newObject.transform.LookAt(Camera.main.transform.position);
+    }
     public void SpawnDamageCaption()
     {
         if (takeDamageCaption)
         {
-            GameObject newObject = Instantiate(takeDamageCaption, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
+            newObject = Instantiate(takeDamageCaption, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
             newObject.GetComponentInChildren<SpriteRenderer>().sprite = spriteRenderers[Random.Range(0, spriteRenderers.Length - 1)];
             newObject.transform.LookAt(Camera.main.transform.position);
             Destroy(newObject, timeCaptionIsActive);

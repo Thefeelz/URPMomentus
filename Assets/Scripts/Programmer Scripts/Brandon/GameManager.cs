@@ -180,6 +180,11 @@ public class GameManager : MonoBehaviour
     }
     public Vector3 GetRespawnPointPosition() { return positionToRespawn.position; }
     public Vector3 GetRespawnPointRotation() { return positionToRespawn.rotation.eulerAngles; }
+    public void SendGameObjectToRespawn(GameObject gameObject)
+    {
+        gameObject.transform.position = positionToRespawn.position;
+        gameObject.transform.rotation = positionToRespawn.rotation;
+    }
     public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawn = newRespawnPosition; }
     public void SetLevelComplete(int levelCompleted)
     {

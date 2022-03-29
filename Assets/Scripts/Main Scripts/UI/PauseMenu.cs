@@ -33,15 +33,16 @@ public class PauseMenu : MonoBehaviour
         {
             Pause();
         }
+        
     }
 
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Debug.Log("Resume");
         GameIsPaused = false;
         pauseMenuUI.SetActive(false);
-        playerHUD.SetActive(true);
+        // playerHUD.SetActive(true);
+        playerHUD.GetComponent<Canvas>().enabled = true;
         Time.timeScale = 1f;
     }
 
@@ -50,7 +51,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
-        playerHUD.SetActive(false);
+        // playerHUD.SetActive(false);
+        playerHUD.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 0f;
     }
 

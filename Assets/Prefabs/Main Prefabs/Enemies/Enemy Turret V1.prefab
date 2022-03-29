@@ -1421,6 +1421,8 @@ GameObject:
   - component: {fileID: 6123282378114966094}
   - component: {fileID: 6123282378114966128}
   - component: {fileID: 6123282378114966095}
+  - component: {fileID: 1194420393}
+  - component: {fileID: 1194420394}
   m_Layer: 9
   m_Name: Enemy Turret V1
   m_TagString: Untagged
@@ -1483,6 +1485,7 @@ MonoBehaviour:
   energyAmount: 10
   enemyCanvas: {fileID: 0}
   healthBar: {fileID: 0}
+  deathEffect: {fileID: 8522784401893686309, guid: b8e76d0de490ebc458456c3174071d45, type: 3}
   objectsToTurnOnWhenDead: []
 --- !u!114 &6123282378114966095
 MonoBehaviour:
@@ -1508,7 +1511,41 @@ MonoBehaviour:
   firePosition: {fileID: 6620214562167523526}
   smokeEffect: {fileID: 6578143372160973395}
   bulletsToFire: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
-  state: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
+  currentState: 0
+--- !u!65 &1194420393
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357724986821811586}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5106505, y: 1.3706714, z: 1.3173276}
+  m_Center: {x: 0.005586266, y: 0.70330423, z: 0.06322712}
+--- !u!114 &1194420394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6357724986821811586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9cc2159d59f494faba1b998ebf558c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeDamageCaption: {fileID: 3661355498518101131, guid: 2745e13508680bc48bc5a0519e26e715, type: 3}
+  spriteRenderers:
+  - {fileID: -6918422498153754665, guid: 271fab79d41916c438351bf523579e14, type: 3}
+  - {fileID: -8826229498821127216, guid: 271fab79d41916c438351bf523579e14, type: 3}
+  - {fileID: 5262631431294657274, guid: 271fab79d41916c438351bf523579e14, type: 3}
+  timeCaptionIsActive: 0
 --- !u!1 &6374166829701190191
 GameObject:
   m_ObjectHideFlags: 0

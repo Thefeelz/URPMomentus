@@ -20,10 +20,7 @@ public class SwordThrow : MonoBehaviour
     }
     private void Update()
     {
-        Debug.DrawRay(transform.position, -transform.up);
-        Debug.DrawRay(transform.position, transform.up);
-        Debug.DrawRay(transform.position, -transform.right);
-        Debug.DrawRay(transform.position, transform.right);
+        
         if (!hitEnemy)
         {
             HitEnemy();
@@ -35,7 +32,7 @@ public class SwordThrow : MonoBehaviour
 
         for (int i = 0; i < directions.Length; i++)
         {
-            if (Physics.Raycast(transform.position, directions[i], out hit[i], 0.25f) && hit[i].transform.GetComponentInParent<EnemyStats>())
+            if (Physics.Raycast(transform.position, directions[i], out hit[i], 0.25f) && hit[i].transform.GetComponentInParent<EnemyStats>() && !hitEnemy)
             {
                 EnemyStats enemy = hit[i].transform.GetComponentInParent<EnemyStats>();
                 enemy.TakeDamage(20);
