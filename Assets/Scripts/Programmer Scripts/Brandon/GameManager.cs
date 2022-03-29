@@ -102,15 +102,28 @@ public class GameManager : MonoBehaviour
     {
         foreach (var enemy in enemiesInLevel)
         {
-            if (!enemy.GetComponent<Entity>())
+            if (enemy.GetComponent<EnemyChaseState>())
                 enemy.GetComponent<EnemyChaseState>().SpecialInUse(value);
-            else
+            else if (enemy.GetComponent<Entity>())
             {
                 enemy.GetComponent<Entity>().specialUseBool = value;
                 enemy.GetComponent<Entity>().stateMachine.ChangeState(enemy.GetComponent<Entity>().specialUseState);
             }
+            else if (enemy.GetComponent<Turret>())
+            {
+                enemy.GetComponent<Turret>().SetStateToSpecialInUse(value);
+            }
         }
     }
+
+    public void PlayerDead()
+    {
+        foreach (EnemyStats enemy in enemiesInLevel)
+        {
+            enemy.SetStateToPlayerDead();
+        }
+    }
+
     public void SetBladeColor(int newColor)
     {
         bladeColor = newColor;
@@ -167,6 +180,11 @@ public class GameManager : MonoBehaviour
     }
     public Vector3 GetRespawnPointPosition() { return positionToRespawn.position; }
     public Vector3 GetRespawnPointRotation() { return positionToRespawn.rotation.eulerAngles; }
+    public void SendGameObjectToRespawn(GameObject gameObject)
+    {
+        gameObject.transform.position = positionToRespawn.position;
+        gameObject.transform.rotation = positionToRespawn.rotation;
+    }
     public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawn = newRespawnPosition; }
     public void SetLevelComplete(int levelCompleted)
     {

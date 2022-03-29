@@ -96,7 +96,7 @@ public class P_Input : MonoBehaviour
             }
             else if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && shield.enabled) 
             {
-                shield.ActivateShield(); 
+               shield.ActivateShield(); 
             }
             else 
             {

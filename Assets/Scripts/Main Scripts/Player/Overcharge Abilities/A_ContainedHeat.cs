@@ -35,11 +35,11 @@ public class A_ContainedHeat : A_OverchargeAbilities
         // mouseLook.enabled = false;
         if (playerMovement)
         {
-            playerMovement.enabled = false;
+            TogglePlayerMovement(false);
         }
         else if (cMovement)
         {
-            cMovement.enabled = false;
+            TogglePlayerMovement(false);
         }
         playerAnimator.SetBool("groundAttack", true);
         return true;
@@ -68,11 +68,11 @@ public class A_ContainedHeat : A_OverchargeAbilities
             // mouseLook.enabled = true;
             if (playerMovement)
             {
-                playerMovement.enabled = true;
+                TogglePlayerMovement(true);
             }
             else if (cMovement)
             {
-                cMovement.enabled = true;
+                TogglePlayerMovement(true);
             }
             playerAnimator.SetBool("groundAttack", false);
         }

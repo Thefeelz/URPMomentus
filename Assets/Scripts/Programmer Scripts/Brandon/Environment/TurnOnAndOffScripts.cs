@@ -17,6 +17,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
     A_SwordThrow swordThrowAbility;
     CharacterStats player;
     PlayerAttack playerAttackAbility;
+    
 
     private void Awake()
     {
@@ -87,6 +88,21 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (swordSlash) { swordSlashAbility.enabled = true; }
         if (containedHeat) { containedHeatAbility.enabled = true; }
     }
+    public void TurnOnScripts(AbilityToManipulate enumz)
+    {
+        if (enumz == AbilityToManipulate.groundSlide) { groundSlideAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.wallRun) { wallRunAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.movement) { movementAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.input) { inputAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.airDash) { airDashAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.bladeDance) { bladeDanceAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.mouselook) { mouseLookAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.swordThrow) { swordThrowAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.playerAttack) { playerAttackAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.swordSlash) { swordSlashAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.containedHeat) { containedHeatAbility.enabled = true; return; }
+    }
+
     public void TurnOffScripts()
     {
         if (groundSlide) { groundSlideAbility.enabled = false; }
@@ -100,5 +116,63 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (playerAttack) { playerAttackAbility.enabled = false; }
         if (swordSlash) { swordSlashAbility.enabled = false; }
         if (containedHeat) { containedHeatAbility.enabled = false; }
+    }
+    public void TurnOffScripts(AbilityToManipulate enumz)
+    {
+        if (enumz == AbilityToManipulate.groundSlide) { groundSlideAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.wallRun) { wallRunAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.movement) { movementAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.input) { inputAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.airDash) { airDashAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.bladeDance) { bladeDanceAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.mouselook) { mouseLookAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.swordThrow) { swordThrowAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.playerAttack) { playerAttackAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.swordSlash) { swordSlashAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.containedHeat) { containedHeatAbility.enabled = false; return; }
+    }
+    public void ToggleGroundSlide(bool value)
+    {
+        groundSlideAbility.enabled = value;
+    }
+    public void ToggleWallRun(bool value)
+    {
+        wallRunAbility.enabled = value;
+    }
+    public void ToggleMovement(bool value)
+    {
+        movementAbility.enabled = value;
+    }
+    public void ToggleInput(bool value)
+    {
+        inputAbility.enabled = value;
+    }
+    public void ToggleAirDash(bool value)
+    {
+        airDashAbility.enabled = value;
+    }
+    public void ToggleBladeDance(bool value)
+    {
+        bladeDanceAbility.enabled = value;
+    }
+    public void ToggleMouseLook(bool value)
+    {
+        mouseLookAbility.enabled = value;
+    }
+    public void ToggleSwordThrow(bool value)
+    {
+        swordThrowAbility.enabled = value;
+    }
+    public void ToggleAttack(bool value)
+    {
+        playerAttackAbility.enabled = value;
+    }
+    public void ToggleSwordSlash(bool value)
+    {
+        swordSlashAbility.enabled = value;
+    }
+    public void ToggleContainedHeat(bool value)
+    {
+        containedHeatAbility.enabled = value;
     }
 }

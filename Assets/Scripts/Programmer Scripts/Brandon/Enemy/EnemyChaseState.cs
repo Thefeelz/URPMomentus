@@ -235,7 +235,8 @@ public class EnemyChaseState : MonoBehaviour
     {
         dead = true;
         animController.SetBool("dead", true);
-        masterLevel.AddToKillCount(1);
+        if(masterLevel)
+            masterLevel.AddToKillCount(1);
     }
 
     public void MeleeAttack()

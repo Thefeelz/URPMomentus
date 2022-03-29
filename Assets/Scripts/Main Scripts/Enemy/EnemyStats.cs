@@ -13,6 +13,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] int energyAmount = 10;
     [SerializeField] Canvas enemyCanvas;
     [SerializeField] Image healthBar;
+    [SerializeField] ParticleSystem deathEffect;
 
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
     
@@ -26,13 +27,14 @@ public class EnemyStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+
         if (GetComponent<Entity>())
         {
             mEntity = gameObject.GetComponent<Entity>();
-            Debug.Log("entity found");
         }
-        gameManager = FindObjectOfType<GameManager>();
-        gameManager.AddEnemyToList(this);
+        else
+            gameManager.AddEnemyToList(this);
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
 
@@ -67,10 +69,22 @@ public class EnemyStats : MonoBehaviour
             StartCoroutine(DestroySelf());
         }
         // all Damage does is subtract health
-        else if (GetComponent<Entity>())
+        else if (GetComponent<Entity>() && !triggeredDead)
+        {
+            currentHealth = 0;
+            triggeredDead = true;
             mEntity.Damage(damageToTake);
+            StartCoroutine(DestroySelf());
+        }
     }
 
+    public void NoahAIAddToActiveList()
+    {
+        if(gameManager)
+            gameManager.AddEnemyToList(this);
+        currentHealth = maxHealth;
+        triggeredDead = false;
+    }
     public int getMaxHealth()
     {
         return maxHealth;
@@ -93,6 +107,15 @@ public class EnemyStats : MonoBehaviour
     }
     IEnumerator DestroySelf()
     {
+        if (deathEffect)
+        {
+            ParticleSystem newObject = Instantiate(deathEffect, transform.position, Quaternion.identity);
+            newObject.Play();
+            Destroy(newObject, 2f);
+        }
+        else
+            Debug.LogError("There is no death effect linked to this prefab, make sure you link some sort of death VFX from the 'Visual Effects Folder'");
+        
         player.ReplenishHealth(energyAmount);
         if (GetComponent<EnemyChaseState>())
         {
@@ -111,7 +134,45 @@ public class EnemyStats : MonoBehaviour
         else if (GetComponent<Turret>())
         {
             GetComponent<Turret>().TurnOnTurretFire();
+            yield return new WaitForSeconds(10f);
             gameManager.RemoveFromActiveList(this);
+        }
+        else if (GetComponent<Entity>())
+        {
+            yield return new WaitForSeconds(10f);
+            gameManager.RemoveFromActiveList(this);
+        }
+        else if (GetComponent<BomberEnemy>())
+        {
+            // TODO, VINCENT, yah can put your stuff for you AI here, you can follow the WaitForSeconds which just allows enemies to be visible for "x" amount of seconds
+            // after they die.
+            GetComponent<BomberEnemy>();
+            yield return new WaitForSeconds(0.5f);
+            gameManager.RemoveFromActiveList(this);
+        }
+
+    }
+
+    public void SetStateToPlayerDead()
+    {
+        if(GetComponent<Turret>())
+        {
+            GetComponent<Turret>().SetStateToPlayerDead();
+        }
+        else if (GetComponent<Entity>())
+        {
+            // TODO Noah Add your State here for when the player is dead
+        }
+        else if (GetComponent<BomberEnemy>())
+        {
+            GetComponent<BomberEnemy>().SetStateToAsleep();
+        }
+
+        else
+        {
+            // TODO Vincent add the if component of the else if to whatever your flying enemy script name is that is attached to the body
+            // and add a State to your flyer that just stops it from doing anything so when the player is dead it doesnt continue to
+            // attack the player, it will just stand there and do nada.
         }
     }
 }

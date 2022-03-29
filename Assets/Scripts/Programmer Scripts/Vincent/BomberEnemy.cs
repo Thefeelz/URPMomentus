@@ -4,63 +4,118 @@ using UnityEngine;
 
 public class BomberEnemy : MonoBehaviour
 {
+    //Flyer states and stats
+    enum FlyerState { Scanning, Targeting, LockOn, Explode, Asleep, Dead };
     [SerializeField]
-    private float damage = 1f, attackPlayerSpeed, timeToLock, range, targetOffset = 1f;
+    FlyerState currentState;
+    
+    //Flyer specfic stats
+    [SerializeField]
+    private float damage = 1f, attackPlayerSpeed, timeToLock, scanRange, explosionRange;
+    Coroutine LO;
 
-    private GameObject player, flyerBody;
-    CharacterStats playerStats;
-    private Collider playerCollider;
+    //So drone doesn't fly towards player's toes
+    private float targetOffset=1.0f;
 
+    Color sightColor;
+
+    //Other Flyer pieces
     private Quaternion lastBodyRota;
-
     RaycastHit seeObject; // Sight raycast
-    private bool isLockedOn = false;
     private Vector3 targetSpot;
+
+    //Enemy stats
+    EnemyStats flyStat;
+
+    //Player
+    CharacterStats player;
+    private Collider playerCollider;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Body");
+        player = FindObjectOfType<CharacterStats>();
+        playerCollider = player.GetComponentInChildren<CapsuleCollider>();
 
-        playerCollider = player.GetComponent<Collider>();
-        playerStats = FindObjectOfType<CharacterStats>();
-
-        flyerBody = this.transform.GetChild(0).gameObject;
+        flyStat = GetComponent<EnemyStats>();
         attackPlayerSpeed = attackPlayerSpeed / 20;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-
-        //look at player while not locked on
-        if (isLockedOn)
+        if (flyStat.getCurrentHealth() <= 0) 
         {
-            flyerBody.transform.LookAt(targetSpot);
+            currentState = FlyerState.Dead;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        Physics.Raycast(this.transform.position, player.transform.position - transform.position, out seeObject, scanRange);
+        Debug.DrawRay(this.transform.position, this.transform.forward * 10, sightColor);
+        //Debug.Log(" Drone sees: " + seeObject.collider.name);
+
+        if (currentState == FlyerState.Scanning)
+        {
+            if (seeObject.collider == playerCollider)
+            {
+                LO=StartCoroutine(LockOn());
+                currentState = FlyerState.Targeting;
+            }
+        }
+        else if (currentState == FlyerState.Targeting)
+        {
+            sightColor = Color.blue;
+            transform.LookAt(player.transform);
+            lastBodyRota = transform.rotation;
+            if (seeObject.collider != playerCollider )
+            {
+                transform.rotation = lastBodyRota;
+                StopCoroutine(LO);
+                currentState = FlyerState.Scanning;
+            }
+            targetSpot = player.transform.position + new Vector3(0, targetOffset, 0);
+
+        }
+        else if (currentState == FlyerState.LockOn)
+        {
+            sightColor = Color.red;
+            this.transform.position = Vector3.MoveTowards(this.transform.position, targetSpot, attackPlayerSpeed);
+            if(Vector3.Distance(this.transform.position, targetSpot) < 1)
+            {
+                currentState = FlyerState.Explode;
+            }
+
+        }
+        else if (currentState == FlyerState.Explode)
+        {
+            if(Vector3.Distance(this.transform.position, player.transform.position + new Vector3(0, targetOffset, 0)) < explosionRange)
+            {
+                player.A_RemoveHealth(damage);
+            }
+            currentState = FlyerState.Dead;
+        }
+        else if (currentState == FlyerState.Dead)
+        {
+            Destroy(this.gameObject); //wipes the object from existence
+
+        }
+        else if (currentState == FlyerState.Asleep)
+        {
+
+
         }
         else
         {
-            Physics.Raycast(this.transform.position, player.transform.position, out seeObject, range);
+            Debug.LogError("Error: Flyer-state");
         }
-
-        if (seeObject.collider == playerCollider)
-        {
-            targetSpot = player.transform.position + new Vector3(0, targetOffset, 0);
-            flyerBody.transform.LookAt(player.transform);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        StartCoroutine(LockOn());
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        StopCoroutine(LockOn());
     }
 
     IEnumerator LockOn()
     {
         yield return new WaitForSeconds(timeToLock);
-        isLockedOn = true;
+        currentState = FlyerState.LockOn;
     }
+
+    public void SetStateToAsleep() { currentState = FlyerState.Asleep; }
 }

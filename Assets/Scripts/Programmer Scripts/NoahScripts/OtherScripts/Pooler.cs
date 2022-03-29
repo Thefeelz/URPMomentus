@@ -25,6 +25,8 @@ public class Pooler : MonoBehaviour
     private Dictionary<string, int> minField; // minimum amount to exist on the field at a given time
     private Dictionary<string, int> spawnType; // type of enemy
     private List<string> tags; // a list of tags for referencing dictionarys in a cyclic order
+    public Locations locations;
+    private int spot; // the spot of the despawned melee enemy
 
 
 
@@ -32,6 +34,7 @@ public class Pooler : MonoBehaviour
     // and all objects needed are created and stored in their respective queue
     void Start()
     {
+        locations = GameObject.Find("Cube").GetComponent<Locations>();
         // make enemies not colide with each other
         //Physics.IgnoreLayerCollision(9, 9);
         //makes a dictionary of queues that hold different enemy types
@@ -80,7 +83,12 @@ public class Pooler : MonoBehaviour
     public GameObject dequeueObject(string tag)
     {
         GameObject objToSpawn = dictionaryPools[tag].Dequeue();
-        return objToSpawn;
+        if(tag == "Melee")
+        {
+            objToSpawn.GetComponent<Enemy_Melee>().stateMachine.ChangeState(objToSpawn.GetComponent<Enemy_Melee>().moveState);
+            
+        }
+        return objToSpawn; 
         
     }
     /// <summary>
@@ -97,6 +105,8 @@ public class Pooler : MonoBehaviour
                 onField[tag] += 1;
                 GameObject enemy = dequeueObject(tag);
                 spawner.spawn(enemy, spawnType[tag]);
+                
+                
             }
         }
     }

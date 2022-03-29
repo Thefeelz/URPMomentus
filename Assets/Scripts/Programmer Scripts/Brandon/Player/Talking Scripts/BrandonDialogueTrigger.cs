@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BrandonDialogueTrigger : MonoBehaviour
 {
-    [SerializeField] DialogueMessage[] messages;
+    [SerializeField] List<DialogueMessage> messages = new List<DialogueMessage>();
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponentInParent<DialogueSystem>())

@@ -151,6 +151,7 @@ public class P_GroundSlide : MonoBehaviour
             sliding = false;
             elapsedTime = 0;
             returnToNormalScreen = true;
+            StartCoroutine(AnimationToFalseDelay());
         }
     }
 
@@ -177,6 +178,7 @@ public class P_GroundSlide : MonoBehaviour
         CalculateSlideDistance();
         mouseLook.enabled = false;
         anim.SetBool("groundSlide", true);
+        // anim.Play("groundSlide 0");
     }
 
     void CalculateSlideDistance()
@@ -212,7 +214,7 @@ public class P_GroundSlide : MonoBehaviour
             returnToNormalScreen = false;
             useSlide = true;
             mouseLook.enabled = true;
-            anim.SetBool("groundSlide", false);
+            
         }
     }
 
@@ -242,5 +244,11 @@ public class P_GroundSlide : MonoBehaviour
     Vector3 TransformForwardFeetWithOffset(float offsetX, float offsetY, float offsetZ)
     {
         return new Vector3((transform.position.x + transform.forward.x * offsetX), (transform.position.y + transform.up.y * offsetY), (transform.position.z + transform.forward.z * offsetZ));
+    }
+
+    IEnumerator AnimationToFalseDelay()
+    {
+        yield return new WaitForSeconds(0.25f);
+        anim.SetBool("groundSlide", false);
     }
 }

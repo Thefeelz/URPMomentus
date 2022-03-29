@@ -67,11 +67,7 @@ public class P_Movement : MonoBehaviour
     }
     void GetUserInput()
     {
-        // Testing Purposes to restore health
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            playerStats.ReplenishHealth(10f);
-        }
+        
         // Character Movement (Checks for them to be Grounded)
         if (isGrounded)
         {
@@ -91,12 +87,15 @@ public class P_Movement : MonoBehaviour
         else if(wallRunning() && !wallrunner.wallLeft)
         {
             rb.MovePosition(-transform.right + transform.position);
-            rb.AddForce((transform.up - (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce(((transform.up) - (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
+            if (rb.velocity.z > maxPlayerSpeedRunning)
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 10f);
         }
         else if (wallRunning() && wallrunner.wallLeft)
         {
             rb.MovePosition(transform.right + transform.position);
-            rb.AddForce((transform.up + (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
+            rb.AddForce(((transform.up) + (transform.right * wallRunJumpExtraOomf)) * (playerJumpPower), ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 10f);
         }
     }
 
@@ -224,4 +223,10 @@ public class P_Movement : MonoBehaviour
     public void SetPlayerJump(float newJump) { playerJumpPower = newJump; }
     public void SetPlayerInAirControl(float newControl) { inAirControlMultiplier = Mathf.Clamp01(newControl); }
     public void SetFallMultiplier(float newMultiplier) { fallMultiplier = newMultiplier; }
+
+    public void SetPlayerCurrentSpeed(float newCurrentSpeed)
+    {
+        if (newCurrentSpeed == 0)
+            rb.velocity = Vector3.zero;
+    }
 }

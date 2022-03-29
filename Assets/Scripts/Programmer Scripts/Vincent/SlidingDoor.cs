@@ -108,11 +108,9 @@ public class SlidingDoor : MonoBehaviour
     void openDoors()
     {
         isDoorOpen = true;
-        Debug.Log("The door is open");
     }
     void closeDoors()
     {
         isDoorOpen = false;
-        Debug.Log("The door is closed");
     }
 }

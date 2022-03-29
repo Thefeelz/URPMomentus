@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     CharacterStats playerStats;
     Rigidbody myRb;
     [SerializeField] Image targetCrosshair;
+    [SerializeField] Image targetCrosshairDashReticle;
     [SerializeField] Transform weaponRaycastTransformPosition;
     [SerializeField] Animator playerAnimator;
     [SerializeField] float dashMaxDistance;
@@ -20,8 +21,9 @@ public class PlayerAttack : MonoBehaviour
     RaycastHit hitTarget;
     bool hitCast;
     bool dashing;
-    bool ableToAttackDash = true;
+    public bool ableToAttackDash = true;
     float elaspedTime = 0f;
+    float elapsedTimeUI = 0f;
     Color crosshairColor;
     Vector3 endingDashPosition;
     Vector3 startingDashPosition;
@@ -35,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
         playerStats = GetComponentInParent<CharacterStats>();
         myRb = GetComponent<Rigidbody>();
         crosshairColor = targetCrosshair.color;
+        
     }
 
     private void Update()
@@ -42,9 +45,18 @@ public class PlayerAttack : MonoBehaviour
         CheckEnemyInRange();
         if (dashing)
             DashToEnemy();
+        if (!ableToAttackDash)
+            UpdateDashUIReticle();
        
     }
 
+    void UpdateDashUIReticle()
+    {
+        elapsedTimeUI += Time.deltaTime;
+        float currentFill = elapsedTimeUI / attackDashCooldown;
+        targetCrosshairDashReticle.fillAmount = currentFill;
+        targetCrosshairDashReticle.color = Color.Lerp(Color.red, Color.cyan, currentFill);
+    }
     public void BasicAttack()
     {
         if(!playerAnimator.GetBool("swordSwing"))
@@ -55,13 +67,13 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
                 {
-                    endingDashPosition = hitTarget.transform.position;
+                    endingDashPosition = hitTarget.transform.position - (transform.forward * 1.5f);
                     startingDashPosition = transform.position;
                     dashing = true;
                     StartCoroutine(ResetAttackDash());
                     DashToEnemy();
                     currentEnemy = hitTarget.transform.GetComponentInParent<EnemyStats>();
-                    currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(true);
+                    SetSpecialInUse(true);
                 }
             }
         }
@@ -88,17 +100,17 @@ public class PlayerAttack : MonoBehaviour
             dashing = false;
             attackDashVolume.weight = 0;
             currentEnemy.TakeDamage(playerStats.GetPlayerAttack());
-            currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(false);
+            SetSpecialInUse(false);
             currentEnemy = null;
         }
     }
 
     void CheckEnemyInRange()
     {
-        //hitCast =  
+        
         if (Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
-            if (hitTarget.transform.CompareTag("Enemy") && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+            if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
             {
                 targetCrosshair.color = Color.red;
             }
@@ -121,9 +133,12 @@ public class PlayerAttack : MonoBehaviour
     }
     IEnumerator ResetAttackDash()
     {
+        targetCrosshairDashReticle.gameObject.SetActive(true);
         ableToAttackDash = false;
         yield return new WaitForSeconds(attackDashCooldown);
         ableToAttackDash = true;
+        elapsedTimeUI = 0f;
+        targetCrosshairDashReticle.gameObject.SetActive(false);
     }
     public void SetSwordSwingComplete()
     {
@@ -144,11 +159,44 @@ public class PlayerAttack : MonoBehaviour
 
     public void CheckForDamage()
     {
-        RaycastHit hit;
-        Physics.Raycast(Camera.main.transform.position, transform.forward, out hit, 2f);
-        if(hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        Vector3 pos = Camera.main.transform.position;
+        Vector3 pos1 = Camera.main.transform.position + (Camera.main.transform.right * 0.25f);
+        Vector3 pos2 = Camera.main.transform.position + (Camera.main.transform.right * -0.25f);
+        RaycastHit hit, hit1, hit2;
+        Physics.Raycast(pos, transform.forward, out hit, 2f);
+        Physics.Raycast(pos1, transform.forward, out hit1, 2f);
+        Physics.Raycast(pos2, transform.forward, out hit2, 2f);
+
+        Debug.DrawRay(pos, transform.forward * 2, Color.red, 2f);
+        Debug.DrawRay(pos1, transform.forward * 2, Color.red, 2f);
+        Debug.DrawRay(pos2, transform.forward * 2, Color.red, 2f);
+
+        if (hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {
             hit.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+        else if(hit1.collider != null && hit1.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        {
+            hit1.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+        else if (hit2.collider != null && hit2.collider.GetComponentInParent<EnemyStats>() && !dashing)
+        {
+            hit2.transform.GetComponentInParent<EnemyStats>().TakeDamage(playerStats.GetPlayerAttack());
+        }
+    }
+
+    void SetSpecialInUse(bool value)
+    {
+        if (GetComponentInParent<EnemyChaseState>())
+            currentEnemy.GetComponentInParent<EnemyChaseState>().SpecialInUse(value);
+        else if (GetComponentInParent<Entity>())
+        {
+            currentEnemy.GetComponent<Entity>().specialUseBool = value;
+            currentEnemy.GetComponent<Entity>().stateMachine.ChangeState(currentEnemy.GetComponent<Entity>().specialUseState);
+        }
+        else if (GetComponentInParent<Turret>())
+        {
+            currentEnemy.GetComponentInParent<Turret>().SetStateToSpecialInUse(value);
         }
     }
 }

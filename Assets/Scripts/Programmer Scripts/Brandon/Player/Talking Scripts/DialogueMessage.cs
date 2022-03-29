@@ -7,6 +7,13 @@ using UnityEngine.UI;
 public class DialogueMessage : ScriptableObject
 {
     public Sprite imageToDisplay;
+    [TextArea(3, 10)]
     public string message;
     public float timeToDisplay;
+    public bool overrideCurrentMessage;
+    public List<AbilityToManipulateObject> abilities = new List<AbilityToManipulateObject>();
+    public DialogueToggleGameObject[] objectsToTurnOn;
+    
 }
+
+

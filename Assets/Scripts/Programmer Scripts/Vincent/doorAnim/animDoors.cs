@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class animDoors : MonoBehaviour
 {
+    public bool locked;
     GameObject leftDoor, rightDoor;
     Vector3 leftDoorStartPos, rightDoorStartPos;
-    bool isDoorOpen, firstClose = true;
+    bool isDoorOpen;
     float currentDoorGap, closeDoorGap, openDoorGap;
     Vector3[] leftPos;
     Animator anim;
@@ -42,11 +43,11 @@ public class animDoors : MonoBehaviour
     //when player enters range
     private void OnTriggerStay(Collider other)
     {
-        if (other == target && reverseDoor)
+        if (other == target && reverseDoor && !locked)
         {
             closeDoors();
         }
-        else if (other == target)
+        else if (other == target && !locked)
         {
             openDoors();
         }
@@ -55,25 +56,31 @@ public class animDoors : MonoBehaviour
     //when player leaves range
     private void OnTriggerExit(Collider other)
     {
-        if (other == target && reverseDoor)
+        if (other == target && reverseDoor && !locked)
         {
             openDoors();
         }
-        else if (other == target)
+        else if (other == target && !locked)
         {
             closeDoors();
         }
     }
 
     //Changes bool based on if door should open or close
-    void openDoors()
+    public void openDoors()
     {
         anim.SetBool("isDoorOpen", true);
-        Debug.Log("A door is open");
+        //Debug.Log("A door is open");
     }
-    void closeDoors()
+    public void closeDoors()
     {
         anim.SetBool("isDoorOpen", false);
-        Debug.Log("A door is closed");
+        //Debug.Log("A door is closed");
+    }
+
+    //will lock the doors
+    public void shouldDoorsLock(bool key)
+    {
+        locked = key;
     }
 }

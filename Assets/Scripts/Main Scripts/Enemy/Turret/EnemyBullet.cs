@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     CharacterStats player;
-    float maxLife = 1f;
+    float maxLife = 5f;
     float timeAlive = 0f;
     float velocity = 0;
     float damage = 10f;
@@ -29,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.GetComponentInParent<CharacterStats>())
         {
-            other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(damage);
+            other.GetComponentInParent<CharacterStats>().RemoveHealthRanged(damage);
         }
     }
     public void SetVelocityToPlayer(float _velocity, CharacterStats _player, Transform headToRotate, float _damage)

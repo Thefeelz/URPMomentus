@@ -14,13 +14,19 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image containedHeatImage;
     [SerializeField] Image swordSlashImage;
 
+    [Header("Damage Overlay")]
+    [SerializeField] Image hexDamageOverlayImage;
+    [SerializeField] float opacityIncreaseOnDamage, opacityDecreaseRateOverTime;
+
     CharacterStats ourPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
+        opacityIncreaseOnDamage = opacityIncreaseOnDamage / 100;
+        opacityDecreaseRateOverTime = opacityDecreaseRateOverTime / 100;
         ourPlayer = GetComponent<CharacterStats>();
-        //healthBarDots = GetComponentInChildren<Image>();
+        
     }
 
     // Update is called once per frame
@@ -28,7 +34,8 @@ public class PlayerUI : MonoBehaviour
     {
         HealthBar.fillAmount = ourPlayer.GetPlayerHealth() / ourPlayer.GetPlayerMaxHealth();
         OverchargeBar.fillAmount = ourPlayer.GetPlayerOvercharge() / ourPlayer.GetPlayerMaxOvercharge();
-        //healthBarDots.fillAmount = HealthBar.fillAmount;
+        if (hexDamageOverlayImage.color.a > 0)
+            UpdatedamageOverlayOverTime();
     }
     public void UpdateAirDashFill(float fillAmount)
     {
@@ -45,5 +52,16 @@ public class PlayerUI : MonoBehaviour
     public void UpdateSwordSlashFill(float fillAmount)
     {
         swordSlashImage.fillAmount = fillAmount;
+    }
+
+    public void UpdateDamageOverlayOnDamageTaken()
+    {
+        Color c = hexDamageOverlayImage.color;
+        hexDamageOverlayImage.color = new Color(c.r, c.g, c.b, (c.a + opacityIncreaseOnDamage));
+    }
+    public void UpdatedamageOverlayOverTime()
+    {
+        Color c = hexDamageOverlayImage.color;
+        hexDamageOverlayImage.color = new Color(c.r, c.g, c.b, c.a - (opacityDecreaseRateOverTime * Time.deltaTime));
     }
 }

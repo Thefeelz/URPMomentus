@@ -11,7 +11,7 @@ public class Enemy_Melee : Entity
     public bool waitMelee; // bool to represent if 
     public int spot;
     public LineRenderer line;
-    
+
     //states
     public DeathState deathState { get; private set; }
     public Em_Move moveState { get; private set; }
@@ -20,9 +20,11 @@ public class Enemy_Melee : Entity
 
     public Locations mLocations;
 
-    
 
+    public bool hasFollower;
+    public bool following;
     public bool hasTarget;
+    
 
     //Datas
     [SerializeField]
@@ -31,6 +33,8 @@ public class Enemy_Melee : Entity
     public override void Awake()
     {
         base.Awake();
+        hasFollower = false;
+        following = false;
         mLocations = GameObject.Find("Cube").GetComponent<Locations>();
         deathState = new DeathState(this, stateMachine);
         moveState = new Em_Move(this, stateMachine, moveData, entityData, this);
@@ -44,7 +48,7 @@ public class Enemy_Melee : Entity
     public override void Update()
     {
         base.Update();
-        
+
     }
 
     public override void FixedUpdate()
@@ -64,7 +68,7 @@ public class Enemy_Melee : Entity
         }
     }
 
-   
+
 
     public override void Damage(float amountDamage)
     {
@@ -72,11 +76,13 @@ public class Enemy_Melee : Entity
 
         if (health <= 0)
         {
+            
+            mLocations.lSpotsTaken[spot] = null;
             stateMachine.ChangeState(deathState);
         }
     }
 
-    
+
 
 
 }

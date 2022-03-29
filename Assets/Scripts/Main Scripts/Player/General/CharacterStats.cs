@@ -15,11 +15,17 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] Animator canvasAnimator;
 
     Animator playerAnim;
+    PlayerUI ui;
+    GameManager gameManager;
 
     void Start()
     {
         playerAnim = GetComponent<Animator>();
+        ui = GetComponent<PlayerUI>();
         playerCurrentHealth = playerMaxHealth;
+        gameManager = FindObjectOfType<GameManager>();
+        if (!gameManager)
+            Debug.LogWarning("There is NO GameManager in the Scene, make sure to Add One");
     }
 
     // Update is called once per frame
@@ -67,8 +73,9 @@ public class CharacterStats : MonoBehaviour
     /// <param name="amountToRemove"></param>
     public void RemoveHealthMelee(float amountToRemove)
     {
-        if (playerAnim.GetBool("swordBlock")) { return; }
-        if(amountToRemove >= playerCurrentHealth)
+        // if (playerAnim.GetBool("swordBlock")) { return; }
+        ui.UpdateDamageOverlayOnDamageTaken();
+        if (amountToRemove >= playerCurrentHealth)
         {
             Die();
             return;
@@ -84,6 +91,7 @@ public class CharacterStats : MonoBehaviour
     public void RemoveHealthRanged(float amountToRemove)
     {
         if (playerAnim.GetBool("swordBlock")) { return; }
+        ui.UpdateDamageOverlayOnDamageTaken();
         if (amountToRemove >= playerCurrentHealth)
         {
             Die();
@@ -167,6 +175,7 @@ public class CharacterStats : MonoBehaviour
         GetComponent<P_Input>().enabled = false;
         playerCurrentHealth = 0;
         canvasAnimator.SetBool("dead", true);
+        gameManager.PlayerDead();
     }
 
     IEnumerator BackToMainScreen()
