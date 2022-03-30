@@ -14,4 +14,5 @@ public class DialogueMessageInteractive
     public DialogueToggleGameObject[] objectsToTurnOn;
     public List<DialogueToggleAnimation> animations = new List<DialogueToggleAnimation>();
     public List<DialogueToggleParticleSystem> particleSystem = new List<DialogueToggleParticleSystem>();
+    public List<DialogueToggleObjective> objectives = new List<DialogueToggleObjective>();
 }

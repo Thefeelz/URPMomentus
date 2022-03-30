@@ -134,7 +134,7 @@ public class SetUpPlayer : MonoBehaviour
                 Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
                 materialz[0] = materialsToApply[6];
                 materialz[1] = materialsToApply[7];
-                Debug.Log(materialz[0].name + materialz[1].name);
+                
                 mat.GetComponent<MeshRenderer>().materials = materialz;
             }
         }
@@ -144,9 +144,8 @@ public class SetUpPlayer : MonoBehaviour
             foreach (GameObject mat in shield)
             {
                 Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
-                materialz[0] = materialsToApply[6];
-                materialz[1] = materialsToApply[7];
-                Debug.Log(materialz[0].name + materialz[1].name);
+                materialz[0] = defaultMaterialsToApply[6];
+                materialz[1] = defaultMaterialsToApply[7];
                 mat.GetComponent<MeshRenderer>().materials = materialz;
                 
             }

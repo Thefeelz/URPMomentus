@@ -258,16 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSystem: {fileID: 815146212}
-  messageList:
-  - {fileID: 11400000, guid: ecdc803388fef2646a0297360c103d83, type: 2}
-  - {fileID: 11400000, guid: 42e9b2b148b33a24db25dcd3f63e3eb7, type: 2}
-  - {fileID: 11400000, guid: d999b964b0f959346b616dcc9244fd1c, type: 2}
-  - {fileID: 11400000, guid: 3a3c3e1505db78149a934242e76ed204, type: 2}
-  - {fileID: 11400000, guid: 4a07e56bda4421e4dbc0002653c2eec2, type: 2}
-  - {fileID: 11400000, guid: 8bba9650ee640184883967e41dc94726, type: 2}
-  - {fileID: 11400000, guid: 53e6ea5036ed0d44b84e7792057bd9c8, type: 2}
-  - {fileID: 11400000, guid: eaad511d60bf85e499adcb9a9ad6dd93, type: 2}
-  - {fileID: 11400000, guid: 30bf9e3d824e48e4b9e4fab5eade2fd7, type: 2}
+  messageList: []
   messageInteractive:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Well that landing was rougher than expected, are you all good K.A.T.?
@@ -277,6 +268,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: All your programs seem to be fine...
     timeToDisplay: 5
@@ -285,6 +277,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Let's make sure your still functioning properly.
     timeToDisplay: 3
@@ -293,14 +286,48 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: Move around a little in this room while I attempt to override that door
+    message: Lets take a look at your optics, to your left and right are panels,
+      look at them until they turn from white to green.
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives:
+    - objective:
+        objectiveName: Look at Panel 1
+        objectiveID: 0
+        objectiveCompleted: 0
+      startObjective: 1
+    - objective:
+        objectiveName: Look at Panel 2
+        objectiveID: 1
+        objectiveCompleted: 0
+      startObjective: 1
+  messageInteractive2:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Good, if the suit is to sensitive for your liking, press 'Escape' and
+      go to the settings menu to change Sensitivity.
+    timeToDisplay: 5
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Now move around a little in this room while I attempt to override that
+      door
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Use WASD to move around the room!
     timeToDisplay: 5
@@ -311,14 +338,19 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: 
-    timeToDisplay: 5
+    timeToDisplay: 4
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
-    animations: []
+    animations:
+    - animator: {fileID: 11586300}
+      boolName: startDoorOpening
+      boolValue: 1
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Damn, I got locked out!
     timeToDisplay: 4
@@ -327,6 +359,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Maybe the gap is big enough to slide under.
     timeToDisplay: 5
@@ -335,6 +368,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Use 'Left Shift' to slide under the door!
     timeToDisplay: 5
@@ -360,6 +394,7 @@ MonoBehaviour:
     - particle: {fileID: 523342802}
       stopPlay: 0
       startPlay: 1
+    objectives: []
 --- !u!114 &11586302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,6 +1634,10 @@ PrefabInstance:
       propertyPath: detectionRange
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966128, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: energyAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6357724986821811586, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_Name
       value: Enemy Turret V1 (1)
@@ -1949,6 +1988,10 @@ PrefabInstance:
     - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: detectionRange
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966128, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: energyAmount
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6357724986821811586, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_Name
@@ -4900,10 +4943,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
-      propertyPath: currentLevelBuildIndex
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8505584002279285417, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -7055,18 +7094,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258327913}
     m_Modifications:
-    - target: {fileID: 417194596, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417194599, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1085621976, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3117783459759319468, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_Name
       value: Player MainV2
@@ -7114,10 +7141,6 @@ PrefabInstance:
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9082202503548259204, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: near clip plane
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
@@ -7742,7 +7765,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -26.444, z: 0}
 --- !u!65 &662510644
 BoxCollider:
@@ -7780,6 +7803,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: You can also use your Sword Throw for ranged enemies.
     timeToDisplay: 3
@@ -7788,6 +7812,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Press '2' to throw your sword at enemies!
     timeToDisplay: 3
@@ -7798,6 +7823,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
 --- !u!1 &665330489
 GameObject:
   m_ObjectHideFlags: 0
@@ -8386,7 +8412,7 @@ Transform:
   - {fileID: 1133293104}
   - {fileID: 884618144}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &721211250
 PrefabInstance:
@@ -10544,6 +10570,62 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3633865748600368068, guid: 3884a963e79a15a468aec8cd15aefbb5, type: 3}
+--- !u!1 &791408374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 791408375}
+  - component: {fileID: 791408376}
+  m_Layer: 0
+  m_Name: Intro Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &791408375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791408374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.516342, y: 4.094975, z: -10.042984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1527017675}
+  - {fileID: 1234200631}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &791408376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791408374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56639127894dcbb4bbe0d5fb2509c0c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelOne: {fileID: 1527017674}
+  panelTwo: {fileID: 1234200630}
+  panelOneWhite: {fileID: 2100000, guid: 2c2d5e74ebde45845bd1bc309f0acc88, type: 2}
+  panelOneGreen: {fileID: 2100000, guid: 820a89cebbb7ecf4c93fa19fc966b6bc, type: 2}
+  panelTwoWhite: {fileID: 2100000, guid: f39faa3aaaa610b4980655de6ddd7428, type: 2}
+  panelTwoGreen: {fileID: 0}
+  timeOnTarget: 5
+  panelOneBool: 0
+  panelTwoBool: 0
+  doorToTrigger: {fileID: 11586301}
+  elapsedTime: 0
 --- !u!1001 &793183564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12389,6 +12471,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Now ahead I am picking up more energy signatures.
     timeToDisplay: 3
@@ -12397,6 +12480,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: These are moving, probably enemies. When encountering enemies, use left
       click to attack!
@@ -12406,6 +12490,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
 --- !u!1 &912672020
 GameObject:
   m_ObjectHideFlags: 0
@@ -12623,7 +12708,7 @@ Transform:
   m_Children:
   - {fileID: 1640557885}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &930981032
 PrefabInstance:
@@ -15077,6 +15162,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Wait for it to turn off, and then jump over the gap!
     timeToDisplay: 5
@@ -15085,6 +15171,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: 'Now!
 
@@ -15106,6 +15193,7 @@ MonoBehaviour:
     - particle: {fileID: 523342802}
       stopPlay: 1
       startPlay: 0
+    objectives: []
 --- !u!65 &1133293106
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16158,6 +16246,10 @@ PrefabInstance:
       propertyPath: chargeUpTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966128, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: energyAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6357724986821811586, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_Name
       value: Enemy Turret V1 (2)
@@ -16631,6 +16723,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 791408375}
   - {fileID: 710305010}
   - {fileID: 1449518283}
   - {fileID: 1950208920}
@@ -16728,6 +16821,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6012584350096541496, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
   m_PrefabInstance: {fileID: 174502007}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1234200630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1234200631}
+  - component: {fileID: 1234200634}
+  - component: {fileID: 1234200633}
+  - component: {fileID: 1234200632}
+  m_Layer: 0
+  m_Name: Panel  Two
+  m_TagString: PanelTwo
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1234200631
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234200630}
+  m_LocalRotation: {x: -0, y: 0.8660252, z: -0, w: 0.5000004}
+  m_LocalPosition: {x: 5.1479836, y: 1, z: -2.6762772}
+  m_LocalScale: {x: 2, y: 1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 791408375}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
+--- !u!65 &1234200632
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234200630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1234200633
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234200630}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: da9e35958d333114b8e23d21f3649785, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1234200634
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1234200630}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1234201339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17593,7 +17781,7 @@ Transform:
   m_Children:
   - {fileID: 899984787}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1292162260
 PrefabInstance:
@@ -19531,6 +19719,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: If you press space WHILE wall running, you will leap off the wall and
       if timed right, you will land on the opposite wall.
@@ -19540,6 +19729,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: On the other hand, you can use your slide ability WHILE in the air to
       do an air dash forward!
@@ -19551,6 +19741,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: The choice is yours!
     timeToDisplay: 4
@@ -19561,6 +19752,7 @@ MonoBehaviour:
       turnOnObject: 0
     animations: []
     particleSystem: []
+    objectives: []
 --- !u!1001 &1381091509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20961,7 +21153,7 @@ Transform:
   - {fileID: 1646374054}
   - {fileID: 1869383699}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1450033079
 PrefabInstance:
@@ -21708,6 +21900,101 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 4159a015e44363542b9d9eec836e12de, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
+--- !u!1 &1527017674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527017675}
+  - component: {fileID: 1527017678}
+  - component: {fileID: 1527017677}
+  - component: {fileID: 1527017676}
+  m_Layer: 0
+  m_Name: Panel One
+  m_TagString: PanelOne
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527017675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527017674}
+  m_LocalRotation: {x: -0, y: 0.4999996, z: -0, w: 0.8660257}
+  m_LocalPosition: {x: -5.310478, y: 1, z: -2.5293922}
+  m_LocalScale: {x: 2, y: 1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 791408375}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 60, z: 0}
+--- !u!65 &1527017676
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527017674}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1527017677
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527017674}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 2c2d5e74ebde45845bd1bc309f0acc88, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1527017678
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527017674}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1537624087
 GameObject:
   m_ObjectHideFlags: 0
@@ -21863,7 +22150,7 @@ Transform:
   - {fileID: 1769351998}
   - {fileID: 523342800}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1546322199
 PrefabInstance:
@@ -23257,6 +23544,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: That is interesting, lets see if it is enough to power up your shield.
     timeToDisplay: 5
@@ -23265,6 +23553,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: '''Right Click'' and hold should keep your shield active while you keep
       it held down.'
@@ -23276,6 +23565,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     message: Are you detecting any mroe enemies nearby?
     timeToDisplay: 3
@@ -23286,6 +23576,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Yes, this one seems to have more power but its not moving. Be cautious,
       dont forget about your shield!
@@ -23297,6 +23588,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     message: Can you open the door???
     timeToDisplay: 2
@@ -23307,6 +23599,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Already on it
     timeToDisplay: 2
@@ -23317,6 +23610,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Opening Now!
     timeToDisplay: 2
@@ -23330,6 +23624,7 @@ MonoBehaviour:
       boolName: isDoorOpen
       boolValue: 1
     particleSystem: []
+    objectives: []
 --- !u!65 &1640557888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23566,6 +23861,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: It seems to react to your passive energy, notice the color change.
     timeToDisplay: 3
@@ -23574,6 +23870,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: You can wall run on these walls, just aim towards it and slightly up
       and you will automatically start wallrunning.
@@ -23583,6 +23880,7 @@ MonoBehaviour:
     objectsToTurnOn: []
     animations: []
     particleSystem: []
+    objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Wall run on walls that are interactive!
     timeToDisplay: 3
@@ -23593,6 +23891,7 @@ MonoBehaviour:
       turnOnObject: 0
     animations: []
     particleSystem: []
+    objectives: []
 --- !u!65 &1646374056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27661,7 +27960,7 @@ Transform:
   - {fileID: 1376871118}
   - {fileID: 1898067224}
   m_Father: {fileID: 1217010573}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1959842591
 PrefabInstance:

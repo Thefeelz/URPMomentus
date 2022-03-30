@@ -172,6 +172,21 @@ public class DialogueSystem : MonoBehaviour
                 peter.objectToManipulate.SetActive(false);
         }
     }
+
+    void HandleObjectives(List<DialogueToggleObjective> objectives)
+    {
+        if(FindObjectOfType<ObjectiveHelper>())
+        {
+            ObjectiveHelper helper = FindObjectOfType<ObjectiveHelper>();
+            foreach (DialogueToggleObjective holly in objectives)
+            {
+                if (holly.startObjective)
+                    helper.AddObjectivesToDisplay(holly.objective);
+                else
+                    helper.RemoveObjectiveByID(holly.objective.objectiveID);
+            }
+        }
+    }
     void StartDisplayMessage()
     {
         canvasImageForDialoge.sprite = messagesToDisplay[i].imageToDisplay;
@@ -210,6 +225,8 @@ public class DialogueSystem : MonoBehaviour
                 HandleParticleSystemInteractive(interactiveMessagesToDisplay[i].particleSystem);
             if (interactiveMessagesToDisplay[i].animations.Count > 0)
                 HandleAnimatorSystemInteractive(interactiveMessagesToDisplay[i].animations);
+            if (interactiveMessagesToDisplay[i].objectives.Count > 0)
+                HandleObjectives(interactiveMessagesToDisplay[i].objectives);
             StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i].timeToDisplay, interactiveMessagesToDisplay[i].message));
             i++;
         }
@@ -238,6 +255,7 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator TurnOffImage()
     {
         dialogueAnimator.SetBool("dialogue", false);
+        interactiveMessagesToDisplay.Clear();
         yield return new WaitForSeconds(2f);
         canvasImageForDialoge.sprite = null;
     }
