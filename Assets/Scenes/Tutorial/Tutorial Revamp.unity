@@ -329,7 +329,7 @@ MonoBehaviour:
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: Use WASD to move around the room!
+    message: Use WASD to move around the room and 'Spacebar' to jump!
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities:
@@ -384,16 +384,7 @@ MonoBehaviour:
     - objectToManipulate: {fileID: 523342799}
       turnOnObject: 1
     animations: []
-    particleSystem:
-    - particle: {fileID: 698602158}
-      stopPlay: 0
-      startPlay: 1
-    - particle: {fileID: 1769352000}
-      stopPlay: 0
-      startPlay: 1
-    - particle: {fileID: 523342802}
-      stopPlay: 0
-      startPlay: 1
+    particleSystem: []
     objectives: []
 --- !u!114 &11586302
 MonoBehaviour:
@@ -719,7 +710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &68818125
 Transform:
   m_ObjectHideFlags: 0
@@ -7094,9 +7085,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258327913}
     m_Modifications:
+    - target: {fileID: 2580792190289158363, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580792190289158363, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 3117783459759319468, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_Name
       value: Player MainV2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_text
+      value: THIS IS TEXT AND IT IS BEING SHOWN
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912451642193074403, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_RootOrder
@@ -7141,6 +7168,30 @@ PrefabInstance:
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5935194964041790099, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627696791737401642, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526753, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 89.251
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 234.076
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
@@ -8397,7 +8448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &710305010
 Transform:
   m_ObjectHideFlags: 0
@@ -10621,7 +10672,7 @@ MonoBehaviour:
   panelOneGreen: {fileID: 2100000, guid: 820a89cebbb7ecf4c93fa19fc966b6bc, type: 2}
   panelTwoWhite: {fileID: 2100000, guid: f39faa3aaaa610b4980655de6ddd7428, type: 2}
   panelTwoGreen: {fileID: 0}
-  timeOnTarget: 5
+  timeOnTarget: 2
   panelOneBool: 0
   panelTwoBool: 0
   doorToTrigger: {fileID: 11586301}
@@ -23854,8 +23905,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: Good! Now I am noticing a energy source in front of you on the wall.
+    message: 'Hold Up!
+
+      That must be the Cosmic Rock from Veraxus''s last victim'
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem:
+    - particle: {fileID: 698602158}
+      stopPlay: 0
+      startPlay: 1
+    - particle: {fileID: 1769352000}
+      stopPlay: 0
+      startPlay: 1
+    - particle: {fileID: 523342802}
+      stopPlay: 0
+      startPlay: 1
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Wait for it to turn off, and then jump over the gap! That gap seems
+      to be to far for your normal jump...
     timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1869383698}
+      turnOnObject: 0
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: I am noticing that the peice of wall in front of you has a different
+      flow of energy.
+    timeToDisplay: 5
     overrideCurrentMessage: 1
     abilities: []
     objectsToTurnOn: []
@@ -23882,7 +23966,7 @@ MonoBehaviour:
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: Wall run on walls that are interactive!
+    message: When the rock stops, start wall running!
     timeToDisplay: 3
     overrideCurrentMessage: 0
     abilities: []
@@ -23891,6 +23975,26 @@ MonoBehaviour:
       turnOnObject: 0
     animations: []
     particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Now! Jump to wall run!
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1869383698}
+      turnOnObject: 0
+    animations: []
+    particleSystem:
+    - particle: {fileID: 698602158}
+      stopPlay: 1
+      startPlay: 0
+    - particle: {fileID: 1769352000}
+      stopPlay: 1
+      startPlay: 0
+    - particle: {fileID: 523342802}
+      stopPlay: 1
+      startPlay: 0
     objectives: []
 --- !u!65 &1646374056
 BoxCollider:

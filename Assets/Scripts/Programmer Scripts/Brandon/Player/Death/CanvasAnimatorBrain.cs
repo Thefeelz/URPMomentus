@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanvasAnimatorBrain : MonoBehaviour
 {
     [SerializeField] Animator playerAnimator;
+    Pitfall resetLocation;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,5 +25,24 @@ public class CanvasAnimatorBrain : MonoBehaviour
     public void GoToDeathScene()
     {
         FindObjectOfType<SceneController>().GoToDeathScene();
+    }
+
+    public void FallThroughPit(Pitfall resetLocationObject)
+    {
+        resetLocation = resetLocationObject;
+        playerAnimator.SetBool("gap", true);
+        GetComponent<Animator>().SetBool("gap", true);
+        StartCoroutine(ResetBool("gap", false));
+    }
+
+    public void CallResetPlayer()
+    {
+        resetLocation.SendPlayerToLocation();
+    }
+
+    IEnumerator ResetBool(string name, bool value)
+    {
+        yield return new WaitForSeconds(0.25f);
+        GetComponent<Animator>().SetBool(name, value);
     }
 }
