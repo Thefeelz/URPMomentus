@@ -148,12 +148,10 @@ public class GameManager : MonoBehaviour
     }
     public void SetCurrentLevel(int level)
     {
-        Debug.Log("Set Current Level to " + level);
         currentLevelBuildIndex = level;
     }
     public Material[] GetMaterials()
     {
-        Debug.Log("Get Materials Called, Blade color number is " + bladeColor);
         if (bladeColor == 0)
         {
             return aquaMaterial;

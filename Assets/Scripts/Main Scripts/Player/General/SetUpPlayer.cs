@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetUpPlayer : MonoBehaviour
 {
-    [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger;
+    [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger, shield;
     Material[] materialsToApply; 
     [SerializeField] Material[] defaultMaterialsToApply;
     
@@ -123,6 +123,32 @@ public class SetUpPlayer : MonoBehaviour
             foreach (GameObject mat in hand)
             {
                 mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[5];
+            }
+        }
+
+        if (materialsToApply.Length > 6)
+        {
+            Debug.Log("Calling Shield Materials");
+            foreach (GameObject mat in shield)
+            {
+                Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
+                materialz[0] = materialsToApply[6];
+                materialz[1] = materialsToApply[7];
+                Debug.Log(materialz[0].name + materialz[1].name);
+                mat.GetComponent<MeshRenderer>().materials = materialz;
+            }
+        }
+        else
+        {
+            //Debug.Log("Hand Null");
+            foreach (GameObject mat in shield)
+            {
+                Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
+                materialz[0] = materialsToApply[6];
+                materialz[1] = materialsToApply[7];
+                Debug.Log(materialz[0].name + materialz[1].name);
+                mat.GetComponent<MeshRenderer>().materials = materialz;
+                
             }
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TurnOnAndOffScripts : MonoBehaviour
 {
-    [SerializeField] bool groundSlide, wallRun, movement, input, airDash, bladeDance, mouselook, swordThrow, swordSlash, containedHeat, playerAttack, onEnter, onExit, onStay, turnOn;
+    [SerializeField] bool groundSlide, wallRun, movement, input, airDash, bladeDance, mouselook, swordThrow, swordSlash, containedHeat, playerAttack, shield, onEnter, onExit, onStay, turnOn;
     P_GroundSlide groundSlideAbility;
     P_WallRun wallRunAbility;
     P_Movement movementAbility;
@@ -17,6 +17,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
     A_SwordThrow swordThrowAbility;
     CharacterStats player;
     PlayerAttack playerAttackAbility;
+    A_Shield shieldAbility;
     
 
     private void Awake()
@@ -33,6 +34,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         swordSlashAbility = player.GetComponent<A_SwordSlash>();
         containedHeatAbility = player.GetComponent<A_ContainedHeat>();
         playerAttackAbility = player.GetComponent<PlayerAttack>();
+        shieldAbility = player.GetComponent<A_Shield>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -87,6 +89,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (playerAttack) { playerAttackAbility.enabled = true; }
         if (swordSlash) { swordSlashAbility.enabled = true; }
         if (containedHeat) { containedHeatAbility.enabled = true; }
+        if (shield) { shieldAbility.enabled = true; }
     }
     public void TurnOnScripts(AbilityToManipulate enumz)
     {
@@ -101,6 +104,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (enumz == AbilityToManipulate.playerAttack) { playerAttackAbility.enabled = true; return; }
         if (enumz == AbilityToManipulate.swordSlash) { swordSlashAbility.enabled = true; return; }
         if (enumz == AbilityToManipulate.containedHeat) { containedHeatAbility.enabled = true; return; }
+        if (enumz == AbilityToManipulate.shield) { shieldAbility.enabled = true; return; }
     }
 
     public void TurnOffScripts()
@@ -116,6 +120,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (playerAttack) { playerAttackAbility.enabled = false; }
         if (swordSlash) { swordSlashAbility.enabled = false; }
         if (containedHeat) { containedHeatAbility.enabled = false; }
+        if (shield) { shieldAbility.enabled = false; }
     }
     public void TurnOffScripts(AbilityToManipulate enumz)
     {
@@ -130,6 +135,7 @@ public class TurnOnAndOffScripts : MonoBehaviour
         if (enumz == AbilityToManipulate.playerAttack) { playerAttackAbility.enabled = false; return; }
         if (enumz == AbilityToManipulate.swordSlash) { swordSlashAbility.enabled = false; return; }
         if (enumz == AbilityToManipulate.containedHeat) { containedHeatAbility.enabled = false; return; }
+        if (enumz == AbilityToManipulate.shield) { shieldAbility.enabled = false; return; }
     }
     public void ToggleGroundSlide(bool value)
     {

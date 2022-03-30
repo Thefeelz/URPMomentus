@@ -63,7 +63,7 @@ public class P_Input : MonoBehaviour
                 if (bladeDance.Ability_BladeDance())
                     coolDownManager.AddCooldownToList(bladeDance);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
+            if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && !swordThrow.stuck && swordThrow.enabled)
             {
                 swordThrow.ThrowSword();
             }
@@ -81,7 +81,7 @@ public class P_Input : MonoBehaviour
                 if (swordSlash.Ability_SwordSlash())
                     coolDownManager.AddCooldownToList(swordSlash);
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2)) && airDash.enabled)
             {
                 if (airDash.UseAirDash())
                     coolDownManager.AddCooldownToList(airDash);
@@ -89,11 +89,11 @@ public class P_Input : MonoBehaviour
             // =================================
             // ==========PLAYER ATTACK==========
             // =================================
-            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) 
+            if ((Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5)) && playerAttack.enabled) 
             { 
                 playerAttack.BasicAttack(); 
             }
-            else if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && shield.enabled) 
+            else if ((Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4)) && shield.enabled) 
             {
                shield.ActivateShield(); 
             }

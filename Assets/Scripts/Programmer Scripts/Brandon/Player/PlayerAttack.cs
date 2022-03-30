@@ -163,13 +163,9 @@ public class PlayerAttack : MonoBehaviour
         Vector3 pos1 = Camera.main.transform.position + (Camera.main.transform.right * 0.25f);
         Vector3 pos2 = Camera.main.transform.position + (Camera.main.transform.right * -0.25f);
         RaycastHit hit, hit1, hit2;
-        Physics.Raycast(pos, transform.forward, out hit, 2f);
-        Physics.Raycast(pos1, transform.forward, out hit1, 2f);
-        Physics.Raycast(pos2, transform.forward, out hit2, 2f);
-
-        Debug.DrawRay(pos, transform.forward * 2, Color.red, 2f);
-        Debug.DrawRay(pos1, transform.forward * 2, Color.red, 2f);
-        Debug.DrawRay(pos2, transform.forward * 2, Color.red, 2f);
+        Physics.Raycast(pos, transform.forward, out hit, 2.5f);
+        Physics.Raycast(pos1, transform.forward, out hit1, 2.5f);
+        Physics.Raycast(pos2, transform.forward, out hit2, 2.5f);
 
         if (hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>() && !dashing)
         {

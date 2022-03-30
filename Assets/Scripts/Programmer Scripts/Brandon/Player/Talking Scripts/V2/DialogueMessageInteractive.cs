@@ -12,4 +12,6 @@ public class DialogueMessageInteractive
     public bool overrideCurrentMessage;
     public List<AbilityToManipulateObjectInteractive> abilities = new List<AbilityToManipulateObjectInteractive>();
     public DialogueToggleGameObject[] objectsToTurnOn;
+    public List<DialogueToggleAnimation> animations = new List<DialogueToggleAnimation>();
+    public List<DialogueToggleParticleSystem> particleSystem = new List<DialogueToggleParticleSystem>();
 }

@@ -275,24 +275,32 @@ MonoBehaviour:
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: All your programs seem to be fine...
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Let's make sure your still functioning properly.
     timeToDisplay: 3
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Move around a little in this room while I attempt to override that door
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Use WASD to move around the room!
     timeToDisplay: 5
@@ -301,24 +309,32 @@ MonoBehaviour:
     - abilitiesToManipulate: 2
       turnOnAbility: 1
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: 
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Damn, I got locked out!
     timeToDisplay: 4
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Maybe the gap is big enough to slide under.
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn: []
+    animations: []
+    particleSystem: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: Use 'Left Shift' to slide under the door!
     timeToDisplay: 5
@@ -333,6 +349,17 @@ MonoBehaviour:
       turnOnObject: 1
     - objectToManipulate: {fileID: 523342799}
       turnOnObject: 1
+    animations: []
+    particleSystem:
+    - particle: {fileID: 698602158}
+      stopPlay: 0
+      startPlay: 1
+    - particle: {fileID: 1769352000}
+      stopPlay: 0
+      startPlay: 1
+    - particle: {fileID: 523342802}
+      stopPlay: 0
+      startPlay: 1
 --- !u!114 &11586302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,6 +383,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -2423,6 +2451,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -3046,6 +3075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 104414969}
     m_Modifications:
+    - target: {fileID: 556803784, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
+      propertyPath: maxRangeForTurningOn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6039905149040955869, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
       propertyPath: m_Name
       value: BrandonWallRunTest (2)
@@ -3760,6 +3793,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 1
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -4599,6 +4633,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -5767,7 +5802,6 @@ Transform:
   - {fileID: 1972471679}
   - {fileID: 817671699}
   - {fileID: 518504020}
-  - {fileID: 1540564992}
   - {fileID: 1843389526}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -5964,6 +5998,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -6239,6 +6274,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
   m_PrefabInstance: {fileID: 1659611627}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &523342802 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+  m_PrefabInstance: {fileID: 1659611627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &526827777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6249,6 +6289,10 @@ PrefabInstance:
     - target: {fileID: 6039905149040955869, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
       propertyPath: m_Name
       value: BrandonWallRunTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 6039905149040955869, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6384377041639426919, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
       propertyPath: m_RootOrder
@@ -6868,6 +6912,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -7069,6 +7114,10 @@ PrefabInstance:
     - target: {fileID: 5005998759697328632, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202503548259204, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: near clip plane
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
@@ -7663,6 +7712,92 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2735664075414832582, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
   m_PrefabInstance: {fileID: 662237186}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &662510642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662510643}
+  - component: {fileID: 662510645}
+  - component: {fileID: 662510644}
+  m_Layer: 0
+  m_Name: Turret Corridor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662510643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662510642}
+  m_LocalRotation: {x: -0, y: -0.22872297, z: -0, w: 0.97349155}
+  m_LocalPosition: {x: -80.9, y: 6.3, z: -176.79}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: -26.444, z: 0}
+--- !u!65 &662510644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662510642}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 9.634654, z: 8.126321}
+  m_Center: {x: -0.00000003657143, y: 0.41266823, z: -0.9061193}
+--- !u!114 &662510645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662510642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Dont forget to use your Sword Slash, press 'Q' to use it!
+    timeToDisplay: 5
+    overrideCurrentMessage: 1
+    abilities:
+    - abilitiesToManipulate: 9
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: You can also use your Sword Throw for ranged enemies.
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Press '2' to throw your sword at enemies!
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 7
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
 --- !u!1 &665330489
 GameObject:
   m_ObjectHideFlags: 0
@@ -7678,7 +7813,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &665330490
 Transform:
   m_ObjectHideFlags: 0
@@ -8135,6 +8270,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
   m_PrefabInstance: {fileID: 2076961732}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &698602158 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+  m_PrefabInstance: {fileID: 2076961732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &707084390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8216,6 +8356,38 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dcb5e191ce94ede4194306d47a1b9825, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eed08dfaeca2bc47bc4712b85e7b1cc, type: 3}
+--- !u!1 &710305009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 710305010}
+  m_Layer: 0
+  m_Name: First Stop [Jump]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &710305010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710305009}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1133293104}
+  - {fileID: 884618144}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &721211250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8507,11 +8679,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: NoiseModule.enabled
@@ -8525,6 +8697,10 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -8588,6 +8764,10 @@ PrefabInstance:
     - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Name
       value: Rock Spawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
@@ -8713,6 +8893,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 651891656}
     m_Modifications:
+    - target: {fileID: 556803784, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
+      propertyPath: maxRangeForTurningOn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6039905149040955869, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
       propertyPath: m_Name
       value: BrandonWallRunTest (1)
@@ -11175,6 +11359,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -11831,6 +12016,50 @@ Transform:
   m_Father: {fileID: 257499927}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &884618143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 884618144}
+  - component: {fileID: 884618145}
+  m_Layer: 0
+  m_Name: Blocking Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &884618144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884618143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.26, y: 3.97, z: -30.394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 710305010}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &884618145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 884618143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.33231, y: 10.97933, z: 1.6437607}
+  m_Center: {x: 0.5065441, y: 3.11944, z: -0.32188034}
 --- !u!1001 &889758451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12065,6 +12294,118 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7108123528192372953, guid: 28eb43076fd9d2b4d93ce12b804311a1, type: 3}
   m_PrefabInstance: {fileID: 892104735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &899984786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899984787}
+  - component: {fileID: 899984790}
+  - component: {fileID: 899984789}
+  - component: {fileID: 899984788}
+  m_Layer: 0
+  m_Name: Script Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899984787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899984786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1289501187}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899984788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899984786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1991ed6c5b45448a4644b7be02282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSlide: 0
+  wallRun: 0
+  movement: 0
+  input: 0
+  airDash: 0
+  bladeDance: 0
+  mouselook: 0
+  swordThrow: 0
+  swordSlash: 0
+  containedHeat: 0
+  playerAttack: 0
+  shield: 0
+  onEnter: 0
+  onExit: 0
+  onStay: 0
+  turnOn: 0
+--- !u!65 &899984789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899984786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.434864, y: 9.339699, z: 1}
+  m_Center: {x: -0.0060863495, y: 2.18012, z: 0}
+--- !u!114 &899984790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899984786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Excellent!
+    timeToDisplay: 2
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Now ahead I am picking up more energy signatures.
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: These are moving, probably enemies. When encountering enemies, use left
+      click to attack!
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
 --- !u!1 &912672020
 GameObject:
   m_ObjectHideFlags: 0
@@ -12253,6 +12594,37 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &928355407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928355408}
+  m_Layer: 0
+  m_Name: Enemy Stop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928355408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928355407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -57.17992, y: 3.5994844, z: -164.21996}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1640557885}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &930981032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13772,7 +14144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1054676510
 Transform:
   m_ObjectHideFlags: 0
@@ -14650,6 +15022,103 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bdb093114a4897b4687ba268cfb8ad93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
+--- !u!1 &1133293103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133293104}
+  - component: {fileID: 1133293105}
+  - component: {fileID: 1133293106}
+  m_Layer: 0
+  m_Name: Script Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133293104
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133293103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.783962, y: 3.0774965, z: -26.650919}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 710305010}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1133293105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133293103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: 'Hold Up!
+
+      That must be the Cosmic Rock from Veraxus''s last victim'
+    timeToDisplay: 5
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Wait for it to turn off, and then jump over the gap!
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: 'Now!
+
+      Use ''Spacebar'' To Jump!'
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 884618143}
+      turnOnObject: 0
+    animations: []
+    particleSystem:
+    - particle: {fileID: 698602158}
+      stopPlay: 1
+      startPlay: 0
+    - particle: {fileID: 1769352000}
+      stopPlay: 1
+      startPlay: 0
+    - particle: {fileID: 523342802}
+      stopPlay: 1
+      startPlay: 0
+--- !u!65 &1133293106
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133293103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.746319, y: 6.2030067, z: 1}
+  m_Center: {x: 0.12794685, y: -0.33898306, z: 0}
 --- !u!1001 &1134244815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15820,6 +16289,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 0
   playerAttack: 1
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -16134,6 +16604,43 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7402066801653171021, guid: 6eed08dfaeca2bc47bc4712b85e7b1cc, type: 3}
   m_PrefabInstance: {fileID: 1215592623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1217010572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217010573}
+  m_Layer: 0
+  m_Name: ---Tutorial Progression---
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1217010573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217010572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 710305010}
+  - {fileID: 1449518283}
+  - {fileID: 1950208920}
+  - {fileID: 1289501187}
+  - {fileID: 1540564992}
+  - {fileID: 928355408}
+  - {fileID: 662510643}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1221468743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17057,6 +17564,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 1288747652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1289501186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289501187}
+  m_Layer: 0
+  m_Name: Fourth Success Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1289501187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289501186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.486702, y: 4.0985293, z: -113}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 899984787}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1292162260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18300,7 +18838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27791be394205bf4d91fb5ec7954540c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.99
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 27791be394205bf4d91fb5ec7954540c, type: 3}
       propertyPath: m_LocalScale.y
@@ -18897,6 +19435,132 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: bf03f4ad9d2784f49afc04bee73db0e4, type: 2}
+--- !u!1 &1376871117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1376871118}
+  - component: {fileID: 1376871121}
+  - component: {fileID: 1376871120}
+  - component: {fileID: 1376871119}
+  m_Layer: 0
+  m_Name: Script Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1376871118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376871117}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 6.003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1950208920}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1376871119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376871117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1991ed6c5b45448a4644b7be02282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSlide: 0
+  wallRun: 0
+  movement: 0
+  input: 0
+  airDash: 0
+  bladeDance: 0
+  mouselook: 0
+  swordThrow: 0
+  swordSlash: 0
+  containedHeat: 0
+  playerAttack: 0
+  shield: 0
+  onEnter: 0
+  onExit: 0
+  onStay: 0
+  turnOn: 0
+--- !u!65 &1376871120
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376871117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.434864, y: 9.339699, z: 1}
+  m_Center: {x: -0.0060863495, y: 2.18012, z: 0}
+--- !u!114 &1376871121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376871117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Excellent! Now notice that there are 2 walls that react to you that
+      are off set.
+    timeToDisplay: 5
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: If you press space WHILE wall running, you will leap off the wall and
+      if timed right, you will land on the opposite wall.
+    timeToDisplay: 6
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: On the other hand, you can use your slide ability WHILE in the air to
+      do an air dash forward!
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 4
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: The choice is yours!
+    timeToDisplay: 4
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1898067223}
+      turnOnObject: 0
+    animations: []
+    particleSystem: []
 --- !u!1001 &1381091509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19992,6 +20656,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2235567455425448184, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
 --- !u!4 &1439930851 stripped
@@ -20263,6 +20931,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
+--- !u!1 &1449518282
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1449518283}
+  m_Layer: 0
+  m_Name: Second Stop [Wall Run]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1449518283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449518282}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.486702, y: 4.0985293, z: -47.572056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1646374054}
+  - {fileID: 1869383699}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1450033079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20879,7 +21579,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1511166242
 Transform:
   m_ObjectHideFlags: 0
@@ -21155,15 +21855,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540564991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -58.8, y: 0, z: -2.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 698602156}
   - {fileID: 1769351998}
   - {fileID: 523342800}
-  m_Father: {fileID: 507078955}
-  m_RootOrder: 15
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1546322199
 PrefabInstance:
@@ -21687,6 +22387,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 1
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -21895,6 +22596,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -22472,6 +23174,175 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
+--- !u!1 &1640557884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1640557885}
+  - component: {fileID: 1640557887}
+  - component: {fileID: 1640557886}
+  - component: {fileID: 1640557888}
+  m_Layer: 0
+  m_Name: Script Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1640557885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640557884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 928355408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1640557886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640557884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1991ed6c5b45448a4644b7be02282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSlide: 0
+  wallRun: 0
+  movement: 0
+  input: 0
+  airDash: 0
+  bladeDance: 0
+  mouselook: 0
+  swordThrow: 0
+  swordSlash: 0
+  containedHeat: 0
+  playerAttack: 0
+  shield: 0
+  onEnter: 0
+  onExit: 0
+  onStay: 0
+  turnOn: 0
+--- !u!114 &1640557887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640557884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    message: This A.I.'s power supply is similar to my own. I think I can use it
+      to power myself up.
+    timeToDisplay: 5
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: That is interesting, lets see if it is enough to power up your shield.
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: '''Right Click'' and hold should keep your shield active while you keep
+      it held down.'
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    message: Are you detecting any mroe enemies nearby?
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Yes, this one seems to have more power but its not moving. Be cautious,
+      dont forget about your shield!
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    message: Can you open the door???
+    timeToDisplay: 2
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Already on it
+    timeToDisplay: 2
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Opening Now!
+    timeToDisplay: 2
+    overrideCurrentMessage: 0
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn: []
+    animations:
+    - animator: {fileID: 1947257029}
+      boolName: isDoorOpen
+      boolValue: 1
+    particleSystem: []
+--- !u!65 &1640557888
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640557884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4672813, y: 2.217359, z: 4.0760803}
+  m_Center: {x: -0.4779911, y: -0.6086793, z: -0.15206909}
 --- !u!1001 &1643215782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22642,6 +23513,99 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
+--- !u!1 &1646374053
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646374054}
+  - component: {fileID: 1646374055}
+  - component: {fileID: 1646374056}
+  m_Layer: 0
+  m_Name: Script Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646374054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646374053}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1449518283}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646374055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646374053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Good! Now I am noticing a energy source in front of you on the wall.
+    timeToDisplay: 3
+    overrideCurrentMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: It seems to react to your passive energy, notice the color change.
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: You can wall run on these walls, just aim towards it and slightly up
+      and you will automatically start wallrunning.
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    message: Wall run on walls that are interactive!
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1869383698}
+      turnOnObject: 0
+    animations: []
+    particleSystem: []
+--- !u!65 &1646374056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646374053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.434864, y: 9.339699, z: 1}
+  m_Center: {x: -0.0060863495, y: 2.18012, z: 0}
 --- !u!4 &1650936699 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1614815271099121654, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
@@ -22766,11 +23730,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: NoiseModule.enabled
@@ -22784,6 +23748,10 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -22847,6 +23815,10 @@ PrefabInstance:
     - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Name
       value: Rock Spawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
@@ -24417,6 +25389,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
   m_PrefabInstance: {fileID: 736399665}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1769352000 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+  m_PrefabInstance: {fileID: 736399665}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1780080830 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7922601563050187255, guid: 6eed08dfaeca2bc47bc4712b85e7b1cc, type: 3}
@@ -25612,6 +26589,50 @@ Transform:
   m_Father: {fileID: 258229673}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1869383698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869383699}
+  - component: {fileID: 1869383700}
+  m_Layer: 0
+  m_Name: Blocking Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869383699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869383698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1449518283}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1869383700
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869383698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.3528595, y: 12.678921, z: 1}
+  m_Center: {x: 0.6601753, y: 3.0727139, z: 0}
 --- !u!1 &1894699852
 GameObject:
   m_ObjectHideFlags: 0
@@ -25705,6 +26726,50 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1898067223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898067224}
+  - component: {fileID: 1898067225}
+  m_Layer: 0
+  m_Name: Blocking Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898067224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898067223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4.93}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1950208920}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1898067225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898067223}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.3528595, y: 12.678921, z: 1}
+  m_Center: {x: 0.6601753, y: 3.0727139, z: 0}
 --- !u!1 &1901630891
 GameObject:
   m_ObjectHideFlags: 0
@@ -26561,6 +27626,43 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942593569}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &1947257029 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2235567455425448185, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
+  m_PrefabInstance: {fileID: 1439930850}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1950208919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950208920}
+  m_Layer: 0
+  m_Name: Third Stop [Double Wall Run]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1950208920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950208919}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.486702, y: 4.0985293, z: -75.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1376871118}
+  - {fileID: 1898067224}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1959842591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26787,6 +27889,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 104414969}
     m_Modifications:
+    - target: {fileID: 556803784, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
+      propertyPath: maxRangeForTurningOn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 6039905149040955869, guid: 77c63013820b653468bb3af625c3b96f, type: 3}
       propertyPath: m_Name
       value: BrandonWallRunTest (3)
@@ -27490,11 +28596,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: prewarm
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: NoiseModule.enabled
@@ -27508,6 +28614,10 @@ PrefabInstance:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_CastShadows
       value: 0
@@ -27530,31 +28640,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5994568
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.25
+      value: 12.85
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -86.54
+      value: -81.01
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.0017280849
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: -0.0024417653
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.9995984
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.028179854
       objectReference: {fileID: 0}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -27571,6 +28681,10 @@ PrefabInstance:
     - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Name
       value: Rock Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
@@ -28109,7 +29223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5436022383252237719, guid: 97e6bdcad05a3c74ca25043e9f4b659b, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5436022383252237719, guid: 97e6bdcad05a3c74ca25043e9f4b659b, type: 3}
       propertyPath: m_LocalPosition.x
