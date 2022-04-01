@@ -22,11 +22,13 @@ public class TutorialIntroRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetRaycastFromPlayer();
+        if(!panelOneBool || !panelTwoBool)
+            GetRaycastFromPlayer();
     }
 
     private void GetRaycastFromPlayer()
     {
+
         if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 20f))
         {
             if(hit.transform.gameObject.CompareTag("PanelOne") && !panelOneBool)
@@ -71,6 +73,7 @@ public class TutorialIntroRoom : MonoBehaviour
             if(panelTwoBool)
             {
                 doorToTrigger.SendSecondMesage();
+                // gameObject.SetActive(false);
             }
         }
     }
@@ -88,6 +91,7 @@ public class TutorialIntroRoom : MonoBehaviour
             if (panelOneBool)
             {
                 doorToTrigger.SendSecondMesage();
+                // gameObject.SetActive(false);
             }
         }
     }

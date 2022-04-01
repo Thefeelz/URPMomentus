@@ -5,16 +5,20 @@ using UnityEngine;
 public class SetUpPlayer : MonoBehaviour
 {
     [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger, shield;
-    Material[] materialsToApply; 
+    [SerializeField] GameObject swordLighting;
+    Material[] materialsToApply;
+    ParticleSystem[] particlesystemToApply;
     [SerializeField] Material[] defaultMaterialsToApply;
     
     // Start is called before the first frame update
     void Start()
     {
         materialsToApply = GameManager.Instance.GetMaterials();
+        particlesystemToApply = GameManager.Instance.GetParticleSystems();
         if (materialsToApply.Length == 0)
             Debug.Log("Set up is failing");
         ApplyMaterials();
+        ApplyParticleSystems();
     }
 
     // Update is called once per frame
@@ -150,5 +154,15 @@ public class SetUpPlayer : MonoBehaviour
                 
             }
         }
+    }
+    
+    void ApplyParticleSystems()
+    {
+        // swordLighting.GetComponent<ParticleSystem>().main.startColor.color = particlesystemToApply[0].main.startColor.color;
+        Color newColorMax = particlesystemToApply[0].main.startColor.colorMax;
+        Color newColorMin = particlesystemToApply[0].main.startColor.colorMin;
+        var main = swordLighting.GetComponent<ParticleSystem>().main.startColor;
+        main.colorMax = newColorMax;
+        main.colorMin = newColorMin;
     }
 }

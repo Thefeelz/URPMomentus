@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -256,17 +256,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
---- !u!1 &69673467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1947719515288024228, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
-  m_PrefabInstance: {fileID: 69673466}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &69673468 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1947719515288024229, guid: f68d2e6e901c9944cbde3bf27de04ad1, type: 3}
   m_PrefabInstance: {fileID: 69673466}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69673467}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24803844eaa4fce40ae733d127980f53, type: 3}
@@ -617,6 +612,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1877393943}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetRespawnAtCheckpoint
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1278,17 +1285,29 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 69673467}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 1877393943}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetRespawnAtCheckpoint
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 69673468}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   m_IsOn: 0
 --- !u!114 &1618245627
@@ -1400,6 +1419,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 1
+--- !u!1001 &1877393942
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.82124
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.434306
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.2449718
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505584002279285417, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+--- !u!114 &1877393943 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+  m_PrefabInstance: {fileID: 1877393942}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8387be02e005f57498dbf205a3154db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1993755748
 GameObject:
   m_ObjectHideFlags: 0

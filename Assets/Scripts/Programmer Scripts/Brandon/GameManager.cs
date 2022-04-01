@@ -11,12 +11,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] int levelChosen, currentLevelBuildIndex;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
+    [SerializeField] ParticleSystem[] aquaParticleSystem, redParticleSystem, blueParticleSystem, greenParticleSystem;
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
     [SerializeField] Slider mainMenuSlider;
-    Transform positionToRespawn;
-    bool[] levelsCompleted = { false, false, false};
+    Transform positionToRespawnCheckpoint, positionToRespawnDefault;
+    bool[] levelsCompleted = { false, false, false };
+    public bool respawnAtCheckpoint = false;
+    public int respawnCheckpointIndex = 0;
 
 
 
@@ -66,7 +69,7 @@ public class GameManager : MonoBehaviour
         List<EnemyStats> enemiesInLoS = new List<EnemyStats>();
         foreach (EnemyStats enemy in enemiesInLevel)
         {
-            if(GetInLOS(playerPos, enemy.transform))
+            if (GetInLOS(playerPos, enemy.transform))
             {
                 enemiesInLoS.Add(enemy);
             }
@@ -80,7 +83,7 @@ public class GameManager : MonoBehaviour
         enemiesInRange = GetActiveEnemiesInRange(range, playerPos);
         foreach (EnemyStats enemy in enemiesInRange)
         {
-            if(GetInLOS(enemy.transform, playerPos))
+            if (GetInLOS(enemy.transform, playerPos))
             {
                 enemiesInRangeAndLoS.Add(enemy);
             }
@@ -92,7 +95,7 @@ public class GameManager : MonoBehaviour
         List<EnemyStats> enemiesInRange = new List<EnemyStats>();
         foreach (EnemyStats enemy in enemiesInLevel)
         {
-            if(Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
+            if (Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
             {
                 enemiesInRange.Add(enemy);
             }
@@ -165,6 +168,21 @@ public class GameManager : MonoBehaviour
         else
             return aquaMaterial;
     }
+    public ParticleSystem[] GetParticleSystems()
+    {
+        if (bladeColor == 0)
+        {
+            return aquaParticleSystem;
+        }
+        else if (bladeColor == 1)
+            return redParticleSystem;
+        else if (bladeColor == 2)
+            return blueParticleSystem;
+        else if (bladeColor == 3)
+            return greenParticleSystem;
+        else
+            return aquaParticleSystem;
+    }
 
     public float GetMouseSensitivity()
     {
@@ -192,16 +210,26 @@ public class GameManager : MonoBehaviour
         }
         return false;
     }
-    public Vector3 GetRespawnPointPosition() { return positionToRespawn.position; }
-    public Vector3 GetRespawnPointRotation() { return positionToRespawn.rotation.eulerAngles; }
+    public Vector3 GetRespawnPointPosition() { return positionToRespawnCheckpoint.position; }
+    public Vector3 GetRespawnPointRotation() { return positionToRespawnCheckpoint.rotation.eulerAngles; }
     public void SendGameObjectToRespawn(GameObject gameObject)
     {
-        gameObject.transform.position = positionToRespawn.position;
-        gameObject.transform.rotation = positionToRespawn.rotation;
+        gameObject.transform.position = positionToRespawnCheckpoint.position;
+        gameObject.transform.rotation = positionToRespawnCheckpoint.rotation;
     }
-    public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawn = newRespawnPosition; }
+    public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawnCheckpoint = newRespawnPosition; }
+    public Transform GetRestartLevelLocation() { return positionToRespawnDefault; }
+    public Transform GetRestartLevelFromCheckpointLocation() { return positionToRespawnCheckpoint; }
     public void SetLevelComplete(int levelCompleted)
     {
-        levelsCompleted[levelCompleted - 1] = true;  
+        levelsCompleted[levelCompleted - 1] = true;
     }
+
+    public void SetRespawnCheckpointIndex(int newIndex)
+    {
+        respawnCheckpointIndex = newIndex;
+    }
+    public int GetRespawnCheckpointIndex() { return respawnCheckpointIndex; }
+    public bool GetRespawnAtCheckpoint() { return respawnAtCheckpoint; }
+    public void SetRespawnAtCheckpoint(bool value) { Debug.Log("Set Respawn at Checkpoint is " + value); respawnAtCheckpoint = value; Debug.Log("Set Respawn at Checkpoint is " + value); }
 }

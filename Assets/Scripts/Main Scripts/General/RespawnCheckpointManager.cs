@@ -5,21 +5,28 @@ using UnityEngine;
 public class RespawnCheckpointManager : MonoBehaviour
 {
     [SerializeField] List<Transform> checkPointLocations = new List<Transform>();
+    [SerializeField] Transform startingTransform;
+    Transform lastCheckPointHit;
 
     // Serialized for deBug purposes
     [SerializeField] int currentCheckpoint = 0;
 
+    bool freshLevel = true;
     GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance;
+        SetUpLevelStart();
         if(gameManager)
-        {
-            
-            if (checkPointLocations.Count > 0)
+        {     
+            if (startingTransform && freshLevel)
             {
-                gameManager.SetNewRespawnLocation(checkPointLocations[0]);
+               
+            }
+            else  if (startingTransform && !freshLevel)
+            {
+
             }
             else
             {
@@ -49,6 +56,22 @@ public class RespawnCheckpointManager : MonoBehaviour
         else if (checkPointLocations.Count == 0)
         {
             Debug.LogError("There are currently no checkPointLocations set in the RespawnCheckpointManager.cs, make sure to add some before continuing");
+        }
+    }
+
+    public void UpdateCheckpointTransform(Transform _newTransform) { lastCheckPointHit = _newTransform; }
+
+    public void SetUpLevelStart()
+    {
+        if(GameManager.Instance.GetRespawnAtCheckpoint())
+        {
+            FindObjectOfType<CharacterStats>().transform.position = GameManager.Instance.GetRestartLevelFromCheckpointLocation().position;
+            FindObjectOfType<CharacterStats>().transform.rotation = GameManager.Instance.GetRestartLevelFromCheckpointLocation().rotation;
+        }
+        else
+        {
+            FindObjectOfType<CharacterStats>().transform.position = checkPointLocations[0].position;
+            FindObjectOfType<CharacterStats>().transform.rotation = checkPointLocations[0].rotation;
         }
     }
 }

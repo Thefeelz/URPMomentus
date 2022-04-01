@@ -20,7 +20,7 @@ public class SwordLightningEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controlEffect)
+        if (controlEffect && player)
         {
             thisSystem.rateOverTime = Mathf.Floor(player.GetPlayerOvercharge() / 10);
             for (int i = 0; i < emissionMaterial.Length; i++)

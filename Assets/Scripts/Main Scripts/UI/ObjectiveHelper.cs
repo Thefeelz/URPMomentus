@@ -33,7 +33,6 @@ public class ObjectiveHelper : MonoBehaviour
     }
     void RefreshDisplay()
     {
-        Debug.Log("Refresh Display Called");
         int i = 0;
         foreach (Objective objective in objectives)
         {
@@ -44,7 +43,7 @@ public class ObjectiveHelper : MonoBehaviour
         }
         if(i < objectiveText.Count - 1)
         {
-            Debug.Log("Running Loop and I is " + i + " and objectText.count is " + objectiveText.Count);
+            
             for(int j = i;j < objectiveText.Count; j++)
             {
                 Debug.Log(objectiveText[j].name);

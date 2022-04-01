@@ -693,64 +693,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7108123528192372953, guid: 28eb43076fd9d2b4d93ce12b804311a1, type: 3}
   m_PrefabInstance: {fileID: 50952625}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &68818124
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 68818125}
-  - component: {fileID: 68818127}
-  - component: {fileID: 68818126}
-  m_Layer: 0
-  m_Name: Test 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &68818125
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68818124}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.06, y: 4.66, z: -101.68}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 518504020}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &68818126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68818124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ecb20c7b476c7f498c7ff386cb6fb61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnTrigger: 1
---- !u!65 &68818127
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68818124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 14.048704, y: 4.777286, z: 4.8870325}
-  m_Center: {x: 1.0955173, y: -1.8887111, z: 1.9435146}
 --- !u!1 &70866330
 GameObject:
   m_ObjectHideFlags: 0
@@ -5831,7 +5773,6 @@ Transform:
   - {fileID: 652788524}
   - {fileID: 1972471679}
   - {fileID: 817671699}
-  - {fileID: 518504020}
   - {fileID: 1843389526}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -6263,37 +6204,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2735664075414832582, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
   m_PrefabInstance: {fileID: 518103498}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &518504019
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 518504020}
-  m_Layer: 0
-  m_Name: Respawn Tester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &518504020
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518504019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 68818125}
-  m_Father: {fileID: 507078955}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &523342799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
@@ -7085,6 +6995,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258327913}
     m_Modifications:
+    - target: {fileID: 781127603, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: swordLighting
+      value: 
+      objectReference: {fileID: 597305147}
     - target: {fileID: 2580792190289158363, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_SizeDelta.x
       value: 800
@@ -7183,18 +7097,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.251
+      value: 89.65414
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.134
+      value: 1.5769212
       objectReference: {fileID: 0}
     - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 234.076
+      value: 136.16208
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.123193905
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.0021373627
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99221945
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.017870812
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -2.176
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -182.758
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082202504189526766, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0.019
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+--- !u!1 &597305147 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8967101775098607788, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &615095779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4361751668521504324, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
@@ -12533,8 +12480,8 @@ MonoBehaviour:
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: These are moving, probably enemies. When encountering enemies, use left
-      click to attack!
+    message: These are moving, probably enemies. When encountering enemies, use 'left
+      click' to attack!
     timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
@@ -19784,7 +19731,7 @@ MonoBehaviour:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: On the other hand, you can use your slide ability WHILE in the air to
       do an air dash forward!
-    timeToDisplay: 3
+    timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities:
     - abilitiesToManipulate: 4
@@ -23925,14 +23872,11 @@ MonoBehaviour:
       startPlay: 1
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: Wait for it to turn off, and then jump over the gap! That gap seems
-      to be to far for your normal jump...
+    message: Wait for it to turn off, and then jump over the gap!
     timeToDisplay: 3
     overrideCurrentMessage: 0
     abilities: []
-    objectsToTurnOn:
-    - objectToManipulate: {fileID: 1869383698}
-      turnOnObject: 0
+    objectsToTurnOn: []
     animations: []
     particleSystem: []
     objectives: []
@@ -23947,7 +23891,7 @@ MonoBehaviour:
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
-    message: It seems to react to your passive energy, notice the color change.
+    message: It seems to react to you, notice the color change.
     timeToDisplay: 3
     overrideCurrentMessage: 0
     abilities: []
@@ -23967,7 +23911,7 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     message: When the rock stops, start wall running!
-    timeToDisplay: 3
+    timeToDisplay: 5
     overrideCurrentMessage: 0
     abilities: []
     objectsToTurnOn:
@@ -29626,7 +29570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5436022383252237719, guid: 97e6bdcad05a3c74ca25043e9f4b659b, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5436022383252237719, guid: 97e6bdcad05a3c74ca25043e9f4b659b, type: 3}
       propertyPath: m_LocalPosition.x

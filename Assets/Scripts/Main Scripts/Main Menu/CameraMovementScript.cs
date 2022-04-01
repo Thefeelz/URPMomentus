@@ -38,10 +38,11 @@ public class CameraMovementScript : MonoBehaviour
 
     void CameraTransition()
     {
+        
         elapsedTime += Time.deltaTime;
         currentLerpPos = elapsedTime / camTransitionTime;
-        transform.position = Vector3.Lerp(startingPos, endingPos, currentLerpPos);
-        transform.rotation = Quaternion.Lerp(startingRot, endingRot, currentLerpPos);
+        transform.position = Vector3.Lerp(startingPos, endingPos, Mathf.SmoothStep(0, 1,currentLerpPos));
+        transform.rotation = Quaternion.Lerp(startingRot, endingRot, Mathf.SmoothStep(0, 1, currentLerpPos));
         if(currentLerpPos >= 1)
         {
             foreach (Transform toggle in currentSelelection.transform)
