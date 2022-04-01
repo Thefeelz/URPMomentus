@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
     [SerializeField] ParticleSystem[] aquaParticleSystem, redParticleSystem, blueParticleSystem, greenParticleSystem;
     [SerializeField] GameObject swordSlashLightning, swordSlashLightningRed, swordSlashLightningBlue, swordSlashLightningGreen;
+    [SerializeField] GameObject containedHeat, containedHeatRed, containedHeatBlue, containedHeatGreen;
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
@@ -200,6 +201,21 @@ public class GameManager : MonoBehaviour
             return swordSlashLightning;
     }
 
+    public GameObject GetContainedHeatPrefab()
+    {
+        if (bladeColor == 0)
+        {
+            return containedHeat;
+        }
+        else if (bladeColor == 1)
+            return containedHeatRed;
+        else if (bladeColor == 2)
+            return containedHeatBlue;
+        else if (bladeColor == 3)
+            return containedHeatGreen;
+        else
+            return containedHeat;
+    }
     public float GetMouseSensitivity()
     {
         return mouseSensitivity;

@@ -77,4 +77,6 @@ public class A_ContainedHeat : A_OverchargeAbilities
             playerAnimator.SetBool("groundAttack", false);
         }
     }
+    public void SetContainedHeatPrefab(GameObject prefab) { containedHeatPrefab = prefab; }
+    public void SetContainedHeatLightningEffect(ParticleSystem system) { containedHeatParticleEffect = system; }
 }

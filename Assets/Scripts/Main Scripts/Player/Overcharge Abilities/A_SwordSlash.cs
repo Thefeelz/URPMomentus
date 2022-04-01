@@ -33,7 +33,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     {
         swordEffect = GetComponentInChildren<SwordLightningEffect>();
         thisSystem = GetComponentInChildren<ParticleSystem>().emission;
-        swordSlashPrefab = GameManager.Instance.GetSwordSlashPrefab();
+        // swordSlashPrefab = GameManager.Instance.GetSwordSlashPrefab();
     }
 
     // Update is called once per frame
@@ -113,4 +113,6 @@ public class A_SwordSlash : A_OverchargeAbilities
         }
         return false;
     }
+
+    public void SetSwordSlashPrefab(GameObject prefab) { swordSlashPrefab = prefab; }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2440124465495003452}
   - component: {fileID: 2314853173120811604}
   m_Layer: 0
-  m_Name: SwordSlashEffectGreen
+  m_Name: SwordSlashEffectRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2777155321216370775}
+  - {fileID: 4936207497130020915}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59,6 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7faf31494d487d441b8eaec0659f8317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesAbleToHit: 3
 --- !u!54 &2314853173120811604
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -322,10 +324,84 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwordSlashLightning
       objectReference: {fileID: 0}
+    - target: {fileID: 7669921685947885447, guid: 8d9b6368a579cdf4ca7cfbfababa1378, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d9b6368a579cdf4ca7cfbfababa1378, type: 3}
 --- !u!4 &2777155321216370775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4573127286769224868, guid: 8d9b6368a579cdf4ca7cfbfababa1378, type: 3}
   m_PrefabInstance: {fileID: 1872779486571169011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8932869629253557399
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4330739511757169197}
+    m_Modifications:
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5970853432366301004, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894633446513668101, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669921685947885447, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+      propertyPath: m_Name
+      value: SwordSlashLightning Red
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+--- !u!4 &4936207497130020915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4573127286769224868, guid: 2235bc0bf31eac44287a8eed3eadc1a7, type: 3}
+  m_PrefabInstance: {fileID: 8932869629253557399}
   m_PrefabAsset: {fileID: 0}

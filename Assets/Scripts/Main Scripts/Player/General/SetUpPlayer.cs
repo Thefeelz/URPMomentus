@@ -175,5 +175,8 @@ public class SetUpPlayer : MonoBehaviour
         Debug.Log("[" + main.startColor.colorMin.r + ", " + main.startColor.colorMin.g + ", " + main.startColor.colorMin.b + "]");
         Debug.Log("[" + main.startColor.colorMax.r + ", " + main.startColor.colorMax.g + ", " + main.startColor.colorMax.b + "]");
 
+        FindObjectOfType<A_SwordSlash>().SetSwordSlashPrefab(GameManager.Instance.GetSwordSlashPrefab());
+        FindObjectOfType<A_ContainedHeat>().SetContainedHeatPrefab(GameManager.Instance.GetContainedHeatPrefab());
+        FindObjectOfType<A_ContainedHeat>().SetContainedHeatLightningEffect(particlesystemToApply[1]);
     }
 }
