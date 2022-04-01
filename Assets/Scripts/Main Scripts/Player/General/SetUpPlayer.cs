@@ -159,10 +159,21 @@ public class SetUpPlayer : MonoBehaviour
     void ApplyParticleSystems()
     {
         // swordLighting.GetComponent<ParticleSystem>().main.startColor.color = particlesystemToApply[0].main.startColor.color;
-        Color newColorMax = particlesystemToApply[0].main.startColor.colorMax;
-        Color newColorMin = particlesystemToApply[0].main.startColor.colorMin;
-        var main = swordLighting.GetComponent<ParticleSystem>().main.startColor;
-        main.colorMax = newColorMax;
-        main.colorMin = newColorMin;
+        var main = swordLighting.GetComponent<ParticleSystem>().main;
+        Debug.Log("Initial Colors");
+        Debug.Log("[" + main.startColor.colorMin.r + ", " + main.startColor.colorMin.g + ", " + main.startColor.colorMin.b + "]");
+        Debug.Log("[" + main.startColor.colorMax.r + ", " + main.startColor.colorMax.g + ", " + main.startColor.colorMax.b + "]");
+
+        Debug.Log("Incoming Colors");
+        Debug.Log("[" + particlesystemToApply[0].main.startColor.colorMin.r + ", " + particlesystemToApply[0].main.startColor.colorMin.g + ", " + particlesystemToApply[0].main.startColor.colorMin.b + "]");
+        Debug.Log("[" + particlesystemToApply[0].main.startColor.colorMax.r + ", " + particlesystemToApply[0].main.startColor.colorMax.g + ", " + particlesystemToApply[0].main.startColor.colorMax.b + "]");
+
+
+        main.startColor = particlesystemToApply[0].main.startColor;
+        Debug.Log("Changed");
+        Debug.Log("Changed Colors");
+        Debug.Log("[" + main.startColor.colorMin.r + ", " + main.startColor.colorMin.g + ", " + main.startColor.colorMin.b + "]");
+        Debug.Log("[" + main.startColor.colorMax.r + ", " + main.startColor.colorMax.g + ", " + main.startColor.colorMax.b + "]");
+
     }
 }

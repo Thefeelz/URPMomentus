@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
     [SerializeField] ParticleSystem[] aquaParticleSystem, redParticleSystem, blueParticleSystem, greenParticleSystem;
+    [SerializeField] GameObject swordSlashLightning, swordSlashLightningRed, swordSlashLightningBlue, swordSlashLightningGreen;
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
@@ -182,6 +183,21 @@ public class GameManager : MonoBehaviour
             return greenParticleSystem;
         else
             return aquaParticleSystem;
+    }
+    public GameObject GetSwordSlashPrefab()
+    {
+        if (bladeColor == 0)
+        {
+            return swordSlashLightning;
+        }
+        else if (bladeColor == 1)
+            return swordSlashLightningRed;
+        else if (bladeColor == 2)
+            return swordSlashLightningBlue;
+        else if (bladeColor == 3)
+            return swordSlashLightningGreen;
+        else
+            return swordSlashLightning;
     }
 
     public float GetMouseSensitivity()

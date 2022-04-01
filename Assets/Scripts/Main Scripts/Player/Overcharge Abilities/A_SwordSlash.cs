@@ -33,6 +33,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     {
         swordEffect = GetComponentInChildren<SwordLightningEffect>();
         thisSystem = GetComponentInChildren<ParticleSystem>().emission;
+        swordSlashPrefab = GameManager.Instance.GetSwordSlashPrefab();
     }
 
     // Update is called once per frame
@@ -70,6 +71,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     public void FireSwordSlash()
     {
         GameObject firedThing = Instantiate(swordSlashPrefab, weaponFire.position, Quaternion.Euler(transform.forward));
+        
         firedThing.GetComponentInChildren<SwordSlashEffect>().SetVelocity(Camera.main.transform.forward, 10f);
         firedThing.GetComponentInChildren<SwordSlashEffect>().SetEnemiesAbleToHit(enemiesAbleToHit);
     }
