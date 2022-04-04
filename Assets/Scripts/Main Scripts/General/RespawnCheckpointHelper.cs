@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RespawnCheckpointHelper : MonoBehaviour
 {
+    [SerializeField] int respawnNumber;
     bool trigger = false;
     private void OnTriggerEnter(Collider other)
     {
@@ -11,8 +12,11 @@ public class RespawnCheckpointHelper : MonoBehaviour
         {
             if(FindObjectOfType<RespawnCheckpointManager>() && !trigger)
             {
-                FindObjectOfType<RespawnCheckpointManager>().ProgressToNextCheckpointInList();
-                trigger = true;
+                if (GameManager.Instance.GetRespawnCheckpointIndex() < respawnNumber)
+                {
+                    FindObjectOfType<RespawnCheckpointManager>().ProgressToNextCheckpointInList();
+                    trigger = true;
+                }
             }
             else
             {

@@ -61,7 +61,7 @@ public class A_AirDash : A_OverchargeAbilities
             ReturnToNormalScreen();
 
         if (abilityCooldownCurrent > 0)
-            ui.UpdateAirDashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
+            ui.UpdateAirDashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax, overchargeCost);
     }
 
     // =================================================================
@@ -69,7 +69,7 @@ public class A_AirDash : A_OverchargeAbilities
     // =================================================================
     public bool UseAirDash()
     {
-        if (playerMovement)
+        if (playerMovement && player.GetPlayerOvercharge() > overchargeCost)
         {
             // Check to make sure the player is grounded
             if (!playerMovement.isGrounded && abilityReady)
@@ -81,7 +81,7 @@ public class A_AirDash : A_OverchargeAbilities
                 return true;
             }
         }
-        else if (cMovement)
+        else if (cMovement && player.GetPlayerOvercharge() > overchargeCost)
         {
             // Check to make sure the player is grounded
             if (!cMovement.isGrounded && abilityReady)

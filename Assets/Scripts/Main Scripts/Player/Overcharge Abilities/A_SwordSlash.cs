@@ -47,7 +47,7 @@ public class A_SwordSlash : A_OverchargeAbilities
             DieDownEffects();
         // Update the UI
         if (abilityCooldownCurrent > 0)
-            ui.UpdateSwordSlashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
+            ui.UpdateSwordSlashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax, overchargeCost);
     }
 
     // Start the sword animation and effect, called by the animation
@@ -106,7 +106,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     // Called by the input
     public bool Ability_SwordSlash()
     {
-        if(abilityReady)
+        if(abilityReady && overchargeCost < player.GetPlayerOvercharge())
         {
             playerAnimator.SetBool("swordSpecial", true);
             return true;

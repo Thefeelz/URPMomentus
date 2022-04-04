@@ -11,17 +11,20 @@ public class TutorialIntroRoom : MonoBehaviour
     [SerializeField] StartingDoorAnimBrain doorToTrigger;
     [SerializeField] float elapsedTime = 0f;
     ObjectiveHelper helper;
+    [SerializeField]bool ableToTrigger;
 
     RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
         helper = FindObjectOfType<ObjectiveHelper>();
+        StartCoroutine(SetUpTrigger());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!ableToTrigger) { return; }
         if(!panelOneBool || !panelTwoBool)
             GetRaycastFromPlayer();
     }
@@ -94,5 +97,10 @@ public class TutorialIntroRoom : MonoBehaviour
                 // gameObject.SetActive(false);
             }
         }
+    }
+    IEnumerator SetUpTrigger()
+    {
+        yield return new WaitForSeconds(13f);
+        ableToTrigger = true;
     }
 }

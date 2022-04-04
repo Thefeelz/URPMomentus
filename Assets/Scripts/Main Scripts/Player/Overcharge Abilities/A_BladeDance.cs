@@ -10,6 +10,7 @@ public class A_BladeDance : A_OverchargeAbilities
     [SerializeField] float maxRange = 30f;
     [SerializeField] GameObject bodyForAnimation;
     [SerializeField] GameObject currentSword;
+    [SerializeField] List<EnemyStats> targettedList = new List<EnemyStats>();
 
     public EnemyStats currentTarget;
     bool allEnemiesAttacked = false;
@@ -42,12 +43,12 @@ public class A_BladeDance : A_OverchargeAbilities
         if (camTransitioning)
             UpdateCameraPos(usingSpecial);
         if (abilityCooldownCurrent > 0)
-            ui.UpdateBladeDanceFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
+            ui.UpdateBladeDanceFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax, overchargeCost);
     }
 
     public bool Ability_BladeDance()
     {
-        if (!abilityReady) { return false; }
+        if (!abilityReady || player.GetPlayerOvercharge() < overchargeCost) { return false; }
         gameManager.SetActiveSpecialAbility(true);
 
         SetCurrentPlayerPosition();
@@ -88,6 +89,7 @@ public class A_BladeDance : A_OverchargeAbilities
             {
                 bodyForAnimation.SetActive(false);
                 currentSword.SetActive(true);
+                gameManager.SetActiveSpecialAbility(false);
                 TogglePlayerMovementAndAnimator(true);
             }
         }
@@ -99,7 +101,8 @@ public class A_BladeDance : A_OverchargeAbilities
             return null;
         }
         EnemyStats closestEnemy = null;
-        foreach (var enemy in gameManager.GetActiveEnemiesInLineOfSightAndRange(maxRange, transform))
+        targettedList = GameManager.Instance.GetActiveEnemiesInRange(maxRange, transform);
+        foreach (EnemyStats enemy in targettedList)
         {
             if (enemy.getCurrentHealth() > 0)
             {
@@ -137,7 +140,7 @@ public class A_BladeDance : A_OverchargeAbilities
             if (currentTarget == null)
             {
                 bodyForAnimation.GetComponent<Animator>().SetBool("swordDance", false);
-                gameManager.SetActiveSpecialAbility(false);
+                //gameManager.SetActiveSpecialAbility(false);
                 allEnemiesAttacked = true;
                 gameManager.activeInUse = false;
                 transform.position = startPos;

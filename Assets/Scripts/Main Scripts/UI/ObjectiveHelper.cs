@@ -46,7 +46,6 @@ public class ObjectiveHelper : MonoBehaviour
             
             for(int j = i;j < objectiveText.Count; j++)
             {
-                Debug.Log(objectiveText[j].name);
                 objectiveText[j].GetComponent<TextMeshProUGUI>().text = "";
                 objectiveText[j].SetActive(false);
             }

@@ -82,6 +82,7 @@ public class P_Movement : MonoBehaviour
     {
         if (isGrounded && !wallRunning())
         {
+            transform.Translate(Vector3.up * 0.25f);
             rb.AddForce(Vector3.up * playerJumpPower, ForceMode.VelocityChange);
         }
         else if(wallRunning() && !wallrunner.wallLeft)

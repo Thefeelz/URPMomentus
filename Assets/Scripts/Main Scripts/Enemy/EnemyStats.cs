@@ -34,7 +34,7 @@ public class EnemyStats : MonoBehaviour
             mEntity = gameObject.GetComponent<Entity>();
         }
         else
-            gameManager.AddEnemyToList(this);
+            StartCoroutine(AddEnemyToList());
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
 
@@ -117,17 +117,20 @@ public class EnemyStats : MonoBehaviour
             Debug.LogError("There is no death effect linked to this prefab, make sure you link some sort of death VFX from the 'Visual Effects Folder'");
         
         player.ReplenishHealth(energyAmount);
+
+        if (GetComponent<EnemyTriggerChild>())
+            GetComponent<EnemyTriggerChild>().AlertParentGroupOfDeath();
+
         if (GetComponent<EnemyChaseState>())
         {
-            if (GetComponent<EnemyChaseState>())
-                chase.SetStateToDead();
+            chase.SetStateToDead();
             if (GetComponentInChildren<Collider>().attachedRigidbody)
             {
                 GetComponentInChildren<Collider>().attachedRigidbody.isKinematic = true;
                 GetComponentInChildren<Collider>().enabled = false;
             }
             yield return new WaitForSeconds(10f);
-            Debug.Log("Destroyed");
+            
             gameManager.RemoveFromActiveList(this);
             Destroy(gameObject);
         }
@@ -168,11 +171,14 @@ public class EnemyStats : MonoBehaviour
             GetComponent<BomberEnemy>().SetStateToAsleep();
         }
 
-        else
+        else if (GetComponent<EnemyChaseState>())
         {
-            // TODO Vincent add the if component of the else if to whatever your flying enemy script name is that is attached to the body
-            // and add a State to your flyer that just stops it from doing anything so when the player is dead it doesnt continue to
-            // attack the player, it will just stand there and do nada.
+            GetComponent<EnemyChaseState>().SpecialInUse(true);
         }
+    }
+    IEnumerator AddEnemyToList()
+    {
+        yield return new WaitForSeconds(0.25f);
+        GameManager.Instance.AddEnemyToList(this);
     }
 }

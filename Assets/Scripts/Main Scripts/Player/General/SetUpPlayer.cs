@@ -132,7 +132,6 @@ public class SetUpPlayer : MonoBehaviour
 
         if (materialsToApply.Length > 6)
         {
-            Debug.Log("Calling Shield Materials");
             foreach (GameObject mat in shield)
             {
                 Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
@@ -158,22 +157,8 @@ public class SetUpPlayer : MonoBehaviour
     
     void ApplyParticleSystems()
     {
-        // swordLighting.GetComponent<ParticleSystem>().main.startColor.color = particlesystemToApply[0].main.startColor.color;
         var main = swordLighting.GetComponent<ParticleSystem>().main;
-        Debug.Log("Initial Colors");
-        Debug.Log("[" + main.startColor.colorMin.r + ", " + main.startColor.colorMin.g + ", " + main.startColor.colorMin.b + "]");
-        Debug.Log("[" + main.startColor.colorMax.r + ", " + main.startColor.colorMax.g + ", " + main.startColor.colorMax.b + "]");
-
-        Debug.Log("Incoming Colors");
-        Debug.Log("[" + particlesystemToApply[0].main.startColor.colorMin.r + ", " + particlesystemToApply[0].main.startColor.colorMin.g + ", " + particlesystemToApply[0].main.startColor.colorMin.b + "]");
-        Debug.Log("[" + particlesystemToApply[0].main.startColor.colorMax.r + ", " + particlesystemToApply[0].main.startColor.colorMax.g + ", " + particlesystemToApply[0].main.startColor.colorMax.b + "]");
-
-
         main.startColor = particlesystemToApply[0].main.startColor;
-        Debug.Log("Changed");
-        Debug.Log("Changed Colors");
-        Debug.Log("[" + main.startColor.colorMin.r + ", " + main.startColor.colorMin.g + ", " + main.startColor.colorMin.b + "]");
-        Debug.Log("[" + main.startColor.colorMax.r + ", " + main.startColor.colorMax.g + ", " + main.startColor.colorMax.b + "]");
 
         FindObjectOfType<A_SwordSlash>().SetSwordSlashPrefab(GameManager.Instance.GetSwordSlashPrefab());
         FindObjectOfType<A_ContainedHeat>().SetContainedHeatPrefab(GameManager.Instance.GetContainedHeatPrefab());

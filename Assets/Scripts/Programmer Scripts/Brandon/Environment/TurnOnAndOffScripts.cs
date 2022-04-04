@@ -22,19 +22,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
 
     private void Awake()
     {
-        player = FindObjectOfType<CharacterStats>();
-        groundSlideAbility = player.GetComponent<P_GroundSlide>();
-        wallRunAbility = player.GetComponent<P_WallRun>();
-        movementAbility = player.GetComponent<P_Movement>();
-        inputAbility = player.GetComponent<P_Input>();
-        airDashAbility = player.GetComponent<A_AirDash>();
-        bladeDanceAbility = player.GetComponent<A_BladeDance>();
-        mouseLookAbility = player.GetComponent<mouseLook>();
-        swordThrowAbility = player.GetComponent<A_SwordThrow>();
-        swordSlashAbility = player.GetComponent<A_SwordSlash>();
-        containedHeatAbility = player.GetComponent<A_ContainedHeat>();
-        playerAttackAbility = player.GetComponent<PlayerAttack>();
-        shieldAbility = player.GetComponent<A_Shield>();
+        SetUp();
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,6 +67,9 @@ public class TurnOnAndOffScripts : MonoBehaviour
     }
     public void TurnOnScripts()
     {
+        if (!player)
+            SetUp();
+
         if (groundSlide) { groundSlideAbility.enabled = true; }
         if (wallRun) { wallRunAbility.enabled = true; }
         if (movement) { movementAbility.enabled = true; }
@@ -93,6 +85,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
     }
     public void TurnOnScripts(AbilityToManipulate enumz)
     {
+        if (!player)
+            SetUp();
         if (enumz == AbilityToManipulate.groundSlide) { groundSlideAbility.enabled = true; return; }
         if (enumz == AbilityToManipulate.wallRun) { wallRunAbility.enabled = true; return; }
         if (enumz == AbilityToManipulate.movement) { movementAbility.enabled = true; return; }
@@ -109,6 +103,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
 
     public void TurnOffScripts()
     {
+        if (!player)
+            SetUp();
         if (groundSlide) { groundSlideAbility.enabled = false; }
         if (wallRun) { wallRunAbility.enabled = false; }
         if (movement) { movementAbility.enabled = false; }
@@ -124,6 +120,8 @@ public class TurnOnAndOffScripts : MonoBehaviour
     }
     public void TurnOffScripts(AbilityToManipulate enumz)
     {
+        if (!player)
+            SetUp();
         if (enumz == AbilityToManipulate.groundSlide) { groundSlideAbility.enabled = false; return; }
         if (enumz == AbilityToManipulate.wallRun) { wallRunAbility.enabled = false; return; }
         if (enumz == AbilityToManipulate.movement) { movementAbility.enabled = false; return; }
@@ -180,5 +178,21 @@ public class TurnOnAndOffScripts : MonoBehaviour
     public void ToggleContainedHeat(bool value)
     {
         containedHeatAbility.enabled = value;
+    }
+    void SetUp()
+    {
+        player = FindObjectOfType<CharacterStats>();
+        groundSlideAbility = player.GetComponent<P_GroundSlide>();
+        wallRunAbility = player.GetComponent<P_WallRun>();
+        movementAbility = player.GetComponent<P_Movement>();
+        inputAbility = player.GetComponent<P_Input>();
+        airDashAbility = player.GetComponent<A_AirDash>();
+        bladeDanceAbility = player.GetComponent<A_BladeDance>();
+        mouseLookAbility = player.GetComponent<mouseLook>();
+        swordThrowAbility = player.GetComponent<A_SwordThrow>();
+        swordSlashAbility = player.GetComponent<A_SwordSlash>();
+        containedHeatAbility = player.GetComponent<A_ContainedHeat>();
+        playerAttackAbility = player.GetComponent<PlayerAttack>();
+        shieldAbility = player.GetComponent<A_Shield>();
     }
 }

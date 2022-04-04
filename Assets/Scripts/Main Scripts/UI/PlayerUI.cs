@@ -19,14 +19,18 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] float opacityIncreaseOnDamage, opacityDecreaseRateOverTime;
 
     CharacterStats ourPlayer;
+    int bladeDanceCost, bladeSlashCost, airDashcost, containedHeatCost;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         opacityIncreaseOnDamage = opacityIncreaseOnDamage / 100;
         opacityDecreaseRateOverTime = opacityDecreaseRateOverTime / 100;
         ourPlayer = GetComponent<CharacterStats>();
-        
+        bladeDanceCost = ourPlayer.GetComponent<A_BladeDance>().GetOverchargeCost();
+        bladeSlashCost = ourPlayer.GetComponent<A_SwordSlash>().GetOverchargeCost();
+        airDashcost = ourPlayer.GetComponent<A_AirDash>().GetOverchargeCost();
+        containedHeatCost = ourPlayer.GetComponent<A_ContainedHeat>().GetOverchargeCost();
     }
 
     // Update is called once per frame
@@ -36,20 +40,21 @@ public class PlayerUI : MonoBehaviour
         OverchargeBar.fillAmount = ourPlayer.GetPlayerOvercharge() / ourPlayer.GetPlayerMaxOvercharge();
         if (hexDamageOverlayImage.color.a > 0)
             UpdatedamageOverlayOverTime();
+        UpdateUIColors();
     }
-    public void UpdateAirDashFill(float fillAmount)
+    public void UpdateAirDashFill(float fillAmount, float abilityCost)
     {
         airDashImage.fillAmount = fillAmount;
     }
-    public void UpdateBladeDanceFill(float fillAmount)
+    public void UpdateBladeDanceFill(float fillAmount, float abilityCost)
     {
         bladeDanceImage.fillAmount = fillAmount;
     }
-    public void UpdateContainedHeatFill(float fillAmount)
+    public void UpdateContainedHeatFill(float fillAmount, float abilityCost)
     {
         containedHeatImage.fillAmount = fillAmount;
     }
-    public void UpdateSwordSlashFill(float fillAmount)
+    public void UpdateSwordSlashFill(float fillAmount, float abilityCost)
     {
         swordSlashImage.fillAmount = fillAmount;
     }
@@ -63,5 +68,33 @@ public class PlayerUI : MonoBehaviour
     {
         Color c = hexDamageOverlayImage.color;
         hexDamageOverlayImage.color = new Color(c.r, c.g, c.b, c.a - (opacityDecreaseRateOverTime * Time.deltaTime));
+    }
+
+    void UpdateUIColors()
+    {
+        float currentOverCharge = ourPlayer.GetPlayerOvercharge();
+        if (bladeDanceCost > currentOverCharge)
+            UpdateUIImageColor(bladeDanceImage, false);
+        else
+            UpdateUIImageColor(bladeDanceImage, true);
+        if (bladeSlashCost > currentOverCharge)
+            UpdateUIImageColor(swordSlashImage, false);
+        else
+            UpdateUIImageColor(swordSlashImage, true);
+        if (containedHeatCost > currentOverCharge)
+            UpdateUIImageColor(containedHeatImage, false);
+        else
+            UpdateUIImageColor(containedHeatImage, true);
+        if (airDashcost > currentOverCharge)
+            UpdateUIImageColor(airDashImage, false);
+        else
+            UpdateUIImageColor(airDashImage, true);
+    }
+    void UpdateUIImageColor(Image image, bool value)
+    {
+        if (!value)
+            image.color = Color.red;
+        else
+            image.color = Color.white;
     }
 }

@@ -7,7 +7,6 @@ using System;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] List<DialogueMessage> messagesToDisplay = new List<DialogueMessage>();
     [SerializeField] List<DialogueMessageInteractive> interactiveMessagesToDisplay = new List<DialogueMessageInteractive>();
     [SerializeField] TMP_Text textDisplay;
     [SerializeField] Image canvasImageForDialoge;
@@ -15,87 +14,32 @@ public class DialogueSystem : MonoBehaviour
     int i = 0;
     GameObject callingObject;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        /*
-        if (messagesToDisplay.Count > 0)
-            StartDisplayMessage();
-        */
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    //public void AddMessageToDisplay(List<DialogueMessage> messages)
-    //{
-    //    if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
-    //    {
-    //        messagesToDisplay.Clear();
-    //        StopAllCoroutines();
-    //    }
-    //    messagesToDisplay = messages;
-    //    if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
-    //    {
-    //        canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-    //        StartDisplayMessage();
-    //    }
-    //    else
-    //    {
-    //        canvasImageForDialoge.sprite = null;
-    //        StartDisplayMessage();
-    //    }
-    //}
-
+    /// <summary>
+    /// Add a list of DialogueMessageInteractive to be displayed to the screen for player instruction.
+    /// </summary>
+    /// <param name="messages"></param>
     public void AddMessageToDisplay(List<DialogueMessageInteractive> messages)
     {
         if (messages.Count == 0) { return; }
-        if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
+        if (messages[0].overrideCurrentMessage && interactiveMessagesToDisplay.Count > 0)
         {
             interactiveMessagesToDisplay.Clear();
             StopAllCoroutines();
             interactiveMessagesToDisplay = messages;
             i = 0;
             canvasImageForDialoge.sprite = null;
-            StartDisplayMessageInteractive();
-            return;
         }
-        interactiveMessagesToDisplay = messages;
-        if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
+        else if(!messages[0].overrideCurrentMessage && interactiveMessagesToDisplay.Count > 0)
         {
-            canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-            StartDisplayMessageInteractive();
+            foreach (DialogueMessageInteractive newMessage in messages)
+            {
+                interactiveMessagesToDisplay.Add(newMessage);
+            }
         }
         else
-        {
-            canvasImageForDialoge.sprite = null;
-            StartDisplayMessageInteractive();
-        }
+            interactiveMessagesToDisplay = messages;
+        StartDisplayMessageInteractive();
     }
-
-    //public void AddMessageToDisplay(List<DialogueMessage> messages, GameObject _callingObject)
-    //{
-    //    callingObject = _callingObject;
-    //    if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
-    //    {
-    //        messagesToDisplay.Clear();
-    //        StopAllCoroutines();
-    //    }
-    //    messagesToDisplay = messages;
-    //    if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
-    //    {
-    //        canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-    //        StartDisplayMessage();
-    //    }
-    //    else
-    //    {
-    //        canvasImageForDialoge.sprite = null;
-    //        StartDisplayMessage();
-    //    }
-    //}
 
     public void AddMessageToDisplay(List<DialogueMessageInteractive> messages, GameObject _callingObject)
     {
@@ -103,6 +47,7 @@ public class DialogueSystem : MonoBehaviour
         callingObject = _callingObject;
         if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
         {
+            FastForwardAbilityToggle(interactiveMessagesToDisplay);
             interactiveMessagesToDisplay.Clear();
             StopAllCoroutines();
             interactiveMessagesToDisplay = messages;
@@ -121,17 +66,6 @@ public class DialogueSystem : MonoBehaviour
         {
             canvasImageForDialoge.sprite = null;
             StartDisplayMessageInteractive();
-        }
-    }
-
-    void HandleAbilityToggles(List<AbilityToManipulateObject> daList)
-    {
-        foreach (AbilityToManipulateObject thang in daList)
-        {
-            if (thang.turnOnAbility)
-                callingObject.GetComponent<TurnOnAndOffScripts>().TurnOnScripts(thang.abilitiesToManipulate);
-            else
-                callingObject.GetComponent<TurnOnAndOffScripts>().TurnOffScripts(thang.abilitiesToManipulate);
         }
     }
 
@@ -187,33 +121,10 @@ public class DialogueSystem : MonoBehaviour
             }
         }
     }
-    void StartDisplayMessage()
-    {
-        canvasImageForDialoge.sprite = messagesToDisplay[i].imageToDisplay;
-        dialogueAnimator.SetBool("dialogue", true);
-        
-        if (i < messagesToDisplay.Count)
-        {
-            if(messagesToDisplay[i].abilities.Count > 0)
-                HandleAbilityToggles(messagesToDisplay[i].abilities);
-            if (messagesToDisplay[i].objectsToTurnOn.Length > 0)
-                HandleGameObjectToggle(messagesToDisplay[i].objectsToTurnOn);
-            StartCoroutine(DisplayMessage(messagesToDisplay[i].timeToDisplay, messagesToDisplay[i].message));
-            i++;
-        }
-        else
-        {
-            dialogueAnimator.SetBool("dialogue", false);
-            StartCoroutine(TurnOffImage());
-            textDisplay.text = "";
-            i = 0;
-        }
-    }
+    
 
     void StartDisplayMessageInteractive()
-    {
-        
-        
+    {   
         if (i < interactiveMessagesToDisplay.Count)
         {
             canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
@@ -227,7 +138,7 @@ public class DialogueSystem : MonoBehaviour
                 HandleAnimatorSystemInteractive(interactiveMessagesToDisplay[i].animations);
             if (interactiveMessagesToDisplay[i].objectives.Count > 0)
                 HandleObjectives(interactiveMessagesToDisplay[i].objectives);
-            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i].timeToDisplay, interactiveMessagesToDisplay[i].message));
+            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i]));
             i++;
         }
         else
@@ -237,18 +148,18 @@ public class DialogueSystem : MonoBehaviour
             i = 0;
         }
     }
-    IEnumerator DisplayMessage(float displayTime, string currentMessage)
-    {
-        textDisplay.text = currentMessage;
-        yield return new WaitForSeconds(displayTime);
-        StartDisplayMessage();
-    }
+    
 
-    IEnumerator DisplayMessageInteractive(float displayTime, string currentMessage)
+    IEnumerator DisplayMessageInteractive(DialogueMessageInteractive message)
     {
         dialogueAnimator.SetBool("dialogue", true);
-        textDisplay.text = currentMessage;
-        yield return new WaitForSeconds(displayTime);
+        canvasImageForDialoge.sprite = message.imageToDisplay;
+        textDisplay.text = message.message;
+        if (message.fontSize == 0)
+            textDisplay.fontSize = 28;
+        else
+            textDisplay.fontSize = message.fontSize;
+        yield return new WaitForSeconds(message.timeToDisplay);
         StartDisplayMessageInteractive();
     }
 
@@ -257,6 +168,15 @@ public class DialogueSystem : MonoBehaviour
         dialogueAnimator.SetBool("dialogue", false);
         interactiveMessagesToDisplay.Clear();
         yield return new WaitForSeconds(2f);
-        canvasImageForDialoge.sprite = null;
+        if(!dialogueAnimator.GetBool("dialogue"))
+            canvasImageForDialoge.sprite = null;
+    }
+
+    void FastForwardAbilityToggle(List<DialogueMessageInteractive> remainingMessages)
+    {
+        foreach (DialogueMessageInteractive item in remainingMessages)
+        {
+            HandleAbilityTogglesInteractive(item.abilities);
+        }
     }
 }

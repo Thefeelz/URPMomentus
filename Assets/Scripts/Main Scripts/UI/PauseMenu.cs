@@ -20,8 +20,7 @@ public class PauseMenu : MonoBehaviour
             settingsMenu.SetActive(false);
         }
         myManager = FindObjectOfType<GameManager>();
-        if (myManager)
-            Debug.Log("Found Game Manager");
+        
     }
     public void PauseGame()
     {

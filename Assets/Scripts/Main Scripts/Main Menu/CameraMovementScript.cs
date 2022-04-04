@@ -77,7 +77,7 @@ public class CameraMovementScript : MonoBehaviour
         nextSelection = loadOutSelectionObject;
         transitioning = true;
     }
-    public void LevelButtonClicked()
+    public void LevelButtonClicked(int level)
     {
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -85,7 +85,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosLoadOutSelection.rotation;
         currentSelelection = levelSelectionObject;
         nextSelection = loadOutSelectionObject;
-        transitioning = true; 
+        transitioning = true;
+        if (GameManager.Instance)
+            GameManager.Instance.SetLevel(level);
+        else
+            Debug.Log("No Game Manager Found");
     }
     public void LoadOutBackButtonClicked()
     {
@@ -148,4 +152,5 @@ public class CameraMovementScript : MonoBehaviour
         nextSelection = creditsObject;
         transitioning = true;
     }
+    public void ChooseSword(int swordChoice) { GameManager.Instance.SetBladeColor(swordChoice); }
 }

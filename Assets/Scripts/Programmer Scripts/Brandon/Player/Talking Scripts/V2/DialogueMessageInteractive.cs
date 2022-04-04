@@ -6,6 +6,7 @@ using UnityEngine;
 public class DialogueMessageInteractive
 {
     public Sprite imageToDisplay;
+    public int fontSize = 28;
     [TextArea(3, 10)]
     public string message;
     public float timeToDisplay;

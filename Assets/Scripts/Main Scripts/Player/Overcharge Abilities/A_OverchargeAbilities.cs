@@ -99,4 +99,5 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
         if (!value)
             playerMovement.SetPlayerCurrentSpeed(0);
     }
+    public int GetOverchargeCost() { return overchargeCost; }
 }

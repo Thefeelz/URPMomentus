@@ -20,7 +20,6 @@ public class MasterLevel : MonoBehaviour
         // CheckForLevelComplete();
         if (GameManager.Instance)
         {
-            Debug.Log("Game Manager fucking found");
             GameManager.Instance.SetLevel(currentLevelBuildIndex);
         }
         currentKillCount = 0;
@@ -29,7 +28,8 @@ public class MasterLevel : MonoBehaviour
     public void AddToKillCount(int numberToAdd)
     {
         currentKillCount += numberToAdd;
-        progressBar.fillAmount = (float)currentKillCount / enemiesToKill;
+        if(progressBar)
+            progressBar.fillAmount = (float)currentKillCount / enemiesToKill;
         CheckForLevelComplete();
     }
 
@@ -40,7 +40,7 @@ public class MasterLevel : MonoBehaviour
             if (currentKillCount >= enemiesToKill)
             {
                 //StartCoroutine(ShowWinText());
-                elevatorAnimator.SetBool("startElevator", true);
+                // elevatorAnimator.SetBool("startElevator", true);
                 //levelContinueDoor.SetActive(true);
                 levelComplete = true;
                 return true;

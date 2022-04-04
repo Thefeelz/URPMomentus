@@ -10,7 +10,7 @@ public class BrandonDialogueTrigger : MonoBehaviour
     {
         if(other.GetComponentInParent<DialogueSystem>() && !triggered)
         {
-            other.GetComponentInParent<DialogueSystem>().AddMessageToDisplay(messages);
+            other.GetComponentInParent<DialogueSystem>().AddMessageToDisplay(messages, this.gameObject);
             triggered = true;
         }
         // Destroy(gameObject);

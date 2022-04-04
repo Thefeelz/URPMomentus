@@ -313,7 +313,8 @@ public class EnemyChaseState : MonoBehaviour
 
     public void ShootAtPlayer()
     {
-        Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.LookRotation(transform.forward));
+        GameObject newBullet = Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.identity);
+        newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, player.GetComponent<CharacterStats>(), bulletLaunch.transform, 20f);
         ammoCount--;
     }
     

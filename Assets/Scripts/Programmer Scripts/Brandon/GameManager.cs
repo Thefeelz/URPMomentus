@@ -44,13 +44,11 @@ public class GameManager : MonoBehaviour
             GameManager gm = FindObjectOfType<GameManager>();
             if (gm != this)
             {
-                Debug.Log("destroyed");
                 Destroy(gm.gameObject);
             }
         }
         if (!FindObjectOfType<CharacterStats>())
         {
-            Debug.Log("Unlocking Cursor");
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
@@ -140,7 +138,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetLevel(int level)
     {
-        Debug.Log("Set Current Level to " + level);
         levelChosen = level;
     }
     public int GetLevel()
@@ -235,7 +232,7 @@ public class GameManager : MonoBehaviour
     bool GetInLOS(Transform player, Transform enemy)
     {
         RaycastHit hit;
-        Physics.Raycast(player.position + new Vector3(0, 1, 0), enemy.transform.position - player.position, out hit);
+        Physics.Raycast(player.position, enemy.transform.position - player.position, out hit);
         if (hit.collider != null && hit.collider.GetComponentInParent<P_Input>())
         {
             return true;
@@ -264,4 +261,5 @@ public class GameManager : MonoBehaviour
     public int GetRespawnCheckpointIndex() { return respawnCheckpointIndex; }
     public bool GetRespawnAtCheckpoint() { return respawnAtCheckpoint; }
     public void SetRespawnAtCheckpoint(bool value) { Debug.Log("Set Respawn at Checkpoint is " + value); respawnAtCheckpoint = value; Debug.Log("Set Respawn at Checkpoint is " + value); }
+    public void ClearEnemyList() { enemiesInLevel.Clear(); }
 }
