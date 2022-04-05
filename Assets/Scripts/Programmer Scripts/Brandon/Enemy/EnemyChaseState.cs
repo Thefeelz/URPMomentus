@@ -23,6 +23,7 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] Animator animController;
     [SerializeField] float enemyRunSpeed;
     [Range(0, 100)][SerializeField] int ammoCount;
+    [SerializeField] float rangedAttackDamage, meleeAttackDamage;
     [SerializeField] bool startInChase;
 
     [SerializeField] GameObject bulletPrefab;
@@ -245,7 +246,7 @@ public class EnemyChaseState : MonoBehaviour
         Physics.Raycast((transform.position + Vector3.up) + (transform.forward * 0.5f), transform.forward, out hit, 1f);
         if (hit.collider != null && hit.collider.GetComponentInParent<CharacterStats>())
         {
-            hit.transform.GetComponentInParent<CharacterStats>().RemoveHealthMelee(10f);
+            hit.transform.GetComponentInParent<CharacterStats>().RemoveHealthMelee(meleeAttackDamage);
         }
     }
 
@@ -314,7 +315,7 @@ public class EnemyChaseState : MonoBehaviour
     public void ShootAtPlayer()
     {
         GameObject newBullet = Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.identity);
-        newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, player.GetComponent<CharacterStats>(), bulletLaunch.transform, 20f);
+        newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, player.GetComponent<CharacterStats>(), bulletLaunch.transform, rangedAttackDamage);
         ammoCount--;
     }
     

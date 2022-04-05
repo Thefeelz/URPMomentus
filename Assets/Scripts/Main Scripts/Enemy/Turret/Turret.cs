@@ -11,14 +11,16 @@ public class Turret : MonoBehaviour
     [SerializeField] float sleepTimer;
     [SerializeField] float chargeUpTime;
     [SerializeField] float rateOfFire;
-    [SerializeField] float fireBurstTime;
+    [SerializeField] float bulletVelocity;
+    [SerializeField] int bulletCapacity, currentBulletCount, ammoToAddPerSecond;
+    [SerializeField] float reloadTime = 0f;
     [SerializeField] Light firingLight;
     [SerializeField] Transform firePosition;
     [SerializeField] ParticleSystem smokeEffect;
     [SerializeField] GameObject bulletsToFire;
     [SerializeField] LayerMask mask;
 
-    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse};
+    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse, Reload};
     [SerializeField]TurretState currentState;
     TurretState previousState;
 
@@ -33,6 +35,7 @@ public class Turret : MonoBehaviour
     void Start()
     {
         currentState = TurretState.Asleep;
+        currentBulletCount = bulletCapacity;
         myPlayer = FindObjectOfType<P_Input>();
         anim = GetComponent<Animator>();
         if (myPlayer)
@@ -40,6 +43,10 @@ public class Turret : MonoBehaviour
         else
             anim.SetBool("awake", true);
         rateOfFire = 1 / rateOfFire;
+        if (ammoToAddPerSecond > 0)
+            ammoToAddPerSecond = 1 / ammoToAddPerSecond;
+        else
+            ammoToAddPerSecond = 1;
     }
 
     // Update is called once per frame
@@ -70,6 +77,10 @@ public class Turret : MonoBehaviour
         {
 
         }
+        else if (currentState == TurretState.Reload)
+        {
+            Reload();
+        }
     }
 
     void CheckPlayerInRange()
@@ -98,6 +109,19 @@ public class Turret : MonoBehaviour
         }
     }
 
+    void Reload()
+    {
+        reloadTime += Time.deltaTime;
+        if(reloadTime >= ammoToAddPerSecond)
+        {
+            currentBulletCount++;
+            reloadTime = 0f;
+            if(currentBulletCount == bulletCapacity)
+            {
+                currentState = TurretState.Attacking;
+            }
+        }
+    }
     void RotateTowardsPlayer()
     {
         headToRotate.transform.rotation = Quaternion.RotateTowards(headToRotate.transform.rotation, 
@@ -121,16 +145,27 @@ public class Turret : MonoBehaviour
 
     IEnumerator StartFiring()
     {
+        bool reload = false;
         firing = true;
         while(currentState == TurretState.Attacking)
         {
             elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
             GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
-            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(bulletVelocity, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            currentBulletCount--;
+            if(currentBulletCount == 0)
+            {
+                currentState = TurretState.Reload;
+                reload = true;
+                break;
+            }
         }
-        currentState = TurretState.Asleep;
-        ResetLife();
+        if (!reload)
+        {
+            currentState = TurretState.Asleep;
+            ResetLife();
+        }
     }
 
     bool CheckInLoS()

@@ -7279,6 +7279,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6627696791527982693, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+      propertyPath: maskz.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
 --- !u!1001 &608644787
@@ -7642,7 +7646,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 652788523}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 509.3, y: 1, z: 374.92}
@@ -12700,6 +12704,14 @@ PrefabInstance:
       propertyPath: maxDetectionRange
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: meleeAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: rangedAttackDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
       value: EnemyBiped
@@ -15859,7 +15871,11 @@ MonoBehaviour:
   sleepTimer: 5
   chargeUpTime: 2
   rateOfFire: 0
-  fireBurstTime: 3
+  bulletVelocity: 0
+  bulletCapacity: 0
+  currentBulletCount: 0
+  ammoToAddPerSecond: 0
+  reloadTime: 0
   firingLight: {fileID: 0}
   firePosition: {fileID: 0}
   smokeEffect: {fileID: 0}
@@ -16711,6 +16727,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: rateOfFire
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: mask.m_Bits
       value: 8704
       objectReference: {fileID: 0}
@@ -16719,8 +16739,20 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: bulletCapacity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: bulletVelocity
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: detectionRange
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123282378114966095, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
+      propertyPath: ammoToAddPerSecond
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6123282378114966128, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: energyAmount
