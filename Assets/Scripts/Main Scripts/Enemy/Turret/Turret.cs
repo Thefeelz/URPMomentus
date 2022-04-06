@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -8,17 +9,18 @@ public class Turret : MonoBehaviour
     [SerializeField] float detectionRange;
     [SerializeField] int damageToDeal;
     [SerializeField] float rotateSpeed;
-    [SerializeField] float sleepTimer;
     [SerializeField] float chargeUpTime;
     [SerializeField] float rateOfFire;
     [SerializeField] float bulletVelocity;
-    [SerializeField] int bulletCapacity, currentBulletCount, ammoToAddPerSecond;
+    [SerializeField] int bulletCapacity, currentBulletCount;
+    [SerializeField] float ammoToAddPerSecond;
     [SerializeField] float reloadTime = 0f;
     [SerializeField] Light firingLight;
     [SerializeField] Transform firePosition;
     [SerializeField] ParticleSystem smokeEffect;
     [SerializeField] GameObject bulletsToFire;
     [SerializeField] LayerMask mask;
+    [SerializeField] Image reloadSprite;
 
     enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse, Reload};
     [SerializeField]TurretState currentState;
@@ -26,14 +28,14 @@ public class Turret : MonoBehaviour
 
     P_Input myPlayer;
     Animator anim;
+    TurretRatatatatatata ratatatatatata;
 
     float elapsedChargeTime = 0f;
-    float elapsedFireTime = 0f;
-    bool charged = false;
-    bool firing = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+        ratatatatatata = GetComponent<TurretRatatatatatata>();
         currentState = TurretState.Asleep;
         currentBulletCount = bulletCapacity;
         myPlayer = FindObjectOfType<P_Input>();
@@ -107,6 +109,11 @@ public class Turret : MonoBehaviour
             ResetLife();
             anim.SetBool("awake", false);
         }
+        else if (currentState == TurretState.Reload && Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange)
+        {
+            currentState = TurretState.Attacking;
+            StartCoroutine(StartFiring());
+        }
     }
 
     void Reload()
@@ -115,10 +122,14 @@ public class Turret : MonoBehaviour
         if(reloadTime >= ammoToAddPerSecond)
         {
             currentBulletCount++;
+            reloadSprite.fillAmount = (float)currentBulletCount / bulletCapacity;
             reloadTime = 0f;
             if(currentBulletCount == bulletCapacity)
             {
-                currentState = TurretState.Attacking;
+                ratatatatatata.EndedFiring();
+                reloadSprite.fillAmount = 0;
+                reloadSprite.gameObject.SetActive(false);
+                CheckPlayerInRangeAttacking();
             }
         }
     }
@@ -136,7 +147,6 @@ public class Turret : MonoBehaviour
         if (elapsedChargeTime >= chargeUpTime)
         {
             elapsedChargeTime = 0;
-            charged = true;
             currentState = TurretState.Attacking;
             anim.SetBool("awake", true);
             StartCoroutine(StartFiring());
@@ -146,17 +156,17 @@ public class Turret : MonoBehaviour
     IEnumerator StartFiring()
     {
         bool reload = false;
-        firing = true;
         while(currentState == TurretState.Attacking)
         {
-            elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
             GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
             newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(bulletVelocity, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            ratatatatatata.FireRaTaTa(this.gameObject);
             currentBulletCount--;
             if(currentBulletCount == 0)
             {
                 currentState = TurretState.Reload;
+                reloadSprite.gameObject.SetActive(true);
                 reload = true;
                 break;
             }
@@ -189,11 +199,9 @@ public class Turret : MonoBehaviour
     }
 
     void ResetLife()
-    {
-        charged = false;
-        firing = false;
+    { 
         firingLight.intensity = 0;
-        elapsedFireTime = 0;
+        ratatatatatata.EndedFiring();
     }
 
     public void SetStateToPlayerDead() { currentState = TurretState.PlayerDead; }

@@ -139,7 +139,7 @@ public class P_GroundSlide : MonoBehaviour
 
         RaycastHit hit;
         //Physics.Linecast(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), out hit);
-        Physics.Raycast(TransformForwardFeetWithOffset(0f, 0.25f, 1f), transform.forward, out hit, 1f);
+        Physics.Raycast(TransformForwardFeetWithOffset(0f, 0.25f, 0f), transform.forward, out hit, 1f);
         Debug.DrawRay(TransformForwardFeetWithOffset(1f), TransformForwardFeetWithOffset(2f), Color.green, 1f);
 
         //if (hit.collider)

@@ -7,6 +7,7 @@ public class A_BladeDance : A_OverchargeAbilities
     [Header("Blade Dance")]
     [SerializeField] float dashTime;
     [SerializeField] int killCountMax = 7;
+    int killCountDetermined;
     [SerializeField] float maxRange = 30f;
     [SerializeField] GameObject bodyForAnimation;
     [SerializeField] GameObject currentSword;
@@ -65,6 +66,7 @@ public class A_BladeDance : A_OverchargeAbilities
 
         // Set the global variable to be true so in case any enemies spawn, they are frozen
         gameManager.activeInUse = true;
+        killCountDetermined = CalculateEnemiesHit(killCountMax);
         StartCoroutine(AttackEnemy());
         return true;
     }
@@ -96,7 +98,7 @@ public class A_BladeDance : A_OverchargeAbilities
     }
     EnemyStats LocateClosestEnemy()
     {
-        if (killCount >= killCountMax)
+        if (killCount >= killCountDetermined)
         {
             return null;
         }

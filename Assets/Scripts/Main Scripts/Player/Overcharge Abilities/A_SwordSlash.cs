@@ -18,6 +18,7 @@ public class A_SwordSlash : A_OverchargeAbilities
 
     // Enemies able to be hit till the ability dissapears
     [SerializeField] int enemiesAbleToHit;
+    [SerializeField] int enemiesAbleToHitDetermined;
     
     // This is the effect of the sword that is passivley on during the game, when this ability is used we have to turn off the base one and turn it back on
     // that is its sole purpose of being here
@@ -73,7 +74,7 @@ public class A_SwordSlash : A_OverchargeAbilities
         GameObject firedThing = Instantiate(swordSlashPrefab, weaponFire.position, Quaternion.Euler(transform.forward));
         
         firedThing.GetComponentInChildren<SwordSlashEffect>().SetVelocity(Camera.main.transform.forward, 10f);
-        firedThing.GetComponentInChildren<SwordSlashEffect>().SetEnemiesAbleToHit(enemiesAbleToHit);
+        firedThing.GetComponentInChildren<SwordSlashEffect>().SetEnemiesAbleToHit(enemiesAbleToHitDetermined);
     }
 
     // Starts glowing the sword and setting the particle effect on the sword to be more intense
@@ -106,9 +107,10 @@ public class A_SwordSlash : A_OverchargeAbilities
     // Called by the input
     public bool Ability_SwordSlash()
     {
-        if(abilityReady && overchargeCost < player.GetPlayerOvercharge())
+        if(abilityReady && overchargeCost <= player.GetPlayerOvercharge())
         {
             playerAnimator.SetBool("swordSpecial", true);
+            enemiesAbleToHitDetermined = CalculateEnemiesHit(enemiesAbleToHit);
             return true;
         }
         return false;
