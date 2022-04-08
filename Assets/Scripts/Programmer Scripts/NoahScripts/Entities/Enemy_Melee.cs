@@ -35,7 +35,7 @@ public class Enemy_Melee : Entity
         base.Awake();
         hasFollower = false;
         following = false;
-        mLocations = GameObject.Find("Cube").GetComponent<Locations>();
+        mLocations = GameObject.Find("SpotHolder").GetComponent<Locations>();
         deathState = new DeathState(this, stateMachine);
         moveState = new Em_Move(this, stateMachine, moveData, entityData, this);
         meleeState = new Em_Melee(this, stateMachine, entityData, this);

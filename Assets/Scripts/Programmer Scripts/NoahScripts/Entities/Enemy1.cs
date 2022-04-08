@@ -43,6 +43,10 @@ public class Enemy1 : Entity
     public bool canEvadeState; // can the enemy enter the evade state
     public float evadeTime; // time last evade started
     public float evadeLimit; // how long the evade cooldown is
+    public GameObject spawner;
+    public bool shootNowDaddy;  // start shooting
+    public bool returnToRun; // lets it exit the shoot state back to run
+    public bool canJump; // tells it if it ca jump
     
 
     //called on Awake
@@ -61,7 +65,7 @@ public class Enemy1 : Entity
         //makes the move state the entitys initial state
         stateMachine.InitializeStateMachine(moveState);
         canShoot = true;
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
         defaultState = moveState;
         queueName = "Ranged";
 
@@ -115,17 +119,18 @@ public class Enemy1 : Entity
     public override void Damage(float amountDamage)
     {
         // Damage() is called in the base class with the amount of damage taken passed
-        base.Damage(amountDamage);
+        //base.Damage(amountDamage);
         // enemy enters knock back state
         //stateMachine.ChangeState(knockbackState);
         
         
 
         // if the enemy dropps to zero or below it will die
-        if(health <= 0)
+        if(health <= 0 || gameObject.GetComponent<EnemyStats>().getCurrentHealth() <= 0)
         {
             stateMachine.ChangeState(deathState);
         }
+        StartCoroutine(resetSpawn());
         
 
     }
@@ -152,6 +157,17 @@ public class Enemy1 : Entity
             Debug.LogWarning("Oh I am now dead, thank you forever");
             Die();
         }
+    }
+
+    IEnumerator resetSpawn()
+    {
+        yield return new WaitForSeconds(3f);
+        mAnimator.SetBool("dead", false);
+        mAnimator.SetBool("chasing", true);
+        GetComponent<EnemyStats>().NoahAIAddToActiveList();
+
+        stateMachine.ChangeState(moveState);
+        transform.position = (spawner.transform.position);
     }
 
     
