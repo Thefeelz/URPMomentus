@@ -5,7 +5,7 @@ using UnityEngine;
 public class TutorialIntroRoom : MonoBehaviour
 {
     [SerializeField] GameObject panelOne, panelTwo;
-    [SerializeField] Material panelOneWhite, panelOneGreen, panelTwoWhite, panelTwoGreen;
+    [SerializeField] Material panelOneWhite, panelOneGreen;
     [SerializeField] float timeOnTarget;
     [SerializeField] bool panelOneBool, panelTwoBool;
     [SerializeField] StartingDoorAnimBrain doorToTrigger;
@@ -18,13 +18,13 @@ public class TutorialIntroRoom : MonoBehaviour
     void Start()
     {
         helper = FindObjectOfType<ObjectiveHelper>();
-        StartCoroutine(SetUpTrigger());
+        // StartCoroutine(SetUpTrigger());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!ableToTrigger) { return; }
+        // if (!ableToTrigger) { return; }
         if(!panelOneBool || !panelTwoBool)
             GetRaycastFromPlayer();
     }

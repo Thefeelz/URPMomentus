@@ -19,6 +19,7 @@ public class P_Input : MonoBehaviour
     Rigidbody rb;
     Animator myAnim;
     PauseMenu pauseMenu;
+    DialogueSystem dialogue;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,6 +36,7 @@ public class P_Input : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         myAnim = GetComponent<Animator>();
+        dialogue = GetComponent<DialogueSystem>();
     }
 
     // Update is called once per frame
@@ -118,6 +120,8 @@ public class P_Input : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
         if (Input.GetKeyDown(KeyCode.M)) { GetComponent<CharacterStats>().RemoveHealthMelee(GetComponent<CharacterStats>().GetPlayerMaxHealth()); }
+        if (Input.GetKeyDown(KeyCode.N)) { GetComponent<CharacterStats>().ReplenishHealth(20f); }
+        if (Input.GetKeyDown(KeyCode.Tab)) { dialogue.SkipCurrentMessage(); }
     }
 
     void GetUserInputPhysics()

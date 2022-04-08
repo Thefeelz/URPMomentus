@@ -33,6 +33,7 @@ public class A_SwordSlash : A_OverchargeAbilities
     void Start()
     {
         swordEffect = GetComponentInChildren<SwordLightningEffect>();
+        
         thisSystem = GetComponentInChildren<ParticleSystem>().emission;
         // swordSlashPrefab = GameManager.Instance.GetSwordSlashPrefab();
     }

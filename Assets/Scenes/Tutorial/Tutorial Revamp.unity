@@ -262,9 +262,11 @@ MonoBehaviour:
   messageInteractive:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Well that landing was rougher than expected, are you all good K.A.T.?
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 0
       turnOnAbility: 0
@@ -300,9 +302,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: All your programs seem to be fine...
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -310,9 +314,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Let's make sure your still functioning properly.
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -320,12 +326,16 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Lets take a look at your optics, to your left and right are panels,
       look at them until they turn from white to green.
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
-    objectsToTurnOn: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 791408374}
+      turnOnObject: 1
     animations: []
     particleSystem: []
     objectives:
@@ -342,10 +352,12 @@ MonoBehaviour:
   messageInteractive2:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Good, if the suit is to sensitive for your liking, press 'Escape' and
       go to the settings menu to change Sensitivity.
     timeToDisplay: 5
-    overrideCurrentMessage: 1
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -353,10 +365,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Now move around a little in this room while I attempt to override that
       door
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -364,9 +378,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Use WASD to move around the room and 'Spacebar' to jump!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 2
       turnOnAbility: 1
@@ -376,9 +392,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: 
     timeToDisplay: 4
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations:
@@ -389,9 +407,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Damn, I got locked out!
     timeToDisplay: 4
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -399,9 +419,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Maybe the gap is big enough to slide under.
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -409,9 +431,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Use 'Left Shift' to slide under the door!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities:
     - abilitiesToManipulate: 0
       turnOnAbility: 1
@@ -853,6 +877,11 @@ MonoBehaviour:
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 130093271}
+--- !u!1 &70107009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822539915055830346, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &70866330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,11 +2088,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186496107}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &189126080 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 189126080, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &199511395
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,8 +2589,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: startInChase
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
@@ -3245,6 +3281,11 @@ Transform:
   m_Father: {fileID: 667343174}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &278207104 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8822539915386210085, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &279316627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3911,77 +3952,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1614815271099121654, guid: 8872252e3860b434cac287ade9d66ebc, type: 3}
   m_PrefabInstance: {fileID: 121057029}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &336058819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 336058820}
-  - component: {fileID: 336058822}
-  - component: {fileID: 336058821}
-  m_Layer: 5
-  m_Name: Learned Contained Heat
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &336058820
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336058819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1708792263}
-  - {fileID: 641702779}
-  - {fileID: 385532370}
-  m_Father: {fileID: 704887995}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 653, y: 557}
-  m_SizeDelta: {x: 900, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &336058821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336058819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 095bef128711f904786d718d470baac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!95 &336058822
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336058819}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ea0efa0c77d83842adbe30e97ad2f07, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &336707866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4086,8 +4056,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: startInChase
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
@@ -4537,81 +4519,11 @@ Transform:
   m_Father: {fileID: 1653198492}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &385532369
+--- !u!1 &395529575 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3130728486366194077, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 385532370}
-  - component: {fileID: 385532372}
-  - component: {fileID: 385532371}
-  m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &385532370
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385532369}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 336058820}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &385532371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385532369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: -6284120009911835661, guid: b6eb33a873953bd4ba3f5034bd4aebba, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &385532372
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385532369}
-  m_CullTransparentMesh: 1
 --- !u!4 &396332745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1783217315439172766, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
@@ -5457,6 +5369,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 438420912}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &438866186 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8822539915943918057, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &442319994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5749,11 +5666,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 0f4f02e3893f0a44c8d2d95659ce225f, type: 3}
   m_PrefabInstance: {fileID: 1241418330}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &478530472 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 478530472, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &478710465
 GameObject:
   m_ObjectHideFlags: 0
@@ -5966,9 +5878,11 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Now Ahead, there are 2 more of those turrets on elevated platforms
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 9
       turnOnAbility: 1
@@ -5978,9 +5892,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Using a ranged attack would be nice here, and you have 2.
     timeToDisplay: 3
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -5988,15 +5904,17 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Q Fires a beam of energy forward that hits more enemies based on your
       current overcharge level
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 9
       turnOnAbility: 1
     objectsToTurnOn:
-    - objectToManipulate: {fileID: 1551016438}
+    - objectToManipulate: {fileID: 1129043553}
       turnOnObject: 1
     - objectToManipulate: {fileID: 1424916184}
       turnOnObject: 1
@@ -6005,26 +5923,28 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: 2 Throws your sword, it can only hit 1 enemy but costs no overcharge!
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 7
       turnOnAbility: 1
     objectsToTurnOn:
-    - objectToManipulate: {fileID: 1298070265}
+    - objectToManipulate: {fileID: 395529575}
       turnOnObject: 1
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Now, destroy those turrets!
     timeToDisplay: 5
     overrideCurrentMessage: 1
-    abilities:
-    - abilitiesToManipulate: 9
-      turnOnAbility: 1
+    ableToSkipMessage: 1
+    abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1693744735}
       turnOnObject: 0
@@ -7415,46 +7335,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 258327913}
     m_Modifications:
-    - target: {fileID: 106714860, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 2600468479
-      objectReference: {fileID: 0}
-    - target: {fileID: 189126080, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 588294396, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4294967179
-      objectReference: {fileID: 0}
-    - target: {fileID: 982830813, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.82828283
-      objectReference: {fileID: 0}
-    - target: {fileID: 982830813, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998834281, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2069834348, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.82828283
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2133182821, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.82828283
-      objectReference: {fileID: 0}
     - target: {fileID: 3117783459759319468, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
       propertyPath: m_Name
       value: Player MainV2
@@ -7740,140 +7620,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2235567455425448185, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
   m_PrefabInstance: {fileID: 691414855}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &641702778
+--- !u!1 &645140620 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8822539915801176962, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 641702779}
-  - component: {fileID: 641702781}
-  - component: {fileID: 641702780}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &641702779
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641702778}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 336058820}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 0}
-  m_SizeDelta: {x: 600, y: 125}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &641702780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641702778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'NEW ABILITY LEARNED: Contained Heat'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9866af5360af87a4b88ad63d6960232a, type: 2}
-  m_sharedMaterial: {fileID: 830572969455344927, guid: 9866af5360af87a4b88ad63d6960232a, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 2600468479
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &641702781
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641702778}
-  m_CullTransparentMesh: 1
 --- !u!1001 &650281945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8374,9 +8125,11 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 36
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Dont forget to use your shield!!!
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -8964,11 +8717,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
   m_PrefabInstance: {fileID: 2076961732}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &704887995 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 533954551, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &707084390
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9405,7 +9153,7 @@ PrefabInstance:
     - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9d3dcfae311cd2f418047e848e3b45d8, type: 2}
+      objectReference: {fileID: 2100000, guid: ccfe050c7843b524a8bd4d0d62594527, type: 2}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -11311,7 +11059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &791408375
 Transform:
   m_ObjectHideFlags: 0
@@ -11344,8 +11092,6 @@ MonoBehaviour:
   panelTwo: {fileID: 1234200630}
   panelOneWhite: {fileID: 2100000, guid: 2c2d5e74ebde45845bd1bc309f0acc88, type: 2}
   panelOneGreen: {fileID: 2100000, guid: 820a89cebbb7ecf4c93fa19fc966b6bc, type: 2}
-  panelTwoWhite: {fileID: 2100000, guid: f39faa3aaaa610b4980655de6ddd7428, type: 2}
-  panelTwoGreen: {fileID: 0}
   timeOnTarget: 2
   panelOneBool: 0
   panelTwoBool: 0
@@ -11433,6 +11179,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4361751668521504324, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
   m_PrefabInstance: {fileID: 793183564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &795527142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822539916258486145, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &799271774
 PrefabInstance:
@@ -12879,6 +12630,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.33231, y: 10.97933, z: 1.6437607}
   m_Center: {x: 0.5065441, y: 3.11944, z: -0.32188034}
+--- !u!1 &886807997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7222637613100761757, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+  m_PrefabInstance: {fileID: 896596949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &889758451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13129,9 +12885,21 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: bipedBody
+      value: 
+      objectReference: {fileID: 886807997}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: maxDetectionRange
       value: 15
@@ -13144,6 +12912,46 @@ PrefabInstance:
       propertyPath: rangedAttackDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 272389386920464401, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 413679507316058900, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.869278
+      objectReference: {fileID: 0}
+    - target: {fileID: 413679507316058900, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -9.764128
+      objectReference: {fileID: 0}
+    - target: {fileID: 413679507316058900, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 7.8502073
+      objectReference: {fileID: 0}
+    - target: {fileID: 489550297122558982, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 579995546880984382, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 773058989937376696, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 792423150242727780, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 1004844856244839094, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 1228125760395865081, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
       value: EnemyBiped
@@ -13158,7 +12966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172766, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9671986
+      value: -1.697
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172766, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13191,6 +12999,178 @@ PrefabInstance:
     - target: {fileID: 1783217315439172766, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932654180083849404, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -1.5206703
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932654180083849404, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.083349764
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932654180083849404, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 1.500226
+      objectReference: {fileID: 0}
+    - target: {fileID: 2215966552435544595, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 2327135139631523959, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -25.590601
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327135139631523959, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 7.2266464
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327135139631523959, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.280682
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692827664829754278, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.615093
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692827664829754278, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 9.14334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3692827664829754278, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.7712193
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514840882288497322, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -27.699665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514840882288497322, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 7.923032
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514840882288497322, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.60653
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004814497234837476, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 5188086334667952182, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 22.409039
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188086334667952182, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -8.525048
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188086334667952182, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -16.795176
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356062921714169676, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -0.3322802
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356062921714169676, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 17.632599
+      objectReference: {fileID: 0}
+    - target: {fileID: 5356062921714169676, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -4.1359234
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760325181462191206, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6045583924269383815, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
+    - target: {fileID: 6228457220088042490, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6414179013136554596, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6550115633770006261, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.0053673
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550115633770006261, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3.380463
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550115633770006261, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.23312242
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713207253745267166, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6831442888922792100, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 6834682205956640319, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+    - target: {fileID: 7158387479079990171, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 1.8745224
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158387479079990171, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 151.50337
+      objectReference: {fileID: 0}
+    - target: {fileID: 7158387479079990171, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 174.5556
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307178656221909403, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 2.6736808
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307178656221909403, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 1.6966906
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307178656221909403, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -0.49289107
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359862100281948402, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 21.6161
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359862100281948402, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 4.1007648
+      objectReference: {fileID: 0}
+    - target: {fileID: 7359862100281948402, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 9.627284
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
@@ -13283,9 +13263,11 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Excellent!
     timeToDisplay: 2
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -13293,9 +13275,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Now ahead I am picking up more energy signatures.
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 8
       turnOnAbility: 1
@@ -13305,10 +13289,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: These are moving, probably enemies. When encountering enemies, use 'left
       click' to attack!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -13316,62 +13302,74 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: I also added your Health and Overcharge to your HUD
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
-    objectsToTurnOn: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1738589874}
+      turnOnObject: 1
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: This is your Health Bar
     timeToDisplay: 2
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations:
-    - animator: {fileID: 478530472}
+    - animator: {fileID: 438866186}
       boolName: jonIsKindaCool
       boolValue: 1
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: This is your Overcharge Bar
     timeToDisplay: 2
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations:
-    - animator: {fileID: 2135143780}
+    - animator: {fileID: 278207104}
       boolName: jonIsKindaCool
       boolValue: 1
-    - animator: {fileID: 478530472}
+    - animator: {fileID: 438866186}
       boolName: jonIsKindaCool
       boolValue: 0
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: You need Overcharge to use your abilities, so make sure to pay attention
       to these two!
     timeToDisplay: 4
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations:
-    - animator: {fileID: 2135143780}
+    - animator: {fileID: 278207104}
       boolName: jonIsKindaCool
       boolValue: 0
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     fontSize: 0
+    fontColor: {r: 0.4745098, g: 1, b: 0.9764706, a: 1}
     message: This door isn't opening for me, can you open it?
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -13379,9 +13377,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: On it, one second. Make sure you're ready!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -13389,9 +13389,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Got it!
     timeToDisplay: 2
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations:
@@ -16090,6 +16092,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bdb093114a4897b4687ba268cfb8ad93, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
+--- !u!1 &1129043553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822539914869330871, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1133293103
 GameObject:
   m_ObjectHideFlags: 0
@@ -16137,11 +16144,13 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49127674, b: 1, a: 1}
     message: 'Hold Up!
 
       That must be the Cosmic Rock from Veraxus''s last victim'
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -16149,9 +16158,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Wait for it to turn off, and then jump over the gap!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -16159,11 +16170,13 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: 'Now!
 
       Use ''Spacebar'' To Jump!'
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 884618143}
@@ -16193,11 +16206,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.746319, y: 6.2030067, z: 1}
   m_Center: {x: 0.12794685, y: -0.33898306, z: 0}
---- !u!1 &1133831947 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1133831947, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1134244815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17252,6 +17260,7 @@ GameObject:
   - component: {fileID: 1187520413}
   - component: {fileID: 1187520414}
   - component: {fileID: 1187520415}
+  - component: {fileID: 1187520416}
   m_Layer: 0
   m_Name: Prepare to Go Down Hallway
   m_TagString: Untagged
@@ -17267,7 +17276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187520412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -120.006035, y: 5.0010133, z: -200.8671}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1824321420}
@@ -17288,9 +17297,11 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     fontSize: 0
+    fontColor: {r: 0.4745098, g: 1, b: 0.9764706, a: 1}
     message: There are so many of them!
     timeToDisplay: 3
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -17298,9 +17309,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Yes, many more than expected
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -17308,10 +17321,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: If you ever feel overwhelmed in a fight, use your Contained Heat Ability
       by pressing '3'
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 0
     abilities:
     - abilitiesToManipulate: 10
       turnOnAbility: 1
@@ -17323,15 +17338,19 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Now onto the next room, I will open the next door for you.
-    timeToDisplay: 2
+    timeToDisplay: 10
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
-    objectsToTurnOn: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 645140620}
+      turnOnObject: 1
     animations:
     - animator: {fileID: 631384511}
-      boolName: 
-      boolValue: 0
+      boolName: isDoorOpen
+      boolValue: 1
     particleSystem: []
     objectives: []
 --- !u!65 &1187520415
@@ -17342,11 +17361,39 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187520412}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 64.292206, y: 6.188845, z: 54.663483}
+  m_Center: {x: 12.74334, y: -2.5944226, z: 3.1690063}
+--- !u!114 &1187520416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187520412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1991ed6c5b45448a4644b7be02282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSlide: 0
+  wallRun: 0
+  movement: 0
+  input: 0
+  airDash: 0
+  bladeDance: 0
+  mouselook: 0
+  swordThrow: 0
+  swordSlash: 0
+  containedHeat: 0
+  playerAttack: 0
+  shield: 0
+  onEnter: 0
+  onExit: 0
+  onStay: 0
+  turnOn: 0
 --- !u!1 &1189150504
 GameObject:
   m_ObjectHideFlags: 0
@@ -19153,11 +19200,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296494973}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1298070265 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5844935333225094108, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1298926745
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20941,10 +20983,12 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: Excellent! Now notice that there are 2 walls that react to you that
       are off set.
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -20952,10 +20996,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: If you press space WHILE wall running, you will leap off the wall and
       if timed right, you will land on the opposite wall.
     timeToDisplay: 6
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -20963,10 +21009,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: On the other hand, you can use your slide ability WHILE in the air to
       do an air dash forward!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 4
       turnOnAbility: 1
@@ -20978,14 +21026,16 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: The choice is yours!
     timeToDisplay: 4
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1898067223}
       turnOnObject: 0
-    - objectToManipulate: {fileID: 1133831947}
+    - objectToManipulate: {fileID: 70107009}
       turnOnObject: 1
     animations: []
     particleSystem: []
@@ -21413,9 +21463,11 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 36
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: More enemies in the back!
     timeToDisplay: 4
     overrideCurrentMessage: 1
+    ableToSkipMessage: 0
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1326507459}
@@ -23647,11 +23699,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4361751668521504324, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
   m_PrefabInstance: {fileID: 1546322199}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1551016438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1551016438, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1559635124
 GameObject:
   m_ObjectHideFlags: 0
@@ -24951,10 +24998,12 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     fontSize: 0
+    fontColor: {r: 0.47450984, g: 1, b: 0.97647065, a: 1}
     message: This A.I.'s power supply is similar to my own. My suit is absorbing
       the energy they release when they are destroyed.
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -24962,9 +25011,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: That is interesting, lets see if it is enough to power up your shield.
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -24972,10 +25023,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: '''Right Click'' and hold should keep your shield active while you keep
       it held down.'
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 11
       turnOnAbility: 1
@@ -24985,59 +25038,63 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     fontSize: 0
+    fontColor: {r: 0.4764151, g: 1, b: 0.97586477, a: 1}
     message: Are you detecting any mroe enemies nearby?
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 11
       turnOnAbility: 1
     objectsToTurnOn:
-    - objectToManipulate: {fileID: 189126080}
+    - objectToManipulate: {fileID: 795527142}
       turnOnObject: 1
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Yes, and stationary, so be cautious, dont forget about your shield!
     timeToDisplay: 5
     overrideCurrentMessage: 0
-    abilities:
-    - abilitiesToManipulate: 11
-      turnOnAbility: 1
+    ableToSkipMessage: 1
+    abilities: []
     objectsToTurnOn: []
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
     fontSize: 0
+    fontColor: {r: 0.47450984, g: 1, b: 0.97647065, a: 1}
     message: Can you open the door???
     timeToDisplay: 2
     overrideCurrentMessage: 0
-    abilities:
-    - abilitiesToManipulate: 11
-      turnOnAbility: 1
+    ableToSkipMessage: 1
+    abilities: []
     objectsToTurnOn: []
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Already on it
     timeToDisplay: 2
     overrideCurrentMessage: 0
-    abilities:
-    - abilitiesToManipulate: 11
-      turnOnAbility: 1
+    ableToSkipMessage: 1
+    abilities: []
     objectsToTurnOn: []
     animations: []
     particleSystem: []
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Opening Now!
     timeToDisplay: 2
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 11
       turnOnAbility: 1
@@ -25279,11 +25336,13 @@ MonoBehaviour:
   messages:
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
     message: 'Hold Up!
 
       That must be the Cosmic Rock from Veraxus''s last victim'
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -25300,9 +25359,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Hmm, interesting, the wall section in front of you is unique.
     timeToDisplay: 5
     overrideCurrentMessage: 1
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -25310,9 +25371,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: It seems to react to you, notice the color change.
     timeToDisplay: 3
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -25320,10 +25383,12 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: You can wall run on these walls, just aim towards it and slightly up
       and you will automatically start wallrunning.
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn: []
     animations: []
@@ -25331,9 +25396,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: When the rock stops, start wall running!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1869383698}
@@ -25343,9 +25410,11 @@ MonoBehaviour:
     objectives: []
   - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
     fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Now! Jump to wall run!
     timeToDisplay: 5
     overrideCurrentMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 1
       turnOnAbility: 1
@@ -25639,7 +25708,7 @@ PrefabInstance:
     - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9d3dcfae311cd2f418047e848e3b45d8, type: 2}
+      objectReference: {fileID: 2100000, guid: ccfe050c7843b524a8bd4d0d62594527, type: 2}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -26680,81 +26749,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1708792262
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1708792263}
-  - component: {fileID: 1708792265}
-  - component: {fileID: 1708792264}
-  m_Layer: 5
-  m_Name: Background
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1708792263
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708792262}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 336058820}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 150}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1708792264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708792262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1708792265
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708792262}
-  m_CullTransparentMesh: 1
 --- !u!1 &1712391275
 GameObject:
   m_ObjectHideFlags: 0
@@ -27113,6 +27107,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1738589874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822539915411914112, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1747170445
 GameObject:
   m_ObjectHideFlags: 0
@@ -30864,46 +30863,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1540564992}
     m_Modifications:
-    - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: prewarm
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: NoiseModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585075, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_ReflectionProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585076, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 9d3dcfae311cd2f418047e848e3b45d8, type: 2}
     - target: {fileID: 364592458195585077, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -30951,10 +30910,6 @@ PrefabInstance:
     - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
       propertyPath: m_Name
       value: Rock Spawner
-      objectReference: {fileID: 0}
-    - target: {fileID: 364592458195585078, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e34050532404f541bc3a4a9f21fc6bd, type: 3}
@@ -31080,8 +31035,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: startInChase
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
@@ -31140,22 +31107,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 769757218}
     m_Modifications:
-    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
-      propertyPath: deactive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
-      propertyPath: ammoCount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
-    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
-      propertyPath: maxDetectionRange
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
       value: EnemyBiped (1)
@@ -31296,11 +31247,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 2107184777}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2135143780 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2135143780, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
-  m_PrefabInstance: {fileID: 597305146}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2138706281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31313,8 +31259,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5331662960182572612, guid: c6c1b7a9159904a45815efbb6e0a164d, type: 3}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: startInChase
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeIn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
+      propertyPath: materializeTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name

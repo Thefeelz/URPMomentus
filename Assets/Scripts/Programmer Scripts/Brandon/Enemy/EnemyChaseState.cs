@@ -24,12 +24,15 @@ public class EnemyChaseState : MonoBehaviour
     [SerializeField] float enemyRunSpeed;
     [Range(0, 100)][SerializeField] int ammoCount;
     [SerializeField] float rangedAttackDamage, meleeAttackDamage;
-    [SerializeField] bool startInChase;
+    [SerializeField] bool startInChase, materializeIn;
+    [SerializeField] GameObject bipedBody;
 
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] Transform bulletLaunch;
+    [SerializeField] float materializeTime;
+    float elapsedMaterializeTime = 0f;
 
-    public enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse, CollideJump, Falling, Knockback}
+    public enum State {Chasing, Attacking, Dead, Inactive, SpecialInUse, CollideJump, Falling, Knockback, Materializing}
     public State currentState;
     public State previousState;
     public bool isGrounded;
@@ -45,6 +48,7 @@ public class EnemyChaseState : MonoBehaviour
     RaycastHit[] objectAvoidanceHits;
     Vector3[] directions;
     bool avoidObstacles = true;
+    List<Material> mesh = new List<Material>();
     MasterLevel masterLevel;
 
     float knockBackCounter = 0f;
@@ -59,6 +63,8 @@ public class EnemyChaseState : MonoBehaviour
             currentState = State.Chasing;
         else if (deactive)
             animController.SetBool("deactive", true);
+        else if (materializeIn)
+            currentState = State.Materializing;
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
         directions = new Vector3[]
         {
@@ -66,6 +72,13 @@ public class EnemyChaseState : MonoBehaviour
             Vector3.zero,
             Vector3.left
         };
+        if (bipedBody)
+        {
+            foreach (Transform item in bipedBody.transform)
+            {
+                mesh.Add(item.GetComponent<SkinnedMeshRenderer>().material);
+            }
+        }
     }
 
     private void Update()
@@ -107,6 +120,10 @@ public class EnemyChaseState : MonoBehaviour
                         currentState = State.Chasing;
                         knockBackCounter = 0;
                     }
+                }
+                else if (currentState == State.Materializing)
+                {
+                    MaterializeIn();
                 }
             }
             else
@@ -351,4 +368,18 @@ public class EnemyChaseState : MonoBehaviour
             return false;
     }
     public void SetAmmoCount(int ammo) { ammoCount = ammo; }
+
+    public void MaterializeIn()
+    {
+        elapsedMaterializeTime += Time.deltaTime;
+        foreach (Material mat in mesh)
+        {
+            mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.2f, -0.2f, elapsedMaterializeTime / materializeTime));
+        }
+        if(elapsedMaterializeTime >= materializeTime)
+        {
+            elapsedMaterializeTime = 0f;
+            currentState = State.Inactive;
+        }
+    }
 }

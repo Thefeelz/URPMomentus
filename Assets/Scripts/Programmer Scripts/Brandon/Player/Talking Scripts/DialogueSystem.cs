@@ -11,8 +11,14 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] TMP_Text textDisplay;
     [SerializeField] Image canvasImageForDialoge;
     [SerializeField] Animator dialogueAnimator;
+    [SerializeField] GameObject skipMessage;
+    Image skipMessageImage;
     int i = 0;
     GameObject callingObject;
+    private void Start()
+    {
+        skipMessageImage = skipMessage.GetComponent<Image>();
+    }
 
     /// <summary>
     /// Add a list of DialogueMessageInteractive to be displayed to the screen for player instruction.
@@ -73,9 +79,9 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (AbilityToManipulateObjectInteractive thang in daList)
         {
-            if (thang.turnOnAbility)
+            if (thang.turnOnAbility && callingObject.GetComponent<TurnOnAndOffScripts>())
                 callingObject.GetComponent<TurnOnAndOffScripts>().TurnOnScripts(thang.abilitiesToManipulate);
-            else
+            else if (!thang.turnOnAbility && callingObject.GetComponent<TurnOnAndOffScripts>())
                 callingObject.GetComponent<TurnOnAndOffScripts>().TurnOffScripts(thang.abilitiesToManipulate);
         }
     }
@@ -83,9 +89,9 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (DialogueToggleParticleSystem brandon in camille)
         {
-            if (brandon.stopPlay)
+            if (brandon.stopPlay && brandon.particle)
                 brandon.particle.Stop();
-            if (brandon.startPlay)
+            if (brandon.startPlay && brandon.particle)
                 brandon.particle.Play();
         }
     }
@@ -93,16 +99,17 @@ public class DialogueSystem : MonoBehaviour
     {
         foreach (DialogueToggleAnimation jon in rose)
         {
-            jon.animator.SetBool(jon.boolName, jon.boolValue);
+            if(jon.animator)
+                jon.animator.SetBool(jon.boolName, jon.boolValue);
         }
     }
     void HandleGameObjectToggle(DialogueToggleGameObject[] daList)
     {
         foreach (DialogueToggleGameObject peter in daList)
         {
-            if (peter.turnOnObject)
+            if (peter.turnOnObject && peter.objectToManipulate)
                 peter.objectToManipulate.SetActive(true);
-            else
+            else if (peter.objectToManipulate && !peter.turnOnObject)
                 peter.objectToManipulate.SetActive(false);
         }
     }
@@ -128,6 +135,18 @@ public class DialogueSystem : MonoBehaviour
         if (i < interactiveMessagesToDisplay.Count)
         {
             canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
+            if (!interactiveMessagesToDisplay[i].ableToSkipMessage)
+            {
+                Color currentColor = skipMessageImage.color;
+                skipMessageImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+                skipMessage.GetComponentInChildren<TextMeshProUGUI>().text = "";
+            }
+            else
+            {
+                Color currentColor = skipMessageImage.color;
+                skipMessageImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 45f/255f);
+                skipMessage.GetComponentInChildren<TextMeshProUGUI>().text = "'Tab' to Skip";
+            }
             if (interactiveMessagesToDisplay[i].abilities.Count > 0)
                 HandleAbilityTogglesInteractive(interactiveMessagesToDisplay[i].abilities);
             if (interactiveMessagesToDisplay[i].objectsToTurnOn.Length > 0)
@@ -159,6 +178,7 @@ public class DialogueSystem : MonoBehaviour
             textDisplay.fontSize = 28;
         else
             textDisplay.fontSize = message.fontSize;
+        textDisplay.color = message.fontColor;
         yield return new WaitForSeconds(message.timeToDisplay);
         StartDisplayMessageInteractive();
     }
@@ -177,6 +197,23 @@ public class DialogueSystem : MonoBehaviour
         foreach (DialogueMessageInteractive item in remainingMessages)
         {
             HandleAbilityTogglesInteractive(item.abilities);
+        }
+    }
+
+    public void SkipCurrentMessage()
+    {
+        if (!dialogueAnimator.GetBool("dialogue") || (i < interactiveMessagesToDisplay.Count && !interactiveMessagesToDisplay[i].ableToSkipMessage)) { return; }
+        Debug.Log(i);
+        if(i >= interactiveMessagesToDisplay.Count)
+        {
+            StartCoroutine(TurnOffImage());
+            textDisplay.text = "";
+            i = 0;
+        }
+        else if (interactiveMessagesToDisplay.Count > 0 && i < interactiveMessagesToDisplay.Count)
+        {
+            StopAllCoroutines();
+            StartDisplayMessageInteractive();
         }
     }
 }
