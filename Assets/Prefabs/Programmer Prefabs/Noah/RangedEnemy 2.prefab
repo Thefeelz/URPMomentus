@@ -4351,6 +4351,8 @@ MonoBehaviour:
   canEvadeState: 1
   evadeTime: 0
   evadeLimit: 4
+  spawner: {fileID: 0}
+  shootNowDaddy: 0
 --- !u!114 &7664192347234163457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4394,12 +4396,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 1
   enemyArmor: 5
   energyAmount: 10
   enemyCanvas: {fileID: 0}
   healthBar: {fileID: 0}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 8522784401893686309, guid: b8e76d0de490ebc458456c3174071d45, type: 3}
   objectsToTurnOnWhenDead: []
 --- !u!1 &7690155071662243601
 GameObject:
@@ -4612,6 +4614,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7296211873019209017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951333204078194039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ecf0ab0041cabb4b8195b0a433acf9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8156765614829207537
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,7 +39,7 @@ public class MeleeState : State
         Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out send, 1.5f);
         if (send.collider != null && send.collider.GetComponentInParent<CharacterStats>())
         {
-            send.transform.GetComponentInParent<CharacterStats>().RemoveHealthMelee(0f);
+            send.transform.GetComponentInParent<CharacterStats>().RemoveHealthMelee(2f);
 
         }
     }
