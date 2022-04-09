@@ -109,6 +109,25 @@ public class Locations : MonoBehaviour
 
     IEnumerator setStuff()
     {
+        Debug.LogWarning("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAWAHAHAHAHAHHAHG!!!!! NOTICE ME!");
+        int l = 0;
+
+        for (int i = -1; i < 2; i++)
+        {
+
+            for (int j = -1; j < 2; j++)
+            {
+                if (j != i && j != i && j != -i)
+                {
+
+                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i, lPlayer.transform.position.y, lPlayer.transform.position.z + j);
+                    GameObject testy = Instantiate(prefab, this.transform);
+                    testy.transform.position = lSpots[l];
+                    objects[l] = testy;
+                    l += 1;
+                }
+            }
+        }
         yield return new WaitForSeconds(2);
         enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; // gets all melee enemies
         for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
@@ -150,22 +169,7 @@ public class Locations : MonoBehaviour
                 en.spot = 9;
             }
         }
-        int l = 0;
-        for (int i = -1; i < 2; i++)
-        {
-            for (int j = -1; j < 2; j++)
-            {
-                if (j != i && j != i && j != -i)
-                {
-
-                    lSpots[l] = new Vector3(lPlayer.transform.position.x + i, lPlayer.transform.position.y, lPlayer.transform.position.z + j);
-                    GameObject testy = Instantiate(prefab, this.transform);
-                    testy.transform.position = lSpots[l];
-                    objects[l] = testy;
-                    l += 1;
-                }
-            }
-        }
+        
         yield return new WaitForSeconds(2);
         spawnStart = true;
     }
