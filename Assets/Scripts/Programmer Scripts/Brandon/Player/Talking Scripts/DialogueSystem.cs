@@ -137,15 +137,11 @@ public class DialogueSystem : MonoBehaviour
             canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
             if (!interactiveMessagesToDisplay[i].ableToSkipMessage)
             {
-                Color currentColor = skipMessageImage.color;
-                skipMessageImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
-                skipMessage.GetComponentInChildren<TextMeshProUGUI>().text = "";
+                skipMessage.SetActive(false);
             }
             else
             {
-                Color currentColor = skipMessageImage.color;
-                skipMessageImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, 45f/255f);
-                skipMessage.GetComponentInChildren<TextMeshProUGUI>().text = "'Tab' to Skip";
+                skipMessage.SetActive(true);
             }
             if (interactiveMessagesToDisplay[i].abilities.Count > 0)
                 HandleAbilityTogglesInteractive(interactiveMessagesToDisplay[i].abilities);
@@ -188,8 +184,11 @@ public class DialogueSystem : MonoBehaviour
         dialogueAnimator.SetBool("dialogue", false);
         interactiveMessagesToDisplay.Clear();
         yield return new WaitForSeconds(2f);
-        if(!dialogueAnimator.GetBool("dialogue"))
+        if (!dialogueAnimator.GetBool("dialogue"))
+        {
             canvasImageForDialoge.sprite = null;
+            skipMessage.SetActive(false);
+        }
     }
 
     void FastForwardAbilityToggle(List<DialogueMessageInteractive> remainingMessages)
