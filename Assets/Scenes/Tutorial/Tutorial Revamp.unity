@@ -20,12 +20,12 @@ RenderSettings:
   m_FogDensity: 0.009
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientSkyColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 1}
   m_AmbientEquatorColor: {r: 0.3882353, g: 0.2784314, b: 0.2784314, a: 1}
   m_AmbientGroundColor: {r: 0.45490196, g: 0.45490196, b: 0.50980395, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 3
-  m_SubtractiveShadowColor: {r: 0.23529412, g: 0.32156864, b: 0.5372549, a: 1}
+  m_SubtractiveShadowColor: {r: 0.33187968, g: 0.41495457, b: 0.6226415, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b13109bc4674dd24ebc04b7c12437ad6, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -331,7 +331,7 @@ MonoBehaviour:
       look at them until they turn from white to green.
     timeToDisplay: 5
     overrideCurrentMessage: 0
-    ableToSkipMessage: 0
+    ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 791408374}
@@ -435,7 +435,7 @@ MonoBehaviour:
     message: Use 'Left Shift' to slide under the door!
     timeToDisplay: 5
     overrideCurrentMessage: 0
-    ableToSkipMessage: 0
+    ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 0
       turnOnAbility: 1
@@ -1214,6 +1214,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 111241776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &112747793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 112747794}
+  m_Layer: 0
+  m_Name: Checkpoint3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &112747794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112747793}
+  m_LocalRotation: {x: 0.0009036783, y: -0.85058826, z: 0.00045618127, w: 0.5258314}
+  m_LocalPosition: {x: -154.624, y: 4.176, z: -220.291}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1114759247}
+  m_Father: {fileID: 1217010573}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0.099, y: -116.552, z: -0.061}
 --- !u!1001 &121057029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12898,7 +12929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: materializeTime
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1167496571, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: maxDetectionRange
@@ -12915,7 +12946,7 @@ PrefabInstance:
     - target: {fileID: 272389386920464401, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 413679507316058900, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -13.869278
@@ -12931,27 +12962,27 @@ PrefabInstance:
     - target: {fileID: 489550297122558982, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 579995546880984382, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 773058989937376696, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 792423150242727780, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 1004844856244839094, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 1228125760395865081, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 1783217315439172761, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Name
       value: EnemyBiped
@@ -13015,7 +13046,7 @@ PrefabInstance:
     - target: {fileID: 2215966552435544595, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 2327135139631523959, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -25.590601
@@ -13055,7 +13086,7 @@ PrefabInstance:
     - target: {fileID: 5004814497234837476, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 5188086334667952182, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 22.409039
@@ -13083,11 +13114,11 @@ PrefabInstance:
     - target: {fileID: 5760325181462191206, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6045583924269383815, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 1
@@ -13099,7 +13130,7 @@ PrefabInstance:
     - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6134514395456368485, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -13107,11 +13138,11 @@ PrefabInstance:
     - target: {fileID: 6228457220088042490, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6414179013136554596, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6550115633770006261, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 2.0053673
@@ -13127,15 +13158,15 @@ PrefabInstance:
     - target: {fileID: 6713207253745267166, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6831442888922792100, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 6834682205956640319, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe9a9c0f71f772e42b8dea2a64b59ad5, type: 2}
+      objectReference: {fileID: 2100000, guid: 30bdb9163185c204cb63366dd010490e, type: 2}
     - target: {fileID: 7158387479079990171, guid: 9523a53251a8bd7468557b56c32a369f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.8745224
@@ -15818,6 +15849,263 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2735664075414832582, guid: b81abdf8abb3dd64ab170de4f1547a8f, type: 3}
   m_PrefabInstance: {fileID: 1110674944}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1114759246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114759247}
+  - component: {fileID: 1114759250}
+  - component: {fileID: 1114759249}
+  - component: {fileID: 1114759248}
+  m_Layer: 0
+  m_Name: Final Hallway Dialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1114759247
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114759246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 112747794}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1114759248
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114759246}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.740274, y: 11.875236, z: 1}
+  m_Center: {x: 0.3195915, y: 1.8796694, z: -0.0000057799157}
+--- !u!114 &1114759249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114759246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac1991ed6c5b45448a4644b7be02282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundSlide: 0
+  wallRun: 0
+  movement: 0
+  input: 0
+  airDash: 0
+  bladeDance: 0
+  mouselook: 0
+  swordThrow: 0
+  swordSlash: 0
+  containedHeat: 0
+  playerAttack: 0
+  shield: 0
+  onEnter: 0
+  onExit: 0
+  onStay: 0
+  turnOn: 0
+--- !u!114 &1114759250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114759246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ef4b693d053a34ba552d32d32f5e6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messages:
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: According to my readings, once you go through this final door, there
+      is the elevator....but...
+    timeToDisplay: 10
+    overrideCurrentMessage: 1
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    fontSize: 0
+    fontColor: {r: 0.4745098, g: 1, b: 0.9764706, a: 1}
+    message: But what?
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: I am detecting an enormous energy presence on the other side of the
+      door...
+    timeToDisplay: 10
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    fontSize: 0
+    fontColor: {r: 0.4745098, g: 1, b: 0.9764706, a: 1}
+    message: I guess I was a bit loud
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
+    message: Maybe just a little, I guess its time we unleash the newest ability
+      to your unit
+    timeToDisplay: 10
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
+    message: Blade Dance, this is the latest and greatest ability design from our
+      engineers.
+    timeToDisplay: 10
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
+    message: If you press '1', it will freeze time all around you, and teleport youv
+      to enemies within range of you and destroy them in one slice
+    timeToDisplay: 10
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities:
+    - abilitiesToManipulate: 5
+      turnOnAbility: 1
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1427413790}
+      turnOnObject: 1
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    fontSize: 0
+    fontColor: {r: 0.47450984, g: 1, b: 0.97647065, a: 1}
+    message: Any drawbacks to using it?
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: Besides its immense energy consumption, it has a long recharge time
+    timeToDisplay: 10
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: Use it wisely
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1235083551}
+      turnOnObject: 1
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: a4af1fda0f6416345a2a2aef61ce6fd8, type: 3}
+    fontSize: 0
+    fontColor: {r: 0.4745098, g: 1, b: 0.9764706, a: 1}
+    message: I will, and I am ready for the next fight!
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: Alright, I will override this door.
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations: []
+    particleSystem: []
+    objectives: []
+  - imageToDisplay: {fileID: 21300000, guid: 60e92d3ac67ff834383902d83e7bf1ba, type: 3}
+    fontSize: 0
+    fontColor: {r: 0, g: 0.49019608, b: 1, a: 1}
+    message: Done!
+    timeToDisplay: 3
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations:
+    - animator: {fileID: 1682911961}
+      boolName: isDoorOpen
+      boolValue: 1
+    particleSystem: []
+    objectives: []
 --- !u!1001 &1115270143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17868,6 +18156,7 @@ Transform:
   m_Children:
   - {fileID: 1462106976}
   - {fileID: 1824321420}
+  - {fileID: 112747794}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18134,6 +18423,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4361751668521504324, guid: e7c2530f0f5ac8d438020f8a83f152cc, type: 3}
   m_PrefabInstance: {fileID: 1234201339}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1235083551 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8822539915249891368, guid: 7e94072c02b6c9747be40f25db335232, type: 3}
+  m_PrefabInstance: {fileID: 597305146}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1237547092
 PrefabInstance:
@@ -18653,6 +18947,36 @@ Transform:
   - {fileID: 1353270606}
   m_Father: {fileID: 257499927}
   m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1263188452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1263188453}
+  m_Layer: 0
+  m_Name: Checkpoint 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263188453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263188452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1492959473}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1263824595
 GameObject:
@@ -23125,6 +23449,7 @@ Transform:
   - {fileID: 769757218}
   - {fileID: 65349286}
   - {fileID: 1326507460}
+  - {fileID: 1263188453}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26257,6 +26582,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 1679015656}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1682911961 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2235567455425448185, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
+  m_PrefabInstance: {fileID: 1765820056}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1683639201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27369,6 +27699,10 @@ PrefabInstance:
     - target: {fileID: 1774509273572040188, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.14513062
+      objectReference: {fileID: 0}
+    - target: {fileID: 2235567455425448184, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099160770965887635, guid: 725925280e9173f4eadaeb1f2d80080c, type: 3}
       propertyPath: m_LocalPosition.x
