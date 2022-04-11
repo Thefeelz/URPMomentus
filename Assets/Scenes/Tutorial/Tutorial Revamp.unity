@@ -5546,7 +5546,7 @@ PrefabInstance:
       objectReference: {fileID: 9238433692340011, guid: 757e30bac3b21c343859ca075d856dbb, type: 3}
     - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: respawnCheckpointIndex
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: swordSlashLightningRed
@@ -23634,14 +23634,12 @@ MonoBehaviour:
     fontColor: {r: 0, g: 0.4901961, b: 1, a: 1}
     message: Oops, we seem to have triggered a safety mechanism against debris
     timeToDisplay: 6
-    overrideCurrentMessage: 0
+    overrideCurrentMessage: 1
     ableToSkipMessage: 1
     abilities: []
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1898067223}
       turnOnObject: 0
-    - objectToManipulate: {fileID: 70107009}
-      turnOnObject: 1
     animations: []
     particleSystem: []
     objectives: []
@@ -23656,8 +23654,6 @@ MonoBehaviour:
     objectsToTurnOn:
     - objectToManipulate: {fileID: 1898067223}
       turnOnObject: 0
-    - objectToManipulate: {fileID: 70107009}
-      turnOnObject: 1
     animations: []
     particleSystem: []
     objectives: []
