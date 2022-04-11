@@ -22,13 +22,19 @@ public class Turret : MonoBehaviour
     [SerializeField] LayerMask mask;
     [SerializeField] Image reloadSprite;
 
-    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse, Reload};
+    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse, Reload, Materialize};
     [SerializeField]TurretState currentState;
     TurretState previousState;
 
     P_Input myPlayer;
     Animator anim;
     TurretRatatatatatata ratatatatatata;
+
+    [SerializeField] bool materializeIn;
+    [SerializeField] float materializeTime;
+    float elapsedMaterializeTime = 0f;
+    [SerializeField] GameObject turretBody;
+    List<Material> mesh = new List<Material>();
 
     float elapsedChargeTime = 0f;
     
@@ -49,6 +55,15 @@ public class Turret : MonoBehaviour
             ammoToAddPerSecond = 1 / ammoToAddPerSecond;
         else
             ammoToAddPerSecond = 1;
+        if (turretBody)
+        {
+            foreach (Transform item in turretBody.transform)
+            {
+                mesh.Add(item.GetComponent<SkinnedMeshRenderer>().material);
+            }
+        }
+        if (materializeIn)
+            currentState = TurretState.Materialize;
     }
 
     // Update is called once per frame
@@ -82,6 +97,10 @@ public class Turret : MonoBehaviour
         else if (currentState == TurretState.Reload)
         {
             Reload();
+        }
+        else if (currentState == TurretState.Materialize)
+        {
+            MaterializeIn();
         }
     }
 
@@ -219,6 +238,19 @@ public class Turret : MonoBehaviour
             if (currentState != TurretState.Dead)
                 currentState = previousState;
             anim.speed = 1;
+        }
+    }
+    void MaterializeIn()
+    {
+        elapsedMaterializeTime += Time.deltaTime;
+        foreach (Material mat in mesh)
+        {
+            mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.3f, -0.3f, elapsedMaterializeTime / materializeTime));
+        }
+        if (elapsedMaterializeTime >= materializeTime)
+        {
+            elapsedMaterializeTime = 0f;
+            currentState = TurretState.Asleep;
         }
     }
 }

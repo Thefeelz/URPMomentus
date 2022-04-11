@@ -17,6 +17,7 @@ public class P_Input : MonoBehaviour
     A_Shield shield;
 
     Rigidbody rb;
+    bool freezeMovement = false;
     Animator myAnim;
     PauseMenu pauseMenu;
     DialogueSystem dialogue;
@@ -49,7 +50,7 @@ public class P_Input : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!PauseMenu.GameIsPaused)
+        if(!PauseMenu.GameIsPaused && !freezeMovement)
             GetUserInputPhysics();
     }
 
@@ -157,4 +158,6 @@ public class P_Input : MonoBehaviour
         myAnim.SetBool("running", true);
         movement.HandleMovement(charMovementVector.normalized);
     }
+
+    public void SetFreezeMovement(bool value) { freezeMovement = value; }
 }

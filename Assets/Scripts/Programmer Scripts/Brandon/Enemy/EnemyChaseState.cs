@@ -59,12 +59,15 @@ public class EnemyChaseState : MonoBehaviour
         currentState = State.Inactive;
         player = FindObjectOfType<P_Movement>();
         enemyRigidbody = GetComponent<Rigidbody>();
-        if (startInChase)
+        if (startInChase && !materializeIn)
             currentState = State.Chasing;
         else if (deactive)
             animController.SetBool("deactive", true);
         else if (materializeIn)
+        {
             currentState = State.Materializing;
+            GetComponent<EnemyStats>().SetAbleToBeAttacked(false);
+        }
         distanceToGround = GetComponentInChildren<Collider>().bounds.extents.y;
         directions = new Vector3[]
         {
@@ -332,7 +335,7 @@ public class EnemyChaseState : MonoBehaviour
     public void ShootAtPlayer()
     {
         GameObject newBullet = Instantiate(bulletPrefab, bulletLaunch.position, Quaternion.identity);
-        newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, player.GetComponent<CharacterStats>(), bulletLaunch.transform, rangedAttackDamage);
+        newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayerEnemy(15f, player.GetComponent<CharacterStats>(), bulletLaunch.transform, rangedAttackDamage);
         ammoCount--;
     }
     
@@ -378,8 +381,12 @@ public class EnemyChaseState : MonoBehaviour
         }
         if(elapsedMaterializeTime >= materializeTime)
         {
+            GetComponent<EnemyStats>().SetAbleToBeAttacked(true);
             elapsedMaterializeTime = 0f;
-            currentState = State.Inactive;
+            if (!startInChase)
+                currentState = State.Inactive;
+            else
+                currentState = State.Chasing;
         }
     }
 }

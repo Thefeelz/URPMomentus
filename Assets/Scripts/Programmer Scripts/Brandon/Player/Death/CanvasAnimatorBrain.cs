@@ -49,4 +49,24 @@ public class CanvasAnimatorBrain : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         GetComponent<Animator>().SetBool(name, value);
     }
+
+    public void SetHealthBarGroupToNotActive()
+    {
+        foreach (Transform transform in transform)
+        {
+            if (transform.CompareTag("HealthBarGroup"))
+                transform.gameObject.SetActive(false);
+        }
+    }
+    public void BeatTutorialLevel()
+    {
+        if(FindObjectOfType<SceneController>())
+        {
+            FindObjectOfType<SceneController>().GoToNextScene();
+        }
+        else
+        {
+            Debug.LogError("There is no Scene Controller in this scene, add one");
+        }
+    }
 }

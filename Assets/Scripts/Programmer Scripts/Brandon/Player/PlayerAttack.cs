@@ -65,7 +65,10 @@ public class PlayerAttack : MonoBehaviour
             
             if (ableToAttackDash && Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
             {
-                if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+                if (hitTarget.transform.GetComponentInParent<EnemyStats>() 
+                    && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance 
+                    && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance
+                    && hitTarget.transform.GetComponentInParent<EnemyStats>().GetAbleToBeAttacked())
                 {
                     endingDashPosition = hitTarget.transform.position - (transform.forward * 1.5f);
                     startingDashPosition = transform.position;
@@ -110,7 +113,10 @@ public class PlayerAttack : MonoBehaviour
         
         if (Camera.main && Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
-            if (hitTarget.transform.GetComponentInParent<EnemyStats>() && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance)
+            if (hitTarget.transform.GetComponentInParent<EnemyStats>() 
+                && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance 
+                && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance
+                && hitTarget.transform.GetComponentInParent<EnemyStats>().GetAbleToBeAttacked())
             {
                 targetCrosshair.color = Color.red;
             }

@@ -111,6 +111,7 @@ public class DialogueSystem : MonoBehaviour
                 peter.objectToManipulate.SetActive(true);
             else if (peter.objectToManipulate && !peter.turnOnObject)
                 peter.objectToManipulate.SetActive(false);
+            
         }
     }
 
@@ -201,7 +202,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void SkipCurrentMessage()
     {
-        if (!dialogueAnimator.GetBool("dialogue") || (i < interactiveMessagesToDisplay.Count && !interactiveMessagesToDisplay[i].ableToSkipMessage)) { return; }
+        /*if (!dialogueAnimator.GetBool("dialogue") || (i < interactiveMessagesToDisplay.Count && !interactiveMessagesToDisplay[i].ableToSkipMessage)) { return; }
         Debug.Log(i);
         if(i >= interactiveMessagesToDisplay.Count)
         {
@@ -210,6 +211,11 @@ public class DialogueSystem : MonoBehaviour
             i = 0;
         }
         else if (interactiveMessagesToDisplay.Count > 0 && i < interactiveMessagesToDisplay.Count)
+        {
+            StopAllCoroutines();
+            StartDisplayMessageInteractive();
+        }*/
+        if(skipMessage.activeSelf)
         {
             StopAllCoroutines();
             StartDisplayMessageInteractive();

@@ -18,6 +18,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
     
     bool triggeredDead = false;
+    bool ableToBeAttacked = true;
 
     protected EnemyChaseState chase;
     CharacterStats player;
@@ -55,6 +56,7 @@ public class EnemyStats : MonoBehaviour
 
     public void TakeDamage(int damageToTake)
     {
+        if (!ableToBeAttacked) { return; }
         currentHealth -= damageToTake;
         if(GetComponent<EnemyCaptionSpawner>())
         {
@@ -111,7 +113,7 @@ public class EnemyStats : MonoBehaviour
         {
             ParticleSystem newObject = Instantiate(deathEffect, transform.position, Quaternion.identity);
             newObject.Play();
-            Destroy(newObject, 2f);
+            Destroy(newObject.gameObject, 2f);
         }
         else
             Debug.LogError("There is no death effect linked to this prefab, make sure you link some sort of death VFX from the 'Visual Effects Folder'");
@@ -181,4 +183,7 @@ public class EnemyStats : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         GameManager.Instance.AddEnemyToList(this);
     }
+
+    public void SetAbleToBeAttacked(bool value) { ableToBeAttacked = value; }
+    public bool GetAbleToBeAttacked() { return ableToBeAttacked; }
 }

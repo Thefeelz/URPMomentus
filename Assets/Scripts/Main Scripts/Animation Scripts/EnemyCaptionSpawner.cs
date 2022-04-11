@@ -11,8 +11,10 @@ public class EnemyCaptionSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (newObject)
+        if (newObject && Camera.main.transform)
             newObject.transform.LookAt(Camera.main.transform.position);
+        else if (newObject && !Camera.main)
+            newObject.transform.LookAt(Camera.current.transform.position);
     }
     public void SpawnDamageCaption()
     {

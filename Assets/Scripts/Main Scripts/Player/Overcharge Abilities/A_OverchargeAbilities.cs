@@ -74,11 +74,13 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
     {
         if (GetComponent<P_Movement>())
         {
-            GetComponent<P_Movement>().enabled = value;
+            // GetComponent<P_Movement>().enabled = value;
+            GetComponent<P_Input>().SetFreezeMovement(!value);
         }
         else if (cMovement)
         {
-            GetComponent<C_Movement>().enabled = value;
+            // GetComponent<C_Movement>().enabled = value;
+            GetComponent<P_Input>().SetFreezeMovement(value); ;
         }
         if (!value)
             playerMovement.SetPlayerCurrentSpeed(0);
