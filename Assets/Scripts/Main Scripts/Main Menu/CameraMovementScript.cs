@@ -22,7 +22,7 @@ public class CameraMovementScript : MonoBehaviour
     public GameObject currentSelelection, nextSelection;
     float elapsedTime = 0f;
     float currentLerpPos = 0f;
-    bool transitioning = false;
+    public bool transitioning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +50,7 @@ public class CameraMovementScript : MonoBehaviour
                 if(toggle.GetComponent<Toggle>())
                     toggle.GetComponent<Toggle>().isOn = false;
             }
-            currentSelelection.SetActive(false);
+            // currentSelelection.SetActive(false);
             nextSelection.SetActive(true);
             transitioning = false;
             elapsedTime = 0f;
@@ -59,32 +59,38 @@ public class CameraMovementScript : MonoBehaviour
 
     public void PlayButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosPlayButton.position;
         endingRot = camPosPlayButton.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = levelSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void TutorialButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosLoadOutSelection.position;
         endingRot = camPosLoadOutSelection.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = loadOutSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void LevelButtonClicked(int level)
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosLoadOutSelection.position;
         endingRot = camPosLoadOutSelection.rotation;
         currentSelelection = levelSelectionObject;
         nextSelection = loadOutSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
         if (GameManager.Instance)
             GameManager.Instance.SetLevel(level);
@@ -93,63 +99,75 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void LoadOutBackButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosPlayButton.position;
         endingRot = camPosPlayButton.rotation;
         currentSelelection = loadOutSelectionObject; 
         nextSelection = levelSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void SettingsBackButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosStartMainMenu.position;
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = settingsObject;
         nextSelection = mainMenuSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void CreditsBackButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosStartMainMenu.position;
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = creditsObject;
         nextSelection = mainMenuSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void LevelSelectBackButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosStartMainMenu.position;
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = levelSelectionObject;
         nextSelection = mainMenuSelectionObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void SettingsButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosSettings.position;
         endingRot = camPosSettings.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = settingsObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
         
     }
     public void CreditsButtonClicked()
     {
+        if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
         endingPos = camPosCredits.position;
         endingRot = camPosCredits.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = creditsObject;
+        currentSelelection.SetActive(false);
         transitioning = true;
     }
     public void ChooseSword(int swordChoice) { GameManager.Instance.SetBladeColor(swordChoice); }
