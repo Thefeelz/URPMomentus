@@ -45,11 +45,6 @@ public class CameraMovementScript : MonoBehaviour
         transform.rotation = Quaternion.Lerp(startingRot, endingRot, Mathf.SmoothStep(0, 1, currentLerpPos));
         if(currentLerpPos >= 1)
         {
-            foreach (Transform toggle in currentSelelection.transform)
-            {
-                if(toggle.GetComponent<Toggle>())
-                    toggle.GetComponent<Toggle>().isOn = false;
-            }
             // currentSelelection.SetActive(false);
             nextSelection.SetActive(true);
             transitioning = false;
@@ -66,6 +61,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosPlayButton.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = levelSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -78,6 +78,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosLoadOutSelection.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = loadOutSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -90,6 +95,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosLoadOutSelection.rotation;
         currentSelelection = levelSelectionObject;
         nextSelection = loadOutSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
         if (GameManager.Instance)
@@ -106,6 +116,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosPlayButton.rotation;
         currentSelelection = loadOutSelectionObject; 
         nextSelection = levelSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -118,6 +133,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = settingsObject;
         nextSelection = mainMenuSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -130,6 +150,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = creditsObject;
         nextSelection = mainMenuSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -142,6 +167,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosStartMainMenu.rotation;
         currentSelelection = levelSelectionObject;
         nextSelection = mainMenuSelectionObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
@@ -154,6 +184,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosSettings.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = settingsObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
         
@@ -167,6 +202,11 @@ public class CameraMovementScript : MonoBehaviour
         endingRot = camPosCredits.rotation;
         currentSelelection = mainMenuSelectionObject;
         nextSelection = creditsObject;
+        foreach (Transform toggle in currentSelelection.transform)
+        {
+            if (toggle.GetComponent<Toggle>())
+                toggle.GetComponent<Toggle>().isOn = false;
+        }
         currentSelelection.SetActive(false);
         transitioning = true;
     }
