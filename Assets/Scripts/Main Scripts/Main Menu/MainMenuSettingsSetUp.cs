@@ -17,8 +17,8 @@ public class MainMenuSettingsSetUp : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         mouseSensitivitySlider.value = gameManager.GetMouseSensitivity();
         // audioSource.PlayOneShot(RandomSong());
-        GenerateRandomList();
-        PlayRandomList();
+        //GenerateRandomList();
+        //PlayRandomList();
     }
 
     // Update is called once per frame
