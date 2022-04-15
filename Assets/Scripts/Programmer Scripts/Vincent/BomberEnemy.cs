@@ -8,21 +8,33 @@ public class BomberEnemy : MonoBehaviour
     enum FlyerState { Scanning, Targeting, LockOn, Explode, Asleep, Dead };
     [SerializeField]
     FlyerState currentState;
-    
+
     //Flyer specfic stats
     [SerializeField]
-    private float damage = 1f, attackPlayerSpeed, timeToLock, scanRange, explosionRange;
+    private float damage = 1f, explosionRange, attackPlayerSpeed, timeToLock, scanRange, patrolSpeed, rotateSpeed;
+    [SerializeField]
+    private bool patrolCounterClockwise = false;
     Coroutine LO;
 
     //So drone doesn't fly towards player's toes
-    private float targetOffset=1.0f;
+    private float targetOffset = 1.0f;
 
+    //[DEBUGGING] Raycast color
     Color sightColor;
 
     //Other Flyer pieces
+    [SerializeField]
+    ParticleSystem ExplosionEffect;
+    private int point = 0;
     private Quaternion lastBodyRota;
     RaycastHit seeObject; // Sight raycast
     private Vector3 targetSpot;
+
+    //The animations attached to flyer
+    Animator anim;
+
+    //Pivot parent
+    Transform pivPar;
 
     //Enemy stats
     EnemyStats flyStat;
@@ -36,14 +48,23 @@ public class BomberEnemy : MonoBehaviour
     {
         player = FindObjectOfType<CharacterStats>();
         playerCollider = player.GetComponentInChildren<CapsuleCollider>();
-
+        anim = GetComponentInChildren<Animator>();
         flyStat = GetComponent<EnemyStats>();
-        attackPlayerSpeed = attackPlayerSpeed / 20;
+
+        attackPlayerSpeed /= 20;
+        patrolSpeed /= 10;
+
+        pivPar = transform.parent;
+
+        if (patrolCounterClockwise)
+        {
+            patrolSpeed *= -1;
+        }
     }
 
     private void Update()
     {
-        if (flyStat.getCurrentHealth() <= 0) 
+        if (flyStat.getCurrentHealth() <= 0)
         {
             currentState = FlyerState.Dead;
         }
@@ -59,20 +80,27 @@ public class BomberEnemy : MonoBehaviour
         {
             if (seeObject.collider == playerCollider)
             {
-                LO=StartCoroutine(LockOn());
+                LO = StartCoroutine(LockOn());
+                lastBodyRota = transform.rotation;
                 currentState = FlyerState.Targeting;
             }
+
+            pivPar.rotation *= Quaternion.Euler(0, patrolSpeed, 0);
         }
         else if (currentState == FlyerState.Targeting)
         {
             sightColor = Color.blue;
-            transform.LookAt(player.transform);
-            lastBodyRota = transform.rotation;
-            if (seeObject.collider != playerCollider )
+            anim.SetBool("shake", true);
+
+            this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, Quaternion.LookRotation(player.transform.position + player.transform.up - this.transform.position), Time.deltaTime * rotateSpeed);
+
+
+            if (seeObject.collider != playerCollider)
             {
                 transform.rotation = lastBodyRota;
                 StopCoroutine(LO);
                 currentState = FlyerState.Scanning;
+                anim.SetBool("shake", false);
             }
             targetSpot = player.transform.position + new Vector3(0, targetOffset, 0);
 
@@ -81,7 +109,8 @@ public class BomberEnemy : MonoBehaviour
         {
             sightColor = Color.red;
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetSpot, attackPlayerSpeed);
-            if(Vector3.Distance(this.transform.position, targetSpot) < 1)
+            anim.SetBool("spin", true);
+            if (Vector3.Distance(this.transform.position, targetSpot) < 0.5f)
             {
                 currentState = FlyerState.Explode;
             }
@@ -89,7 +118,7 @@ public class BomberEnemy : MonoBehaviour
         }
         else if (currentState == FlyerState.Explode)
         {
-            if(Vector3.Distance(this.transform.position, player.transform.position + new Vector3(0, targetOffset, 0)) < explosionRange)
+            if (Vector3.Distance(this.transform.position, player.transform.position + new Vector3(0, targetOffset, 0)) < explosionRange)
             {
                 player.A_RemoveHealth(damage);
             }
@@ -97,6 +126,7 @@ public class BomberEnemy : MonoBehaviour
         }
         else if (currentState == FlyerState.Dead)
         {
+            Instantiate(ExplosionEffect, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject); //wipes the object from existence
 
         }
@@ -118,4 +148,9 @@ public class BomberEnemy : MonoBehaviour
     }
 
     public void SetStateToAsleep() { currentState = FlyerState.Asleep; }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        currentState = FlyerState.Explode;
+    }
 }
