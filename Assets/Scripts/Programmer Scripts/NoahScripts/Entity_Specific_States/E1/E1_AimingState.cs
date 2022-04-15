@@ -32,8 +32,12 @@ public class E1_AimingState : AimingState
     public override void StateEnter()
     {
         base.StateEnter();
+        mEnemy.canJump = true; // we turn on can jump as it can evade during the inital part of the state
         mEntity.mAnimator.SetBool("stationary", true);
         mEntity.mAnimator.SetBool("chasing", false);
+
+        mEntity.mAnimator.SetBool("rangeAttack", true);
+        mEntity.mAnimator.SetBool("stationary", false);
         mEnemy.agent.speed = aimData.moveSpeed;
         mEntity.GetComponent<NavMeshAgent>().enabled = false;
         mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = true;
@@ -45,7 +49,8 @@ public class E1_AimingState : AimingState
     public override void StateExit()
     {
         base.StateExit();
-        
+        mEnemy.shootNowDaddy = false;
+        mEnemy.returnToRun = false;
         mEnemy.gameObject.GetComponent<NavMeshObstacle>().enabled = false;
         mEnemy.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         mEntity.mAnimator.SetBool("rangeAttack", false); // extra precaution in case rangeAttack is still true when leaving state
@@ -61,33 +66,34 @@ public class E1_AimingState : AimingState
         Debug.DrawRay(mEnemy.transform.position, path, Color.green);
         // end debug
         Aim();
-        if(mEnemy.canShoot)
+        if(mEnemy.shootNowDaddy == true)
         {
             mEnemy.canShoot = false;
+            mEnemy.shootNowDaddy = false;
             Shoot();
         }
         // switch states based on player distance and cool down when needed
-        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvadeState == true)
+        if (mEntity.DistanceToPlayer() <= entityData.evadeDistance && mEnemy.canEvadeState == true && mEnemy.canJump == true)
         {
             //starts the evade cooldown in the enemy class if enemy can evade
             mEnemy.evadeTime = Time.time;
             mEnemy.canEvadeState = false;
             mStateMachine.ChangeState(mEnemy.evadeState);
         }
-        else if (mEntity.DistanceToPlayer() >= entityData.rapidDistance)
+        else if (mEntity.DistanceToPlayer() >= entityData.rapidDistance) // change to move state if player far enough
         {
             mStateMachine.ChangeState(mEnemy.moveState);
         }
         //timer for shooting animation
-        if(shooting == true)
-        {
-            if(Time.time >= shootStart + shootTime)
-            {
-                shooting = false;
-                mEntity.mAnimator.SetBool("rangeAttack", false);
-                mEntity.mAnimator.SetBool("stationary", true);
-            }
-        }
+        //if(shooting == true)
+        //{
+        //    if(Time.time >= shootStart + shootTime)
+        //    {
+        //        shooting = false;
+        //        mEntity.mAnimator.SetBool("rangeAttack", false);
+        //        mEntity.mAnimator.SetBool("stationary", true);
+        //    }
+        //}
 
     }
 
@@ -96,6 +102,10 @@ public class E1_AimingState : AimingState
     public override void PhysicsUpdate()
     {
         mEnemy.facePlayer();
+        if(mEnemy.returnToRun == true) // if animation ends, return to run
+        {
+            mStateMachine.ChangeState(mEnemy.moveState);
+        }
         //mEntity.agent.updateRotation = true;
         //mEntity.agent.SetDestination(mEntity.myTarget.transform.position);
     }
@@ -103,14 +113,13 @@ public class E1_AimingState : AimingState
     private void Shoot()
     {
         //deques the front bullet in the ammo pool and resets its location to the canon of the enemy, and adds force to fire it
-        mEntity.mAnimator.SetBool("rangeAttack", true);
-        mEntity.mAnimator.SetBool("stationary", false);
+        mEnemy.canJump = false;
         shooting = true;
         shootStart = Time.time;
         //Quaternion enemyRotation = mEnemy.transform.rotation; // enemy faces player
         bullet = mEnemy.ammo.dequeBullet(); //deques bullet
         
-        bullet.transform.position = mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f); // places bullet infront of cannon, not perfect yet
+        bullet.transform.position = mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f) + new Vector3(0,0.5f,0); // places bullet infront of cannon, not perfect yet
         //bullet.transform.LookAt(mEnemy.myTarget.transform);
         bullet.GetComponent<Bullet>().timeActive = Time.time;
         bullet.GetComponent<Bullet>().hit = false;
@@ -125,7 +134,7 @@ public class E1_AimingState : AimingState
         bullet.transform.rotation = Quaternion.Euler(rotVec);
         bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * aimData.bulletSpeed); // bullet force
         //bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed); // bullet force
-        mEnemy.StartCool(bullet); // cooldown for when it can shoot
+        //mEnemy.StartCool(bullet); // cooldown for when it can shoot
     }
 
     

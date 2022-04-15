@@ -11,7 +11,23 @@ public class ContainedHeatBall : MonoBehaviour
             other.GetComponentInParent<EnemyChaseState>().SetStateToKnockback();
             Vector3 knockbackDirection = other.transform.position - transform.position;
             knockbackDirection = knockbackDirection.normalized;
-            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 10f + (Vector3.up * 5), ForceMode.Impulse);
+            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 15f + (Vector3.up * 7), ForceMode.Impulse);
+            return;
         }
+        if(other.GetComponent<EnemyBullet>())
+        {
+            other.GetComponent<Rigidbody>().velocity = returnRandomVectorReverse(other.GetComponent<Rigidbody>().velocity);
+            return;
+        }
+    }
+
+    private Vector3 returnRandomVectorReverse(Vector3 initialVelocity)
+    {
+        Vector3 vel = -initialVelocity;
+        vel.x += Random.Range(-2, 2);
+        vel.y += Random.Range(-2, 2);
+        vel.z += Random.Range(-2, 2);
+        return vel;
+
     }
 }

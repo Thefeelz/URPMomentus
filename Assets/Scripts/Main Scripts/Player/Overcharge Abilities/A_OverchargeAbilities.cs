@@ -74,11 +74,13 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
     {
         if (GetComponent<P_Movement>())
         {
-            GetComponent<P_Movement>().enabled = value;
+            // GetComponent<P_Movement>().enabled = value;
+            GetComponent<P_Input>().SetFreezeMovement(!value);
         }
         else if (cMovement)
         {
-            GetComponent<C_Movement>().enabled = value;
+            // GetComponent<C_Movement>().enabled = value;
+            GetComponent<P_Input>().SetFreezeMovement(value); ;
         }
         if (!value)
             playerMovement.SetPlayerCurrentSpeed(0);
@@ -98,5 +100,30 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
         }
         if (!value)
             playerMovement.SetPlayerCurrentSpeed(0);
+    }
+    public int GetOverchargeCost() { return overchargeCost; }
+
+    protected float CalculateOverChargeDistanceExtra(float baseDistance)
+    {
+        float oc = player.GetPlayerOvercharge();
+        if (oc > 75f)
+            return baseDistance * 1.5f;
+        if (oc > 50f)
+            return baseDistance * 1.2f;
+        if (oc > 25f)
+            return baseDistance * 1.1f;
+        return baseDistance;
+    }
+
+    protected int CalculateEnemiesHit(int maxEnemiesHit)
+    {
+        float oc = player.GetPlayerOvercharge();
+        if (oc > 75)
+            return maxEnemiesHit;
+        if (oc > 50)
+            return Mathf.RoundToInt(maxEnemiesHit * 0.75f);
+        if (oc > 25)
+            return Mathf.RoundToInt(maxEnemiesHit * 0.5f);
+        return 1;
     }
 }

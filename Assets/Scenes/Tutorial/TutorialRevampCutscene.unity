@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: af83741360dae774383c35d747c1076e, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 30b000899d8ea07458c445736ca9e6a0, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -693,7 +693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &55683539
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &63348983
 Transform:
   m_ObjectHideFlags: 0
@@ -901,7 +901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &65104622
 Transform:
   m_ObjectHideFlags: 0
@@ -2905,6 +2905,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 1
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -4045,7 +4046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &289701282
 Transform:
   m_ObjectHideFlags: 0
@@ -5649,7 +5650,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6543,6 +6544,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -10576,6 +10578,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -12606,7 +12609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &770823349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13644,7 +13647,7 @@ Light:
   m_BounceIntensity: 0.5
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.5904e-41, y: 0, z: 0, w: -1.037862e+17}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: 0, z: 0, w: 0.000000006564356}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -14773,6 +14776,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -14897,6 +14901,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 1
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -17152,7 +17157,7 @@ Light:
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -7.202593e+17, z: 4.5904e-41, w: 1e-45}
+  m_BoundingSphereOverride: {x: 1, y: 1, z: 7.2715916e+31, w: 6.350179e+28}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0.22
@@ -17641,7 +17646,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1046551349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18213,6 +18218,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -18815,7 +18821,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!95 &1144553152
 Animator:
@@ -19435,6 +19441,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -21435,7 +21442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1255579678
 Transform:
   m_ObjectHideFlags: 0
@@ -23615,6 +23622,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8505584002279285417, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
 --- !u!1001 &1414580190
@@ -25099,6 +25110,7 @@ MonoBehaviour:
   swordSlash: 1
   containedHeat: 0
   playerAttack: 1
+  shield: 0
   onEnter: 0
   onExit: 0
   onStay: 0
@@ -25961,6 +25973,7 @@ MonoBehaviour:
   swordSlash: 0
   containedHeat: 0
   playerAttack: 0
+  shield: 0
   onEnter: 1
   onExit: 0
   onStay: 0
@@ -27001,7 +27014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1536179979
 Transform:
   m_ObjectHideFlags: 0
@@ -31094,7 +31107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1806140672
 Transform:
   m_ObjectHideFlags: 0
@@ -31421,7 +31434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1821305408
 Transform:
   m_ObjectHideFlags: 0
@@ -32195,7 +32208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1903963520
 Transform:
   m_ObjectHideFlags: 0
@@ -32587,7 +32600,7 @@ Light:
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -7.202593e+17, z: 4.5904e-41, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0.000000012932674, z: 7.34e-43, w: 0.000000022397558}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -35311,6 +35324,63 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: bf03f4ad9d2784f49afc04bee73db0e4, type: 2}
+--- !u!1001 &2105066064
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.61007
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.05412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 66.051575
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623968, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222739879740623971, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
+      propertyPath: m_Name
+      value: Global Volume
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6845104f9cbe2254db0d6ec3c1698339, type: 3}
 --- !u!1001 &2109351540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36175,7 +36245,7 @@ Light:
   m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -7.202593e+17, z: 4.5904e-41, w: 1e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0.000000008282456, z: 7.34e-43, w: 0.000000015720218}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

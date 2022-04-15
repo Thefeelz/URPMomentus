@@ -8,22 +8,27 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     [SerializeField] int bladeColor;
-    [SerializeField] int levelChosen;
+    [SerializeField] int levelChosen, currentLevelBuildIndex;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
+    [SerializeField] ParticleSystem[] aquaParticleSystem, redParticleSystem, blueParticleSystem, greenParticleSystem;
+    [SerializeField] GameObject swordSlashLightning, swordSlashLightningRed, swordSlashLightningBlue, swordSlashLightningGreen;
+    [SerializeField] GameObject containedHeat, containedHeatRed, containedHeatBlue, containedHeatGreen;
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
     [SerializeField] Slider mainMenuSlider;
-    Transform positionToRespawn;
-    bool[] levelsCompleted = { false, false, false};
+    Transform positionToRespawnCheckpoint, positionToRespawnDefault;
+    bool[] levelsCompleted = { false, false, false };
+    public bool respawnAtCheckpoint = false;
+    public int respawnCheckpointIndex = 0;
 
 
 
     private void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
-        if(_instance !=null && _instance !=this)
+        if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
         }
@@ -31,7 +36,6 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
-        
     }
     private void Start()
     {
@@ -40,9 +44,13 @@ public class GameManager : MonoBehaviour
             GameManager gm = FindObjectOfType<GameManager>();
             if (gm != this)
             {
-                Debug.Log("destroyed");
                 Destroy(gm.gameObject);
             }
+        }
+        if (!FindObjectOfType<CharacterStats>())
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
         }
         if (mainMenuSlider)
             mainMenuSlider.onValueChanged.AddListener(delegate { SetMouseSenitivity(); });
@@ -61,7 +69,7 @@ public class GameManager : MonoBehaviour
         List<EnemyStats> enemiesInLoS = new List<EnemyStats>();
         foreach (EnemyStats enemy in enemiesInLevel)
         {
-            if(GetInLOS(playerPos, enemy.transform))
+            if (GetInLOS(playerPos, enemy.transform))
             {
                 enemiesInLoS.Add(enemy);
             }
@@ -75,7 +83,7 @@ public class GameManager : MonoBehaviour
         enemiesInRange = GetActiveEnemiesInRange(range, playerPos);
         foreach (EnemyStats enemy in enemiesInRange)
         {
-            if(GetInLOS(enemy.transform, playerPos))
+            if (GetInLOS(enemy.transform, playerPos))
             {
                 enemiesInRangeAndLoS.Add(enemy);
             }
@@ -87,7 +95,7 @@ public class GameManager : MonoBehaviour
         List<EnemyStats> enemiesInRange = new List<EnemyStats>();
         foreach (EnemyStats enemy in enemiesInLevel)
         {
-            if(Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
+            if (Vector3.Distance(enemy.transform.position, playerPos.position) <= range)
             {
                 enemiesInRange.Add(enemy);
             }
@@ -136,6 +144,14 @@ public class GameManager : MonoBehaviour
     {
         return levelChosen;
     }
+    public int GetCurrentLevelBuildIndex()
+    {
+        return currentLevelBuildIndex;
+    }
+    public void SetCurrentLevel(int level)
+    {
+        currentLevelBuildIndex = level;
+    }
     public Material[] GetMaterials()
     {
         if (bladeColor == 0)
@@ -151,7 +167,52 @@ public class GameManager : MonoBehaviour
         else
             return aquaMaterial;
     }
+    public ParticleSystem[] GetParticleSystems()
+    {
+        if (bladeColor == 0)
+        {
+            return aquaParticleSystem;
+        }
+        else if (bladeColor == 1)
+            return redParticleSystem;
+        else if (bladeColor == 2)
+            return blueParticleSystem;
+        else if (bladeColor == 3)
+            return greenParticleSystem;
+        else
+            return aquaParticleSystem;
+    }
+    public GameObject GetSwordSlashPrefab()
+    {
+        if (bladeColor == 0)
+        {
+            return swordSlashLightning;
+        }
+        else if (bladeColor == 1)
+            return swordSlashLightningRed;
+        else if (bladeColor == 2)
+            return swordSlashLightningBlue;
+        else if (bladeColor == 3)
+            return swordSlashLightningGreen;
+        else
+            return swordSlashLightning;
+    }
 
+    public GameObject GetContainedHeatPrefab()
+    {
+        if (bladeColor == 0)
+        {
+            return containedHeat;
+        }
+        else if (bladeColor == 1)
+            return containedHeatRed;
+        else if (bladeColor == 2)
+            return containedHeatBlue;
+        else if (bladeColor == 3)
+            return containedHeatGreen;
+        else
+            return containedHeat;
+    }
     public float GetMouseSensitivity()
     {
         return mouseSensitivity;
@@ -171,23 +232,34 @@ public class GameManager : MonoBehaviour
     bool GetInLOS(Transform player, Transform enemy)
     {
         RaycastHit hit;
-        Physics.Raycast(player.position + new Vector3(0, 1, 0), enemy.transform.position - player.position, out hit);
+        Physics.Raycast(player.position, enemy.transform.position - player.position, out hit);
         if (hit.collider != null && hit.collider.GetComponentInParent<P_Input>())
         {
             return true;
         }
         return false;
     }
-    public Vector3 GetRespawnPointPosition() { return positionToRespawn.position; }
-    public Vector3 GetRespawnPointRotation() { return positionToRespawn.rotation.eulerAngles; }
+    public Vector3 GetRespawnPointPosition() { return positionToRespawnCheckpoint.position; }
+    public Vector3 GetRespawnPointRotation() { return positionToRespawnCheckpoint.rotation.eulerAngles; }
     public void SendGameObjectToRespawn(GameObject gameObject)
     {
-        gameObject.transform.position = positionToRespawn.position;
-        gameObject.transform.rotation = positionToRespawn.rotation;
+        gameObject.transform.position = positionToRespawnCheckpoint.position;
+        gameObject.transform.rotation = positionToRespawnCheckpoint.rotation;
     }
-    public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawn = newRespawnPosition; }
+    public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawnCheckpoint = newRespawnPosition; }
+    public Transform GetRestartLevelLocation() { return positionToRespawnDefault; }
+    public Transform GetRestartLevelFromCheckpointLocation() { return positionToRespawnCheckpoint; }
     public void SetLevelComplete(int levelCompleted)
     {
-        levelsCompleted[levelCompleted - 1] = true;  
+        levelsCompleted[levelCompleted - 1] = true;
     }
+
+    public void SetRespawnCheckpointIndex(int newIndex)
+    {
+        respawnCheckpointIndex = newIndex;
+    }
+    public int GetRespawnCheckpointIndex() { return respawnCheckpointIndex; }
+    public bool GetRespawnAtCheckpoint() { return respawnAtCheckpoint; }
+    public void SetRespawnAtCheckpoint(bool value) { Debug.Log("Set Respawn at Checkpoint is " + value); respawnAtCheckpoint = value; Debug.Log("Set Respawn at Checkpoint is " + value); }
+    public void ClearEnemyList() { enemiesInLevel.Clear(); }
 }

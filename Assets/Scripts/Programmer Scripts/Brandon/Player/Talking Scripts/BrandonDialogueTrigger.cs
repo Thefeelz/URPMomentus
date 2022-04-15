@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class BrandonDialogueTrigger : MonoBehaviour
 {
-    [SerializeField] List<DialogueMessage> messages = new List<DialogueMessage>();
+    bool triggered = false;
+    [SerializeField] List<DialogueMessageInteractive> messages = new List<DialogueMessageInteractive>();
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponentInParent<DialogueSystem>())
+        if(other.GetComponentInParent<DialogueSystem>() && !triggered)
         {
-            other.GetComponentInParent<DialogueSystem>().AddMessageToDisplay(messages);
+            other.GetComponentInParent<DialogueSystem>().AddMessageToDisplay(messages, this.gameObject);
+            triggered = true;
         }
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

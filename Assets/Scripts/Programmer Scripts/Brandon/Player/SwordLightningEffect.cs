@@ -8,6 +8,7 @@ public class SwordLightningEffect : MonoBehaviour
     CharacterStats player;
     ParticleSystem.EmissionModule thisSystem;
     [SerializeField] Material[] emissionMaterial;
+    [SerializeField] GameObject[] emissionableGameObjects;
     Color color;
     bool controlEffect = true;
     // Start is called before the first frame update
@@ -15,12 +16,14 @@ public class SwordLightningEffect : MonoBehaviour
     {
         player = FindObjectOfType<CharacterStats>();
         thisSystem = GetComponent<ParticleSystem>().emission;
+        emissionMaterial = GameManager.Instance.GetMaterials();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (controlEffect)
+        if (controlEffect && player)
         {
             thisSystem.rateOverTime = Mathf.Floor(player.GetPlayerOvercharge() / 10);
             for (int i = 0; i < emissionMaterial.Length; i++)

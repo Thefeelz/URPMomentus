@@ -7,96 +7,60 @@ using System;
 
 public class DialogueSystem : MonoBehaviour
 {
-    [SerializeField] List<DialogueMessage> messagesToDisplay = new List<DialogueMessage>();
     [SerializeField] List<DialogueMessageInteractive> interactiveMessagesToDisplay = new List<DialogueMessageInteractive>();
     [SerializeField] TMP_Text textDisplay;
     [SerializeField] Image canvasImageForDialoge;
     [SerializeField] Animator dialogueAnimator;
+    [SerializeField] GameObject skipMessage;
+    Image skipMessageImage;
     int i = 0;
     GameObject callingObject;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        /*
-        if (messagesToDisplay.Count > 0)
-            StartDisplayMessage();
-        */
+        skipMessageImage = skipMessage.GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void AddMessageToDisplay(List<DialogueMessage> messages)
-    {
-        if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
-        {
-            messagesToDisplay.Clear();
-            StopAllCoroutines();
-        }
-        messagesToDisplay = messages;
-        if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
-        {
-            canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-            StartDisplayMessage();
-        }
-        else
-        {
-            canvasImageForDialoge.sprite = null;
-            StartDisplayMessage();
-        }
-    }
-
+    /// <summary>
+    /// Add a list of DialogueMessageInteractive to be displayed to the screen for player instruction.
+    /// </summary>
+    /// <param name="messages"></param>
     public void AddMessageToDisplay(List<DialogueMessageInteractive> messages)
     {
-        if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
+        if (messages.Count == 0) { return; }
+        if (messages[0].overrideCurrentMessage && interactiveMessagesToDisplay.Count > 0)
         {
-            messagesToDisplay.Clear();
+            interactiveMessagesToDisplay.Clear();
             StopAllCoroutines();
+            interactiveMessagesToDisplay = messages;
+            i = 0;
+            canvasImageForDialoge.sprite = null;
         }
-        interactiveMessagesToDisplay = messages;
-        if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
+        else if(!messages[0].overrideCurrentMessage && interactiveMessagesToDisplay.Count > 0)
         {
-            canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-            StartDisplayMessageInteractive();
+            foreach (DialogueMessageInteractive newMessage in messages)
+            {
+                interactiveMessagesToDisplay.Add(newMessage);
+            }
         }
         else
-        {
-            canvasImageForDialoge.sprite = null;
-            StartDisplayMessageInteractive();
-        }
-    }
-
-    public void AddMessageToDisplay(List<DialogueMessage> messages, GameObject _callingObject)
-    {
-        callingObject = _callingObject;
-        if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
-        {
-            messagesToDisplay.Clear();
-            StopAllCoroutines();
-        }
-        messagesToDisplay = messages;
-        if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
-        {
-            canvasImageForDialoge.sprite = messages[i].imageToDisplay;
-            StartDisplayMessage();
-        }
-        else
-        {
-            canvasImageForDialoge.sprite = null;
-            StartDisplayMessage();
-        }
+            interactiveMessagesToDisplay = messages;
+        StartDisplayMessageInteractive();
     }
 
     public void AddMessageToDisplay(List<DialogueMessageInteractive> messages, GameObject _callingObject)
     {
+        if(messages.Count == 0) { return; }
         callingObject = _callingObject;
         if (messages[0].overrideCurrentMessage && dialogueAnimator.GetBool("dialogue"))
         {
-            messagesToDisplay.Clear();
+            FastForwardAbilityToggle(interactiveMessagesToDisplay);
+            interactiveMessagesToDisplay.Clear();
             StopAllCoroutines();
+            interactiveMessagesToDisplay = messages;
+            i = 0;
+            canvasImageForDialoge.sprite = null;
+            StartDisplayMessageInteractive();
+            return;
         }
         interactiveMessagesToDisplay = messages;
         if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
@@ -111,105 +75,150 @@ public class DialogueSystem : MonoBehaviour
         }
     }
 
-    void HandleAbilityToggles(List<AbilityToManipulateObject> daList)
+    void HandleAbilityTogglesInteractive(List<AbilityToManipulateObjectInteractive> daList)
     {
-        foreach (AbilityToManipulateObject thang in daList)
+        foreach (AbilityToManipulateObjectInteractive thang in daList)
         {
-            if (thang.turnOnAbility)
+            if (thang.turnOnAbility && callingObject.GetComponent<TurnOnAndOffScripts>())
                 callingObject.GetComponent<TurnOnAndOffScripts>().TurnOnScripts(thang.abilitiesToManipulate);
-            else
+            else if (!thang.turnOnAbility && callingObject.GetComponent<TurnOnAndOffScripts>())
                 callingObject.GetComponent<TurnOnAndOffScripts>().TurnOffScripts(thang.abilitiesToManipulate);
         }
     }
-
-    void HandleAbilityToggles(List<AbilityToManipulateObjectInteractive> daList)
+    void HandleParticleSystemInteractive(List<DialogueToggleParticleSystem> camille)
     {
-        Debug.LogError("Should not reach here");
-        foreach (AbilityToManipulateObjectInteractive thang in daList)
+        foreach (DialogueToggleParticleSystem brandon in camille)
         {
-            if (thang.turnOnAbility)
-                callingObject.GetComponent<TurnOnAndOffScripts>().TurnOnScripts(thang.abilitiesToManipulate);
-            else
-                callingObject.GetComponent<TurnOnAndOffScripts>().TurnOffScripts(thang.abilitiesToManipulate);
+            if (brandon.stopPlay && brandon.particle)
+                brandon.particle.Stop();
+            if (brandon.startPlay && brandon.particle)
+                brandon.particle.Play();
+        }
+    }
+    void HandleAnimatorSystemInteractive(List<DialogueToggleAnimation> rose)
+    {
+        foreach (DialogueToggleAnimation jon in rose)
+        {
+            if(jon.animator)
+                jon.animator.SetBool(jon.boolName, jon.boolValue);
         }
     }
     void HandleGameObjectToggle(DialogueToggleGameObject[] daList)
     {
         foreach (DialogueToggleGameObject peter in daList)
         {
-            if (peter.turnOnObject)
+            if (peter.turnOnObject && peter.objectToManipulate)
                 peter.objectToManipulate.SetActive(true);
-            else
+            else if (peter.objectToManipulate && !peter.turnOnObject)
                 peter.objectToManipulate.SetActive(false);
+            
         }
     }
-    void StartDisplayMessage()
+
+    void HandleObjectives(List<DialogueToggleObjective> objectives)
     {
-        if(canvasImageForDialoge.sprite == null)
+        if(FindObjectOfType<ObjectiveHelper>())
         {
-            canvasImageForDialoge.sprite = messagesToDisplay[i].imageToDisplay;
-            dialogueAnimator.SetBool("dialogue", true);
-        }
-        if (i < messagesToDisplay.Count)
-        {
-            if(messagesToDisplay[i].abilities.Count > 0)
-                HandleAbilityToggles(messagesToDisplay[i].abilities);
-            if (messagesToDisplay[i].objectsToTurnOn.Length > 0)
-                HandleGameObjectToggle(messagesToDisplay[i].objectsToTurnOn);
-            StartCoroutine(DisplayMessage(messagesToDisplay[i].timeToDisplay, messagesToDisplay[i].message));
-            i++;
-        }
-        else
-        {
-            dialogueAnimator.SetBool("dialogue", false);
-            StartCoroutine(TurnOffImage());
-            textDisplay.text = "";
-            i = 0;
+            ObjectiveHelper helper = FindObjectOfType<ObjectiveHelper>();
+            foreach (DialogueToggleObjective holly in objectives)
+            {
+                if (holly.startObjective)
+                    helper.AddObjectivesToDisplay(holly.objective);
+                else
+                    helper.RemoveObjectiveByID(holly.objective.objectiveID);
+            }
         }
     }
+    
 
     void StartDisplayMessageInteractive()
-    {
-        if (canvasImageForDialoge.sprite == null)
-        {
-            canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
-            dialogueAnimator.SetBool("dialogue", true);
-        }
+    {   
         if (i < interactiveMessagesToDisplay.Count)
         {
-            // Debug.Log("Ability Count: " + interactiveMessagesToDisplay[i].abilities.Count + " Object Count: " + interactiveMessagesToDisplay[i].objectsToTurnOn.Length);
+            canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
+            if (!interactiveMessagesToDisplay[i].ableToSkipMessage)
+            {
+                skipMessage.SetActive(false);
+            }
+            else
+            {
+                skipMessage.SetActive(true);
+            }
             if (interactiveMessagesToDisplay[i].abilities.Count > 0)
-                HandleAbilityToggles(interactiveMessagesToDisplay[i].abilities);
+                HandleAbilityTogglesInteractive(interactiveMessagesToDisplay[i].abilities);
             if (interactiveMessagesToDisplay[i].objectsToTurnOn.Length > 0)
                 HandleGameObjectToggle(interactiveMessagesToDisplay[i].objectsToTurnOn);
-            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i].timeToDisplay, interactiveMessagesToDisplay[i].message));
+            if (interactiveMessagesToDisplay[i].particleSystem.Count > 0)
+                HandleParticleSystemInteractive(interactiveMessagesToDisplay[i].particleSystem);
+            if (interactiveMessagesToDisplay[i].animations.Count > 0)
+                HandleAnimatorSystemInteractive(interactiveMessagesToDisplay[i].animations);
+            if (interactiveMessagesToDisplay[i].objectives.Count > 0)
+                HandleObjectives(interactiveMessagesToDisplay[i].objectives);
+            StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i]));
             i++;
         }
         else
         {
-            dialogueAnimator.SetBool("dialogue", false);
             StartCoroutine(TurnOffImage());
             textDisplay.text = "";
             i = 0;
         }
     }
-    IEnumerator DisplayMessage(float displayTime, string currentMessage)
-    {
-        textDisplay.text = currentMessage;
-        yield return new WaitForSeconds(displayTime);
-        StartDisplayMessage();
-    }
+    
 
-    IEnumerator DisplayMessageInteractive(float displayTime, string currentMessage)
+    IEnumerator DisplayMessageInteractive(DialogueMessageInteractive message)
     {
-        textDisplay.text = currentMessage;
-        yield return new WaitForSeconds(displayTime);
+        dialogueAnimator.SetBool("dialogue", true);
+        canvasImageForDialoge.sprite = message.imageToDisplay;
+        textDisplay.text = message.message;
+        if (message.fontSize == 0)
+            textDisplay.fontSize = 28;
+        else
+            textDisplay.fontSize = message.fontSize;
+        textDisplay.color = message.fontColor;
+        yield return new WaitForSeconds(message.timeToDisplay);
         StartDisplayMessageInteractive();
     }
 
     IEnumerator TurnOffImage()
     {
+        dialogueAnimator.SetBool("dialogue", false);
+        interactiveMessagesToDisplay.Clear();
         yield return new WaitForSeconds(2f);
-        canvasImageForDialoge.sprite = null;
+        if (!dialogueAnimator.GetBool("dialogue"))
+        {
+            canvasImageForDialoge.sprite = null;
+            skipMessage.SetActive(false);
+        }
+    }
+
+    void FastForwardAbilityToggle(List<DialogueMessageInteractive> remainingMessages)
+    {
+        foreach (DialogueMessageInteractive item in remainingMessages)
+        {
+            HandleAbilityTogglesInteractive(item.abilities);
+        }
+    }
+
+    public void SkipCurrentMessage()
+    {
+        /*if (!dialogueAnimator.GetBool("dialogue") || (i < interactiveMessagesToDisplay.Count && !interactiveMessagesToDisplay[i].ableToSkipMessage)) { return; }
+        Debug.Log(i);
+        if(i >= interactiveMessagesToDisplay.Count)
+        {
+            StartCoroutine(TurnOffImage());
+            textDisplay.text = "";
+            i = 0;
+        }
+        else if (interactiveMessagesToDisplay.Count > 0 && i < interactiveMessagesToDisplay.Count)
+        {
+            StopAllCoroutines();
+            StartDisplayMessageInteractive();
+        }*/
+        if(skipMessage.activeSelf)
+        {
+            StopAllCoroutines();
+            StartDisplayMessageInteractive();
+        }
     }
 }

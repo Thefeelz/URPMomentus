@@ -54,7 +54,7 @@ public class DialogueHandlerScript : MonoBehaviour
     /// <param name="dialogue"></param>
     /// Input: the dialogue object which contains the name of the speaker and their script
     /// Output: None
-    public void StartDialogue(Dialogue dialogue,bool hasImage)
+    public void StartDialogue(Dialogue dialogue,bool hasImage,float displayTime)
     {
 
         if (hasImage == true)
@@ -83,11 +83,11 @@ public class DialogueHandlerScript : MonoBehaviour
 
         }
 
-        //incase one is already animating
+        //in case one is already animating. if i comment this will it fuck it up?
         StopAllCoroutines();
 
         //start displaying sentences
-        StartCoroutine(DelayTextSequence());
+        StartCoroutine(DelayTextSequence(displayTime));
 
         //Debug.Log(printQueue.Count);
     }
@@ -99,7 +99,7 @@ public class DialogueHandlerScript : MonoBehaviour
 
     }
 
-    private void DisplayNextSentence()
+    private void DisplayNextSentence(float displayTime)
     {
 
         //if there are no sentences left, then end the dialogue and return
@@ -114,11 +114,8 @@ public class DialogueHandlerScript : MonoBehaviour
 
         string sent = sentences.Dequeue();
         dialogueText.text = sent;
+        holdForSeconds(displayTime);
         Debug.Log(sent);
-
-
-
-
     }
 
     public void EndDialogue()
@@ -132,16 +129,23 @@ public class DialogueHandlerScript : MonoBehaviour
     }
 
     //delays the sequence of the text and displays them
-    IEnumerator DelayTextSequence()
+    IEnumerator DelayTextSequence(float displayTime)
     {
         for (int i = sentences.Count-1; i >= 0; --i)
         {
             //Debug.Log("conversation with " + i);
 
-            DisplayNextSentence();
+            DisplayNextSentence(displayTime);
             yield return new WaitForSeconds(3);
         }
         EndDialogue();
+    }
+
+    IEnumerator holdForSeconds(float displayTime)
+    {
+
+        yield return new WaitForSeconds(displayTime);
+
     }
 
 }

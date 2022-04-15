@@ -11,7 +11,11 @@ public class Pitfall : MonoBehaviour
     [SerializeField]
     GameObject Player;
 
-
+    CanvasAnimatorBrain brain;
+    private void Start()
+    {
+        brain = FindObjectOfType<CanvasAnimatorBrain>();   
+    }
     //if the player enters the trigger box
     void OnTriggerEnter(Collider other)
     {
@@ -19,7 +23,8 @@ public class Pitfall : MonoBehaviour
         Debug.Log(other.gameObject.name);
         if(other.gameObject.name == "Body")
         {
-            Player.transform.position = resetLocation.transform.position;
+            brain.FallThroughPit(this);
+            // Player.transform.position = resetLocation.transform.position;
             
             Debug.Log("Player hit the pit");
         }
@@ -30,6 +35,10 @@ public class Pitfall : MonoBehaviour
         Debug.Log("Collider Hit");
 
         
+    }
+    public void SendPlayerToLocation()
+    {
+        Player.transform.position = resetLocation.transform.position;
     }
    
 }

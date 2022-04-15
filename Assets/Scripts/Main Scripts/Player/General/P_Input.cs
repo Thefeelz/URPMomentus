@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class P_Input : MonoBehaviour
 {
-    [SerializeField] Canvas helpScreen;
     P_CoolDownManager coolDownManager;
     P_GroundSlide groundSlide;
     P_Movement movement;
@@ -18,8 +17,10 @@ public class P_Input : MonoBehaviour
     A_Shield shield;
 
     Rigidbody rb;
+    bool freezeMovement = false;
     Animator myAnim;
     PauseMenu pauseMenu;
+    DialogueSystem dialogue;
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,6 +37,7 @@ public class P_Input : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         myAnim = GetComponent<Animator>();
+        dialogue = GetComponent<DialogueSystem>();
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class P_Input : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!PauseMenu.GameIsPaused)
+        if(!PauseMenu.GameIsPaused && !freezeMovement)
             GetUserInputPhysics();
     }
 
@@ -64,7 +66,7 @@ public class P_Input : MonoBehaviour
                 if (bladeDance.Ability_BladeDance())
                     coolDownManager.AddCooldownToList(bladeDance);
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4) && !swordThrow.stuck && swordThrow.enabled)
+            if ((Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKey(KeyCode.JoystickButton4)) && !swordThrow.stuck && swordThrow.enabled)
             {
                 swordThrow.ThrowSword();
             }
@@ -82,7 +84,7 @@ public class P_Input : MonoBehaviour
                 if (swordSlash.Ability_SwordSlash())
                     coolDownManager.AddCooldownToList(swordSlash);
             }
-            if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2) && airDash.enabled)
+            if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.JoystickButton2)) && airDash.enabled)
             {
                 if (airDash.UseAirDash())
                     coolDownManager.AddCooldownToList(airDash);
@@ -90,11 +92,11 @@ public class P_Input : MonoBehaviour
             // =================================
             // ==========PLAYER ATTACK==========
             // =================================
-            if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5) && playerAttack.enabled) 
+            if ((Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.JoystickButton5)) && playerAttack.enabled) 
             { 
                 playerAttack.BasicAttack(); 
             }
-            else if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4) && shield.enabled) 
+            else if ((Input.GetMouseButton(1) || Input.GetKey(KeyCode.JoystickButton4)) && shield.enabled) 
             {
                shield.ActivateShield(); 
             }
@@ -115,9 +117,12 @@ public class P_Input : MonoBehaviour
             // ====================================
             // ==========MENU / UI THANGS==========
             // ====================================
-            if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.JoystickButton6)) { helpScreen.gameObject.SetActive(!helpScreen.gameObject.activeSelf); } // @Isaac added an or statement for looking for the select button
+            
         }
         if(Input.GetKeyDown(KeyCode.Escape)) { pauseMenu.PauseGame(); }
+        if (Input.GetKeyDown(KeyCode.M)) { GetComponent<CharacterStats>().RemoveHealthMelee(GetComponent<CharacterStats>().GetPlayerMaxHealth()); }
+        if (Input.GetKeyDown(KeyCode.N)) { GetComponent<CharacterStats>().ReplenishHealth(20f); }
+        if (Input.GetKeyDown(KeyCode.Tab)) { dialogue.SkipCurrentMessage(); }
     }
 
     void GetUserInputPhysics()
@@ -153,4 +158,6 @@ public class P_Input : MonoBehaviour
         myAnim.SetBool("running", true);
         movement.HandleMovement(charMovementVector.normalized);
     }
+
+    public void SetFreezeMovement(bool value) { freezeMovement = value; }
 }

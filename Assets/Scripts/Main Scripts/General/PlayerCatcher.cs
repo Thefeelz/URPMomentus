@@ -9,7 +9,7 @@ public class PlayerCatcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame

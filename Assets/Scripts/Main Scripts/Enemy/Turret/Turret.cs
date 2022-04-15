@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -8,31 +9,41 @@ public class Turret : MonoBehaviour
     [SerializeField] float detectionRange;
     [SerializeField] int damageToDeal;
     [SerializeField] float rotateSpeed;
-    [SerializeField] float sleepTimer;
     [SerializeField] float chargeUpTime;
     [SerializeField] float rateOfFire;
-    [SerializeField] float fireBurstTime;
+    [SerializeField] float bulletVelocity;
+    [SerializeField] int bulletCapacity, currentBulletCount;
+    [SerializeField] float ammoToAddPerSecond;
+    [SerializeField] float reloadTime = 0f;
     [SerializeField] Light firingLight;
     [SerializeField] Transform firePosition;
     [SerializeField] ParticleSystem smokeEffect;
     [SerializeField] GameObject bulletsToFire;
     [SerializeField] LayerMask mask;
+    [SerializeField] Image reloadSprite;
 
-    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse};
+    enum TurretState  {Waiting, Attacking, Asleep, Dead, Charging, PlayerDead, SpecialInUse, Reload, Materialize};
     [SerializeField]TurretState currentState;
     TurretState previousState;
 
     P_Input myPlayer;
     Animator anim;
+    TurretRatatatatatata ratatatatatata;
+
+    [SerializeField] bool materializeIn;
+    [SerializeField] float materializeTime;
+    float elapsedMaterializeTime = 0f;
+    [SerializeField] GameObject turretBody;
+    List<Material> mesh = new List<Material>();
 
     float elapsedChargeTime = 0f;
-    float elapsedFireTime = 0f;
-    bool charged = false;
-    bool firing = false;
+    
     // Start is called before the first frame update
     void Start()
     {
+        ratatatatatata = GetComponent<TurretRatatatatatata>();
         currentState = TurretState.Asleep;
+        currentBulletCount = bulletCapacity;
         myPlayer = FindObjectOfType<P_Input>();
         anim = GetComponent<Animator>();
         if (myPlayer)
@@ -40,6 +51,19 @@ public class Turret : MonoBehaviour
         else
             anim.SetBool("awake", true);
         rateOfFire = 1 / rateOfFire;
+        if (ammoToAddPerSecond > 0)
+            ammoToAddPerSecond = 1 / ammoToAddPerSecond;
+        else
+            ammoToAddPerSecond = 1;
+        if (turretBody)
+        {
+            foreach (Transform item in turretBody.transform)
+            {
+                mesh.Add(item.GetComponent<SkinnedMeshRenderer>().material);
+            }
+        }
+        if (materializeIn)
+            currentState = TurretState.Materialize;
     }
 
     // Update is called once per frame
@@ -70,6 +94,14 @@ public class Turret : MonoBehaviour
         {
 
         }
+        else if (currentState == TurretState.Reload)
+        {
+            Reload();
+        }
+        else if (currentState == TurretState.Materialize)
+        {
+            MaterializeIn();
+        }
     }
 
     void CheckPlayerInRange()
@@ -96,8 +128,30 @@ public class Turret : MonoBehaviour
             ResetLife();
             anim.SetBool("awake", false);
         }
+        else if (currentState == TurretState.Reload && Vector3.Distance(transform.position, myPlayer.transform.position) < detectionRange)
+        {
+            currentState = TurretState.Attacking;
+            StartCoroutine(StartFiring());
+        }
     }
 
+    void Reload()
+    {
+        reloadTime += Time.deltaTime;
+        if(reloadTime >= ammoToAddPerSecond)
+        {
+            currentBulletCount++;
+            reloadSprite.fillAmount = (float)currentBulletCount / bulletCapacity;
+            reloadTime = 0f;
+            if(currentBulletCount == bulletCapacity)
+            {
+                ratatatatatata.EndedFiring();
+                reloadSprite.fillAmount = 0;
+                reloadSprite.gameObject.SetActive(false);
+                CheckPlayerInRangeAttacking();
+            }
+        }
+    }
     void RotateTowardsPlayer()
     {
         headToRotate.transform.rotation = Quaternion.RotateTowards(headToRotate.transform.rotation, 
@@ -112,7 +166,6 @@ public class Turret : MonoBehaviour
         if (elapsedChargeTime >= chargeUpTime)
         {
             elapsedChargeTime = 0;
-            charged = true;
             currentState = TurretState.Attacking;
             anim.SetBool("awake", true);
             StartCoroutine(StartFiring());
@@ -121,16 +174,27 @@ public class Turret : MonoBehaviour
 
     IEnumerator StartFiring()
     {
-        firing = true;
+        bool reload = false;
         while(currentState == TurretState.Attacking)
         {
-            elapsedFireTime+=Time.deltaTime;
             yield return  new WaitForSeconds(rateOfFire);
             GameObject newBullet = Instantiate(bulletsToFire, firePosition.position, Quaternion.identity);
-            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(15f, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            newBullet.GetComponent<EnemyBullet>().SetVelocityToPlayer(bulletVelocity, myPlayer.GetComponent<CharacterStats>(), headToRotate.transform, damageToDeal);
+            ratatatatatata.FireRaTaTa(this.gameObject);
+            currentBulletCount--;
+            if(currentBulletCount == 0)
+            {
+                currentState = TurretState.Reload;
+                reloadSprite.gameObject.SetActive(true);
+                reload = true;
+                break;
+            }
         }
-        currentState = TurretState.Asleep;
-        ResetLife();
+        if (!reload)
+        {
+            currentState = TurretState.Asleep;
+            ResetLife();
+        }
     }
 
     bool CheckInLoS()
@@ -154,11 +218,9 @@ public class Turret : MonoBehaviour
     }
 
     void ResetLife()
-    {
-        charged = false;
-        firing = false;
+    { 
         firingLight.intensity = 0;
-        elapsedFireTime = 0;
+        ratatatatatata.EndedFiring();
     }
 
     public void SetStateToPlayerDead() { currentState = TurretState.PlayerDead; }
@@ -176,6 +238,19 @@ public class Turret : MonoBehaviour
             if (currentState != TurretState.Dead)
                 currentState = previousState;
             anim.speed = 1;
+        }
+    }
+    void MaterializeIn()
+    {
+        elapsedMaterializeTime += Time.deltaTime;
+        foreach (Material mat in mesh)
+        {
+            mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.3f, -0.3f, elapsedMaterializeTime / materializeTime));
+        }
+        if (elapsedMaterializeTime >= materializeTime)
+        {
+            elapsedMaterializeTime = 0f;
+            currentState = TurretState.Asleep;
         }
     }
 }

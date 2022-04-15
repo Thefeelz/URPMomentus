@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class SetUpPlayer : MonoBehaviour
 {
-    [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger;
-    Material[] materialsToApply; 
+    [SerializeField] GameObject[] blade, cross, hilt, forearm, hand, finger, shield;
+    [SerializeField] GameObject swordLighting;
+    Material[] materialsToApply;
+    ParticleSystem[] particlesystemToApply;
     [SerializeField] Material[] defaultMaterialsToApply;
     
     // Start is called before the first frame update
     void Start()
     {
-        materialsToApply = FindObjectOfType<GameManager>().GetMaterials();
+        materialsToApply = GameManager.Instance.GetMaterials();
+        particlesystemToApply = GameManager.Instance.GetParticleSystems();
+        if (materialsToApply.Length == 0)
+            Debug.Log("Set up is failing");
         ApplyMaterials();
+        ApplyParticleSystems();
     }
 
     // Update is called once per frame
@@ -123,5 +129,39 @@ public class SetUpPlayer : MonoBehaviour
                 mat.GetComponent<SkinnedMeshRenderer>().material = defaultMaterialsToApply[5];
             }
         }
+
+        if (materialsToApply.Length > 6)
+        {
+            foreach (GameObject mat in shield)
+            {
+                Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
+                materialz[0] = materialsToApply[6];
+                materialz[1] = materialsToApply[7];
+                
+                mat.GetComponent<MeshRenderer>().materials = materialz;
+            }
+        }
+        else
+        {
+            //Debug.Log("Hand Null");
+            foreach (GameObject mat in shield)
+            {
+                Material[] materialz = mat.GetComponent<MeshRenderer>().materials;
+                materialz[0] = defaultMaterialsToApply[6];
+                materialz[1] = defaultMaterialsToApply[7];
+                mat.GetComponent<MeshRenderer>().materials = materialz;
+                
+            }
+        }
+    }
+    
+    void ApplyParticleSystems()
+    {
+        var main = swordLighting.GetComponent<ParticleSystem>().main;
+        main.startColor = particlesystemToApply[0].main.startColor;
+
+        FindObjectOfType<A_SwordSlash>().SetSwordSlashPrefab(GameManager.Instance.GetSwordSlashPrefab());
+        FindObjectOfType<A_ContainedHeat>().SetContainedHeatPrefab(GameManager.Instance.GetContainedHeatPrefab());
+        FindObjectOfType<A_ContainedHeat>().SetContainedHeatLightningEffect(particlesystemToApply[1]);
     }
 }

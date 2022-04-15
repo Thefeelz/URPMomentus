@@ -43,5 +43,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8387be02e005f57498dbf205a3154db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bladeColor: 0
+  levelChosen: 0
+  currentLevelBuildIndex: 0
   enemiesInLevel: []
+  aquaMaterial:
+  - {fileID: 2100000, guid: 3ca856ff466c7964c8d59885c208de2a, type: 2}
+  - {fileID: 2100000, guid: 4c50ae2a5a45aa048b39092fb26ac445, type: 2}
+  - {fileID: 2100000, guid: 3ea064f6e55387349aedfd25560d05d1, type: 2}
+  - {fileID: 2100000, guid: d00867f09cafd2649aac54acefdc44c5, type: 2}
+  - {fileID: 2100000, guid: 6c99998a2ce6bc44fb1c84429ad5770b, type: 2}
+  - {fileID: 2100000, guid: 3006e554ee13b89469dbc24d4d37eb59, type: 2}
+  - {fileID: 2100000, guid: 3fd197d7c78a0d74d92914b867ba1243, type: 2}
+  - {fileID: 2100000, guid: c2db4a4d22410b847968ae9b798b6eb1, type: 2}
+  redMaterial:
+  - {fileID: 2100000, guid: f08d8e8dfc5376540b9648ced2dee8ed, type: 2}
+  - {fileID: 2100000, guid: c49ef54149f2b464886de08491d3c710, type: 2}
+  - {fileID: 2100000, guid: 74c3cab460bf0f5469eb3a763658cbe6, type: 2}
+  - {fileID: 2100000, guid: 9d4cb1c64b4baf748b214b03de1c770e, type: 2}
+  - {fileID: 2100000, guid: 346d70ef7bba042428443002a27310eb, type: 2}
+  - {fileID: 2100000, guid: e8d4e9e942c992c4ebabfa9c380f17d1, type: 2}
+  - {fileID: 2100000, guid: dcc7e69be23bf934eb922deae0067f56, type: 2}
+  - {fileID: 2100000, guid: 2311ae72b5fdd1148bf3688ff221d216, type: 2}
+  blueMaterial:
+  - {fileID: 2100000, guid: 289e634687767524d9259e514148bff9, type: 2}
+  - {fileID: 2100000, guid: ad1c0e75e52173743aaca65cf4de0772, type: 2}
+  - {fileID: 2100000, guid: 8a81688ddc7b35a4aa13c5bfa3a43e88, type: 2}
+  - {fileID: 2100000, guid: 793e449f78c3cba449349b3b47ca6686, type: 2}
+  - {fileID: 2100000, guid: ee3ce3b533e192e459f5a808b1ecb2e0, type: 2}
+  - {fileID: 2100000, guid: 83952476fa085574db8a576ecd4ac12d, type: 2}
+  - {fileID: 2100000, guid: ddc876eccd0012a4ca726d5af7149398, type: 2}
+  - {fileID: 2100000, guid: 4b67322111ce5a14998977e76e900811, type: 2}
+  greenMaterial:
+  - {fileID: 2100000, guid: 7ff288c88ddb43f45b5f01ee365760ac, type: 2}
+  - {fileID: 2100000, guid: f1ccc5a0bdafb9f4c9c6de62c97de459, type: 2}
+  - {fileID: 2100000, guid: f2aca3c5048246342b52283ef9420705, type: 2}
+  - {fileID: 2100000, guid: 30fa195c1449c5c4ca0fd9c8951edf0c, type: 2}
+  - {fileID: 2100000, guid: 1afdd08cef79627479a8e77dfcd275e7, type: 2}
+  - {fileID: 2100000, guid: fb6b012849c80424191974932219b1c4, type: 2}
+  - {fileID: 2100000, guid: a04120ec38bb71f408643e59469bb7c0, type: 2}
+  - {fileID: 2100000, guid: 3acfca9116f245a468f1f568eb8a2613, type: 2}
+  aquaParticleSystem:
+  - {fileID: 3343029449052673973, guid: 8847ed633a4268a498d3373c8396111e, type: 3}
+  - {fileID: 3308443588297471571, guid: 7252f0cf7508f8641bc1f02406bbee9e, type: 3}
+  redParticleSystem:
+  - {fileID: 3343029449052673973, guid: 3d25547a04a23b44495ebf34fc3987a3, type: 3}
+  - {fileID: 3308443588297471571, guid: ec9db142154a3b84ba2c32a0439f6df2, type: 3}
+  blueParticleSystem:
+  - {fileID: 3343029449052673973, guid: 355fd85578a03d24781908c82f47f992, type: 3}
+  - {fileID: 3308443588297471571, guid: c8c62e0c3ec2c7e4694d88a96713ab3c, type: 3}
+  greenParticleSystem:
+  - {fileID: 3343029449052673973, guid: 1c678bb3882df3445b0dcf3c6940fb29, type: 3}
+  - {fileID: 3308443588297471571, guid: 0f235f1fb4e2adb48b669e663c521bfc, type: 3}
+  swordSlashLightning: {fileID: 9238433692340011, guid: 757e30bac3b21c343859ca075d856dbb, type: 3}
+  swordSlashLightningRed: {fileID: 9238433692340011, guid: f9e5b906cb8ac74438afd2d1d1da43b7, type: 3}
+  swordSlashLightningBlue: {fileID: 9238433692340011, guid: d51a39273cdd67148844c927b0d61446, type: 3}
+  swordSlashLightningGreen: {fileID: 9238433692340011, guid: 029db96159ed42942964a4e04f439c6f, type: 3}
+  containedHeat: {fileID: 7768230820019964502, guid: 7667ac6cd7ad82249b482b5af3f2f367, type: 3}
+  containedHeatRed: {fileID: 7768230820019964502, guid: 1d5291fa356d19b40865eadff2ea8422, type: 3}
+  containedHeatBlue: {fileID: 7768230820019964502, guid: 670d9629e35d0a040a7cb2f4f85abb07, type: 3}
+  containedHeatGreen: {fileID: 7768230820019964502, guid: 89860b8052a13af418eb80003e74fc09, type: 3}
   activeInUse: 0
+  mouseSensitivity: 70
+  mainMenuSlider: {fileID: 0}
+  respawnAtCheckpoint: 0
+  respawnCheckpointIndex: 0

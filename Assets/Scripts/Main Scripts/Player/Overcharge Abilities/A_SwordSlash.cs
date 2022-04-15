@@ -18,6 +18,7 @@ public class A_SwordSlash : A_OverchargeAbilities
 
     // Enemies able to be hit till the ability dissapears
     [SerializeField] int enemiesAbleToHit;
+    [SerializeField] int enemiesAbleToHitDetermined;
     
     // This is the effect of the sword that is passivley on during the game, when this ability is used we have to turn off the base one and turn it back on
     // that is its sole purpose of being here
@@ -32,7 +33,9 @@ public class A_SwordSlash : A_OverchargeAbilities
     void Start()
     {
         swordEffect = GetComponentInChildren<SwordLightningEffect>();
+        
         thisSystem = GetComponentInChildren<ParticleSystem>().emission;
+        // swordSlashPrefab = GameManager.Instance.GetSwordSlashPrefab();
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class A_SwordSlash : A_OverchargeAbilities
             DieDownEffects();
         // Update the UI
         if (abilityCooldownCurrent > 0)
-            ui.UpdateSwordSlashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
+            ui.UpdateSwordSlashFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax, overchargeCost);
     }
 
     // Start the sword animation and effect, called by the animation
@@ -70,8 +73,9 @@ public class A_SwordSlash : A_OverchargeAbilities
     public void FireSwordSlash()
     {
         GameObject firedThing = Instantiate(swordSlashPrefab, weaponFire.position, Quaternion.Euler(transform.forward));
+        
         firedThing.GetComponentInChildren<SwordSlashEffect>().SetVelocity(Camera.main.transform.forward, 10f);
-        firedThing.GetComponentInChildren<SwordSlashEffect>().SetEnemiesAbleToHit(enemiesAbleToHit);
+        firedThing.GetComponentInChildren<SwordSlashEffect>().SetEnemiesAbleToHit(enemiesAbleToHitDetermined);
     }
 
     // Starts glowing the sword and setting the particle effect on the sword to be more intense
@@ -104,11 +108,14 @@ public class A_SwordSlash : A_OverchargeAbilities
     // Called by the input
     public bool Ability_SwordSlash()
     {
-        if(abilityReady)
+        if(abilityReady && overchargeCost <= player.GetPlayerOvercharge())
         {
             playerAnimator.SetBool("swordSpecial", true);
+            enemiesAbleToHitDetermined = CalculateEnemiesHit(enemiesAbleToHit);
             return true;
         }
         return false;
     }
+
+    public void SetSwordSlashPrefab(GameObject prefab) { swordSlashPrefab = prefab; }
 }

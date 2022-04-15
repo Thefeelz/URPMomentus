@@ -13,7 +13,8 @@ public class MissionControlController : MonoBehaviour
     void Start()
     {
 
-       // missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
+        //missionControlObject.GetComponent<DialogueTrigger>().DTriggerDialogue();
+        CallDialogueTrigger();
     }
 
     // Update is called once per frame

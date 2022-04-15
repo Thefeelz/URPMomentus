@@ -26,12 +26,12 @@ public class A_ContainedHeat : A_OverchargeAbilities
         if (expand)
             Expand();
         if (abilityCooldownCurrent > 0)
-            ui.UpdateContainedHeatFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax);
+            ui.UpdateContainedHeatFill((abilityCooldownMax - abilityCooldownCurrent) / abilityCooldownMax, overchargeCost);
     }
 
     public bool Ability_ContainedHeat()
     {
-        if (!abilityReady) { return false; }
+        if (!abilityReady || player.GetPlayerOvercharge() < overchargeCost) { return false; }
         // mouseLook.enabled = false;
         if (playerMovement)
         {
@@ -77,4 +77,6 @@ public class A_ContainedHeat : A_OverchargeAbilities
             playerAnimator.SetBool("groundAttack", false);
         }
     }
+    public void SetContainedHeatPrefab(GameObject prefab) { containedHeatPrefab = prefab; }
+    public void SetContainedHeatLightningEffect(ParticleSystem system) { containedHeatParticleEffect = system; }
 }
