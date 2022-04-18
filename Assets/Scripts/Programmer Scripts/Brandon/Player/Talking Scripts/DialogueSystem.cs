@@ -9,6 +9,7 @@ public class DialogueSystem : MonoBehaviour
 {
     [SerializeField] List<DialogueMessageInteractive> interactiveMessagesToDisplay = new List<DialogueMessageInteractive>();
     [SerializeField] TMP_Text textDisplay;
+    [SerializeField] TMP_Text speakerTitle;
     [SerializeField] Image canvasImageForDialoge;
     [SerializeField] Animator dialogueAnimator;
     [SerializeField] GameObject skipMessage;
@@ -65,7 +66,7 @@ public class DialogueSystem : MonoBehaviour
         interactiveMessagesToDisplay = messages;
         if (messages.Count > 0 && dialogueAnimator.GetBool("dialogue"))
         {
-            canvasImageForDialoge.sprite = messages[i].imageToDisplay;
+            // canvasImageForDialoge.sprite = messages[i].imageToDisplay;
             StartDisplayMessageInteractive();
         }
         else
@@ -135,7 +136,7 @@ public class DialogueSystem : MonoBehaviour
     {   
         if (i < interactiveMessagesToDisplay.Count)
         {
-            canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
+            // canvasImageForDialoge.sprite = interactiveMessagesToDisplay[i].imageToDisplay;
             if (!interactiveMessagesToDisplay[i].ableToSkipMessage)
             {
                 skipMessage.SetActive(false);
@@ -169,13 +170,15 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator DisplayMessageInteractive(DialogueMessageInteractive message)
     {
         dialogueAnimator.SetBool("dialogue", true);
-        canvasImageForDialoge.sprite = message.imageToDisplay;
+        speakerTitle.text = message.dialogueSpeaker.speakerName;
+        canvasImageForDialoge.sprite = message.dialogueSpeaker.speakerPortait;
         textDisplay.text = message.message;
         if (message.fontSize == 0)
             textDisplay.fontSize = 28;
         else
             textDisplay.fontSize = message.fontSize;
-        textDisplay.color = message.fontColor;
+        textDisplay.color = message.dialogueSpeaker.colorForText;
+        textDisplay.font = message.dialogueSpeaker.fontToUse;
         yield return new WaitForSeconds(message.timeToDisplay);
         StartDisplayMessageInteractive();
     }
