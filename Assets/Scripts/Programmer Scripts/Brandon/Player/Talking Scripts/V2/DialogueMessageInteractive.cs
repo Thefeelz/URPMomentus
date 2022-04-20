@@ -5,9 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class DialogueMessageInteractive
 {
-    public Sprite imageToDisplay;
+    public DialogueSpeaker dialogueSpeaker;
     public int fontSize = 28;
-    public Color fontColor = Color.white;
     [TextArea(3, 10)]
     public string message;
     public float timeToDisplay;
