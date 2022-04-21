@@ -22,7 +22,7 @@ public class VinSpawnScript : MonoBehaviour
         var found=GameObject.Find(enemyClone);
         if (found == null)
         {
-            GameObject.Instantiate(enemyToBeSpawned);
+            GameObject.Instantiate(enemyToBeSpawned, this.transform.position, this.transform.rotation);
         }
     }
 }

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1508207482832983373}
+  - component: {fileID: 770873652292004299}
   m_Layer: 0
   m_Name: Body mesh
   m_TagString: Untagged
@@ -37,6 +38,25 @@ Transform:
   m_Father: {fileID: 1397386694461160832}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &770873652292004299
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508207482832983362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c8e35e1eb44a955428fee4512c2b68fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1742703283124217658
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +68,7 @@ GameObject:
   - component: {fileID: 1397386694461160832}
   - component: {fileID: 7654926824730036680}
   - component: {fileID: 3042181864358320159}
-  - component: {fileID: 1742703283124217636}
+  - component: {fileID: 1017218428826548627}
   - component: {fileID: 1742703283124217637}
   m_Layer: 0
   m_Name: MK3 Flyer
@@ -65,7 +85,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742703283124217658}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.674149, y: 9.052336, z: 21.198442}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.6209345, y: 3.6209345, z: 3.6209345}
   m_Children:
   - {fileID: 1508207482832983373}
@@ -86,10 +106,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   damage: 50
-  attackPlayerSpeed: 5
-  timeToLock: 5
-  scanRange: 30
   explosionRange: 6
+  attackPlayerSpeed: 4
+  timeToLock: 5
+  scanRange: 20
+  patrolSpeed: 5
+  rotateSpeed: 100
+  patrolCounterClockwise: 0
+  ExplosionEffect: {fileID: 4669470611087338651, guid: 96b905312fef0da49b122b06f9a2b141, type: 3}
 --- !u!114 &3042181864358320159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +134,8 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   deathEffect: {fileID: 0}
   objectsToTurnOnWhenDead: []
---- !u!135 &1742703283124217636
-SphereCollider:
+--- !u!65 &1017218428826548627
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -121,8 +145,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.22234133
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.4694028, y: 0.19743839, z: 0.32162082}
+  m_Center: {x: 0.0000031934578, y: -0.0039468505, z: 0.053622436}
 --- !u!54 &1742703283124217637
 Rigidbody:
   m_ObjectHideFlags: 0
