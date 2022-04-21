@@ -14,6 +14,9 @@ public class Entity : MonoBehaviour
     public GameObject testFire; // a test fire object to detect collision
     public SpecialUseState specialUseState; // special use state
     public Animator mAnimator;
+    public float elapsedMaterializeTime = 0f;
+    public List<Material> mesh = new List<Material>();
+    [SerializeField] float materializeTime;
 
     public float health { get; private set; } // how much health entity has
     public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
@@ -22,6 +25,7 @@ public class Entity : MonoBehaviour
     protected D_Entity entityData; // data file for entity variables
     private SkinnedMeshRenderer mMesh; // objects mesh
     private Color mColor; // original color of the mesh
+    public GameObject bipedBody;
 
 
     //public EnemyStats mEnemyStats; // brandons script that keeps track of certain aspects of the enemy
@@ -39,8 +43,11 @@ public class Entity : MonoBehaviour
         mColor = mMesh.material.color;
         specialUseState = new SpecialUseState(this, this.stateMachine);
         //mEnemyStats = this.gameObject.GetComponent<EnemyStats>();
-        
-        
+        foreach (Transform item in bipedBody.transform)
+        {
+            mesh.Add(item.GetComponent<SkinnedMeshRenderer>().material);
+        }
+
     }
     // update is called once per frame
     public virtual void Update()
@@ -100,7 +107,6 @@ public class Entity : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        // IMPORTANT! TEST NAME ONLY! WILL NOT ALWAYS BE NAMED FLOOR! USE TAG INSTEAD!!!
         if (collision.gameObject.tag == "floor")
         {
             grounded = true;
@@ -135,6 +141,22 @@ public class Entity : MonoBehaviour
     {
         health = entityData.health;
         stateMachine.ChangeState(defaultState);
+        elapsedMaterializeTime = 0f;
+        MaterializeIn();
+    }
+
+    public void MaterializeIn()
+    {
+        elapsedMaterializeTime += Time.deltaTime;
+        foreach (Material mat in mesh)
+        {
+            mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.2f, -0.2f, elapsedMaterializeTime / materializeTime));
+        }
+        if (elapsedMaterializeTime >= materializeTime)
+        {
+            GetComponent<EnemyStats>().SetAbleToBeAttacked(true);
+            elapsedMaterializeTime = 0f;
+        }
     }
 
 }
