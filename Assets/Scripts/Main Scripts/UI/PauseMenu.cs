@@ -85,4 +85,5 @@ public class PauseMenu : MonoBehaviour
         keybindsMenu.SetActive(false);
         pauseMenuUI.SetActive(true);
     }
+    
 }

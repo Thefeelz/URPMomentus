@@ -13,6 +13,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] Image canvasImageForDialoge;
     [SerializeField] Animator dialogueAnimator;
     [SerializeField] GameObject skipMessage;
+    [SerializeField] DialogueSpeaker defaultSpeaker;
     Image skipMessageImage;
     int i = 0;
     GameObject callingObject;
@@ -170,15 +171,25 @@ public class DialogueSystem : MonoBehaviour
     IEnumerator DisplayMessageInteractive(DialogueMessageInteractive message)
     {
         dialogueAnimator.SetBool("dialogue", true);
-        speakerTitle.text = message.dialogueSpeaker.speakerName;
-        canvasImageForDialoge.sprite = message.dialogueSpeaker.speakerPortait;
+        if (message.dialogueSpeaker)
+        {
+            speakerTitle.text = message.dialogueSpeaker.speakerName;
+            canvasImageForDialoge.sprite = message.dialogueSpeaker.speakerPortait;
+            textDisplay.color = message.dialogueSpeaker.colorForText;
+            textDisplay.font = message.dialogueSpeaker.fontToUse;
+        } 
+        else
+        {
+            speakerTitle.text = defaultSpeaker.speakerName;
+            canvasImageForDialoge.sprite = defaultSpeaker.speakerPortait;
+            textDisplay.color = defaultSpeaker.colorForText;
+            textDisplay.font = defaultSpeaker.fontToUse;
+        }
         textDisplay.text = message.message;
         if (message.fontSize == 0)
             textDisplay.fontSize = 28;
         else
             textDisplay.fontSize = message.fontSize;
-        textDisplay.color = message.dialogueSpeaker.colorForText;
-        textDisplay.font = message.dialogueSpeaker.fontToUse;
         yield return new WaitForSeconds(message.timeToDisplay);
         StartDisplayMessageInteractive();
     }

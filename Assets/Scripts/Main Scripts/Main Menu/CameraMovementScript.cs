@@ -27,6 +27,7 @@ public class CameraMovementScript : MonoBehaviour
     void Start()
     {
         transform.position = camPosStartMainMenu.position;
+        GameManager.Instance.SetRespawnCheckpointIndex(0);
     }
 
     // Update is called once per frame
