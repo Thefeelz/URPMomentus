@@ -24,6 +24,10 @@ public class P_GroundSlide : MonoBehaviour
     [SerializeField] Transform startingCamPos, endingCamPos;
     [SerializeField] LayerMask maskz;
 
+    // This is testing the Audio for Ground slide
+    public FMODUnity.EventReference slideRef;
+    FMOD.Studio.EventInstance slide;
+
     // ==========Variables to Cache in the Awake Function==========
 
     // A call to our rigid body to effect it
@@ -124,6 +128,7 @@ public class P_GroundSlide : MonoBehaviour
 
     void Slide()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(slideRef, transform.position);
         // While sliding, since we are Lerping we need a constant number to Lerp against
         elapsedTime += Time.deltaTime;
         // Set the lerp progress to a variable so we dont have to calculate it 3 times, just once

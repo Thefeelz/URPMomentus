@@ -18,6 +18,10 @@ public class CharacterStats : MonoBehaviour
     PlayerUI ui;
     GameManager gameManager;
 
+    //Damage Audio
+    public FMODUnity.EventReference damageAudioRef;
+
+
     void Start()
     {
         playerAnim = GetComponent<Animator>();
@@ -76,6 +80,7 @@ public class CharacterStats : MonoBehaviour
     /// <param name="amountToRemove"></param>
     public void RemoveHealthMelee(float amountToRemove)
     {
+        FMODUnity.RuntimeManager.PlayOneShot(damageAudioRef, transform.position);
         // if (playerAnim.GetBool("swordBlock")) { return; }
         ui.UpdateDamageOverlayOnDamageTaken();
         if (amountToRemove >= playerCurrentHealth)
@@ -95,6 +100,8 @@ public class CharacterStats : MonoBehaviour
     public void RemoveHealthRanged(float amountToRemove)
     {
         if (playerAnim.GetBool("swordBlock")) { return; }
+
+        FMODUnity.RuntimeManager.PlayOneShot(damageAudioRef, transform.position);
         ui.UpdateDamageOverlayOnDamageTaken();
         if (amountToRemove >= playerCurrentHealth)
         {
