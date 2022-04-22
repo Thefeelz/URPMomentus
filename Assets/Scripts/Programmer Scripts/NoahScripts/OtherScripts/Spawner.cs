@@ -26,18 +26,16 @@ public class Spawner : MonoBehaviour
         
         enemy.transform.position = spawners1[spawnPoint].transform.position;
 
-
+        int layermask = 9;
         bool yes = false;
-        int xl = 0;
-        Vector3 spot = enemy.transform.position;
         while (yes == false)
         {
             
-            if (Physics.CheckSphere(enemy.transform.position, 1))
+            if (Physics.CheckSphere(enemy.transform.position, 1, layermask))
             {
-                xl += 1;
-                Debug.Log("NO");
-                enemy.transform.position = new Vector3(enemy.transform.position.x + xl, enemy.transform.position.y + 2, enemy.transform.position.z);
+                spawnPoint = Random.Range(0, spawners1.Length);
+
+                enemy.transform.position = spawners1[spawnPoint].transform.position;
             }
             else
             {
