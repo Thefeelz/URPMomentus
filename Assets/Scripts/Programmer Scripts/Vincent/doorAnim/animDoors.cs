@@ -13,6 +13,7 @@ public class animDoors : MonoBehaviour
     Animator anim;
 
 
+
     //Who the door opens for
     [SerializeField]
     Collider target = null;
@@ -27,6 +28,8 @@ public class animDoors : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
+    
+
         //Get player as default
         if (target == null)
         {
@@ -40,9 +43,10 @@ public class animDoors : MonoBehaviour
         }
     }
 
-    //when player enters range
-    private void OnTriggerStay(Collider other)
+    //play sound when player enters the trigger
+    private void OnTriggerEnter(Collider other)
     {
+
         if (other == target && reverseDoor && !locked)
         {
             closeDoors();
@@ -51,11 +55,15 @@ public class animDoors : MonoBehaviour
         {
             openDoors();
         }
+
     }
+
+ 
 
     //when player leaves range
     private void OnTriggerExit(Collider other)
     {
+
         if (other == target && reverseDoor && !locked)
         {
             openDoors();
@@ -64,6 +72,7 @@ public class animDoors : MonoBehaviour
         {
             closeDoors();
         }
+
     }
 
     //Changes bool based on if door should open or close
@@ -71,6 +80,7 @@ public class animDoors : MonoBehaviour
     {
         anim.SetBool("isDoorOpen", true);
         //Debug.Log("A door is open");
+
     }
     public void closeDoors()
     {
