@@ -38,7 +38,7 @@ public class ObjectiveHelper : MonoBehaviour
         {
             if(i >= objectiveText.Count) { break; }
             objectiveText[i].SetActive(true);
-            objectiveText[i].GetComponent<TextMeshProUGUI>().text = objective.objectiveName;
+            objectiveText[i].GetComponent<TextMeshProUGUI>().text = objective.name;
             i++;
         }
         if(i < objectiveText.Count - 1)
@@ -56,7 +56,7 @@ public class ObjectiveHelper : MonoBehaviour
     {
         foreach (Objective objective in objectives)
         {
-            if(objective.objectiveID == id)
+            if(objective.id == id)
             {
                 objectives.Remove(objective);
                 RefreshDisplay();

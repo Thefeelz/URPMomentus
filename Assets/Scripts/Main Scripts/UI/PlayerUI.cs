@@ -31,6 +31,7 @@ public class PlayerUI : MonoBehaviour
         bladeSlashCost = ourPlayer.GetComponent<A_SwordSlash>().GetOverchargeCost();
         airDashcost = ourPlayer.GetComponent<A_AirDash>().GetOverchargeCost();
         containedHeatCost = ourPlayer.GetComponent<A_ContainedHeat>().GetOverchargeCost();
+        UpdateUIColors();
     }
 
     // Update is called once per frame
@@ -40,7 +41,7 @@ public class PlayerUI : MonoBehaviour
         OverchargeBar.fillAmount = ourPlayer.GetPlayerOvercharge() / ourPlayer.GetPlayerMaxOvercharge();
         if (hexDamageOverlayImage.color.a > 0)
             UpdatedamageOverlayOverTime();
-        UpdateUIColors();
+        // UpdateUIColors();
     }
     public void UpdateAirDashFill(float fillAmount, float abilityCost)
     {
@@ -70,7 +71,7 @@ public class PlayerUI : MonoBehaviour
         hexDamageOverlayImage.color = new Color(c.r, c.g, c.b, c.a - (opacityDecreaseRateOverTime * Time.deltaTime));
     }
 
-    void UpdateUIColors()
+    public void UpdateUIColors()
     {
         float currentOverCharge = ourPlayer.GetPlayerOvercharge();
         if (bladeDanceCost > currentOverCharge)
@@ -86,9 +87,17 @@ public class PlayerUI : MonoBehaviour
         else
             UpdateUIImageColor(containedHeatImage, true);
         if (airDashcost > currentOverCharge)
+        {
+            //Debug.Log("Air Dash Costs more than you got! Image Color is " + airDashImage.color + " name is " + airDashImage.name);
             UpdateUIImageColor(airDashImage, false);
+            //Debug.Log("Updated Color is " + airDashImage.color + " name is " + airDashImage.name);
+        }
         else
+        {
+            //Debug.Log("Air Dash Costs less than you got! Image Color is " + airDashImage.color + " name is " + airDashImage.name);
             UpdateUIImageColor(airDashImage, true);
+            //Debug.Log("Updated Color is " + airDashImage.color + " name is " + airDashImage.name);
+        }
     }
     void UpdateUIImageColor(Image image, bool value)
     {

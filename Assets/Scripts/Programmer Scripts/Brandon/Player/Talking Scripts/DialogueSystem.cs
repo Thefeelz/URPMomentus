@@ -127,9 +127,15 @@ public class DialogueSystem : MonoBehaviour
                 if (holly.startObjective)
                     helper.AddObjectivesToDisplay(holly.objective);
                 else
-                    helper.RemoveObjectiveByID(holly.objective.objectiveID);
+                    helper.RemoveObjectiveByID(holly.objective.id);
             }
         }
+    }
+
+    void HandleOverChargeAndHealthGains(float health, float overcharge)
+    {
+        GetComponent<CharacterStats>().SetPlayerOvercharge(GetComponent<CharacterStats>().GetPlayerOvercharge() + overcharge);
+        GetComponent<CharacterStats>().SetPlayerHealth(GetComponent<CharacterStats>().GetPlayerHealth() + health);
     }
     
 
@@ -156,6 +162,7 @@ public class DialogueSystem : MonoBehaviour
                 HandleAnimatorSystemInteractive(interactiveMessagesToDisplay[i].animations);
             if (interactiveMessagesToDisplay[i].objectives.Count > 0)
                 HandleObjectives(interactiveMessagesToDisplay[i].objectives);
+            HandleOverChargeAndHealthGains(interactiveMessagesToDisplay[i].healthToAdd, interactiveMessagesToDisplay[i].overchargeToAdd);
             StartCoroutine(DisplayMessageInteractive(interactiveMessagesToDisplay[i]));
             i++;
         }

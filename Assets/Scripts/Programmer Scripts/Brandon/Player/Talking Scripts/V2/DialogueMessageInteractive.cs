@@ -17,4 +17,6 @@ public class DialogueMessageInteractive
     public List<DialogueToggleAnimation> animations = new List<DialogueToggleAnimation>();
     public List<DialogueToggleParticleSystem> particleSystem = new List<DialogueToggleParticleSystem>();
     public List<DialogueToggleObjective> objectives = new List<DialogueToggleObjective>();
+    public float healthToAdd = 0f;
+    public float overchargeToAdd = 0f;
 }

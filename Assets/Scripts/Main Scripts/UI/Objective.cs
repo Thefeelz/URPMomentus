@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Objective
 {
-    public string objectiveName;
-    public int objectiveID;
-    public bool objectiveCompleted;
+    public string name;
+    public int id;
+    public bool completed;
 }

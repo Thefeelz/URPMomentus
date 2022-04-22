@@ -87,6 +87,17 @@ public class EnemyChaseState : MonoBehaviour
     private void Update()
     {
         
+        if(currentState!= State.Materializing)
+        {
+            if(!GetComponent<EnemyStats>().GetAbleToBeAttacked() && currentState != State.Dead)
+            {
+                foreach (Material mat in mesh)
+                {
+                    mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", -0.2f);
+                }
+                GetComponent<EnemyStats>().SetAbleToBeAttacked(true);
+            }
+        }
         if (!deactive)
         {
             if (!specialInUse)

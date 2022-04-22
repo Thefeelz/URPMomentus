@@ -52,17 +52,20 @@ public class CharacterStats : MonoBehaviour
             {
                 // Set overcharge to max amount
                 playerCurrentOvercharge = playerMaxOvercharge;
+                GetComponent<PlayerUI>().UpdateUIColors();
                 return;
             }
             else /// Player Overcharge will not overfill
             {
                 playerCurrentOvercharge += difference;
+                GetComponent<PlayerUI>().UpdateUIColors();
                 return;
             }
         } 
         else
         {
             playerCurrentHealth += amountToRestore;
+            GetComponent<PlayerUI>().UpdateUIColors();
         }
     }
 
@@ -81,6 +84,7 @@ public class CharacterStats : MonoBehaviour
             return;
         }
         playerCurrentHealth -= amountToRemove;
+        GetComponent<PlayerUI>().UpdateUIColors();
     }
 
     /// <summary>
@@ -98,6 +102,7 @@ public class CharacterStats : MonoBehaviour
             return;
         }
         playerCurrentHealth -= amountToRemove;
+        GetComponent<PlayerUI>().UpdateUIColors();
     }
 
     /// <summary>
@@ -118,6 +123,7 @@ public class CharacterStats : MonoBehaviour
                 difference = playerCurrentOvercharge - amountToRemove;
                 playerCurrentOvercharge = 0;
                 playerCurrentHealth += difference;
+                GetComponent<PlayerUI>().UpdateUIColors();
             }
         }
         else
@@ -127,10 +133,12 @@ public class CharacterStats : MonoBehaviour
             {
                 Die();
             }
+            GetComponent<PlayerUI>().UpdateUIColors();
         }
     }
     public void SetPlayerHealth(float newPlayerHealth)
     {
+        GetComponent<PlayerUI>().UpdateUIColors();
         playerCurrentHealth = newPlayerHealth;
     }
     public float GetPlayerHealth()
@@ -139,6 +147,7 @@ public class CharacterStats : MonoBehaviour
     }
     public void SetPlayerOvercharge(float newPlayerOvercharge)
     {
+        GetComponent<PlayerUI>().UpdateUIColors();
         playerCurrentOvercharge = newPlayerOvercharge;
     }
     public float GetPlayerOvercharge()
@@ -174,6 +183,7 @@ public class CharacterStats : MonoBehaviour
     {
         GetComponent<P_Input>().enabled = false;
         playerCurrentHealth = 0;
+        GetComponent<PlayerUI>().UpdateUIColors();
         canvasAnimator.SetBool("dead", true);
         gameManager.PlayerDead();
     }
