@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour
     public Animator mAnimator;
     public float elapsedMaterializeTime = 0f;
     public List<Material> mesh = new List<Material>();
+    public bool materializing = true;
     [SerializeField] float materializeTime;
 
     public float health { get; private set; } // how much health entity has
@@ -53,11 +54,13 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         // performs a logic update in the current state
+        Debug.Log("se");
         stateMachine.currentState.LogicUpdate();
         // a debug command to test damage
-        if (Input.GetKeyDown(KeyCode.K))
+        if (materializing == true)
         {
-            Damage(1f);
+            Debug.Log("something");
+            MaterializeIn();
         }
 
         
@@ -148,14 +151,17 @@ public class Entity : MonoBehaviour
     public void MaterializeIn()
     {
         elapsedMaterializeTime += Time.deltaTime;
+        Debug.Log("something");
         foreach (Material mat in mesh)
         {
+            Debug.Log("something");
             mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.2f, -0.2f, elapsedMaterializeTime / materializeTime));
         }
         if (elapsedMaterializeTime >= materializeTime)
         {
             GetComponent<EnemyStats>().SetAbleToBeAttacked(true);
             elapsedMaterializeTime = 0f;
+            materializing = false;
         }
     }
 
