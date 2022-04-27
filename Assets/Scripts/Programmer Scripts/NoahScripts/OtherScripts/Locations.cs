@@ -109,7 +109,6 @@ public class Locations : MonoBehaviour
 
     IEnumerator setStuff()
     {
-        Debug.LogWarning("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaAWAHAHAHAHAHHAHG!!!!! NOTICE ME!");
         int l = 0;
 
         for (int i = -1; i < 2; i++)
