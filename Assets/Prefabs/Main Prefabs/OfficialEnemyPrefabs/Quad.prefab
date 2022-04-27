@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &8560197785590445052
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3641319167746559334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.93
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!95 &8905853567551790140
 Animator:
   serializedVersion: 3
@@ -19,20 +33,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &8560197785590445052
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3641319167746559334}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.93
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!1 &8640020105401366705
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 2142353151251202358}
   - component: {fileID: 3016062395898083331}
   - component: {fileID: -249905900928370869}
+  - component: {fileID: 2444068716213735808}
   m_Layer: 9
   m_Name: Quad
   m_TagString: Enemy
@@ -306,6 +307,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef0854fba6b2a1242a4bb4bdc033e1b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2444068716213735808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8640020105401366705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581d84fa39f21b44b9eb5f40b0445c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4488393022783352887
