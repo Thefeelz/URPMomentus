@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637862310490477184
+  lastModified: 637866627761998007
   FileSizes:
   - Name: Desktop
-    Value: 2788000
+    Value: 9058400
   Exists: 1
 --- !u!114 &-8603444275466850607
 MonoBehaviour:
@@ -35,10 +35,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 637862310493867682
+  lastModified: 637866627765960409
   FileSizes:
   - Name: Desktop
-    Value: 3768800
+    Value: 7446304
   Exists: 1
 --- !u!114 &-7535637511779329002
 MonoBehaviour:
@@ -120,6 +120,116 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 210
+--- !u!114 &-6698078938996094251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Level1
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Level1
+  Guid:
+    Data1: -347584536
+    Data2: 1096032137
+    Data3: -347245143
+    Data4: -531518942
+  Banks:
+  - {fileID: -8728108295346289168}
+  - {fileID: -8603444275466850607}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -2023071839149524740}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 35500
+--- !u!114 &-6343726467537103138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/MissionControl
+  m_EditorClassIdentifier: 
+  Path: event:/Events/MissionControl
+  Guid:
+    Data1: -1859951096
+    Data2: 1193760395
+    Data3: 1618502810
+    Data4: -266877314
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
+--- !u!114 &-6302192577974313636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Enemy/Spawn in Noise
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Enemy/Spawn in Noise
+  Guid:
+    Data1: 1901424887
+    Data2: 1267914153
+    Data3: -1628211289
+    Data4: -318754748
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1875
+--- !u!114 &-6101678813810518164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Player/ShieldUp
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Player/ShieldUp
+  Guid:
+    Data1: -1805649580
+    Data2: 1144446186
+    Data3: -940496734
+    Data4: -1861410491
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1105
 --- !u!114 &-5734816696400137254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +314,87 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2546
+--- !u!114 &-5433553681638214306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/ElevatorActivation
+  m_EditorClassIdentifier: 
+  Path: event:/Events/ElevatorActivation
+  Guid:
+    Data1: -141293475
+    Data2: 1125268416
+    Data3: 348024224
+    Data4: -2069602309
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
+--- !u!114 &-4729795031408696520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Player/OverCharge Gained
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Player/OverCharge Gained
+  Guid:
+    Data1: -1164732095
+    Data2: 1096504753
+    Data3: -2029158521
+    Data4: 774969304
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &-4556742233178070661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Cinematics/Comicbook PageTurn
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Cinematics/Comicbook PageTurn
+  Guid:
+    Data1: 766158477
+    Data2: 1075089164
+    Data3: 1490734214
+    Data4: -1544534430
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2500
 --- !u!114 &-4521198809731132226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +415,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1036
   Exists: 1
+--- !u!114 &-4250467060290387742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Enemy/EnemyDeathExplo
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Enemy/EnemyDeathExplo
+  Guid:
+    Data1: -720272535
+    Data2: 1151977901
+    Data3: -2010388066
+    Data4: 969379182
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1732
 --- !u!114 &-3761185431446139484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,10 +457,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 637862310492677736
+  lastModified: 637866627763900216
   FileSizes:
   - Name: Desktop
-    Value: 354144
+    Value: 387520
   Exists: 1
 --- !u!114 &-3445609115339557490
 MonoBehaviour:
@@ -264,6 +482,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 712
   Exists: 1
+--- !u!114 &-3128712813831055691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Player/BladeDance
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Player/BladeDance
+  Guid:
+    Data1: -1042786217
+    Data2: 1226364200
+    Data3: -1347956586
+    Data4: -652998563
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1625
 --- !u!114 &-2691815123252529646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +536,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8250
---- !u!114 &-2239061429278790135
+--- !u!114 &-2244306224238172455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,23 +546,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Events/Drone
+  m_Name: event:/Approved/Player/AirDash
   m_EditorClassIdentifier: 
-  Path: event:/Events/Drone
+  Path: event:/Approved/Player/AirDash
   Guid:
-    Data1: 1043003058
-    Data2: 1283365841
-    Data3: -187179866
-    Data4: 21134960
+    Data1: -1247020092
+    Data2: 1116715641
+    Data3: 784545926
+    Data4: -731300075
   Banks:
-  - {fileID: -3761185431446139484}
+  - {fileID: -579537209742927063}
   IsStream: 0
   Is3D: 1
-  IsOneShot: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 8000
+  Length: 1608
 --- !u!114 &-2026623168352456135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +587,57 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-2023071839149524740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level1/Action
+  m_EditorClassIdentifier: 
+  Name: Action
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 807009509
+    data2: 2455343621
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-1031192752692706971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/Drone Move
+  m_EditorClassIdentifier: 
+  Path: event:/Events/Drone Move
+  Guid:
+    Data1: 1043003058
+    Data2: 1283365841
+    Data3: -187179866
+    Data4: 21134960
+  Banks:
+  - {fileID: -3761185431446139484}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3000
 --- !u!114 &-579537209742927063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,10 +653,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637862310491537510
+  lastModified: 637866627762928179
   FileSizes:
   - Name: Desktop
-    Value: 146208
+    Value: 166400
   Exists: 1
 --- !u!114 &-419013123326847628
 MonoBehaviour:
@@ -385,7 +681,7 @@ MonoBehaviour:
   - {fileID: -8603444275466850607}
   IsStream: 1
   Is3D: 1
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -415,21 +711,66 @@ MonoBehaviour:
   - {fileID: -7535637511779329002}
   - {fileID: 1481622665541906543}
   - {fileID: 7278708942641181679}
-  - {fileID: -2239061429278790135}
   - {fileID: -6712710841442166715}
   - {fileID: -2691815123252529646}
   - {fileID: 2577949232109685416}
   - {fileID: -5447687423762360960}
   - {fileID: -5716940110633478295}
   - {fileID: 5336843477856581856}
+  - {fileID: -4729795031408696520}
+  - {fileID: -6101678813810518164}
+  - {fileID: -6698078938996094251}
+  - {fileID: 3137781622029360859}
+  - {fileID: -6343726467537103138}
+  - {fileID: 130493024551102065}
+  - {fileID: 2718442144269173796}
+  - {fileID: 4853065736434298652}
+  - {fileID: -3128712813831055691}
+  - {fileID: -5433553681638214306}
+  - {fileID: -4250467060290387742}
+  - {fileID: 7979062010955251658}
+  - {fileID: -4556742233178070661}
+  - {fileID: 2849250124575014286}
+  - {fileID: 8192161631494613877}
+  - {fileID: -6302192577974313636}
+  - {fileID: 8759820246328270805}
+  - {fileID: -2244306224238172455}
+  - {fileID: -1031192752692706971}
   EditorParameters:
   - {fileID: -7370603846254783093}
   MasterBanks:
   - {fileID: -8728108295346289168}
   StringsBanks:
   - {fileID: 2557166899979977365}
-  cacheTime: 637862310493867682
+  cacheTime: 637866627765960409
   cacheVersion: 10
+--- !u!114 &130493024551102065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/ElevatorHealing
+  m_EditorClassIdentifier: 
+  Path: event:/Events/ElevatorHealing
+  Guid:
+    Data1: 1069594658
+    Data2: 1164845607
+    Data3: -1454212983
+    Data4: 691602870
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 21000
 --- !u!114 &1481622665541906543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,6 +790,7 @@ MonoBehaviour:
     Data3: 890062738
     Data4: 949382558
   Banks:
+  - {fileID: -8728108295346289168}
   - {fileID: -8603444275466850607}
   IsStream: 1
   Is3D: 1
@@ -500,10 +842,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637862310490587222
+  lastModified: 637866627762158032
   FileSizes:
   - Name: Desktop
-    Value: 1598
+    Value: 2594
   Exists: 1
 --- !u!114 &2577949232109685416
 MonoBehaviour:
@@ -532,6 +874,114 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 125
+--- !u!114 &2718442144269173796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/DoorClosing
+  m_EditorClassIdentifier: 
+  Path: event:/Events/DoorClosing
+  Guid:
+    Data1: 1511609382
+    Data2: 1271283981
+    Data3: -853089355
+    Data4: 1471741097
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1000
+--- !u!114 &2849250124575014286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Player/Ability Learned
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Player/Ability Learned
+  Guid:
+    Data1: 614057877
+    Data2: 1250536361
+    Data3: 1313945788
+    Data4: -114668506
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2125
+--- !u!114 &3137781622029360859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Enemy/Enemy Steps
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Enemy/Enemy Steps
+  Guid:
+    Data1: 2115447802
+    Data2: 1178303956
+    Data3: -1215864175
+    Data4: 1674359361
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 328
+--- !u!114 &4853065736434298652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/Falling Rocks
+  m_EditorClassIdentifier: 
+  Path: event:/Events/Falling Rocks
+  Guid:
+    Data1: -1199744186
+    Data2: 1238445409
+    Data3: -576862547
+    Data4: 884692991
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3750
 --- !u!114 &5336843477856581856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +1008,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1031
+  Length: 3125
 --- !u!114 &7278708942641181679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,6 +1028,7 @@ MonoBehaviour:
     Data3: 1673514134
     Data4: -1232860077
   Banks:
+  - {fileID: -8728108295346289168}
   - {fileID: -8603444275466850607}
   IsStream: 1
   Is3D: 1
@@ -585,4 +1036,85 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 15500
+  Length: 34821
+--- !u!114 &7979062010955251658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Enemy/DeathVoice
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Enemy/DeathVoice
+  Guid:
+    Data1: -2016976759
+    Data2: 1178325494
+    Data3: -2057563744
+    Data4: -2144676814
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
+--- !u!114 &8192161631494613877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Events/ElevatorMoving
+  m_EditorClassIdentifier: 
+  Path: event:/Events/ElevatorMoving
+  Guid:
+    Data1: 1333454535
+    Data2: 1317148440
+    Data3: 1422781105
+    Data4: 1530210008
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 53326
+--- !u!114 &8759820246328270805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Approved/Enemy/EnemyShoot
+  m_EditorClassIdentifier: 
+  Path: event:/Approved/Enemy/EnemyShoot
+  Guid:
+    Data1: 1346871033
+    Data2: 1123668385
+    Data3: -1716016996
+    Data4: -1291204883
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1250
