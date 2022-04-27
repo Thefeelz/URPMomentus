@@ -94,7 +94,7 @@ public class Em_Move : MoveState
         Physics.Raycast(mEntity.transform.position + Vector3.up + (mEntity.transform.forward * 0.5f), mEntity.transform.forward, out hit, 1f); // ray cast to see if it will collide with enemy
         if (hit.collider != null && hit.collider.GetComponentInParent<EnemyStats>()) // if enemy is about to collide with another it will wait until the path is clear
         {
-            Debug.LogWarning("Get out of the way!");
+            
             mEnemy.transform.rotation = Quaternion.LookRotation(new Vector3(-direction.x, 0, -direction.z));
             Calculate();
         }
@@ -103,7 +103,7 @@ public class Em_Move : MoveState
             if (wait == false)
             Move();
         }
-        Debug.Log(currentDestination);
+
         //mEnemy.targetPos = targetPos;
     }
 
