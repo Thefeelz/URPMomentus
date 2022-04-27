@@ -23,27 +23,25 @@ public class Spawner : MonoBehaviour
     public void spawn(GameObject enemy, int type)
     {
         int spawnPoint = Random.Range(0, spawners1.Length);
-        
-        enemy.transform.position = spawners1[spawnPoint].transform.position;
 
+
+      
         int layermask = 9;
         bool yes = false;
-        while (yes == false)
+        for(int i = 0; i < spawners1.Length; i++)
         {
-            
-            if (Physics.CheckSphere(enemy.transform.position, 1, layermask))
+        
+            enemy.transform.position = spawners1[i].transform.position;
+            if (Physics.CheckSphere(enemy.transform.position, 0.5f, layermask))
             {
-                spawnPoint = Random.Range(0, spawners1.Length);
-
-                enemy.transform.position = spawners1[spawnPoint].transform.position;
+                
             }
             else
             {
-                Debug.Log(enemy.transform.position);
-                yes = true;
-
+                break;
             }
         }
+
 
 
 
