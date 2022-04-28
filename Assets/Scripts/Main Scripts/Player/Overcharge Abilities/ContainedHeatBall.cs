@@ -19,12 +19,14 @@ public class ContainedHeatBall : MonoBehaviour
             other.GetComponent<Rigidbody>().velocity = returnRandomVectorReverse(other.GetComponent<Rigidbody>().velocity);
             return;
         }
-        /*
-         if(other.GetComponent<Entity>())
+
+        if(other.GetComponentInParent<Entity>())
         {
-         
+            Vector3 knockbackDirection = other.transform.position - transform.position;
+            knockbackDirection = knockbackDirection.normalized;
+            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 15f + (Vector3.up * 7), ForceMode.Impulse);
+            return;
         }
-         */
     }
 
     private Vector3 returnRandomVectorReverse(Vector3 initialVelocity)
