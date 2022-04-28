@@ -24,7 +24,7 @@ public class ContainedHeatBall : MonoBehaviour
         {
             Vector3 knockbackDirection = other.transform.position - transform.position;
             knockbackDirection = knockbackDirection.normalized;
-            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 15f + (Vector3.up * 7), ForceMode.Impulse);
+            other.GetComponentInParent<Rigidbody>().AddForce(knockbackDirection * 10f + (Vector3.up * 4), ForceMode.Impulse);
             return;
         }
     }
