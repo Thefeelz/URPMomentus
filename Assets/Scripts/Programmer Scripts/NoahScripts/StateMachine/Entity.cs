@@ -54,23 +54,18 @@ public class Entity : MonoBehaviour
     public virtual void Update()
     {
         // performs a logic update in the current state
-        Debug.Log("se");
         stateMachine.currentState.LogicUpdate();
-        // a debug command to test damage
+        // Enemy generates
         if (materializing == true)
         {
-            Debug.Log("something");
             MaterializeIn();
-        }
-
-        
+        }   
     }
-    // physics update
+    // physics update in current state
     public virtual void FixedUpdate()
     {
         //performs a fixed update in the current state
         stateMachine.currentState.PhysicsUpdate();
-        
     }
     // gets the distance to the player
     public virtual float DistanceToPlayer()
@@ -162,6 +157,15 @@ public class Entity : MonoBehaviour
             GetComponent<EnemyStats>().SetAbleToBeAttacked(true);
             elapsedMaterializeTime = 0f;
             materializing = false;
+        }
+    }
+
+    public void sphereCheck()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, 0.5f, 9);
+        for(int i = 0; i < hitColliders.Length; i++)
+        {
+            Debug.Log(hitColliders[i]);
         }
     }
 
