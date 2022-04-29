@@ -32,12 +32,15 @@ public class Spawner : MonoBehaviour
         {
         
             enemy.transform.position = spawners1[i].transform.position;
+            
             if (Physics.CheckSphere(enemy.transform.position, 0.5f, layermask))
             {
-                
+                Debug.Log(enemy.gameObject.name + " failed at " + i);
+                enemy.GetComponent<Entity>().sphereCheck();
             }
             else
             {
+                Debug.Log(enemy.gameObject.name + " succeeded at " + i);
                 break;
             }
         }
