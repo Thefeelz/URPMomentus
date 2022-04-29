@@ -323,8 +323,8 @@ MonoBehaviour:
     overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: Lets take a look at your optics, to your left and right are panels,
-      look at them until they turn from white to green.
+    message: 'To your left and Right are panels. Look towards them until they turn
+      green. '
     timeToDisplay: 5
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
@@ -2719,7 +2719,7 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 0}
     fontSize: 0
-    message: Another energy wave is spiking!
+    message: Another energy wave is spike! Oh baby, they just don't stop coming!
     timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -7331,7 +7331,7 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 0}
     fontSize: 0
-    message: I...I dont see anymore...
+    message: ......Interesting
     timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -7349,8 +7349,8 @@ MonoBehaviour:
     overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 0}
     fontSize: 0
-    message: Weird, I am getting a final energy reading towards the center of the
-      room
+    message: "Amazing work K.A.T, that\u2019s why you\u2019re the best! Now, let's
+      see if we can accesss a way to get to the next level."
     timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -14042,7 +14042,7 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 0}
     fontSize: 0
-    message: Even more energy is appearing in the room!
+    message: Here comes round two!
     timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -14401,7 +14401,8 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: Great work
+    message: "How fascinating, we have a guest from another planet visiting ours.
+      Give them a little welcome will you on behalf of the Grand AI Core of Veraxus!\u201D"
     timeToDisplay: 2
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -14417,18 +14418,37 @@ MonoBehaviour:
       startObjective: 0
     healthToAdd: 0
     overchargeToAdd: 0
+  - dialogueSpeaker: {fileID: 0}
+    fontSize: 0
+    message: "I\u2019m picking up multiple hostile signatures in front of you and
+      in that terminal, So I added your Health and Overcharge to your HUD."
+    timeToDisplay: 9
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1738589874}
+      turnOnObject: 1
+    animations: []
+    particleSystem: []
+    objectives: []
+    healthToAdd: 0
+    overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: Sensors are picking up movement from the other side, most likely enemies.
-      When encountering enemies, use 'left click' to attack!
-    timeToDisplay: 10
+    message: Remember to use 'left click' to attack any incoming enemies within your
+      reticle.
+    timeToDisplay: 5
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
     abilities:
     - abilitiesToManipulate: 8
       turnOnAbility: 1
     objectsToTurnOn: []
-    animations: []
+    animations:
+    - animator: {fileID: 554239789}
+      boolName: isDoorOpen
+      boolValue: 1
     particleSystem: []
     objectives:
     - objective:
@@ -14436,24 +14456,6 @@ MonoBehaviour:
         id: 5
         completed: 0
       startObjective: 1
-    healthToAdd: 0
-    overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
-    fontSize: 0
-    message: I also added your Health and Overcharge to your HUD
-    timeToDisplay: 5
-    overrideCurrentMessage: 0
-    ableToSkipMessage: 0
-    abilities: []
-    objectsToTurnOn:
-    - objectToManipulate: {fileID: 1738589874}
-      turnOnObject: 1
-    animations:
-    - animator: {fileID: 554239789}
-      boolName: isDoorOpen
-      boolValue: 1
-    particleSystem: []
-    objectives: []
     healthToAdd: 0
     overchargeToAdd: 0
 --- !u!1 &912672020
@@ -17574,10 +17576,9 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: "I\u2019m getting strong readings from the room in front, so unlocking
-      your Blade Dance coroutine. Press 1 to decimate a small number of enemies in
-      one blow! Don't abuse it too often, as it drains a tremendous amount of energy
-      from your photon core."
+    message: "I\u2019m getting a read on the AI Core  from the room in front as well
+      as alot of enemies, so I'm unlocking your Blade Dance coroutine. Press 1 to
+      decimate a small number of enemies in one blow! "
     timeToDisplay: 15
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -17599,7 +17600,8 @@ MonoBehaviour:
     overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: 
+    message: Don't abuse it too often, as it drains a tremendous amount of Overcharge
+      energy from your photon core.
     timeToDisplay: 0.1
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
@@ -20712,7 +20714,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: I got locked out, the door behind you closed...
     timeToDisplay: 5
@@ -20733,10 +20735,30 @@ MonoBehaviour:
       startObjective: 0
     healthToAdd: 0
     overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: The energy is the room is increasing!
     timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 600221121}
+      turnOnObject: 1
+    animations: []
+    particleSystem: []
+    objectives:
+    - objective:
+        name: Destroy First wave of enemies
+        id: 10
+        completed: 0
+      startObjective: 1
+    healthToAdd: 0
+    overchargeToAdd: 0
+  - dialogueSpeaker: {fileID: 0}
+    fontSize: 0
+    message: .....
+    timeToDisplay: 4
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
     abilities: []
@@ -23120,8 +23142,8 @@ MonoBehaviour:
     overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: On the other hand, you can launch yourself forward with an air dash.
-      Press LEFT SHIFT while airborne.
+    message: 'On the other hand, you can Press LEFT SHIFT while airborne to launch
+      yourself forward with an air dash. '
     timeToDisplay: 10
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
@@ -23582,6 +23604,7 @@ MonoBehaviour:
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 36
     message: More enemies behind you! Press 3 to use Contained heat to protect you!
+      It fires a powerful blast that sends enemies away from you.
     timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -28037,20 +28060,15 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: "That is interesting, destroyed enemies are restoring your energy. Let\u2019s
-      see if it is enough to power up your shield. Holding RIGHT MOUSE (M2) will
-      activate your shield."
-    timeToDisplay: 10
+    message: That is interesting, destroyed enemies are restoring your energy and
+      giving you Overcharge. if your 'health' goes above the maximum amount then
+      you gain Overcharge, this is key to using special abilities as they would notmally
+      consume your health, but now they can consume overcharge instead!
+    timeToDisplay: 12
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
-    abilities:
-    - abilitiesToManipulate: 11
-      turnOnAbility: 1
-    objectsToTurnOn:
-    - objectToManipulate: {fileID: 1627247894}
-      turnOnObject: 1
-    - objectToManipulate: {fileID: 77715312}
-      turnOnObject: 1
+    abilities: []
+    objectsToTurnOn: []
     animations: []
     particleSystem: []
     objectives:
@@ -28063,8 +28081,49 @@ MonoBehaviour:
     overchargeToAdd: 25
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: There is a single stationary enemy behind this door, so be cautious.
-      Try deflecting bullets back at the enemy using the shield
+    message: "Let\u2019s see if it is enough to power up your shield. Holding RIGHT
+      MOUSE (M2) will activate your shield."
+    timeToDisplay: 6
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities:
+    - abilitiesToManipulate: 11
+      turnOnAbility: 1
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 1627247894}
+      turnOnObject: 1
+    - objectToManipulate: {fileID: 77715312}
+      turnOnObject: 1
+    animations:
+    - animator: {fileID: 1947257029}
+      boolName: isDoorOpen
+      boolValue: 1
+    particleSystem: []
+    objectives: []
+    healthToAdd: 0
+    overchargeToAdd: 0
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
+    fontSize: 0
+    message: Remember that if you don't have enough overcharge, your body begin to
+      use your health for special skills.
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 1
+    abilities: []
+    objectsToTurnOn: []
+    animations:
+    - animator: {fileID: 1947257029}
+      boolName: isDoorOpen
+      boolValue: 1
+    particleSystem: []
+    objectives: []
+    healthToAdd: 0
+    overchargeToAdd: 0
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
+    fontSize: 0
+    message: Now, there is a single stationary enemy behind this door, so be cautious.
+      Try deflecting bullets back at the enemy using the shield and keep track of
+      your overcharge guage!
     timeToDisplay: 5
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
@@ -30201,7 +30260,7 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 0}
     fontSize: 0
-    message: They arent stopping!
+    message: One More! Keep going!
     timeToDisplay: 5
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
