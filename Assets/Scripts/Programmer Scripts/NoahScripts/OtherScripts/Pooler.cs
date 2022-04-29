@@ -48,26 +48,12 @@ public class Pooler : MonoBehaviour
         foreach (ObjectPool objectPool in objectPools)
         {
             Queue<GameObject> poolQueue = new Queue<GameObject>();
-
             for (int i = 0; i < objectPool.size; i++)
             {
-                
                 GameObject obj = Instantiate(objectPool.prefab);
+                obj.name = "Enemy" + i;
                 obj.SetActive(false);
-                Debug.LogWarning(obj);
                 obj.transform.parent = this.transform;
-
-
-
-
-               
-
-
-
-
-
-
-                Debug.Log(obj.transform.position);
                 obj.GetComponent<Entity>().myPool = this;
                 //obj.transform.parent = this.gameObject.transform;
                 poolQueue.Enqueue(obj);
@@ -78,7 +64,6 @@ public class Pooler : MonoBehaviour
             minField.Add(objectPool.dictionaryTag, objectPool.minField);
             spawnType.Add(objectPool.dictionaryTag, objectPool.spawnType);
             tags.Add(objectPool.dictionaryTag);
-            
         }
     }
 
@@ -89,10 +74,8 @@ public class Pooler : MonoBehaviour
         obj.SetActive(false);
         onField[tag] -= 1;
     }
-
     //dequeues the gameobject from the queue with the matching tag. No need to increase the dictionary of amount on field as that is performed
     // in update
-
     public GameObject dequeueObject(string tag)
     {
         GameObject objToSpawn = dictionaryPools[tag].Dequeue();
@@ -102,7 +85,6 @@ public class Pooler : MonoBehaviour
             
         }
         return objToSpawn; 
-        
     }
     /// <summary>
     /// checks each pool for if there is enough of that type of enemy on the field. If not it deques until there is

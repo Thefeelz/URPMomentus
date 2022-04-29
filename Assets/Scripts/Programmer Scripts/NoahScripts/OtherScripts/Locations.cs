@@ -19,7 +19,8 @@ public class Locations : MonoBehaviour
     private int count = 0;
     public List<Enemy_Melee> currentEnemies = new List<Enemy_Melee>();
     public bool spawnStart = false;
-
+    Pooler[] spawners = new Pooler[2];
+    public int totalEnemies;
 
     void Start()
     {
@@ -222,6 +223,7 @@ public class Locations : MonoBehaviour
         currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position))); // sorting algorithm
         //Enemy_Melee[] closeEnemies = new Enemy_Melee[freeSpot]; // the x closest enemies, x being the amount of free spots
         //currentEnemies.CopyTo(0, closeEnemies, 0, freeSpot); // copies the the closest to the array
+        int overClaim = 0; // sees how many enemies exist in excess of positions available
         foreach (Enemy_Melee en in currentEnemies) // assigns enemies by how close they are to available spots
         {
             if (lSpotsTaken[0] == null)
@@ -252,7 +254,10 @@ public class Locations : MonoBehaviour
             {
                 en.hasTarget = false;
                 en.spot = 9;
+                overClaim += 1;
             }
         }
+        int expected = currentEnemies.Count - 4;
+        Debug.Log(overClaim + "over claimed and " + expected + " was expected");
     }
 }

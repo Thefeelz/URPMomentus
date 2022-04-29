@@ -15,10 +15,8 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637866627761998007
-  FileSizes:
-  - Name: Desktop
-    Value: 9058400
+  lastModified: 637868257156440709
+  FileSizes: []
   Exists: 1
 --- !u!114 &-8603444275466850607
 MonoBehaviour:
@@ -35,10 +33,8 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 637866627765960409
-  FileSizes:
-  - Name: Desktop
-    Value: 7446304
+  lastModified: 637868257158760907
+  FileSizes: []
   Exists: 1
 --- !u!114 &-7535637511779329002
 MonoBehaviour:
@@ -230,6 +226,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1105
+--- !u!114 &-6097566388999602965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/DistanceToEnemy
+  m_EditorClassIdentifier: 
+  Name: DistanceToEnemy
+  StudioPath: 
+  Min: 0
+  Max: 100
+  Default: 0
+  ID:
+    data1: 3008654177
+    data2: 1553711768
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5734816696400137254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +306,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 906
+--- !u!114 &-5639648713607597856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Music/LoopPlay
+  m_EditorClassIdentifier: 
+  Name: LoopPlay
+  StudioPath: 
+  Min: 0
+  Max: 7
+  Default: 0
+  ID:
+    data1: 1362272594
+    data2: 4168892926
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5447687423762360960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,10 +501,8 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Sound Effects.bank
   Name: Sound Effects
   StudioPath: bank:/Sound Effects
-  lastModified: 637866627763900216
-  FileSizes:
-  - Name: Desktop
-    Value: 387520
+  lastModified: 637868257157600810
+  FileSizes: []
   Exists: 1
 --- !u!114 &-3445609115339557490
 MonoBehaviour:
@@ -481,6 +523,30 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 712
+  Exists: 1
+--- !u!114 &-3144293332851688506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/LoopPlay
+  m_EditorClassIdentifier: 
+  Name: LoopPlay
+  StudioPath: parameter:/LoopPlay
+  Min: 0
+  Max: 7
+  Default: 0
+  ID:
+    data1: 1362272594
+    data2: 4168892926
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &-3128712813831055691
 MonoBehaviour:
@@ -653,11 +719,38 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 637866627762928179
-  FileSizes:
-  - Name: Desktop
-    Value: 166400
+  lastModified: 637868257156990764
+  FileSizes: []
   Exists: 1
+--- !u!114 &-504786458416097638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Music/Music
+  m_EditorClassIdentifier: 
+  Path: event:/Music/Music
+  Guid:
+    Data1: 1865378216
+    Data2: 1319939278
+    Data3: -688066688
+    Data4: 1036435038
+  Banks:
+  - {fileID: -8728108295346289168}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -6097566388999602965}
+  - {fileID: -5639648713607597856}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 198869
 --- !u!114 &-419013123326847628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,13 +829,15 @@ MonoBehaviour:
   - {fileID: 8759820246328270805}
   - {fileID: -2244306224238172455}
   - {fileID: -1031192752692706971}
+  - {fileID: -504786458416097638}
   EditorParameters:
   - {fileID: -7370603846254783093}
+  - {fileID: -3144293332851688506}
   MasterBanks:
   - {fileID: -8728108295346289168}
   StringsBanks:
   - {fileID: 2557166899979977365}
-  cacheTime: 637866627765960409
+  cacheTime: 637868257158760907
   cacheVersion: 10
 --- !u!114 &130493024551102065
 MonoBehaviour:
@@ -842,10 +937,10 @@ MonoBehaviour:
   Path: Assets/FmodAudio/AudioUseMe/MomentusAudio/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637866627762158032
+  lastModified: 637868257156520756
   FileSizes:
-  - Name: Desktop
-    Value: 2594
+  - Name: 
+    Value: 2788
   Exists: 1
 --- !u!114 &2577949232109685416
 MonoBehaviour:
