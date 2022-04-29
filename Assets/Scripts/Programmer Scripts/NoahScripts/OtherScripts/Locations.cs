@@ -19,7 +19,8 @@ public class Locations : MonoBehaviour
     private int count = 0;
     public List<Enemy_Melee> currentEnemies = new List<Enemy_Melee>();
     public bool spawnStart = false;
-
+    Pooler[] spawners = new Pooler[2];
+    public int totalEnemies;
 
     void Start()
     {
@@ -256,6 +257,7 @@ public class Locations : MonoBehaviour
                 overClaim += 1;
             }
         }
-        Debug.Log(overClaim);
+        int expected = currentEnemies.Count - 4;
+        Debug.Log(overClaim + "over claimed and " + expected + " was expected");
     }
 }
