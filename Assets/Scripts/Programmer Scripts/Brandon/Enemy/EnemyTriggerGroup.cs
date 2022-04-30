@@ -19,7 +19,10 @@ public class EnemyTriggerGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (enemySize == spawned && enemySize != 0)
+        {
+            TriggerObjects();
+        }
     }
     public void TriggerObjects()
     {
