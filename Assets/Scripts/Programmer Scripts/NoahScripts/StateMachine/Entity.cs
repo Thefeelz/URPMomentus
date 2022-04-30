@@ -21,6 +21,10 @@ public class Entity : MonoBehaviour
     FMOD.Studio.EventInstance thankYouForever; // death event thing
     [SerializeField] float materializeTime;
 
+
+    public FMODUnity.EventReference walkingRef;
+    FMOD.Studio.EventInstance walkingEvent;
+
     public float health { get; private set; } // how much health entity has
     public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
 
@@ -163,6 +167,12 @@ public class Entity : MonoBehaviour
             materializing = false;
         }
     }
+
+    public void walkNoise()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(walkingRef, transform.position);
+    }
+
 
     public void sphereCheck()
     {
