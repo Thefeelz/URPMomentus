@@ -5,10 +5,12 @@ using UnityEngine;
 public class LocationRefresh : MonoBehaviour
 {
     private Locations holder;
+    public Pooler roomPool;
     // Start is called before the first frame update
     void Start()
     {
         holder = GameObject.Find("SpotHolder").GetComponent<Locations>();
+
 
     }
 
@@ -20,9 +22,10 @@ public class LocationRefresh : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "PlayerV2")
+        if (other.gameObject.layer == 6) // 6 should be player
         {
             holder.restartSpots();
+            roomPool.playerInRoom = true;
         }
 
     }

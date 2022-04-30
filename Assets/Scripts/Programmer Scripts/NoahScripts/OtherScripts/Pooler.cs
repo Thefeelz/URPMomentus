@@ -20,13 +20,14 @@ public class Pooler : MonoBehaviour
     public Dictionary<string, Queue<GameObject>> dictionaryPools;
     public Spawner spawner;
     public int totToSpawn; // how many are left to spawn in total
+    public int spawned = 0;
     private int totOnField; // how many are on the field in total
     private Dictionary<string, int> onField; // a dictionary of how many of an individual type is on the field
     private Dictionary<string, int> minField; // minimum amount to exist on the field at a given time
     private Dictionary<string, int> spawnType; // type of enemy
     private List<string> tags; // a list of tags for referencing dictionarys in a cyclic order
     private int spot; // the spot of the despawned melee enemy
-
+    public bool playerInRoom = false;
 
 
     // a dictionary of queues containing prefabs is created 
@@ -95,12 +96,12 @@ public class Pooler : MonoBehaviour
         
         foreach (string tag in tags)
         {
-            if(onField[tag] < minField[tag])
+            if(onField[tag] < minField[tag] && spawned < totToSpawn)
             {
                 onField[tag] += 1;
                 GameObject enemy = dequeueObject(tag);
                 spawner.spawn(enemy, spawnType[tag]);
-                
+                spawned += 1;
                 
             }
         }

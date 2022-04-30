@@ -35,7 +35,9 @@ public class Spawner : MonoBehaviour
             
             if (Physics.CheckSphere(enemy.transform.position, 0.5f, layermask))
             {
-                Debug.Log(enemy.gameObject.name + " failed at " + i);
+                Collider[] hitColliders = Physics.OverlapSphere(enemy.transform.position, 0.5f, layermask);
+                foreach (var hitCollider in hitColliders)
+                    Debug.Log(enemy.gameObject.name + " failed at " + i + " by colliding with " + hitCollider.gameObject.name);
                 enemy.GetComponent<Entity>().sphereCheck();
             }
             else

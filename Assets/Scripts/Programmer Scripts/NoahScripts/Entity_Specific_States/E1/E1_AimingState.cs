@@ -126,15 +126,27 @@ public class E1_AimingState : AimingState
         bullet.SetActive(true); //bullet is set to active
         bullet.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
         //GameObject bullet = GameObject.Instantiate(mEnemy.bulletObj, mEnemy.canon.transform.position + (mEnemy.transform.forward * 1.2f), enemyRotation);
-        Vector3 newVec = new Vector3(0, mEnemy.myTarget.transform.position.y, 0);
-        bullet.transform.LookAt(mEnemy.myTarget.transform.position);
-        var rotVec = bullet.transform.rotation.eulerAngles;
-        rotVec.z = 0;
-        rotVec.x = 0;
-        bullet.transform.rotation = Quaternion.Euler(rotVec);
-        bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * aimData.bulletSpeed); // bullet force
+        //////////////Vector3 newVec = new Vector3(0, mEnemy.myTarget.transform.position.y, 0);
+        //////////////bullet.transform.LookAt(mEnemy.myTarget.transform.position);
+        //////////////var rotVec = bullet.transform.rotation.eulerAngles;
+        //////////////rotVec.z = 0;
+        //////////////rotVec.x = 0;
+        //////////////bullet.transform.rotation = Quaternion.Euler(rotVec);
+        fire(); //fires bullet
+        //////////////bullet.GetComponent<Rigidbody>().AddForce(bullet.transform.forward * aimData.bulletSpeed); // bullet force
         //bullet.GetComponent<Rigidbody>().AddForce((mEnemy.myTarget.transform.position - mEnemy.transform.position) * aimData.bulletSpeed); // bullet force
         //mEnemy.StartCool(bullet); // cooldown for when it can shoot
+    }
+
+    private void fire() // the actual fire part of it
+    {
+        Vector3 randomRight = Vector3.right * UnityEngine.Random.Range(0f, 1f);
+        Vector3 randomUp = Vector3.up * UnityEngine.Random.Range(0f, 1f);
+        Vector3 randomDown = -Vector3.up * UnityEngine.Random.Range(0f, 1f);
+        Vector3 randomLeft = -Vector3.right * UnityEngine.Random.Range(0f, 1f);
+        Vector3 randomizedMiss = randomDown + randomLeft + randomRight + randomUp;
+        bullet.transform.LookAt(mEntity.myTarget.transform.position + Vector3.up + randomizedMiss);
+        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * 2;
     }
 
     
