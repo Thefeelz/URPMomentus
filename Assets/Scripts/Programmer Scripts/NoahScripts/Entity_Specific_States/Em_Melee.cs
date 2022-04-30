@@ -20,6 +20,7 @@ public class Em_Melee : MeleeState
         mEntity.mAnimator.SetBool("chasing", false);
         mEntity.mAnimator.SetBool("meleeAttack", true);
         start = false;
+        mEnemy.punching();
         Strike();
     }
 

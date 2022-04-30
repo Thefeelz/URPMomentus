@@ -11,6 +11,8 @@ public class Enemy_Melee : Entity
     public bool waitMelee; // bool to represent if 
     public int spot;
     public LineRenderer line;
+    public FMODUnity.EventReference punch; // melee sound
+    FMOD.Studio.EventInstance punchEvent; // melee event thing
 
     //states
     public DeathState deathState { get; private set; }
@@ -33,6 +35,7 @@ public class Enemy_Melee : Entity
     public override void Awake()
     {
         base.Awake();
+        punchEvent = FMODUnity.RuntimeManager.CreateInstance(punch);
         hasFollower = false;
         following = false;
         mLocations = GameObject.Find("SpotHolder").GetComponent<Locations>();
@@ -80,6 +83,11 @@ public class Enemy_Melee : Entity
             mLocations.lSpotsTaken[spot] = null;
             stateMachine.ChangeState(deathState);
         }
+    }
+
+    public void punching()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(punch, transform.position);
     }
 
 

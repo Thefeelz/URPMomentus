@@ -12,6 +12,7 @@ public class E1_AimingState : AimingState
     private bool shooting;
     private float shootTime = 2;
     private float shootStart;
+    
     public E1_AimingState(Entity mEntity, FiniteStateMachine mStateMachine, D_Aiming aimData, D_Entity entityData, Enemy1 mEnemy) : base(mEntity, mStateMachine, aimData, entityData)
     {
         this.mEnemy = mEnemy;
@@ -140,6 +141,7 @@ public class E1_AimingState : AimingState
 
     private void fire() // the actual fire part of it
     {
+        mEnemy.bangbang();
         Vector3 randomRight = Vector3.right * UnityEngine.Random.Range(0f, 1f);
         Vector3 randomUp = Vector3.up * UnityEngine.Random.Range(0f, 1f);
         Vector3 randomDown = -Vector3.up * UnityEngine.Random.Range(0f, 1f);
