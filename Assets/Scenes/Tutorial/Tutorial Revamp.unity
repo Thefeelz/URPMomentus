@@ -577,6 +577,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25720847}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &34541868 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
+  m_PrefabInstance: {fileID: 712698256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4f8b1d1037b62448d992082937788e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &49705093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -790,6 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noahAi: 0
   enemySize: 0
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 130093271}
@@ -1469,7 +1481,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1513,7 +1525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: totToSpawn
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: objectPools.Array.data[0].prefab
@@ -3907,7 +3919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291eab8f5d9ac5749abb7ff47823fe5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedEn: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
+  rangedEn: {fileID: 7664192347234163458, guid: 9e9ef3d68a1806d4fbc7d60c6dd09295, type: 3}
 --- !u!65 &288557650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5210,6 +5222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noahAi: 1
   enemySize: 0
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 522646668}
@@ -5984,6 +5997,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e618cb3a4a5457468e873961d69415d, type: 3}
   m_PrefabInstance: {fileID: 438420912}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &438748243
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 769757218}
+    m_Modifications:
+    - target: {fileID: 3912696810484481312, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.56139374
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08514094
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.60234
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479345432672302585, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: m_Name
+      value: RoomOneRefresher
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818211362584261842, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+      propertyPath: roomPool
+      value: 
+      objectReference: {fileID: 34541868}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
 --- !u!1001 &442319994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6406,7 +6484,7 @@ GameObject:
   - component: {fileID: 490991728}
   - component: {fileID: 490991727}
   - component: {fileID: 490991726}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7111,7 +7189,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7155,7 +7233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: totToSpawn
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: objectPools.Array.data[0].prefab
@@ -8653,7 +8731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noahAi: 1
-  enemySize: 0
+  enemySize: 8
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 886654175}
@@ -11022,8 +11101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1edf6cc8d5f659145a25faec62739756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noahAi: 1
-  enemySize: 0
+  noahAi: 0
+  enemySize: 6
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 928355407}
@@ -11039,6 +11119,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 712698257}
+  - {fileID: 1973545004}
   m_Father: {fileID: 1492959473}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14324,7 +14405,7 @@ GameObject:
   - component: {fileID: 899984790}
   - component: {fileID: 899984789}
   - component: {fileID: 899984788}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17350,7 +17431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291eab8f5d9ac5749abb7ff47823fe5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedEn: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
+  rangedEn: {fileID: 7664192347234163458, guid: 9e9ef3d68a1806d4fbc7d60c6dd09295, type: 3}
 --- !u!65 &1109957657
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20606,7 +20687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291eab8f5d9ac5749abb7ff47823fe5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedEn: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
+  rangedEn: {fileID: 7664192347234163458, guid: 9e9ef3d68a1806d4fbc7d60c6dd09295, type: 3}
 --- !u!65 &1283800975
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21752,16 +21833,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noahAi: 1
-  enemySize: 0
-  enemiesInGroup:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemySize: 8
+  spawned: 0
+  enemiesInGroup: []
   objectToTrigger:
   - {fileID: 1187520412}
 --- !u!1001 &1332859555
@@ -23031,7 +23105,7 @@ GameObject:
   - component: {fileID: 1376871121}
   - component: {fileID: 1376871120}
   - component: {fileID: 1376871119}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23554,7 +23628,7 @@ GameObject:
   - component: {fileID: 1387127065}
   - component: {fileID: 1387127067}
   - component: {fileID: 1387127066}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24263,7 +24337,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3047ec226c87aff4ca850ef9a15f4beb, type: 2}
     - target: {fileID: 6012584350096541496, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6012584350096541496, guid: a6ab3f0977f8979449a7449fdf608e4d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25399,7 +25473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291eab8f5d9ac5749abb7ff47823fe5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedEn: {fileID: 7664192347234163458, guid: 924dd131dd4eb4e46860a44739d849d1, type: 3}
+  rangedEn: {fileID: 7664192347234163458, guid: 9e9ef3d68a1806d4fbc7d60c6dd09295, type: 3}
 --- !u!65 &1475642638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25674,7 +25748,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492959473}
   m_Layer: 0
-  m_Name: ---Brandon Enemies---
+  m_Name: --Enemies--
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26454,7 +26528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: totToSpawn
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: objectPools.Array.data[0].prefab
@@ -27151,6 +27225,14 @@ PrefabInstance:
     - target: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
+      propertyPath: totToSpawn
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
+      propertyPath: playerInRoom
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: objectPools.Array.data[0].prefab
@@ -27996,7 +28078,7 @@ GameObject:
   - component: {fileID: 1640557887}
   - component: {fileID: 1640557886}
   - component: {fileID: 1640557888}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28447,7 +28529,7 @@ GameObject:
   - component: {fileID: 1646374055}
   - component: {fileID: 1646374056}
   - component: {fileID: 1646374057}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Script Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30435,7 +30517,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noahAi: 1
-  enemySize: 0
+  enemySize: 8
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 1741715351}
@@ -33607,6 +33690,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 209020605963838031, guid: 7f9fbb40f739da54aa7cd5dea77f3479, type: 3}
   m_PrefabInstance: {fileID: 729319840735273478}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1973545004 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5087161414429234680, guid: 9b9cd9361c3044840948c800e459e6a7, type: 3}
+  m_PrefabInstance: {fileID: 438748243}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1976961514
 GameObject:
   m_ObjectHideFlags: 0
@@ -34117,6 +34205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noahAi: 1
   enemySize: 0
+  spawned: 0
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 211055467}

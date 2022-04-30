@@ -42,6 +42,11 @@ public class Em_Move : MoveState
     {
         if (mEnemy.hasTarget)
         {
+            if(mEntity.GetComponentInParent<Pooler>().playerInRoom == false)
+            {
+                mEntity.mAnimator.SetBool("chasing", false);
+                mEntity.mAnimator.SetBool("stationary", true);
+            }
             wait = false;
             if (Vector3.Distance(targetPos, mEnemy.mLocations.lSpots[mEnemy.spot]) > 1) // if the target position moved then calculate again
             {
@@ -61,29 +66,20 @@ public class Em_Move : MoveState
             if(Vector3.Distance(mEnemy.transform.position, mEnemy.myTarget.transform.position) < 6 )
             {
                 wait = true;
+
             }
             else
             {
                 wait = false;
+                mEntity.mAnimator.SetBool("chasing", true);
+                mEntity.mAnimator.SetBool("stationary", false);
             }
         }
-        //mEnemy.agent.avoidancePriority = mEnemy.avoid;
-        //Move();
-        //if (Vector3.Distance(mEntity.agent.destination, mEntity.myTarget.transform.position) <= 1)
-        //{
-        //    mEntity.GetComponent<NavMeshAgent>().enabled = false;
-        //    mEntity.GetComponent<NavMeshObstacle>().enabled = true;
-        //}
-        //else
-        //{
-        //    mEntity.GetComponent<NavMeshAgent>().enabled = true;
-        //    mEntity.GetComponent<NavMeshObstacle>().enabled = false;
-        //}
-        //if ((Vector3.Distance(mEnemy.mLocations.lSpots[mEnemy.spot], targetPos) > 1))
-        //{
-        //    Debug.Log("Update!!");
-        //    calculate();
-        //}
+        if(wait == true)
+        {
+            mEntity.mAnimator.SetBool("chasing", false);
+            mEntity.mAnimator.SetBool("stationary", true);
+        }
 
     }
     public override void PhysicsUpdate()
@@ -101,7 +97,11 @@ public class Em_Move : MoveState
         else // if not it moves
         {
             if (wait == false)
-            Move();
+            {
+                mEntity.mAnimator.SetBool("chasing", true);
+                mEntity.mAnimator.SetBool("stationary", false);
+                Move();
+            }
         }
 
         //mEnemy.targetPos = targetPos;

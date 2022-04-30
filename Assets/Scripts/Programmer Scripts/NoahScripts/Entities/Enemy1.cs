@@ -129,8 +129,9 @@ public class Enemy1 : Entity
         if(health <= 0 || gameObject.GetComponent<EnemyStats>().getCurrentHealth() <= 0)
         {
             stateMachine.ChangeState(deathState);
+            StartCoroutine(resetSpawn());
         }
-        StartCoroutine(resetSpawn());
+        
         
 
     }
@@ -164,10 +165,18 @@ public class Enemy1 : Entity
         yield return new WaitForSeconds(3f);
         mAnimator.SetBool("dead", false);
         mAnimator.SetBool("chasing", true);
-        GetComponent<EnemyStats>().NoahAIAddToActiveList();
 
-        stateMachine.ChangeState(moveState);
-        transform.position = (spawner.transform.position);
+        if (GetComponentInParent<EnemyTriggerGroup>().spawned < GetComponentInParent<EnemyTriggerGroup>().enemySize)
+        {
+            GetComponentInParent<EnemyTriggerGroup>().spawned += 1;
+            GetComponent<EnemyStats>().NoahAIAddToActiveList();
+            stateMachine.ChangeState(moveState);
+            transform.position = (spawner.transform.position);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
     
