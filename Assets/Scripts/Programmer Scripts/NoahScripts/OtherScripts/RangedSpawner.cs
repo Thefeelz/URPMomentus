@@ -10,6 +10,7 @@ public class RangedSpawner : MonoBehaviour
     void Start()
     {
         GameObject newSpawn = Instantiate(rangedEn, transform);
+        GetComponentInParent<EnemyTriggerGroup>().spawned += 1;
         newSpawn.GetComponent<Enemy1>().spawner = this.gameObject;
     }
 

@@ -17,7 +17,13 @@ public class Entity : MonoBehaviour
     public float elapsedMaterializeTime = 0f;
     public List<Material> mesh = new List<Material>();
     public bool materializing = true;
+    public FMODUnity.EventReference iAmDie; // death sound
+    FMOD.Studio.EventInstance thankYouForever; // death event thing
     [SerializeField] float materializeTime;
+
+
+    public FMODUnity.EventReference walkingRef;
+    FMOD.Studio.EventInstance walkingEvent;
 
     public float health { get; private set; } // how much health entity has
     public FiniteStateMachine stateMachine { get; private set; } // statemachine used by this entity
@@ -35,6 +41,7 @@ public class Entity : MonoBehaviour
 
     public virtual void Awake()
     {
+        thankYouForever = FMODUnity.RuntimeManager.CreateInstance(iAmDie);
         //variables are assigned when object awakes
         myTarget = GameObject.FindWithTag("Player"); 
         stateMachine = new FiniteStateMachine(); 
@@ -130,6 +137,7 @@ public class Entity : MonoBehaviour
     // kills the enemy after a delay to allow an animation
     IEnumerator DeathAnim()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(iAmDie, transform.position);
         yield return new WaitForSeconds(3f);
         myPool.queueObject(queueName, this.gameObject);
     }
@@ -159,6 +167,12 @@ public class Entity : MonoBehaviour
             materializing = false;
         }
     }
+
+    public void walkNoise()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(walkingRef, transform.position);
+    }
+
 
     public void sphereCheck()
     {

@@ -35,6 +35,9 @@ public class Enemy1 : Entity
     [SerializeField]
     private D_Knockback knockbackData;
 
+    public FMODUnity.EventReference bulletRef;
+    FMOD.Studio.EventInstance shooting;
+
     public bool linking;
     public float origSpeed = 3;
     public float linkSpeed = 1;
@@ -55,6 +58,7 @@ public class Enemy1 : Entity
 
         // dfines all the states that this entity has
         base.Awake();
+        shooting = FMODUnity.RuntimeManager.CreateInstance(bulletRef);
         moveState = new E1_Move(this, stateMachine, moveData, entityData, this);
         slowState = new E1_SlowApproach(this, stateMachine, slowData, entityData, this);
         aimState = new E1_AimingState(this, stateMachine, aimData, entityData, this);
@@ -177,6 +181,11 @@ public class Enemy1 : Entity
         {
             this.gameObject.SetActive(false);
         }
+    }
+
+    public void bangbang()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(bulletRef, transform.position);
     }
 
     
