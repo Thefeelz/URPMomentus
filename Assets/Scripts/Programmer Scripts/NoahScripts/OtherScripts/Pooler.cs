@@ -98,6 +98,7 @@ public class Pooler : MonoBehaviour
         {
             if(onField[tag] < minField[tag] && spawned < totToSpawn)
             {
+
                 
                 spawned += 1;
                 onField[tag] += 1;

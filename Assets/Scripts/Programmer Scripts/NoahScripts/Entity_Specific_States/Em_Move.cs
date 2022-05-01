@@ -42,7 +42,7 @@ public class Em_Move : MoveState
     {
         if (mEnemy.hasTarget)
         {
-            if(mEntity.GetComponentInParent<Pooler>().playerInRoom == false)
+            if(mEntity.GetComponentInParent<Pooler>() && mEntity.GetComponentInParent<Pooler>().playerInRoom == false)
             {
                 mEntity.mAnimator.SetBool("chasing", false);
                 mEntity.mAnimator.SetBool("stationary", true);

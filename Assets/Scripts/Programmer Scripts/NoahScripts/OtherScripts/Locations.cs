@@ -209,7 +209,6 @@ public class Locations : MonoBehaviour
         currentEnemies.Clear(); // clears current enemy list
         for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
         {
-            Debug.Log("yes i am");
             if (enemies[i].hasTarget == false) // only add if enemy does not have a target
             {
                 currentEnemies.Add(enemies[i]);
@@ -323,6 +322,6 @@ public class Locations : MonoBehaviour
             }
         }
         int expected = currentEnemies.Count - 4;
-        Debug.Log(overClaim + "over claimed and " + expected + " was expected");
+
     }
 }
