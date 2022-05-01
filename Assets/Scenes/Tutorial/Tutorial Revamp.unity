@@ -7708,7 +7708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messages:
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: c4963ad848b8a6044b0de61366f92bb2, type: 2}
     fontSize: 0
     message: ......Interesting
     timeToDisplay: 10
@@ -7726,7 +7726,7 @@ MonoBehaviour:
       startObjective: 0
     healthToAdd: 0
     overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: "Amazing work K.A.T, that\u2019s why you\u2019re the best! Now, let's
       see if we can accesss a way to get to the next level."
@@ -7745,20 +7745,7 @@ MonoBehaviour:
     objectives: []
     healthToAdd: 0
     overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
-    fontSize: 0
-    message: What are you seeing?
-    timeToDisplay: 10
-    overrideCurrentMessage: 1
-    ableToSkipMessage: 1
-    abilities: []
-    objectsToTurnOn: []
-    animations: []
-    particleSystem: []
-    objectives: []
-    healthToAdd: 0
-    overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: I think, the elevator started
     timeToDisplay: 10
@@ -7771,7 +7758,7 @@ MonoBehaviour:
     objectives: []
     healthToAdd: 0
     overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: That makes sense! There was a lot of energy discharged in this room,
       it must have triggered the elevator.
@@ -7785,9 +7772,9 @@ MonoBehaviour:
     objectives: []
     healthToAdd: 0
     overchargeToAdd: 0
-  - dialogueSpeaker: {fileID: 0}
+  - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: I think its time to ride the elevator into the planet.
+    message: ' Now get on the elevator it should heal you.'
     timeToDisplay: 15
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
@@ -17998,10 +17985,9 @@ MonoBehaviour:
   messages:
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
-    message: "I\u2019m getting a read on the AI Core  from the room in front as well
-      as alot of enemies, so I'm unlocking your Blade Dance coroutine. Press 1 to
-      decimate a small number of enemies in one blow! "
-    timeToDisplay: 15
+    message: "I\u2019m seeing a lot of movement  from the room ahead, so I'm unlocking
+      your Blade Dance coroutine. "
+    timeToDisplay: 10
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
     abilities:
@@ -18020,11 +18006,27 @@ MonoBehaviour:
       startObjective: 1
     healthToAdd: 0
     overchargeToAdd: 0
+  - dialogueSpeaker: {fileID: 0}
+    fontSize: 0
+    message: 'Press 1 to decimate a small number of enemies in one blow! '
+    timeToDisplay: 5
+    overrideCurrentMessage: 0
+    ableToSkipMessage: 0
+    abilities: []
+    objectsToTurnOn: []
+    animations:
+    - animator: {fileID: 1682911961}
+      boolName: isDoorOpen
+      boolValue: 1
+    particleSystem: []
+    objectives: []
+    healthToAdd: 0
+    overchargeToAdd: 0
   - dialogueSpeaker: {fileID: 11400000, guid: 698741171096d7244a437352a4e520b2, type: 2}
     fontSize: 0
     message: Don't abuse it too often, as it drains a tremendous amount of Overcharge
       energy from your photon core.
-    timeToDisplay: 0.1
+    timeToDisplay: 5
     overrideCurrentMessage: 0
     ableToSkipMessage: 1
     abilities: []
