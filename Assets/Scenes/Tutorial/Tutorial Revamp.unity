@@ -991,6 +991,8 @@ MonoBehaviour:
   noahAi: 0
   enemySize: 0
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 130093271}
@@ -5416,6 +5418,8 @@ MonoBehaviour:
   noahAi: 1
   enemySize: 0
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 522646668}
@@ -8928,8 +8932,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noahAi: 1
-  enemySize: 8
+  enemySize: 6
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 886654175}
@@ -11301,6 +11307,8 @@ MonoBehaviour:
   noahAi: 0
   enemySize: 6
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 928355407}
@@ -22072,6 +22080,8 @@ MonoBehaviour:
   noahAi: 1
   enemySize: 8
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 1187520412}
@@ -27476,6 +27486,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8640020105401366705, guid: f458aae5609332c449dfb11d3b5c0e53, type: 3}
     - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
+      propertyPath: objectPools.Array.data[0].minField
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: objectPools.Array.data[0].dictionaryTag
       value: Melee
       objectReference: {fileID: 0}
@@ -30756,6 +30770,8 @@ MonoBehaviour:
   noahAi: 1
   enemySize: 8
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 1741715351}
@@ -34447,6 +34463,8 @@ MonoBehaviour:
   noahAi: 1
   enemySize: 0
   spawned: 0
+  enemyDead: 0
+  spotHolder: {fileID: 0}
   enemiesInGroup: []
   objectToTrigger:
   - {fileID: 211055467}

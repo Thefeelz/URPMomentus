@@ -7,6 +7,7 @@ public class EnemyTriggerGroup : MonoBehaviour
     public bool noahAi; //checks for who's ai is being used
     public int enemySize; // how many enemies are to spawn
     public int spawned;
+    public int enemyDead;
     public Locations spotHolder;
     [SerializeField] List<EnemyStats> enemiesInGroup = new List<EnemyStats>();
     [SerializeField] List<GameObject> objectToTrigger = new List<GameObject>();
@@ -21,10 +22,8 @@ public class EnemyTriggerGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemySize == spawned && enemySize != 0)
-        {
+        if (enemySize == enemyDead)
             TriggerObjects();
-        }
     }
 
     private void OnEnable()
@@ -49,8 +48,8 @@ public class EnemyTriggerGroup : MonoBehaviour
         }
         else // when the right number of enemies have been killed trigger objects is called
         {
-            enemySize -= 1;
-            if(enemySize <= 0)
+            enemyDead += 1;
+            if(enemySize == enemyDead)
             {
                 TriggerObjects();
             }
@@ -83,6 +82,7 @@ public class EnemyTriggerGroup : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             spotHolder.lSpotsTaken[i] = null;
+
         }
         spotHolder.restartSpots();
 
