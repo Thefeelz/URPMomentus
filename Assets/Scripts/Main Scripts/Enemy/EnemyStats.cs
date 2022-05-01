@@ -34,8 +34,7 @@ public class EnemyStats : MonoBehaviour
         {
             mEntity = gameObject.GetComponent<Entity>();
         }
-        else
-            StartCoroutine(AddEnemyToList());
+        StartCoroutine(AddEnemyToList());
         // NOTE: This is set to get component in children at the time of its creation, it may change, if there are errors in the future
         // it could be due to the fact that we are looking for the animator in the children if it gets moved elsewhere.
 
@@ -144,7 +143,8 @@ public class EnemyStats : MonoBehaviour
         }
         else if (GetComponent<Entity>())
         {
-            yield return new WaitForSeconds(10f);
+            Debug.Log("Removing from list");
+            yield return new WaitForSeconds(1f);
             gameManager.RemoveFromActiveList(this);
         }
         else if (GetComponent<BomberEnemy>())
