@@ -169,10 +169,11 @@ public class Enemy1 : Entity
         yield return new WaitForSeconds(3f);
         mAnimator.SetBool("dead", false);
         mAnimator.SetBool("chasing", true);
-
+        GetComponentInParent<EnemyTriggerGroup>().enemyDead += 1;
         if (GetComponentInParent<EnemyTriggerGroup>().spawned < GetComponentInParent<EnemyTriggerGroup>().enemySize)
         {
             GetComponentInParent<EnemyTriggerGroup>().spawned += 1;
+            
             GetComponent<EnemyStats>().NoahAIAddToActiveList();
             stateMachine.ChangeState(moveState);
             transform.position = (spawner.transform.position);
