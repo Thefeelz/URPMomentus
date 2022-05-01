@@ -143,7 +143,6 @@ public class EnemyStats : MonoBehaviour
         }
         else if (GetComponent<Entity>())
         {
-            Debug.Log("Removing from list");
             yield return new WaitForSeconds(1f);
             gameManager.RemoveFromActiveList(this);
         }

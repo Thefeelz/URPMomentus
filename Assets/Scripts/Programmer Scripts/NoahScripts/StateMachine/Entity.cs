@@ -154,10 +154,8 @@ public class Entity : MonoBehaviour
     public void MaterializeIn()
     {
         elapsedMaterializeTime += Time.deltaTime;
-        Debug.Log("something");
         foreach (Material mat in mesh)
         {
-            Debug.Log("something");
             mat.SetFloat("Vector1_25be2060a07040ad90d1716c35083360", Mathf.Lerp(1.2f, -0.2f, elapsedMaterializeTime / materializeTime));
         }
         if (elapsedMaterializeTime >= materializeTime)
