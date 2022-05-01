@@ -103,7 +103,7 @@ public class A_BladeDance : A_OverchargeAbilities
             return null;
         }
         EnemyStats closestEnemy = null;
-        targettedList = GameManager.Instance.GetActiveEnemiesInRange(maxRange, transform);
+        targettedList = GameManager.Instance.GetActiveEnemiesInRangeNotDrone(maxRange, transform);
         foreach (EnemyStats enemy in targettedList)
         {
             if (enemy.getCurrentHealth() > 0)

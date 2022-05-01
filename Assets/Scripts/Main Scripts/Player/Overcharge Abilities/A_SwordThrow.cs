@@ -92,7 +92,8 @@ public class A_SwordThrow : A_OverchargeAbilities
     public void SwordHitEnemy(EnemyStats enemyHit)
     {
         elapsedTime = 0f;
-        weaponToThrow.transform.parent = enemyHit.transform;
+        if(!enemyHit.GetComponent<BomberEnemy>())
+            weaponToThrow.transform.parent = enemyHit.transform;
         stuck = true;
         throwing = false;
         StartCoroutine(SwordStickDelay());

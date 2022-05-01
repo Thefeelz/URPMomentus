@@ -109,6 +109,13 @@ public class BomberEnemy : MonoBehaviour
         {
             sightColor = Color.red;
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetSpot, attackPlayerSpeed);
+            RaycastHit hit;
+            Debug.DrawRay(transform.position, transform.forward, Color.red, 1f);
+            if(Physics.Raycast(transform.position, transform.forward, out hit, 2f))
+            {
+                Debug.Log(hit.transform.name);
+                currentState = FlyerState.Explode;
+            }
             anim.SetBool("spin", true);
             if (Vector3.Distance(this.transform.position, targetSpot) < 0.5f)
             {
@@ -127,7 +134,7 @@ public class BomberEnemy : MonoBehaviour
         else if (currentState == FlyerState.Dead)
         {
             Instantiate(ExplosionEffect, this.transform.position, this.transform.rotation);
-            Destroy(this.gameObject); //wipes the object from existence
+            Destroy(this.gameObject, .01f); //wipes the object from existence
 
         }
         else if (currentState == FlyerState.Asleep)
