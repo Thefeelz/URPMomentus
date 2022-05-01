@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponentInParent<CharacterStats>())
+        {
+            GoToNextScene();
+        }
+    }
     public void StartTheGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

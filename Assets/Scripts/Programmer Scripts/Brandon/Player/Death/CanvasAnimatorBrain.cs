@@ -20,9 +20,12 @@ public class CanvasAnimatorBrain : MonoBehaviour
     public void StartPlayerDeathSceneV3()
     {
         // Update the Game Manager with the furthest checkpoint
-        GameManager.Instance.SetNewRespawnLocation(FindObjectOfType<RespawnCheckpointManager>().GetCurrentIndexTransform());
-        GameManager.Instance.SetRespawnCheckpointIndex(FindObjectOfType<RespawnCheckpointManager>().GetCurrentIndexNumber());
-        GameManager.Instance.ClearEnemyList();
+        if (FindObjectOfType<RespawnCheckpointManager>())
+        {
+            GameManager.Instance.SetNewRespawnLocation(FindObjectOfType<RespawnCheckpointManager>().GetCurrentIndexTransform());
+            GameManager.Instance.SetRespawnCheckpointIndex(FindObjectOfType<RespawnCheckpointManager>().GetCurrentIndexNumber());
+            GameManager.Instance.ClearEnemyList();
+        }
         playerAnimator.Play("playerDeathV3");
         FindObjectOfType<mouseLook>().enabled = false;
     }
