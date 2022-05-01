@@ -7,11 +7,13 @@ public class EnemyTriggerGroup : MonoBehaviour
     public bool noahAi; //checks for who's ai is being used
     public int enemySize; // how many enemies are to spawn
     public int spawned;
+    public Locations spotHolder;
     [SerializeField] List<EnemyStats> enemiesInGroup = new List<EnemyStats>();
     [SerializeField] List<GameObject> objectToTrigger = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
+         //gets the object holder
         
         SetUpTriggerChildren();
     }
@@ -23,6 +25,12 @@ public class EnemyTriggerGroup : MonoBehaviour
         {
             TriggerObjects();
         }
+    }
+
+    private void OnEnable()
+    {
+
+        StartCoroutine(startRestart());
     }
     public void TriggerObjects()
     {
@@ -65,5 +73,18 @@ public class EnemyTriggerGroup : MonoBehaviour
         {
             enemySize = GetComponentInChildren<Pooler>().totToSpawn; // totToSpawn is how many enemies must be killed to continue
         }
+    }
+
+
+    IEnumerator startRestart()
+    {
+        spotHolder = GameObject.Find("SpotHolder").GetComponent<Locations>();
+        yield return new WaitForSeconds(3);
+        for(int i = 0; i < 4; i++)
+        {
+            spotHolder.lSpotsTaken[i] = null;
+        }
+        spotHolder.restartSpots();
+
     }
 }
