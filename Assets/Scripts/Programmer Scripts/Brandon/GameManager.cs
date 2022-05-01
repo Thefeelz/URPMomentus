@@ -133,6 +133,10 @@ public class GameManager : MonoBehaviour
             {
                 enemy.GetComponent<Turret>().SetStateToSpecialInUse(value);
             }
+            else if (enemy.GetComponent<BomberEnemy>())
+            {
+                enemy.GetComponent<BomberEnemy>().SpecialInUse(value);
+            }
         }
     }
 

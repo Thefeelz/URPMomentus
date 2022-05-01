@@ -5,9 +5,9 @@ using UnityEngine;
 public class BomberEnemy : MonoBehaviour
 {
     //Flyer states and stats
-    enum FlyerState { Scanning, Targeting, LockOn, Explode, Asleep, Dead };
+    enum FlyerState { Scanning, Targeting, LockOn, Explode, Asleep, Dead, SpecialInUse };
     [SerializeField]
-    FlyerState currentState;
+    FlyerState currentState, previousState;
 
     //Flyer specfic stats
     [SerializeField]
@@ -142,19 +142,45 @@ public class BomberEnemy : MonoBehaviour
 
 
         }
+        else if (currentState == FlyerState.SpecialInUse)
+        {
+
+
+        }
         else
         {
             Debug.LogError("Error: Flyer-state");
         }
     }
-
+    public void SpecialInUse(bool value)
+    {
+        if (value)
+        {
+            previousState = currentState;
+            currentState = FlyerState.SpecialInUse;
+            StopCoroutine(LO);
+            anim.SetBool("shake", false);
+            anim.speed = 0;
+        }
+        else
+        {
+            if (currentState != FlyerState.Dead)
+                currentState = FlyerState.Scanning;
+            anim.speed = 1;
+        }
+    }
     IEnumerator LockOn()
     {
         yield return new WaitForSeconds(timeToLock);
         currentState = FlyerState.LockOn;
     }
 
-    public void SetStateToAsleep() { currentState = FlyerState.Asleep; }
+    public void SetStateToAsleep()
+    {
+        StopCoroutine(LO);
+        currentState = FlyerState.Asleep; 
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
