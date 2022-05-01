@@ -47,6 +47,7 @@ public class Locations : MonoBehaviour
                 }
             }
         }
+
     }
     void spotUpdate()
     {
@@ -203,10 +204,12 @@ public class Locations : MonoBehaviour
 
     public void restartSpots()
     {
+        
         enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; //gets all enemies in scene that are melee type
         currentEnemies.Clear(); // clears current enemy list
         for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
         {
+            Debug.Log("yes i am");
             if (enemies[i].hasTarget == false) // only add if enemy does not have a target
             {
                 currentEnemies.Add(enemies[i]);
@@ -216,6 +219,68 @@ public class Locations : MonoBehaviour
         for(int i = 0; i < 4; i++) // this will get us a number of how many spots are currently free
         {
             if(!lSpotsTaken[i])
+            {
+                freeSpot += 1;
+            }
+        }
+        currentEnemies.Sort((e1, e2) => Vector3.Distance(e1.transform.position, lPlayer.transform.position).CompareTo(Vector3.Distance(e2.transform.position, lPlayer.transform.position))); // sorting algorithm
+        //Enemy_Melee[] closeEnemies = new Enemy_Melee[freeSpot]; // the x closest enemies, x being the amount of free spots
+        //currentEnemies.CopyTo(0, closeEnemies, 0, freeSpot); // copies the the closest to the array
+        int overClaim = 0; // sees how many enemies exist in excess of positions available
+        foreach (Enemy_Melee en in currentEnemies) // assigns enemies by how close they are to available spots
+        {
+            if (lSpotsTaken[0] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 0;
+                lSpotsTaken[0] = en;
+            }
+            else if (lSpotsTaken[1] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 1;
+                lSpotsTaken[1] = en;
+            }
+            else if (lSpotsTaken[2] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 2;
+                lSpotsTaken[2] = en;
+            }
+            else if (lSpotsTaken[3] == null)
+            {
+                en.hasTarget = true;
+                en.spot = 3;
+                lSpotsTaken[3] = en;
+            }
+            else
+            {
+                en.hasTarget = false;
+                en.spot = 9;
+            }
+        }
+
+    }
+
+
+
+    public void restartSpotsv2()
+    {
+        enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; //gets all enemies in scene that are melee type
+        currentEnemies.Clear(); // clears current enemy list
+        for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
+        {
+            enemies[i].hasTarget = false;
+            if (enemies[i].hasTarget == false) // only add if enemy does not have a target
+            {
+                currentEnemies.Add(enemies[i]);
+                enemies[i].hasTarget = false;
+            }
+        }
+        int freeSpot = 0; // free spot code should be able to be deleted
+        for (int i = 0; i < 4; i++) // this will get us a number of how many spots are currently free
+        {
+            if (!lSpotsTaken[i])
             {
                 freeSpot += 1;
             }
