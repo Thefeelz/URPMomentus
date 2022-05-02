@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.501
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014636132, g: 0.021353051, b: 0.01593772, a: 0.501}
+  m_IndirectSpecularColor: {r: 0.014645601, g: 0.02134073, b: 0.015941266, a: 0.501}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9504,6 +9504,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevator: {fileID: 0}
+  elevatorNoiseRef:
+    Guid:
+      Data1: -141293475
+      Data2: 1125268416
+      Data3: 348024224
+      Data4: -2069602309
+    Path: event:/Events/ElevatorActivation
 --- !u!1 &665330489
 GameObject:
   m_ObjectHideFlags: 0
@@ -13468,6 +13475,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac00f19902b09c4f94810aa3b9b307b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &815146213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815146211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Combat
+  EventReference:
+    Guid:
+      Data1: 2020864974
+      Data2: 1303072966
+      Data3: -317871709
+      Data4: 2062775147
+    Path: event:/Music/CombatTutorial
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &815146214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815146211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Combat
+  EventReference:
+    Guid:
+      Data1: -1815028028
+      Data2: 1196443278
+      Data3: 1673514134
+      Data4: -1232860077
+    Path: event:/Music/TutorialBeforeCombat
+  Event: 
+  PlayEvent: 1
+  StopEvent: 3
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &815642121
 GameObject:
   m_ObjectHideFlags: 0
@@ -15493,6 +15560,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 721434652933900163, guid: 3e7b456ac473a78459f439bc280b2ccf, type: 3}
   m_PrefabInstance: {fileID: 976204288}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &976204292
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976204289}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3578002, y: 3.7078972, z: 2.3518555}
+  m_Center: {x: 0.00099492, y: -1.3539501, z: -0.0147216795}
 --- !u!1001 &977448747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21254,6 +21334,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 721434652933900163, guid: 3e7b456ac473a78459f439bc280b2ccf, type: 3}
   m_PrefabInstance: {fileID: 1292162260}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1292162264
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292162261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3578002, y: 3.7078972, z: 2.3518555}
+  m_Center: {x: 0.00099492, y: -1.3539501, z: -0.0147216795}
 --- !u!1 &1296494973
 GameObject:
   m_ObjectHideFlags: 0
@@ -31318,6 +31411,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 721434652933900163, guid: 3e7b456ac473a78459f439bc280b2ccf, type: 3}
   m_PrefabInstance: {fileID: 1798953153}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1798953157
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798953154}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3578002, y: 3.7078972, z: 2.3518555}
+  m_Center: {x: 0.00099492, y: -1.3539501, z: -0.0147216795}
 --- !u!1 &1806150660
 GameObject:
   m_ObjectHideFlags: 0
@@ -34975,6 +35081,50 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2088561333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088561335}
+  - component: {fileID: 2088561334}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Combat
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &2088561334
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088561333}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.168064, y: 8.979673, z: 1}
+  m_Center: {x: 0.4253292, y: 0.7898493, z: 0}
+--- !u!4 &2088561335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088561333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -58.96, y: 4.3989763, z: -143.82}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2107184777
 PrefabInstance:
   m_ObjectHideFlags: 0
