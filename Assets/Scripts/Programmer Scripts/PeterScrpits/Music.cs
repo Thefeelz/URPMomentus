@@ -37,7 +37,7 @@ public class Music : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
+        if (other.tag == "Enemy") { }
     }
     public void TransitionTut()
     {
