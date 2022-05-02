@@ -12,7 +12,8 @@ public class PlayerAudio : MonoBehaviour
     FMOD.Studio.EventInstance footsteps;
     FMOD.Studio.EventInstance slide;
     FMOD.Studio.EventInstance throwing;
-    
+
+    public P_Movement playerMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +22,14 @@ public class PlayerAudio : MonoBehaviour
         slide = FMODUnity.RuntimeManager.CreateInstance(slideRef);
         throwing = FMODUnity.RuntimeManager.CreateInstance(throwingRef);
 
+        playerMovement = GetComponent<P_Movement>();
+
     }
 
     public void PlayFootsteps()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(footstepsRef, transform.position);
+        if (playerMovement.isGrounded) 
+            FMODUnity.RuntimeManager.PlayOneShot(footstepsRef, transform.position);
     }
 
     public void PlaySlide()

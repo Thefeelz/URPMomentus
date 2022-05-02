@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BomberEnemy : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour
 {
     //Primary Flyer Components\\
 
@@ -14,8 +14,8 @@ public class BomberEnemy : MonoBehaviour
 
     //Flyer settings
     [SerializeField]
-    private float damage = 50, explosionRange = 6, attackPlayerSpeed = 4, timeToLock = 5, scanRange = 20, patrolSpeed = 5, rotateSpeed = 100;
-
+    private float damage=50, explosionRange=6, attackPlayerSpeed=4, timeToLock=5, scanRange=20, patrolSpeed=5, rotateSpeed=100;
+    
     //Flight destination
     private Vector3 targetSpot;
     private float targetOffset = 1.0f; ///So drone doesn't fly towards player's toes
@@ -28,7 +28,9 @@ public class BomberEnemy : MonoBehaviour
     private Collider playerCollider;
 
     //Sound
-    public FMODUnity.EventReference ExplosionSound;
+    public FMODUnity.EventReference flyingIdleRef;
+    FMOD.Studio.EventInstance flyingIdle;
+    public FMODUnity.EventReference explosionRef;
     FMOD.Studio.EventInstance explosion;
 
 
@@ -50,11 +52,11 @@ public class BomberEnemy : MonoBehaviour
 
     //[DEBUGGING] Raycast color
     Color sightColor;
-
+     
     //Explosion effect
     [SerializeField]
     ParticleSystem ExplosionEffect;
-
+    
     //The animations attached to flyer
     Animator anim;
 
@@ -64,11 +66,13 @@ public class BomberEnemy : MonoBehaviour
     //Enemy stats
     EnemyStats flyStat;
 
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
+
+        flyingIdle.start();
         //Connects components from the scene to respective variables
         player = FindObjectOfType<CharacterStats>();
         if (player == null) Debug.LogError("Can't find player");
@@ -95,6 +99,10 @@ public class BomberEnemy : MonoBehaviour
             patrolSpeed *= -1;
         }
 
+        //Sound stuff
+        flyingIdle = FMODUnity.RuntimeManager.CreateInstance(flyingIdleRef);
+        flyingIdle.start();
+
         //Inactive on spawn
         if (StartAsleep)
             SetStateToAsleep();
@@ -119,9 +127,9 @@ public class BomberEnemy : MonoBehaviour
         ///Debug.Log(" Drone sees: " + seeObject.collider.name);
 
 
-        // FLYING DRONE STATES \\
-        ///Debug.Log(currentState);
-        //SCANNING\\
+// FLYING DRONE STATES \\
+    ///Debug.Log(currentState);
+    //SCANNING\\
         if (currentState == FlyerState.Scanning)
         {
             //If Raycast sees player: Start LockOn coroutine, record rotation, change state to TARGETING
@@ -133,11 +141,11 @@ public class BomberEnemy : MonoBehaviour
             }
 
             //Rotates parent to give illusion of flying in a circle
-            if (pivPar != null)
+            if(pivPar!=null)
                 pivPar.rotation *= Quaternion.Euler(0, patrolSpeed, 0);
         }
 
-        //TARGETING\\
+    //TARGETING\\
         else if (currentState == FlyerState.Targeting)
         {
             //Change drawn raycast line's color
@@ -162,12 +170,12 @@ public class BomberEnemy : MonoBehaviour
             targetSpot = player.transform.position + new Vector3(0, targetOffset, 0);
         }
 
-        //LOCKED ON\\
+    //LOCKED ON\\
         else if (currentState == FlyerState.LockOn)
         {
             ///Change drawn raycast line's color
             sightColor = Color.red;
-
+            
             //Flies towards a locked position
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetSpot, attackPlayerSpeed);
 
@@ -182,7 +190,7 @@ public class BomberEnemy : MonoBehaviour
             }
         }
 
-        //EXPLODE\\
+    //EXPLODE\\
         else if (currentState == FlyerState.Explode)
         {
             //If player is in given range, damage player
@@ -195,25 +203,25 @@ public class BomberEnemy : MonoBehaviour
             currentState = FlyerState.Dead;
         }
 
-        //DEAD\\
+    //DEAD\\
         else if (currentState == FlyerState.Dead)
         {
             //Creates an instance of the explosion effect at enemy's current position (Particle system will delete itself after finished playing)
             Instantiate(ExplosionEffect, this.transform.position, this.transform.rotation);
 
-            FMODUnity.RuntimeManager.PlayOneShot(ExplosionSound, this.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(explosionRef, this.transform.position);
 
             //Wipe the enemy from existence
-            Destroy(this.gameObject, .1f);
+            Destroy(this.gameObject, .1f); 
         }
 
-        //Empty state\\
+    //Empty state\\
         else if (currentState == FlyerState.Asleep)
         {
             ///Blank on purpose\\\
         }
-
-        //Error case\\
+    
+    //Error case\\
         else
         {
             Debug.LogError("Error: Flyer-state");
@@ -229,7 +237,7 @@ public class BomberEnemy : MonoBehaviour
     }
 
     //Can be called to deactivate enemy without destruction
-    public void SetStateToAsleep()
+    public void SetStateToAsleep() 
     {
         StopCoroutine(LO);
         currentState = FlyerState.Asleep;
@@ -249,10 +257,8 @@ public class BomberEnemy : MonoBehaviour
             if (currentState != FlyerState.Dead)
             {
                 currentState = returnToState;
-                if (currentState == FlyerState.Targeting)
-                    LO = StartCoroutine(LockOn());
             }
-
+                
             anim.speed = 1;
         }
     }
