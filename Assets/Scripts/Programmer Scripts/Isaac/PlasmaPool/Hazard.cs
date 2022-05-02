@@ -7,17 +7,22 @@ public class Hazard : MonoBehaviour
 
 {
     [SerializeField]
-    private GameObject player;
+    private CharacterStats player;
 
     [SerializeField]
     private int bouncePower;
 
     private Rigidbody playerBody;
+    
+
+    public bool instakill;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerBody = player.GetComponentInChildren<Rigidbody>();
+        player = FindObjectOfType<CharacterStats>();
+        //playerBody = player.GetComponentInChildren<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -30,9 +35,17 @@ public class Hazard : MonoBehaviour
     {
         if (other.GetComponentInParent<CharacterStats>())
         {
-            Debug.Log("collision detected fucking hell");
-            other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(other.GetComponentInParent<CharacterStats>().GetPlayerMaxHealth() / 3);
-            playerBody.AddForce(Vector3.up * bouncePower, ForceMode.VelocityChange);
+            if (instakill)
+            {
+                player.RemoveHealthMelee(player.GetPlayerMaxHealth());
+            }
+            else
+            {
+                other.GetComponentInParent<CharacterStats>().RemoveHealthMelee(other.GetComponentInParent<CharacterStats>().GetPlayerMaxHealth() / 3);
+                //playerBody.AddForce(Vector3.up * bouncePower, ForceMode.VelocityChange);
+            }
+            
         }
+
     }
 }
