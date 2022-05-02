@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     [SerializeField] int bladeColor;
-    [SerializeField] int levelChosen, currentLevelBuildIndex;
+    [SerializeField] int levelChosen, currentLevelBuildIndex, previousLevelBuildIndex;
     [SerializeField] List<EnemyStats> enemiesInLevel = new List<EnemyStats>();
     [SerializeField] Material[] aquaMaterial, redMaterial, blueMaterial, greenMaterial;
     [SerializeField] ParticleSystem[] aquaParticleSystem, redParticleSystem, blueParticleSystem, greenParticleSystem;
@@ -62,7 +62,8 @@ public class GameManager : MonoBehaviour
     }
     private void OnLevelWasLoaded(int level)
     {
-        currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        if(SceneManager.GetActiveScene().buildIndex != 9)
+            currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
     }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
