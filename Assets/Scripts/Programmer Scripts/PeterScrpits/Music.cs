@@ -11,10 +11,11 @@ public class Music : MonoBehaviour
     public FMODUnity.EventReference tutorialPrecombatRef;
     public FMODUnity.EventReference tutorialTransitionRef;
     public FMODUnity.EventReference levelOneMusicRef;
+    //public FMODUnity.ParamRef 
 
     FMOD.Studio.EventInstance mainMenuMusic;
     FMOD.Studio.EventInstance levelOneMusic;
-    FMOD.Studio.EventInstance TutorailPrecombat;
+    FMOD.Studio.EventInstance TutorialPrecombat;
     FMOD.Studio.EventInstance tutorialMusic;
     // Start is called before the first frame update
     void Start()
@@ -23,14 +24,25 @@ public class Music : MonoBehaviour
         tutorialMusic= FMODUnity.RuntimeManager.CreateInstance(tutorialMusicRef);
         levelOneMusic= FMODUnity.RuntimeManager.CreateInstance(levelOneMusicRef);
 
-        TutorailPrecombat = FMODUnity.RuntimeManager.CreateInstance(tutorialPrecombatRef);
+        TutorialPrecombat = FMODUnity.RuntimeManager.CreateInstance(tutorialPrecombatRef);
 
 
     }
 
     public void PreCombatTut()
     {
-        TutorailPrecombat.start();
+        TutorialPrecombat.start();
 
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Enemy") { }
+    }
+    public void TransitionTut()
+    {
+        TutorialPrecombat.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        TutorialPrecombat.release();
+        
     }
 }
