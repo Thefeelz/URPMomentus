@@ -67,6 +67,7 @@ public class A_BladeDance : A_OverchargeAbilities
         // Set the global variable to be true so in case any enemies spawn, they are frozen
         gameManager.activeInUse = true;
         killCountDetermined = CalculateEnemiesHit(killCountMax);
+        DisplayDebugImage();
         StartCoroutine(AttackEnemy());
         return true;
     }

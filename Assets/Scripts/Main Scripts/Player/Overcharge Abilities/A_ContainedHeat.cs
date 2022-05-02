@@ -42,6 +42,7 @@ public class A_ContainedHeat : A_OverchargeAbilities
             TogglePlayerMovement(false);
         }
         playerAnimator.SetBool("groundAttack", true);
+        DisplayDebugImage();
         return true;
     }
 
