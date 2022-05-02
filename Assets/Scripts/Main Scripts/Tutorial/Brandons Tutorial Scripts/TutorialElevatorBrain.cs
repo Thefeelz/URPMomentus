@@ -6,6 +6,7 @@ public class TutorialElevatorBrain : MonoBehaviour
 {
     [SerializeField] List<GameObject> elevatorDoor = new List<GameObject>();
     [SerializeField] Material startingMat;
+    [SerializeField] Collider thang;
     int i = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,19 @@ public class TutorialElevatorBrain : MonoBehaviour
     }
     public void TurnOnElevatorDoor()
     {
-        if(i >= elevatorDoor.Count) { return; }
+        if(i >= elevatorDoor.Count) 
+        {
+            TurnOnCollider();
+            return; 
+        }
         elevatorDoor[i].SetActive(true);
         elevatorDoor[i].GetComponent<TutorialElevatorDoor>().TurnOnDoorFromBrain(3f, startingMat);
         //elevatorDoor[i].GetComponent<TutorialElevatorDoor>().TurnOnDoorFromBrainLame(endingMat);
         i++;
+    }
+    private void TurnOnCollider()
+    {
+        if (thang)
+            thang.gameObject.SetActive(true);
     }
 }

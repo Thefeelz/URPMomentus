@@ -18,7 +18,7 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] GameObject[] objectsToTurnOnWhenDead;
     
     bool triggeredDead = false;
-    bool ableToBeAttacked = true;
+    public bool ableToBeAttacked = true;
 
     protected EnemyChaseState chase;
     CharacterStats player;

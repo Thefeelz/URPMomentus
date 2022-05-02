@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
         List<EnemyStats> enemiesInRange = new List<EnemyStats>();
         foreach (EnemyStats enemy in enemiesInLevel)
         {
-            if (Vector3.Distance(enemy.transform.position, playerPos.position) <= range && !enemy.GetComponent<BomberEnemy>())
+            if (enemy && Vector3.Distance(enemy.transform.position, playerPos.position) <= range && !enemy.GetComponent<BomberEnemy>())
             {
                 enemiesInRange.Add(enemy);
             }
