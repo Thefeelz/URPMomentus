@@ -5711,7 +5711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pool1: {fileID: 670790132}
-  pool2: {fileID: 559161808}
+  pool2: {fileID: 1194100535}
   active1: 0
   active2: 0
 --- !u!65 &113290047
@@ -26057,7 +26057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 865305922852942651, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
@@ -27240,11 +27240,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d97225c7dd9dbb94785f4ceb11d6dd11, type: 3}
---- !u!1 &559161808 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 865305922852942651, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
-  m_PrefabInstance: {fileID: 543262093}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &559161809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 865305922852942648, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
@@ -27255,7 +27250,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 865305922852942649, guid: 59466e05dfe79a94eac0a68fab79b10b, type: 3}
   m_PrefabInstance: {fileID: 543262093}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559161808}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd4f8b1d1037b62448d992082937788e, type: 3}
@@ -30630,7 +30625,9 @@ MonoBehaviour:
     overrideCurrentMessage: 1
     ableToSkipMessage: 1
     abilities: []
-    objectsToTurnOn: []
+    objectsToTurnOn:
+    - objectToManipulate: {fileID: 2038826037}
+      turnOnObject: 1
     animations:
     - animator: {fileID: 1475657193}
       boolName: startElevator
@@ -56912,7 +56909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1194100536
 Transform:
   m_ObjectHideFlags: 0
