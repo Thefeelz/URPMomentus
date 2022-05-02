@@ -607,10 +607,10 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 69673468}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: RestartLevel
-        m_Mode: 1
+      - m_Target: {fileID: 1877393943}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetRespawnAtCheckpoint
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -619,10 +619,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1877393943}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: SetRespawnAtCheckpoint
-        m_Mode: 6
+      - m_Target: {fileID: 69673468}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: RestartLevel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1393,6 +1393,14 @@ PrefabInstance:
     - target: {fileID: 1574194267915766661, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: currentLevelBuildIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1954321501824369581, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
+      propertyPath: respawnCheckpointIndex
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8505584002279285417, guid: 01db22f7171904a4fa0c5c00a5752620, type: 3}
       propertyPath: m_Name

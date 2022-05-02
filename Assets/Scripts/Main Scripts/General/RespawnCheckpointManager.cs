@@ -70,6 +70,12 @@ public class RespawnCheckpointManager : MonoBehaviour
             return checkPointLocations[checkPointLocations.Count - 1];
         return checkPointLocations[currentCheckpoint]; 
     }
+    public Transform GetCurrentIndexTransform(int gameManagerIndex)
+    {
+        if (gameManagerIndex >= checkPointLocations.Count)
+            return checkPointLocations[checkPointLocations.Count - 1];
+        return checkPointLocations[gameManagerIndex];
+    }
     public int GetCurrentIndexNumber()
     {
         if (currentCheckpoint >= checkPointLocations.Count)

@@ -4514,7 +4514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3326850843118385750
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6995,8 +6995,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 219201849452192277}
   m_HandleRect: {fileID: 862161860689485075}
   m_Direction: 0
-  m_MinValue: 1
-  m_MaxValue: 100
+  m_MinValue: 40
+  m_MaxValue: 80
   m_WholeNumbers: 1
   m_Value: 72
   m_OnValueChanged:
@@ -8198,6 +8198,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 2069834348}
   keybindsMenu: {fileID: 8710877648041316707}
   mouseSensitivitySlider: {fileID: 1727566774}
+  fieldOfViewSlider: {fileID: 2888069566714549886}
 --- !u!1 &7587278816197025696
 GameObject:
   m_ObjectHideFlags: 0
@@ -14592,7 +14593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3324966712219111582, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3330873158483818920, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -14633,6 +14634,10 @@ PrefabInstance:
     - target: {fileID: 4468055281043730802, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4486568134596930210, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4486568134596930210, guid: 15df4c49f903f9c43b5b995c660b2aef, type: 3}
       propertyPath: m_fontAsset

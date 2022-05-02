@@ -384,7 +384,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1099,7 +1099,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Kong Vang
 
-    (Modelling, Environment, Concept Art)'
+    (Modeling, Environment, Concept Art)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -1175,6 +1175,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609485686}
+  m_CullTransparentMesh: 1
+--- !u!1 &631147948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 631147949}
+  - component: {fileID: 631147951}
+  - component: {fileID: 631147950}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &631147949
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631147948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 734659833}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 500, y: 500}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &631147950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631147948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 5c98d288984a3844986a25235a0115b3, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &631147951
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631147948}
   m_CullTransparentMesh: 1
 --- !u!1001 &631335955
 PrefabInstance:
@@ -1581,7 +1656,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 631147949}
   m_Father: {fileID: 306180769}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1612,7 +1688,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Jaden Stock
 
-    (UI, Modelling, Animation)'
+    (UI, Modeling, Animation)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -2375,7 +2451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Camille Otto
+  m_text: 'Camille Otto (Chamillionaire)
 
     (Lighting, Concept Art, Illustration)'
   m_isRightToLeft: 0
@@ -2511,7 +2587,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dr. Tetzlaff
+  m_text: 'Dr. Tetzlaff
+
+    Code Review'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -2917,7 +2995,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Lindsey Brown
 
-    (Animation, Modelling, Concept Art)'
+    (Animation, Modeling, Concept Art)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -3531,7 +3609,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Mitchell Winebrenner
 
-    (Art Lead, Modelling, Texturing)'
+    (Art Lead, Modeling, Texturing)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -4030,7 +4108,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Morgen Plath
 
-    (Modelling, Animation, Rigging)'
+    (Modeling, Animation, Rigging)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
@@ -4298,7 +4376,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dr. Berrier
+  m_text: 'Dr. Berrier
+
+    Git Legend'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}
   m_sharedMaterial: {fileID: 7825756232490486605, guid: 291fe2be5d0b6044e9ce10ea2b65bb13, type: 2}

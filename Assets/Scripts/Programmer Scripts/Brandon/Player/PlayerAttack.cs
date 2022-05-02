@@ -116,8 +116,6 @@ public class PlayerAttack : MonoBehaviour
         
         if (Camera.main && Physics.Raycast(Camera.main.transform.position, transform.forward * 10, out hitTarget))
         {
-            Debug.Log(hitTarget.transform.name);
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue, 1f);
             if (hitTarget.transform.GetComponentInParent<EnemyStats>() 
                 && Vector3.Distance(transform.position, hitTarget.transform.position) < dashMaxDistance 
                 && Vector3.Distance(transform.position, hitTarget.transform.position) > dashMinDistance

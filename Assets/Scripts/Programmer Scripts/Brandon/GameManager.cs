@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     public bool activeInUse = false;
 
     [SerializeField] float mouseSensitivity = 50f;
+    [SerializeField] float fieldOfView = 60f;
+    [SerializeField] bool volume = true;
     [SerializeField] Slider mainMenuSlider;
     Transform positionToRespawnCheckpoint, positionToRespawnDefault;
     bool[] levelsCompleted = { false, false, false };
@@ -54,6 +57,12 @@ public class GameManager : MonoBehaviour
         }
         if (mainMenuSlider)
             mainMenuSlider.onValueChanged.AddListener(delegate { SetMouseSenitivity(); });
+
+        currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+    private void OnLevelWasLoaded(int level)
+    {
+        currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
     }
     public void AddEnemyToList(EnemyStats newEnemy)
     {
@@ -245,6 +254,37 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<mouseLook>().UpdateMouseSensitivity(value);
     }
 
+    public void SetFieldOfView(float value)
+    {
+        fieldOfView = value;
+        Camera.main.fieldOfView = value;
+        FindObjectOfType<A_AirDash>().UpdateFieldOfViewValue(value);
+    }
+
+    public float GetFieldOfView()
+    {
+        return fieldOfView;
+    }
+
+    public void SetVolume(bool value)
+    {
+        volume = value;
+        if (value)
+        {
+            Camera.main.GetComponent<AudioListener>().enabled = true;
+        }
+        else
+        {
+            Camera.main.GetComponent<AudioListener>().enabled = false;
+        }
+        
+    }
+
+    public bool GetVolume()
+    {
+        return volume;
+    }
+
     bool GetInLOS(Transform player, Transform enemy)
     {
         RaycastHit hit;
@@ -259,8 +299,10 @@ public class GameManager : MonoBehaviour
     public Vector3 GetRespawnPointRotation() { return positionToRespawnCheckpoint.rotation.eulerAngles; }
     public void SendGameObjectToRespawn(GameObject gameObject)
     {
-        gameObject.transform.position = positionToRespawnCheckpoint.position;
-        gameObject.transform.rotation = positionToRespawnCheckpoint.rotation;
+        RespawnCheckpointManager rManage = FindObjectOfType<RespawnCheckpointManager>();
+        Transform t = rManage.GetCurrentIndexTransform(respawnCheckpointIndex);
+        gameObject.transform.position = t.position;
+        gameObject.transform.rotation = t.rotation;
     }
     public void SetNewRespawnLocation(Transform newRespawnPosition) { positionToRespawnCheckpoint = newRespawnPosition; }
     public Transform GetRestartLevelLocation() { return positionToRespawnDefault; }

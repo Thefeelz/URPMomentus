@@ -48,11 +48,10 @@ public class SceneController : MonoBehaviour
     }
     public void GoToDeathScene()
     {
-        Debug.Log(SceneManager.sceneCount);
         SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
     }
     public void RestartLevel()
     {
-        SceneManager.LoadScene(FindObjectOfType<GameManager>().GetLevel());
+        SceneManager.LoadScene(FindObjectOfType<GameManager>().GetCurrentLevelBuildIndex());
     }
 }
