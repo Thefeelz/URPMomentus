@@ -22,7 +22,7 @@ public class EnemyTriggerGroup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemySize == enemyDead)
+        if (noahAi && enemySize == enemyDead)
             TriggerObjects();
     }
 
@@ -49,7 +49,7 @@ public class EnemyTriggerGroup : MonoBehaviour
         else // when the right number of enemies have been killed trigger objects is called
         {
             enemyDead += 1;
-            if(enemySize == enemyDead)
+            if (enemyDead >= enemySize)
             {
                 TriggerObjects();
             }
@@ -61,7 +61,7 @@ public class EnemyTriggerGroup : MonoBehaviour
         {
             foreach (Transform transform in transform)
             {
-                if (transform.GetComponent<EnemyStats>())
+                if (transform.GetComponent<EnemyStats>() && !transform.GetComponent<EnemyTriggerChild>())
                 {
                     transform.gameObject.AddComponent<EnemyTriggerChild>();
                     enemiesInGroup.Add(transform.GetComponent<EnemyStats>());
@@ -69,7 +69,7 @@ public class EnemyTriggerGroup : MonoBehaviour
             }
         }
         else
-        {
+        {         
             enemySize = GetComponentInChildren<Pooler>().totToSpawn; // totToSpawn is how many enemies must be killed to continue
         }
     }
