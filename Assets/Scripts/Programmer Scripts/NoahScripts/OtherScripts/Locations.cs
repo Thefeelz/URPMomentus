@@ -48,6 +48,11 @@ public class Locations : MonoBehaviour
             }
         }
 
+        if (Input.GetKeyDown("space"))
+        {
+            restartSpots();
+        }
+
     }
     void spotUpdate()
     {
@@ -204,7 +209,7 @@ public class Locations : MonoBehaviour
 
     public void restartSpots()
     {
-        
+        Debug.LogWarning("restarting");
         enemies = FindObjectsOfType(typeof(Enemy_Melee)) as Enemy_Melee[]; //gets all enemies in scene that are melee type
         currentEnemies.Clear(); // clears current enemy list
         for (int i = 0; i < enemies.Length; i++) // The list is just made for efficient sorting
@@ -323,5 +328,17 @@ public class Locations : MonoBehaviour
         }
         int expected = currentEnemies.Count - 4;
 
+    }
+
+
+    public void cRoutine()
+    {
+        StartCoroutine(toRestart());
+    }
+
+    IEnumerator toRestart()
+    {
+        yield return new WaitForSeconds(2);
+        restartSpots();
     }
 }

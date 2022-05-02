@@ -42,6 +42,7 @@ public class Spawner : MonoBehaviour
             }
             else
             {
+                Debug.Log(enemy.gameObject.name + " succeeded at " + i);
                 break;
             }
         }
