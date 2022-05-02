@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float dashMinDistance;
     [SerializeField] float attackDashCooldown;
     [SerializeField] float dashTime;
+    [SerializeField] FMODUnity.EventReference SwordSwingRef;
 
     [SerializeField] Volume attackDashVolume;
     RaycastHit hitTarget;
@@ -28,6 +29,8 @@ public class PlayerAttack : MonoBehaviour
     Vector3 endingDashPosition;
     Vector3 startingDashPosition;
     EnemyStats currentEnemy;
+
+
 
 
 
@@ -134,6 +137,7 @@ public class PlayerAttack : MonoBehaviour
     }
     IEnumerator WeaponSwing()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(SwordSwingRef, transform.position);
         playerAnimator.SetBool("swordSwing", true);
         yield return new WaitForSeconds(.05f);
         playerAnimator.SetBool("swordSwing", false);

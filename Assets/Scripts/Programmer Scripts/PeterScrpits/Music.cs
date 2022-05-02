@@ -14,6 +14,7 @@ public class Music : MonoBehaviour
 
     FMOD.Studio.EventInstance mainMenuMusic;
     FMOD.Studio.EventInstance levelOneMusic;
+    FMOD.Studio.EventInstance TutorailPrecombat;
     FMOD.Studio.EventInstance tutorialMusic;
     // Start is called before the first frame update
     void Start()
@@ -22,12 +23,14 @@ public class Music : MonoBehaviour
         tutorialMusic= FMODUnity.RuntimeManager.CreateInstance(tutorialMusicRef);
         levelOneMusic= FMODUnity.RuntimeManager.CreateInstance(levelOneMusicRef);
 
+        TutorailPrecombat = FMODUnity.RuntimeManager.CreateInstance(tutorialPrecombatRef);
+
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PreCombatTut()
     {
-        
+        TutorailPrecombat.start();
+
     }
 }

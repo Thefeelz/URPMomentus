@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    public FMODUnity.EventReference footstepsRef;
-    public FMODUnity.EventReference slideRef;
-    public FMODUnity.EventReference throwingRef;
+    
+    [SerializeField] FMODUnity.EventReference footstepsRef;
+    [SerializeField] FMODUnity.EventReference slideRef;
+    [SerializeField] FMODUnity.EventReference throwingRef;
+    [SerializeField] FMODUnity.EventReference ProjectileRef;
+    [SerializeField] FMODUnity.EventReference WeaponAttackNoiseRef;
 
 
     FMOD.Studio.EventInstance footsteps;
@@ -37,8 +40,18 @@ public class PlayerAudio : MonoBehaviour
         FMODUnity.RuntimeManager.PlayOneShot(slideRef, transform.position);
     }
 
-    public void throwSword()
+    public void ThrowSword()
     {
         FMODUnity.RuntimeManager.PlayOneShot(throwingRef, transform.position);
+    }
+
+    public void ProjectileNoise()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(ProjectileRef, transform.position);
+    }
+
+    public void WeaponAttackNoise()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(WeaponAttackNoiseRef, transform.position);
     }
 }

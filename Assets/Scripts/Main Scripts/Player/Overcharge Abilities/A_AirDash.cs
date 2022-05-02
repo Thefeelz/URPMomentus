@@ -18,6 +18,8 @@ public class A_AirDash : A_OverchargeAbilities
     [SerializeField] float returnToNormalScreenTime = 0.5f;
     // The duration it takes for the player to finish the dash (Literally is the movement speed of the player)
     [SerializeField] float dashDuration = 0.5f;
+    //Air dash noise reference
+    [SerializeField] FMODUnity.EventReference AirDashRef;
 
     // ==========Variables to Cache in the Awake Function==========
 
@@ -98,6 +100,7 @@ public class A_AirDash : A_OverchargeAbilities
 
     void Dash()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(AirDashRef, transform.position);
         // While dashing, since we are Lerping we need a constant number to Lerp against
         elapsedTime += Time.deltaTime;
         // Set the lerp progress to a variable so we dont have to calculate it 3 times, just once

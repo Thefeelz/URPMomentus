@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class DoorAudio : MonoBehaviour
 {
-    public FMODUnity.EventReference DoorNoiseRef;
+    public FMODUnity.EventReference DoorOpenNoiseRef;
+    public FMODUnity.EventReference DoorCloseNoiseRef;
 
-    FMOD.Studio.EventInstance doorState;
 
     // Start is called before the first frame update
     void Start()
     {
-        doorState = FMODUnity.RuntimeManager.CreateInstance(DoorNoiseRef);
         
     }
 
   
     public void PlayDoorOpen()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(DoorNoiseRef, transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot(DoorOpenNoiseRef, transform.position);
+    }
+
+
+    public void PlayDoorClose()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(DoorCloseNoiseRef, transform.position);
     }
 }
