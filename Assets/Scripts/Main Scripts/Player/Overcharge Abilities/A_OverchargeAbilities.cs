@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
     [SerializeField] protected int overchargeCost;
     [SerializeField] protected float abilityCooldownMax;
     [SerializeField] protected Image abilityCooldownButton;
+    [SerializeField] protected TMP_Text debugImage;
     public float abilityCooldownCurrent = 0f;
     public bool abilityReady = true;
     protected PlayerUI ui;
@@ -125,5 +127,18 @@ public abstract class A_OverchargeAbilities : MonoBehaviour
         if (oc > 25)
             return Mathf.RoundToInt(maxEnemiesHit * 0.5f);
         return 1;
+    }
+
+    protected void DisplayDebugImage()
+    {
+        if(!debugImage) { return; }
+        debugImage.gameObject.SetActive(true);
+        StartCoroutine(TurnOff());
+    }
+
+    IEnumerator TurnOff()
+    {
+        yield return new WaitForSeconds(1f);
+        debugImage.gameObject.SetActive(false);
     }
 }

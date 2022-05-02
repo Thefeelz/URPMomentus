@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274288118113700312}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.42, y: 3.2696812, z: 20.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1331,6 +1331,7 @@ GameObject:
   - component: {fileID: 2235567455425448186}
   - component: {fileID: 2235567455425448184}
   - component: {fileID: 2235567455425448185}
+  - component: {fileID: 134695465}
   m_Layer: 0
   m_Name: ArenaDoors
   m_TagString: Untagged
@@ -1366,6 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94b1c2aff817bf4aa1cb4cf4fc6785b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locked: 0
   target: {fileID: 0}
   reverseDoor: 0
 --- !u!65 &2235567455425448184
@@ -1400,6 +1402,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &134695465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379055270126421454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7032a2a5d965154488940f22e31b2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DoorOpenNoiseRef:
+    Guid:
+      Data1: -1855197789
+      Data2: 1333591328
+      Data3: 138678689
+      Data4: 1106095675
+    Path: event:/Events/DoorOpeningAction
+  DoorCloseNoiseRef:
+    Guid:
+      Data1: 1511609382
+      Data2: 1271283981
+      Data3: -853089355
+      Data4: 1471741097
+    Path: event:/Events/DoorClosing
 --- !u!1 &6439633406737259422
 GameObject:
   m_ObjectHideFlags: 0

@@ -241,7 +241,7 @@ public class BomberEnemy : MonoBehaviour
         {
             returnToState = currentState;
             currentState = FlyerState.Asleep;
-            StopCoroutine(LO);
+            StopAllCoroutines();
             anim.speed = 0;
         }
         else
