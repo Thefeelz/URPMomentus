@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class CameraMovementScript : MonoBehaviour
 {
+    [SerializeField] FMODUnity.EventReference MainMenuMusicRef;
+    [SerializeField] FMODUnity.EventReference ButtonClickedRef;
+    FMOD.Studio.EventInstance MainMusic;
     [SerializeField] Transform camPosStartMainMenu;
     [SerializeField] Transform camPosPlayButton;
     [SerializeField] Transform camPosLoadOutSelection;
@@ -28,6 +31,10 @@ public class CameraMovementScript : MonoBehaviour
     {
         transform.position = camPosStartMainMenu.position;
         GameManager.Instance.SetRespawnCheckpointIndex(0);
+        MainMusic = FMODUnity.RuntimeManager.CreateInstance(MainMenuMusicRef);
+        MainMusic.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        MainMusic.start();
+
     }
 
     // Update is called once per frame
@@ -55,6 +62,7 @@ public class CameraMovementScript : MonoBehaviour
 
     public void PlayButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -72,6 +80,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void TutorialButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -89,6 +98,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void LevelButtonClicked(int level)
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -110,6 +120,9 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void LoadOutBackButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
+        //MainMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        //MainMusic.release();
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -127,6 +140,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void SettingsBackButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -144,6 +158,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void CreditsBackButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -161,6 +176,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void LevelSelectBackButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -178,6 +194,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void SettingsButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -196,6 +213,7 @@ public class CameraMovementScript : MonoBehaviour
     }
     public void CreditsButtonClicked()
     {
+        FMODUnity.RuntimeManager.PlayOneShot(ButtonClickedRef, transform.position);
         if (transitioning) { return; }
         startingPos = transform.position;
         startingRot = transform.rotation;
@@ -212,4 +230,10 @@ public class CameraMovementScript : MonoBehaviour
         transitioning = true;
     }
     public void ChooseSword(int swordChoice) { GameManager.Instance.SetBladeColor(swordChoice); }
+
+    private void OnDestroy()
+    {
+        MainMusic.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        MainMusic.release();
+    }
 }
